@@ -14,5 +14,9 @@
 }
 
 .wrapper{
-  padding: 0px 16px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  position: relative;
 }

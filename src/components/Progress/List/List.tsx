@@ -7,7 +7,7 @@ const List: FC = () => {
   return (
     <div className={css.list}>
       {listData.map(({ option }) => (
-        <Item option={option} />
+        <Item option={option} key={option.name} />
       ))}
     </div>
   )

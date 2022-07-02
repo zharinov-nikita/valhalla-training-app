@@ -1,17 +1,16 @@
 import React from 'react'
 import Progress from './components/Progress/Progress'
 import Pulse from './components/Pulse/Pulse'
+import User from './components/User/User'
 
 function App() {
   return (
     <div className="App">
       <div className="container">
-        <div
-          className="wrapper"
-          style={{ display: 'flex', flexDirection: 'column', gap: 12 }}
-        >
-          <Pulse />
+        <div className="wrapper">
+          <User option={{ info: 'Жаринов Данил', value: 1200 }} />
           <Progress />
+          <Pulse />
         </div>
       </div>
     </div>
