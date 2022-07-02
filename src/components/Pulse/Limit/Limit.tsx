@@ -1,3 +1,4 @@
+import { FallOutlined } from '@ant-design/icons'
 import { FC } from 'react'
 import css from './Limit.module.scss'
 
@@ -10,7 +11,6 @@ const Limit: FC<LimitPropsType> = ({ value }) => {
     <div className={css.limit}>
       <div className={css.top}>
         <span className={css.text}>Граница</span>
-        <span className={css.icon}>X</span>
       </div>
       <div className={css.buttom}>
         <span className={css.counter}>{value}</span>

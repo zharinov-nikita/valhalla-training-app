@@ -4,7 +4,8 @@ import css from './Pulse.module.scss'
 
 const Pulse: FC = () => {
   return (
-    <div>
+    <div className={css.item}>
+      <div className={css.title}>Пульсовые зоны</div>
       <List />
     </div>
   )

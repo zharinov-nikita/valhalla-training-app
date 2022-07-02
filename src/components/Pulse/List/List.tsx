@@ -17,6 +17,9 @@ const List: FC = () => {
       <Item
         option={{ title: 'Четвертая зона', bound: { lower: 140, upper: 150 } }}
       />
+      <Item
+        option={{ title: 'Пятая зона', bound: { lower: 150, upper: 160 } }}
+      />
     </div>
   )
 }
