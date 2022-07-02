@@ -7,14 +7,19 @@ export type ItemPropsType = {
     name: string
     value: number | string
     time: number | string
-    level?: 'low' | 'mid' | 'high'
+    exerciseLevel: {
+      low: number
+      mid: number
+      high: number
+    }
   }
 }
 
 const Item: FC<ItemPropsType> = ({ option }) => {
   const [level, setLevel] = useState<'low' | 'mid' | 'high'>('low')
-  const [value, setValue] = useState<string>('')
-  const [time, setTime] = useState<string>('')
+  const [levelTime, setLevelTime] = useState<'low' | 'mid' | 'high'>('low')
+  const [value, setValue] = useState('')
+  const [time, setTime] = useState('')
 
   const onChangeValue = (e: { target: HTMLInputElement }) => {
     if (!isNaN(Number(e.target.value)) && Number(e.target.value) <= 999) {
@@ -23,18 +28,45 @@ const Item: FC<ItemPropsType> = ({ option }) => {
   }
 
   useEffect(() => {
-    if (Number(value) <= 10) {
-      setLevel('low')
+    // value
+    if (value.length > 0) {
+      if (Number(value) <= option.exerciseLevel.low) {
+        setLevel('low')
+      }
+
+      if (Number(value) > option.exerciseLevel.low) {
+        setLevel('mid')
+      }
+
+      if (Number(value) >= option.exerciseLevel.high) {
+        setLevel('high')
+      }
     }
 
-    if (Number(value) >= 14 && Number(value) <= 16) {
-      setLevel('mid')
+    if (value.length === 0) {
+      setLevelTime('low')
     }
 
-    if (Number(value) >= 16) {
-      setLevel('high')
+    // time
+
+    if (time.length > 0) {
+      if (Number(time) > 120) {
+        setLevelTime('low')
+      }
+
+      if (Number(time) === 120) {
+        setLevelTime('mid')
+      }
+
+      if (Number(time) < 120) {
+        setLevelTime('high')
+      }
     }
-  }, [value])
+
+    if (time.length === 0) {
+      setLevelTime('low')
+    }
+  }, [value, time])
 
   const onChangeTime = (e: { target: HTMLInputElement }) => {
     if (!isNaN(Number(e.target.value)) && Number(e.target.value) <= 9999) {
@@ -54,18 +86,18 @@ const Item: FC<ItemPropsType> = ({ option }) => {
             onChange={onChangeValue}
             min={0}
             max={200}
-            required
+            autoComplete={'off'}
           />
           <TrophyOutlined />
         </div>
-        <div className={css.value}>
+        <div className={css.value} data-level={levelTime}>
           <input
             type="text"
             value={time}
             onChange={onChangeTime}
             min={0}
             max={36000}
-            required
+            autoComplete={'off'}
           />
           <FieldTimeOutlined />
         </div>
