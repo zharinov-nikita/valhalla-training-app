@@ -7,13 +7,10 @@ function App() {
   return (
     <div className="App">
       <div className="container">
-        <div
-          className="wrapper"
-          style={{ display: 'flex', flexDirection: 'column', gap: 12 }}
-        >
-          <User />
-          <Pulse />
+        <div className="wrapper">
+          <User option={{ info: 'Жаринов Данил', value: 1200 }} />
           <Progress />
+          <Pulse />
         </div>
       </div>
     </div>
