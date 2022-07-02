@@ -6,6 +6,7 @@ export type ItemPropsType = {
   option: {
     name: string
     value: number
+    time: number
   }
 }
 
@@ -20,7 +21,7 @@ const Item: FC<ItemPropsType> = ({ option }) => {
           <TrophyOutlined />
         </div>
         <div className={css.value}>
-          {option.value}
+          {option.time}
           <FieldTimeOutlined />
         </div>
       </div>
