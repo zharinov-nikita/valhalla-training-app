@@ -24,6 +24,29 @@
     min-height: 24px;
     font-weight: 900;
     padding: 4px 8px;
+
+    & input {
+        width: 30px;
+        max-width: 100%;
+        border: 0;
+        background-color: transparent;
+        font-weight: 700;
+    }
+
+    &[data-level="low"] {
+        background-color: #ffccc7;
+        color: #f5222d;
+    }
+
+    &[data-level="mid"] {
+        background-color: #ffffb8;
+        color: #fadb14;
+    }
+
+    &[data-level="high"] {
+        background-color: #d9f7be;
+        color: #52c41a;
+    }
 }
 
 .list {
