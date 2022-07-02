@@ -1,0 +1,64 @@
+.item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #f0f5ff;
+    border-radius: 8px;
+    padding: 12px;
+    height: 110px;
+    min-height: 80px;
+}
+
+.left {
+    width: 110px;
+    height: 100%;
+    background-color: #d6e4ff;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #2f54eb;
+}
+
+.info {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px;
+    border-radius: 8px;
+    background-color: #d6e4ff;
+    gap: 4px;
+    color: #2f54eb;
+}
+
+.value {
+    font-weight: 700;
+    color: #2f54eb;
+}
+
+.min {
+    color: #bfbfbf;
+    font-weight: 900;
+}
+
+.right {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.header {
+    color: #bfbfbf;
+}
+
+.body {
+    color: #bfbfbf;
+    font-weight: 700;
+}
