@@ -1,6 +1,7 @@
 import React from 'react'
 import Progress from './components/Progress/Progress'
 import Pulse from './components/Pulse/Pulse'
+import User from './components/User/User'
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
           className="wrapper"
           style={{ display: 'flex', flexDirection: 'column', gap: 12 }}
         >
+          <User />
           <Pulse />
           <Progress />
         </div>
