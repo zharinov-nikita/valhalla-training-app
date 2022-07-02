@@ -7,6 +7,10 @@
     sans-serif;
 }
 
+body{
+  background-color: #f0f0f0 !important;
+}
+
 .container{
   width: 360px;
   max-width: 100%;
