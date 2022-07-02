@@ -1,0 +1,33 @@
+.item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #bae7ff;
+    padding: 8px;
+    border-radius: 8px;
+}
+
+.name {
+    color: #8c8c8c;
+    font-weight: 700;
+}
+
+.value {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    background-color: #91d5ff;
+    border-radius: 8px;
+    color: #8c8c8c;
+    min-width: 24px;
+    min-height: 24px;
+    font-weight: 900;
+    padding: 4px 8px;
+}
+
+.list {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
