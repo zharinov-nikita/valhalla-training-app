@@ -1,0 +1,15 @@
+.item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: aqua;
+    padding: 8px;
+    border-radius: 4px;
+}
+
+.title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: calc(100% - 40%);
+}
