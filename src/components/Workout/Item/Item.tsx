@@ -4,7 +4,7 @@ import {
   HeartOutlined,
 } from '@ant-design/icons'
 import { FC } from 'react'
-import Tag from './Tag/Tag'
+import Tag from '../Tag/Tag'
 import css from './Workout.module.scss'
 
 const Workout: FC = () => {
