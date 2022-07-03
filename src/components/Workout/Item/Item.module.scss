@@ -1,0 +1,20 @@
+.item {
+    background-color: #f0f5ff;
+    border-radius: 8px;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #595959;
+}
+
+.body {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}

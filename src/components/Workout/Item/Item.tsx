@@ -1,24 +1,27 @@
-import {
-  FieldTimeOutlined,
-  HeartFilled,
-  HeartOutlined,
-} from '@ant-design/icons'
-import { FC } from 'react'
+import { FieldTimeOutlined, HeartFilled } from '@ant-design/icons'
+import { FC, ReactNode } from 'react'
 import Tag from '../Tag/Tag'
-import css from './Workout.module.scss'
+import css from './Item.module.scss'
 
-const Workout: FC = () => {
+export type ItemPropsType = {
+  option: {
+    title: string
+    tag: Array<{ value: number | string; icon?: ReactNode }>
+  }
+}
+
+const Item: FC<ItemPropsType> = ({ option }) => {
   return (
-    <div className={css.workout}>
+    <div className={css.item}>
       <div className={css.header}>
-        <div className={css.title}>Дистанционная тренировка</div>
+        <div className={css.title}>{option.title}</div>
       </div>
       <div className={css.body}>
-        <Tag option={{ value: 80, icon: <FieldTimeOutlined /> }} />
-        <Tag option={{ value: 'Интенсивная', icon: <HeartFilled /> }} />
+        {option.tag &&
+          option.tag.map(({ value, icon }) => <Tag option={{ value, icon }} />)}
       </div>
     </div>
   )
 }
 
-export default Workout
+export default Item
