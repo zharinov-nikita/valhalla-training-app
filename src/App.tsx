@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import { Route, Routes } from 'react-router-dom'
+import { Navigate, Route, Routes } from 'react-router-dom'
 import Day from './pages/Day/Day'
 import Exercise from './pages/Exercise/Exercise'
 
@@ -11,6 +11,7 @@ const App: FC = () => {
           <Routes>
             <Route path="day" element={<Day />} />
             <Route path="exercise/:_id" element={<Exercise />} />
+            <Route path="*" element={<Navigate to="/day" replace />} />
           </Routes>
         </div>
       </div>
