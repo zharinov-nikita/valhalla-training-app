@@ -9,13 +9,13 @@ const List: FC = () => {
       {listData.map((item) => (
         <>
           {item.groop.length >= 2 ? (
-            <>
-              <div className={css.groop}>
-                <Groop groop={item.groop} />
-              </div>
-            </>
+            <div className={css.groop}>
+              <Groop id={item.id} key={item.id} groop={item.groop} />
+            </div>
           ) : (
-            <Groop groop={item.groop} />
+            <div className={css.item}>
+              <Groop id={item.id} key={item.id} groop={item.groop} />
+            </div>
           )}
         </>
       ))}

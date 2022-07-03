@@ -2,6 +2,7 @@ import { FC } from 'react'
 import Item, { ItemPropsType } from '../Item/Item'
 
 export type GroopPropsType = {
+  id: number
   groop: ItemPropsType[]
 }
 
