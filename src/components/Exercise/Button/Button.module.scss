@@ -7,14 +7,12 @@
 }
 
 .wrapper {
-    width: 480px;
-    min-width: 360px;
-    max-width: 100%;
     margin: 0px auto;
     padding: 24px;
 }
 
 .button {
+    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
