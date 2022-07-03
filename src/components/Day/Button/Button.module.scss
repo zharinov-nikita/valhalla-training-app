@@ -1,0 +1,31 @@
+.container {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 460px;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.wrapper {
+    padding: 16px;
+    background-color: transparent;
+    border-radius: 8px 8px 0px 0px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.button {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 12px 0px;
+    background: #434343;
+    color: #fff;
+    font-weight: 500;
+    border-radius: 8px;
+}
