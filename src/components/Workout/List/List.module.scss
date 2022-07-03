@@ -1,26 +1,24 @@
 .list {
     display: flex;
     flex-direction: column;
-    gap: 12px;
-    background-color: #f0f5ff;
-    padding: 12px;
+    gap: 18px;
     border-radius: 4px;
 }
 
 .groop {
     display: flex;
     flex-direction: column;
-    gap: 6px;
-    padding: 6px;
-    background-color: #adc6ff;
+    gap: 8px;
+    padding: 12px;
+    background-color: #f0f5ff;
     border-radius: 8px;
 }
 
 .item {
     display: flex;
     flex-direction: column;
-    gap: 6px;
-    padding: 6px;
-    background-color: #adc6ff;
+    gap: 8px;
+    padding: 12px;
+    background-color: #f0f5ff;
     border-radius: 8px;
 }
