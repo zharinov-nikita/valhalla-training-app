@@ -5,28 +5,28 @@
     bottom: 0;
     width: 460px;
     max-width: 100%;
-    max-width: 100%;
     margin: 0 auto;
+    background-color: #fff;
 }
 
 .wrapper {
     padding: 16px;
-    background-color: #f0f0f0;
+    background-color: transparent;
     border-radius: 8px 8px 0px 0px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 8px;
 }
 
-.item {
-    display: inline-flex;
+.button {
+    cursor: pointer;
+    display: flex;
     align-items: center;
     justify-content: center;
-    gap: 4px;
-    padding: 8px;
+    width: 100%;
+    padding: 12px 0px;
+    background: #434343;
+    color: #fff;
+    font-weight: 500;
     border-radius: 8px;
-    background-color: #e4e4e4;
-    color: #434343;
-    font-weight: 700;
 }

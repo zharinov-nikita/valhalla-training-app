@@ -1,18 +1,18 @@
-import React from 'react'
-import Menu from './components/Menu/Menu'
-import Progress from './components/Progress/Progress'
-import Pulse from './components/Pulse/Pulse'
-import User from './components/User/User'
+import { FC } from 'react'
+import { Navigate, Route, Routes } from 'react-router-dom'
+import Day from './pages/Day/Day'
+import Exercise from './pages/Exercise/Exercise'
 
-function App() {
+const App: FC = () => {
   return (
     <div className="App">
       <div className="container">
         <div className="wrapper">
-          <Menu />
-          <User option={{ info: 'Жаринов Данил', value: 1200 }} />
-          <Progress />
-          <Pulse />
+          <Routes>
+            <Route path="day" element={<Day />} />
+            <Route path="exercise/:_id" element={<Exercise />} />
+            <Route path="*" element={<Navigate to="/day" replace />} />
+          </Routes>
         </div>
       </div>
     </div>
