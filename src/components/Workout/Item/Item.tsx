@@ -5,8 +5,9 @@ import css from './Item.module.scss'
 
 export type ItemPropsType = {
   option: {
+    id?: number
     title: string
-    tag: Array<{ value: number | string; icon?: ReactNode }>
+    tag: Array<{ id?: number; value: number | string; icon?: ReactNode }>
   }
 }
 
@@ -18,7 +19,9 @@ const Item: FC<ItemPropsType> = ({ option }) => {
       </div>
       <div className={css.body}>
         {option.tag &&
-          option.tag.map(({ value, icon }) => <Tag option={{ value, icon }} />)}
+          option.tag.map(({ id, value, icon }) => (
+            <Tag key={id} option={{ value, icon }} />
+          ))}
       </div>
     </div>
   )

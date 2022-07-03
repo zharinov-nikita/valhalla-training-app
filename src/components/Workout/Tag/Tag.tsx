@@ -4,6 +4,7 @@ import css from './Tag.module.scss'
 
 export type TagPropsType = {
   option: {
+    id?: number
     value: number | string
     icon?: ReactNode
   }

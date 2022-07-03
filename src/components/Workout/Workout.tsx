@@ -1,21 +1,8 @@
-import { FieldTimeOutlined, HeartFilled } from '@ant-design/icons'
 import { FC } from 'react'
-import Item from './Item/Item'
+import List from './List/List'
 
 const Workout: FC = () => {
-  return (
-    <>
-      <Item
-        option={{
-          title: 'Дистанционная тренировка',
-          tag: [
-            { value: 80, icon: <FieldTimeOutlined /> },
-            { value: 'Интенсивная', icon: <HeartFilled /> },
-          ],
-        }}
-      />
-    </>
-  )
+  return <List />
 }
 
 export default Workout
