@@ -1,4 +1,5 @@
 import React from 'react'
+import Button from './components/Exercise/Button/Button'
 import Exercise from './components/Exercise/Exercise'
 
 function App() {

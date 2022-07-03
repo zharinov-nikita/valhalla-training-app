@@ -1,0 +1,27 @@
+.container {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: transparent;
+}
+
+.wrapper {
+    width: 480px;
+    min-width: 360px;
+    max-width: 100%;
+    margin: 0px auto;
+    padding: 24px;
+}
+
+.button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 12px 0px;
+    background: #434343;
+    color: #fff;
+    font-weight: 500;
+    border-radius: 8px;
+}
