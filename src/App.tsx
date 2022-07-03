@@ -1,20 +1,15 @@
-import React from 'react'
-import Menu from './components/Menu/Menu'
-import Progress from './components/Progress/Progress'
-import Pulse from './components/Pulse/Pulse'
-import User from './components/User/User'
-import Workout from './components/Workout/Workout'
+import { FC } from 'react'
+import { Route, Routes } from 'react-router-dom'
+import Exercise from './pages/Exercise/Exercise'
 
-function App() {
+const App: FC = () => {
   return (
     <div className="App">
       <div className="container">
         <div className="wrapper">
-          <Workout />
-          <Menu />
-          <User option={{ info: 'Жаринов Данил', value: 1200 }} />
-          <Progress />
-          <Pulse />
+          <Routes>
+            <Route path="exercise/:_id" element={<Exercise />} />
+          </Routes>
         </div>
       </div>
     </div>
