@@ -1,13 +1,15 @@
-import React from 'react'
-import Button from './components/Exercise/Button/Button'
-import Exercise from './components/Exercise/Exercise'
+import { FC } from 'react'
+import { Route, Routes } from 'react-router-dom'
+import Exercise from './pages/Exercise/Exercise'
 
-function App() {
+const App: FC = () => {
   return (
     <div className="App">
       <div className="container">
         <div className="wrapper">
-          <Exercise />
+          <Routes>
+            <Route path="exercise/:_id" element={<Exercise />} />
+          </Routes>
         </div>
       </div>
     </div>

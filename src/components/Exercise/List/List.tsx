@@ -1,12 +1,12 @@
 import { FC } from 'react'
-import Button from './Button/Button'
-import Item from './Item/Item'
-import css from './Exercise.module.scss'
+import Button from '../Button/Button'
+import Item from '../Item/Item'
+import css from './List.module.scss'
 import { FieldTimeOutlined, HeartOutlined } from '@ant-design/icons'
 
-const Exercise: FC = () => {
+const List: FC = () => {
   return (
-    <div className={css.exercise}>
+    <div className={css.list}>
       <Item
         props={{
           _id: 0,
@@ -94,4 +94,4 @@ const Exercise: FC = () => {
   )
 }
 
-export default Exercise
+export default List
