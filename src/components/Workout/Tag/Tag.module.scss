@@ -3,13 +3,32 @@
     align-items: center;
     justify-content: center;
     border-radius: 8px;
-    background-color: #ffffb8;
     padding: 2px 4px;
     gap: 4px;
 
     & > * {
-        font-size: 14px;
-        font-weight: 700;
+        font-size: 12px;
+        font-weight: 600;
+    }
+}
+
+.item[tag-color="red"] {
+    background-color: #ffccc7;
+    & > * {
+        color: #f5222d;
+    }
+}
+
+.item[tag-color="yellow"] {
+    background-color: #ffffb8;
+    & > * {
         color: #ad8b00;
+    }
+}
+
+.item[tag-color="blue"] {
+    background-color: #d6e4ff;
+    & > * {
+        color: #2f54eb;
     }
 }

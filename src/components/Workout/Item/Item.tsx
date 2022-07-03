@@ -7,7 +7,12 @@ export type ItemPropsType = {
   option: {
     id?: number
     title: string
-    tag: Array<{ id?: number; value: number | string; icon?: ReactNode }>
+    tag: Array<{
+      id?: number
+      color?: 'yellow' | 'red' | 'blue'
+      value: number | string
+      icon?: ReactNode
+    }>
   }
 }
 
@@ -19,8 +24,8 @@ const Item: FC<ItemPropsType> = ({ option }) => {
       </div>
       <div className={css.body}>
         {option.tag &&
-          option.tag.map(({ id, value, icon }) => (
-            <Tag key={id} option={{ value, icon }} />
+          option.tag.map(({ id, color, value, icon }) => (
+            <Tag key={id} option={{ color, value, icon }} />
           ))}
       </div>
     </div>

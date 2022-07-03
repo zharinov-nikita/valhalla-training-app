@@ -1,4 +1,5 @@
 import {
+  CalendarOutlined,
   FieldTimeOutlined,
   HeartFilled,
   HeartOutlined,
@@ -11,19 +12,17 @@ export const listData: ItemPropsType[] = [
       id: 1,
       title: 'Дистанционная тренировка',
       tag: [
-        { id: 1, value: 80, icon: <FieldTimeOutlined /> },
-        { id: 2, value: 'Интенсивная', icon: <HeartOutlined /> },
+        { id: 1, color: 'red', value: 'Первый', icon: <CalendarOutlined /> },
+        { id: 2, value: 80, icon: <FieldTimeOutlined /> },
+        { id: 3, value: 'Интенсивная', icon: <HeartOutlined /> },
       ],
     },
   },
   {
     option: {
       id: 2,
-      title: 'Дистанционная тренировка',
-      tag: [
-        { id: 3, value: 80, icon: <FieldTimeOutlined /> },
-        { id: 4, value: 'Интенсивная', icon: <HeartOutlined /> },
-      ],
+      title: 'Выходной',
+      tag: [{ id: 1, value: 'Второй', icon: <CalendarOutlined /> }],
     },
   },
   {
@@ -31,19 +30,17 @@ export const listData: ItemPropsType[] = [
       id: 3,
       title: 'Дистанционная тренировка',
       tag: [
-        { id: 5, value: 80, icon: <FieldTimeOutlined /> },
-        { id: 6, value: 'Интенсивная', icon: <HeartOutlined /> },
+        { id: 1, value: 'Третий', icon: <CalendarOutlined /> },
+        { id: 2, value: 80, icon: <FieldTimeOutlined /> },
+        { id: 3, value: 'Интенсивная', icon: <HeartOutlined /> },
       ],
     },
   },
   {
     option: {
       id: 4,
-      title: 'Сверхдистанционная тренировка',
-      tag: [
-        { id: 7, value: 120, icon: <FieldTimeOutlined /> },
-        { id: 8, value: 'Интенсивная', icon: <HeartOutlined /> },
-      ],
+      title: 'Выходной',
+      tag: [{ id: 1, value: 'Четвертый', icon: <CalendarOutlined /> }],
     },
   },
 ]
