@@ -19,7 +19,9 @@ const Info: FC = () => {
           </div>
         </div>
         <div className={css.footer}>
-          <div className={css.progress} data-progress={20}></div>
+          <div className={css.progress}>
+            <div className={css.placeholder} style={{ width: `${50}%` }}></div>
+          </div>
         </div>
       </div>
     </div>
