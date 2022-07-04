@@ -1,0 +1,23 @@
+@import "../../scss/variables.scss";
+
+.affix {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 480px;
+    background-color: $gray-1;
+    max-width: 100%;
+    margin: 0px auto;
+    padding: 16px;
+    & .button {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: $gray-10;
+        border-radius: 8px;
+        padding: 12px 8px;
+        color: $gray-1;
+    }
+}
