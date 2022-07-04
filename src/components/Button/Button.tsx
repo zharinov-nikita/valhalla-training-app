@@ -1,12 +1,19 @@
 import { BugOutlined } from '@ant-design/icons'
-import { FC } from 'react'
+import { FC, ReactNode } from 'react'
 import css from './Button.module.scss'
 
-const Button: FC = () => {
+export type ButtonPropsType = {
+  props: {
+    text: string
+    icon?: ReactNode
+  }
+}
+
+const Button: FC<ButtonPropsType> = ({ props }) => {
   return (
     <div className={css.button}>
-      <div className={css.text}>Кнопка</div>
-      <BugOutlined />
+      <div className={css.text}>{props.text}</div>
+      {props.icon && props.icon}
     </div>
   )
 }

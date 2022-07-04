@@ -1,3 +1,4 @@
+import { BugOutlined } from '@ant-design/icons'
 import { FC } from 'react'
 import Button from './components/Button/Button'
 import Header from './components/Header/Header'
@@ -10,7 +11,7 @@ const App: FC = () => {
         <div className="app__wrapper">
           <Header props={{ title: 'План' }} />
           <Status props={{ text: 'Запланировано' }} />
-          <Button />
+          <Button props={{ text: 'Кнопка', icon: <BugOutlined /> }} />
         </div>
       </div>
     </div>
