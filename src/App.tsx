@@ -8,7 +8,7 @@ const App: FC = () => {
       <div className="app__container">
         <div className="app__wrapper">
           <Header props={{ title: 'План' }} />
-          <Status />
+          <Status props={{ text: 'Запланировано' }} />
         </div>
       </div>
     </div>
