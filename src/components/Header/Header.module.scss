@@ -1,6 +1,7 @@
 @import "../../scss/variables.scss";
 
 .header {
+    margin-bottom: 24px;
     & .wrapper {
         background-color: $gray-4;
         height: 48px;
@@ -8,6 +9,10 @@
         align-items: center;
         justify-content: space-between;
         padding: 0px 12px;
+    }
+
+    & .left {
+        cursor: pointer;
     }
 
     & > * {

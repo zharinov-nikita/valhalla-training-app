@@ -1,9 +1,11 @@
 import { FC } from 'react'
+import { Link } from 'react-router-dom'
 import Status from '../Status/Status'
 import css from './Info.module.scss'
 
 export type InfoPropsType = {
   props: {
+    to: string
     status: string
     title: string
     description: string
@@ -13,7 +15,7 @@ export type InfoPropsType = {
 
 const Info: FC<InfoPropsType> = ({ props }) => {
   return (
-    <div className={css.info}>
+    <Link to={props.to} className={css.info}>
       <div className={css.left}>
         <div className={css.icon}></div>
       </div>
@@ -34,7 +36,7 @@ const Info: FC<InfoPropsType> = ({ props }) => {
           </div>
         </div>
       </div>
-    </div>
+    </Link>
   )
 }
 

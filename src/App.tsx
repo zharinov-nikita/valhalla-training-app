@@ -1,11 +1,7 @@
-import { BugOutlined } from '@ant-design/icons'
 import { FC } from 'react'
-import AffixButton from './components/AffixButton/AffixButton'
-import Button from './components/Button/Button'
+import { Route, Routes } from 'react-router-dom'
 import Header from './components/Header/Header'
-import Info from './components/Info/Info'
-import Property from './components/Property/Property'
-import Status from './components/Status/Status'
+import Plan from './pages/Plan/Plan'
 
 const App: FC = () => {
   return (
@@ -13,19 +9,9 @@ const App: FC = () => {
       <div className="app__container">
         <div className="app__wrapper">
           <Header props={{ title: 'План' }} />
-          <Status props={{ text: 'Запланировано' }} />
-          <Button props={{ text: 'Кнопка', icon: <BugOutlined /> }} />
-          <Property props={{ name: 'Интенсивность', value: 'Низкая' }} />
-          <Property props={{ name: 'Длительность', value: '120 минут' }} />
-          <Info
-            props={{
-              title: 'Лыжная подготовка',
-              description: 'План - подготовка к лыжному сезону 2021/2022',
-              status: 'В работе',
-              progress: 10,
-            }}
-          />
-          <AffixButton props={{ title: 'Завершить тренировку' }} />
+          <Routes>
+            <Route path="/plan" element={<Plan />} />
+          </Routes>
         </div>
       </div>
     </div>
