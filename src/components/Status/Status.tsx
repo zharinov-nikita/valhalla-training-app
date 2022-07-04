@@ -1,9 +1,11 @@
 import { FC } from 'react'
 import css from './Status.module.scss'
 
+export type StatusType = 'Запланировано' | 'В работе' | 'Завершено'
+
 export type StatusPropsType = {
   props: {
-    text: string
+    text: StatusType
   }
 }
 

@@ -1,6 +1,7 @@
 import { FC } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import Header from './components/Header/Header'
+import Period from './pages/Period/Period'
 import Plan from './pages/Plan/Plan'
 
 const App: FC = () => {
@@ -11,6 +12,7 @@ const App: FC = () => {
           <Header props={{ title: 'План' }} />
           <Routes>
             <Route path="/plan" element={<Plan />} />
+            <Route path="/period" element={<Period />} />
           </Routes>
         </div>
       </div>
