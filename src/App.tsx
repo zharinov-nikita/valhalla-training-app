@@ -1,10 +1,12 @@
 import { FC } from 'react'
 import { Route, Routes } from 'react-router-dom'
+
 import Header from './components/Header/Header'
 import Cycle from './pages/Cycle/Cycle'
 import Day from './pages/Day/Day'
 import Period from './pages/Period/Period'
 import Plan from './pages/Plan/Plan'
+import Workout from './pages/Workout/Workout'
 
 const App: FC = () => {
   return (
@@ -17,6 +19,7 @@ const App: FC = () => {
             <Route path="/period" element={<Period />} />
             <Route path="/cycle" element={<Cycle />} />
             <Route path="/day" element={<Day />} />
+            <Route path="/workout" element={<Workout />} />
           </Routes>
         </div>
       </div>
