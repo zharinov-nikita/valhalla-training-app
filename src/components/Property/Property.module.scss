@@ -1,0 +1,38 @@
+@import "../../scss/variables.scss";
+
+.property {
+    background-color: $gray-3;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px;
+    border-radius: 8px;
+
+    & .name {
+        cursor: pointer;
+        color: $gray-6;
+        width: fit-content;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 8px 12px;
+        border-radius: 8px;
+        font-size: 14px;
+        font-weight: 500;
+    }
+
+    & .value {
+        cursor: pointer;
+        color: $gray-7;
+        border: 1px solid $gray-6;
+        background-color: $gray-5;
+        width: fit-content;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 8px 12px;
+        border-radius: 8px;
+        font-size: 14px;
+        font-weight: 500;
+    }
+}

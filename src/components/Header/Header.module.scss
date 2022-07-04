@@ -1,0 +1,29 @@
+@import "../../scss/variables.scss";
+
+.header {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    width: 480px;
+    max-width: 100%;
+    margin: 0px auto;
+    z-index: 999;
+    & .wrapper {
+        background-color: $gray-4;
+        height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0px 12px;
+    }
+
+    & .left {
+        cursor: pointer;
+    }
+
+    & > * {
+        color: $gray-10;
+        font-weight: 500;
+    }
+}
