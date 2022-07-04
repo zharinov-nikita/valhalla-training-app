@@ -17,6 +17,11 @@
     }
 }
 
+body {
+    background-color: $gray-1;
+    min-height: 100vh;
+}
+
 .app {
     &__container {
         width: 480px;
