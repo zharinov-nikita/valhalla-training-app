@@ -13,7 +13,8 @@ const App: FC = () => {
           <Header props={{ title: 'План' }} />
           <Status props={{ text: 'Запланировано' }} />
           <Button props={{ text: 'Кнопка', icon: <BugOutlined /> }} />
-          <Property />
+          <Property props={{ name: 'Интенсивность', value: 'Низкая' }} />
+          <Property props={{ name: 'Длительность', value: '120 минут' }} />
         </div>
       </div>
     </div>
