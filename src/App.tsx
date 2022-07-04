@@ -1,5 +1,6 @@
 import { FC } from 'react'
 import Header from './components/Header/Header'
+import Status from './components/Status/Status'
 
 const App: FC = () => {
   return (
@@ -7,6 +8,7 @@ const App: FC = () => {
       <div className="app__container">
         <div className="app__wrapper">
           <Header props={{ title: 'План' }} />
+          <Status props={{ text: 'Запланировано' }} />
         </div>
       </div>
     </div>
