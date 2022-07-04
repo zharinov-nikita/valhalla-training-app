@@ -1,11 +1,13 @@
-import { BugOutlined } from '@ant-design/icons'
 import { FC } from 'react'
-import AffixButton from './components/AffixButton/AffixButton'
-import Button from './components/Button/Button'
+import { Navigate, Route, Routes } from 'react-router-dom'
+
 import Header from './components/Header/Header'
-import Info from './components/Info/Info'
-import Property from './components/Property/Property'
-import Status from './components/Status/Status'
+import Cycle from './pages/Cycle/Cycle'
+import Day from './pages/Day/Day'
+import Exercise from './pages/Exercise/Exercise'
+import Period from './pages/Period/Period'
+import Plan from './pages/Plan/Plan'
+import Workout from './pages/Workout/Workout'
 
 const App: FC = () => {
   return (
@@ -13,19 +15,15 @@ const App: FC = () => {
       <div className="app__container">
         <div className="app__wrapper">
           <Header props={{ title: 'План' }} />
-          <Status props={{ text: 'Запланировано' }} />
-          <Button props={{ text: 'Кнопка', icon: <BugOutlined /> }} />
-          <Property props={{ name: 'Интенсивность', value: 'Низкая' }} />
-          <Property props={{ name: 'Длительность', value: '120 минут' }} />
-          <Info
-            props={{
-              title: 'Лыжная подготовка',
-              description: 'План - подготовка к лыжному сезону 2021/2022',
-              status: 'В работе',
-              progress: 10,
-            }}
-          />
-          <AffixButton props={{ title: 'Завершить тренировку' }} />
+          <Routes>
+            <Route path="/plan" element={<Plan />} />
+            <Route path="/period" element={<Period />} />
+            <Route path="/cycle" element={<Cycle />} />
+            <Route path="/day" element={<Day />} />
+            <Route path="/workout" element={<Workout />} />
+            <Route path="/exercise" element={<Exercise />} />
+            <Route path="*" element={<Navigate to="/plan" replace />} />
+          </Routes>
         </div>
       </div>
     </div>

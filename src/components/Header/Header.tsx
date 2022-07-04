@@ -9,10 +9,11 @@ export type HeaderPropsType = {
 }
 
 const Header: FC<HeaderPropsType> = ({ props }) => {
+  const onClick = () => window.history.back()
   return (
     <div className={css.header}>
       <div className={css.wrapper}>
-        <div className={css.left}>
+        <div className={css.left} onClick={onClick}>
           <ArrowLeftOutlined />
         </div>
         <div className={css.center}>{props.title}</div>
