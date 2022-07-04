@@ -16,7 +16,14 @@ const App: FC = () => {
           <Button props={{ text: 'Кнопка', icon: <BugOutlined /> }} />
           <Property props={{ name: 'Интенсивность', value: 'Низкая' }} />
           <Property props={{ name: 'Длительность', value: '120 минут' }} />
-          <Info />
+          <Info
+            props={{
+              title: 'Лыжная подготовка',
+              description: 'План - подготовка к лыжному сезону 2021/2022',
+              status: 'В работе',
+              progress: 10,
+            }}
+          />
         </div>
       </div>
     </div>
