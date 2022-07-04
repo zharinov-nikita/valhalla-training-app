@@ -1,10 +1,16 @@
 import { FC } from 'react'
 import css from './AffixButton.module.scss'
 
-const AffixButton: FC = () => {
+export type AffixButtonPropsType = {
+  props: {
+    title: string
+  }
+}
+
+const AffixButton: FC<AffixButtonPropsType> = ({ props }) => {
   return (
     <div className={css.affix}>
-      <div className={css.button}>Завершить тренировку</div>
+      <div className={css.button}>{props.title}</div>
     </div>
   )
 }

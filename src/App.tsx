@@ -25,7 +25,7 @@ const App: FC = () => {
               progress: 10,
             }}
           />
-          <AffixButton />
+          <AffixButton props={{ title: 'Завершить тренировку' }} />
         </div>
       </div>
     </div>
