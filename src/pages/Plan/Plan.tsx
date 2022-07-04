@@ -9,9 +9,9 @@ const Plan: FC = () => {
         props={{
           to: '/period',
           title: 'Лыжная подготовка',
-          description: 'План - подготовка к лыжному сезону 2021/2022',
+          description: 'План - подготовка к лыжному сезону 2022',
           status: 'В работе',
-          progress: 10,
+          progress: 30,
         }}
       />
     </div>
