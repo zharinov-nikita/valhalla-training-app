@@ -6,7 +6,7 @@ const App: FC = () => {
     <div className="app">
       <div className="app__container">
         <div className="app__wrapper">
-          <Header />
+          <Header props={{ title: 'План' }} />
         </div>
       </div>
     </div>
