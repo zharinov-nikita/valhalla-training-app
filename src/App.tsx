@@ -1,5 +1,6 @@
 import { BugOutlined } from '@ant-design/icons'
 import { FC } from 'react'
+import AffixButton from './components/AffixButton/AffixButton'
 import Button from './components/Button/Button'
 import Header from './components/Header/Header'
 import Info from './components/Info/Info'
@@ -24,6 +25,7 @@ const App: FC = () => {
               progress: 10,
             }}
           />
+          <AffixButton />
         </div>
       </div>
     </div>
