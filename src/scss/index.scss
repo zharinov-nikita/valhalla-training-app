@@ -21,7 +21,7 @@
 
 body {
     background-color: $gray-1;
-    min-height: 100vh;
+    min-height: calc(100vh - 68px);
 }
 
 .app {
