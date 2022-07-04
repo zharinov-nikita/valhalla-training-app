@@ -2,6 +2,7 @@ import { BugOutlined } from '@ant-design/icons'
 import { FC } from 'react'
 import Button from './components/Button/Button'
 import Header from './components/Header/Header'
+import Info from './components/Info/Info'
 import Property from './components/Property/Property'
 import Status from './components/Status/Status'
 
@@ -15,6 +16,14 @@ const App: FC = () => {
           <Button props={{ text: 'Кнопка', icon: <BugOutlined /> }} />
           <Property props={{ name: 'Интенсивность', value: 'Низкая' }} />
           <Property props={{ name: 'Длительность', value: '120 минут' }} />
+          <Info
+            props={{
+              title: 'Лыжная подготовка',
+              description: 'План - подготовка к лыжному сезону 2021/2022',
+              status: 'В работе',
+              progress: 10,
+            }}
+          />
         </div>
       </div>
     </div>
