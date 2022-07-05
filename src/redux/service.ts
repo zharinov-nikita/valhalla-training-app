@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { PropertyPropsType } from '../components/Property/Property'
 import { StatusType } from '../components/Status/Status'
 
 export type PlanType = {
@@ -26,7 +27,10 @@ export const api = createApi({
     find: builder.query<PlanType[], endponintType>({
       query: (endpont) => endpont,
     }),
+    property: builder.query<PropertyPropsType['props'][], endponintType>({
+      query: (endpont) => endpont,
+    }),
   }),
 })
 
-export const { useFindQuery } = api
+export const { useFindQuery, usePropertyQuery } = api

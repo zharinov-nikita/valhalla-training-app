@@ -9,6 +9,7 @@ const Plan: FC = () => {
   return (
     <div className={css.list}>
       {isLoading && 'Загрузка...'}
+      {isError && 'Ошибка'}
       {data &&
         data.map((item) => (
           <Info
