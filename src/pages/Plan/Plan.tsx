@@ -13,9 +13,9 @@ const Plan: FC = () => {
           <Info
             props={{
               to: `/period/${item._id}`,
-              title: item.name,
-              description: 'План - подготовка к лыжному сезону 2022',
-              status: 'В работе',
+              title: item.title,
+              description: item.description,
+              status: item.status,
               progress: 30,
             }}
           />
