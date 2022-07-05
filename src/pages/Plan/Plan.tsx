@@ -12,6 +12,7 @@ const Plan: FC = () => {
       {data &&
         data.map((item) => (
           <Info
+            key={item._id}
             props={{
               to: `/period/?planId=${item._id}`,
               title: item.title,

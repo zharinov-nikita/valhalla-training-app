@@ -11,6 +11,7 @@ const Period: FC = () => {
       {data &&
         data.map((item) => (
           <Info
+            key={item._id}
             props={{
               to: `/cycle/?periodId=${item._id}`,
               title: item.title,
