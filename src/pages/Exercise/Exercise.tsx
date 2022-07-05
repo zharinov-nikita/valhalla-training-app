@@ -3,11 +3,7 @@ import { useLocation } from 'react-router-dom'
 import AffixButton from '../../components/AffixButton/AffixButton'
 import Info from '../../components/Info/Info'
 import Property from '../../components/Property/Property'
-import {
-  useExerciseQuery,
-  useFindQuery,
-  usePropertyQuery,
-} from '../../redux/service'
+import { useExerciseQuery } from '../../redux/service'
 import css from './Exercise.module.scss'
 
 const Exercise: FC = () => {

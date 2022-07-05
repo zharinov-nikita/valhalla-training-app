@@ -1,12 +1,12 @@
 import { FC } from 'react'
 import { Link } from 'react-router-dom'
-import Status, { StatusType } from '../Status/Status'
+import Status from '../Status/Status'
 import css from './Info.module.scss'
 
 export type InfoPropsType = {
   props: {
     to?: string
-    status: StatusType
+    status: string
     title: string
     description: string
     progress: number | string

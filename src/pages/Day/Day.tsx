@@ -1,10 +1,12 @@
 import { FC } from 'react'
-import Info, { InfoPropsType } from '../../components/Info/Info'
-import { useFindQuery } from '../../redux/service'
+import { useLocation } from 'react-router-dom'
+import Info from '../../components/Info/Info'
+import { useDayQuery } from '../../redux/service'
 import css from './Day.module.scss'
 
 const Day: FC = () => {
-  const { isError, isLoading, data } = useFindQuery('day')
+  const { search } = useLocation()
+  const { isError, isLoading, data } = useDayQuery(search)
   return (
     <div className={css.list}>
       {isLoading && 'Загрузка...'}

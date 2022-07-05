@@ -1,10 +1,12 @@
 import { FC } from 'react'
+import { useLocation } from 'react-router-dom'
 import Info from '../../components/Info/Info'
-import { useFindQuery } from '../../redux/service'
+import { useWorkoutQuery } from '../../redux/service'
 import css from './Workout.module.scss'
 
 const Workout: FC = () => {
-  const { isError, isLoading, data } = useFindQuery('workout')
+  const { search } = useLocation()
+  const { isError, isLoading, data } = useWorkoutQuery(search)
   return (
     <div className={css.list}>
       {isLoading && 'Загрузка...'}

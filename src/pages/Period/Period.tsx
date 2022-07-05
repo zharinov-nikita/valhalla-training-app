@@ -1,10 +1,12 @@
 import { FC } from 'react'
-import Info, { InfoPropsType } from '../../components/Info/Info'
-import { useFindQuery } from '../../redux/service'
+import { useLocation } from 'react-router-dom'
+import Info from '../../components/Info/Info'
+import { usePeriodQuery } from '../../redux/service'
 import css from './Period.module.scss'
 
 const Period: FC = () => {
-  const { isError, isLoading, data } = useFindQuery('period')
+  const { search } = useLocation()
+  const { isError, isLoading, data } = usePeriodQuery(search)
   return (
     <div className={css.list}>
       {isLoading && 'Загрузка...'}
