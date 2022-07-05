@@ -35,8 +35,6 @@ const App: FC = () => {
     })
   }, [pathname])
 
-  console.log(pathname)
-
   return (
     <div className="app">
       <div className="app__container">

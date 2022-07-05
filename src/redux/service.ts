@@ -20,6 +20,24 @@ export type endponintType =
   | 'exercise'
   | 'property'
 
+export type PropertyType = {
+  _id: string
+  option: Array<{ title: string; value: string }>
+  exerciseId: string
+}
+
+export type ExerciseType = {
+  _id: string
+  title: string
+  description: string
+  status: StatusType
+  option: Array<{
+    title: string
+    value: string
+  }>
+  workoutId: string
+}
+
 export const api = createApi({
   reducerPath: 'api',
   baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:5000/api/' }),
@@ -27,10 +45,13 @@ export const api = createApi({
     find: builder.query<PlanType[], endponintType>({
       query: (endpont) => endpont,
     }),
-    property: builder.query<PropertyPropsType['props'][], endponintType>({
+    property: builder.query<PropertyType[], endponintType>({
       query: (endpont) => endpont,
+    }),
+    exercise: builder.query<ExerciseType[], string>({
+      query: (workoutId) => `exercise/${workoutId}`,
     }),
   }),
 })
 
-export const { useFindQuery, usePropertyQuery } = api
+export const { useFindQuery, usePropertyQuery, useExerciseQuery } = api
