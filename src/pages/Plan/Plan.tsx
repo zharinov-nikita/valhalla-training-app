@@ -13,7 +13,7 @@ const Plan: FC = () => {
         data.map((item) => (
           <Info
             props={{
-              to: `/period/${item._id}`,
+              to: `/period/?planId=${item._id}`,
               title: item.title,
               description: item.description,
               status: item.status,

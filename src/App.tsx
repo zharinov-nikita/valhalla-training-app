@@ -42,11 +42,11 @@ const App: FC = () => {
         <div className="app__wrapper">
           <Routes>
             <Route path="/plan" element={<Plan />} />
-            <Route path="/period/:_id" element={<Period />} />
-            <Route path="/cycle/:_id" element={<Cycle />} />
-            <Route path="/day/:_id" element={<Day />} />
-            <Route path="/workout/:_id" element={<Workout />} />
-            <Route path="/exercise/:_id" element={<Exercise />} />
+            <Route path="/period" element={<Period />} />
+            <Route path="/cycle" element={<Cycle />} />
+            <Route path="/day" element={<Day />} />
+            <Route path="/workout" element={<Workout />} />
+            <Route path="/exercise" element={<Exercise />} />
             <Route path="*" element={<Navigate to="/plan" replace />} />
           </Routes>
         </div>
