@@ -1,26 +1,52 @@
-import { FC } from 'react'
+import { FC, useEffect } from 'react'
+import { useLocation } from 'react-router-dom'
 import AffixButton from '../../components/AffixButton/AffixButton'
 import Info from '../../components/Info/Info'
 import Property from '../../components/Property/Property'
+import {
+  useExerciseQuery,
+  useFindQuery,
+  usePropertyQuery,
+} from '../../redux/service'
 import css from './Exercise.module.scss'
 
 const Exercise: FC = () => {
+  const { search } = useLocation()
+  const { isError, isLoading, data } = useExerciseQuery(search)
+
+  console.log(data)
+
   return (
     <div className={css.list}>
-      <Info
-        props={{
-          to: '/exercise',
-          title: 'Дистанция',
-          description:
-            'Тренировки на выносливость или аэробные тренировки совершенствуют различные системы организма - повышают способность организма потреблять кислород (повышают МПК), увеличивают размер и количество митохондрий в клетках мышц (митохондрии - маленькие электростанции внутри клеток), повышают плотность капилляров, увеличивают активность ферментов',
-          status: 'Завершено',
-          progress: 0,
-        }}
-      />
-      <div className={css.property}>
-        <Property props={{ name: 'Длительность', value: '120 минут' }} />
-        <Property props={{ name: 'Интенсивность', value: 'Низкая' }} />
-      </div>
+      {isLoading && 'Загрузка...'}
+      {isError && 'Ошибка'}
+
+      {data &&
+        data.map((item) => (
+          <>
+            <Info
+              key={item._id}
+              props={{
+                title: item.title,
+                description: item.description,
+                status: item.status,
+                progress: 30,
+              }}
+            />
+            <div className={css.property}>
+              {item.option.map((propterty) => (
+                <Property
+                  key={propterty.title}
+                  props={{
+                    name: propterty.title,
+                    value: propterty.value,
+                  }}
+                />
+              ))}
+            </div>
+          </>
+        ))}
+
       <AffixButton props={{ title: 'Завершить тренировку' }} />
     </div>
   )

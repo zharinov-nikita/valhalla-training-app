@@ -1,52 +1,27 @@
 import { FC } from 'react'
 import Info, { InfoPropsType } from '../../components/Info/Info'
+import { useFindQuery } from '../../redux/service'
 import css from './Cycle.module.scss'
 
-const cycles: InfoPropsType[] = [
-  {
-    props: {
-      to: '/day',
-      title: 'Первый',
-      description: 'Подготовительный этап подготовки',
-      status: 'Завершено',
-      progress: 100,
-    },
-  },
-  {
-    props: {
-      to: '/day',
-      title: 'Второй',
-      description: 'Подготовительный этап подготовки',
-      status: 'В работе',
-      progress: 60,
-    },
-  },
-  {
-    props: {
-      to: '/day',
-      title: 'Третий',
-      description: 'Подготовительный этап подготовки',
-      status: 'Запланировано',
-      progress: 0,
-    },
-  },
-  {
-    props: {
-      to: '/day',
-      title: 'Четвертый',
-      description: 'Подготовительный этап подготовки',
-      status: 'Запланировано',
-      progress: 0,
-    },
-  },
-]
-
 const Cycle: FC = () => {
+  const { isError, isLoading, data } = useFindQuery('cycle')
   return (
     <div className={css.list}>
-      {cycles.map((cycle) => (
-        <Info key={cycle.props.title} props={cycle.props} />
-      ))}
+      {isLoading && 'Загрузка...'}
+      {isError && 'Ошибка'}
+      {data &&
+        data.map((item) => (
+          <Info
+            key={item._id}
+            props={{
+              to: `/day/?periodId=${item._id}`,
+              title: item.title,
+              description: item.description,
+              status: item.status,
+              progress: 30,
+            }}
+          />
+        ))}
     </div>
   )
 }

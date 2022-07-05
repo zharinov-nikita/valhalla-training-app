@@ -18,18 +18,18 @@ import Workout from './pages/Workout/Workout'
 const App: FC = () => {
   const [title, setTitle] = useState('План')
   const headerTitles = [
-    { title: 'План', pathname: '/plan' },
-    { title: 'Период', pathname: '/period' },
-    { title: 'Цикл', pathname: '/cycle' },
-    { title: 'День', pathname: '/day' },
-    { title: 'Тренировка', pathname: '/workout' },
-    { title: 'Упражнение', pathname: '/exercise' },
+    { title: 'План', pathname: /plan/ },
+    { title: 'Период', pathname: /period/ },
+    { title: 'Цикл', pathname: /cycle/ },
+    { title: 'День', pathname: /day/ },
+    { title: 'Тренировка', pathname: /workout/ },
+    { title: 'Упражнение', pathname: /exercise/ },
   ]
   const { pathname } = useLocation()
 
   useEffect(() => {
     headerTitles.forEach((item) => {
-      if (item.pathname === pathname) {
+      if (pathname.match(item.pathname)) {
         setTitle(item.title)
       }
     })
