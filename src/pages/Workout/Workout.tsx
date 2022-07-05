@@ -4,7 +4,7 @@ import { useFindQuery } from '../../redux/service'
 import css from './Workout.module.scss'
 
 const Workout: FC = () => {
-  const { isError, isLoading, data } = useFindQuery('period')
+  const { isError, isLoading, data } = useFindQuery('workout')
   return (
     <div className={css.list}>
       {isLoading && 'Загрузка...'}
@@ -13,7 +13,7 @@ const Workout: FC = () => {
           <Info
             key={item._id}
             props={{
-              to: `/cycle/?periodId=${item._id}`,
+              to: `/exercise/?workoutId=${item._id}`,
               title: item.title,
               description: item.description,
               status: item.status,
