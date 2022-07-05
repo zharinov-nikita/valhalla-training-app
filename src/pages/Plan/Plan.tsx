@@ -1,10 +1,10 @@
 import { FC } from 'react'
 import Info from '../../components/Info/Info'
-import { useFindQuery } from '../../redux/plan/plan.service'
+import { useFindQuery } from '../../redux/service'
 import css from './Plan.module.scss'
 
 const Plan: FC = () => {
-  const { isError, isLoading, data } = useFindQuery('')
+  const { isError, isLoading, data } = useFindQuery('plan')
 
   return (
     <div className={css.list}>

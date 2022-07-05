@@ -29,7 +29,7 @@ const App: FC = () => {
 
   useEffect(() => {
     headerTitles.forEach((item) => {
-      if (item.pathname === pathname) {
+      if (item.pathname.match(pathname)) {
         setTitle(item.title)
       }
     })
