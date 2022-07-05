@@ -1,30 +1,29 @@
 import { FC } from 'react'
+import { useLocation } from 'react-router-dom'
 import Info from '../../components/Info/Info'
+import { useWorkoutQuery } from '../../redux/service'
 import css from './Workout.module.scss'
 
 const Workout: FC = () => {
+  const { search } = useLocation()
+  const { isError, isLoading, data } = useWorkoutQuery(search)
   return (
     <div className={css.list}>
-      <Info
-        props={{
-          to: '/exercise',
-          title: 'Дистанция',
-          description:
-            'Тренировки на выносливость или аэробные тренировки совершенствуют различные системы организма - повышают способность организма потреблять кислород (повышают МПК), увеличивают размер и количество митохондрий в клетках мышц (митохондрии - маленькие электростанции внутри клеток), повышают плотность капилляров, увеличивают активность ферментов',
-          status: 'Завершено',
-          progress: 100,
-        }}
-      />
-      <Info
-        props={{
-          to: '/exercise',
-          title: 'Сила',
-          description:
-            'Сила - это показатель сократительной способности мышцы. Максимальная сила мышцы - это максимальное усилие, развиваемое ею в одном сокращении. Все виды спорта на выносливость требуют определенного уровня силовой подготовки. Насколько сильными должны быть мышцы для обеспечения максимальной работоспособности',
-          status: 'В работе',
-          progress: 0,
-        }}
-      />
+      {isLoading && 'Загрузка...'}
+      {isError && 'Ошибка'}
+      {data &&
+        data.map((item) => (
+          <Info
+            key={item._id}
+            props={{
+              to: `/exercise/?workoutId=${item._id}`,
+              title: item.title,
+              description: item.description,
+              status: item.status,
+              progress: 30,
+            }}
+          />
+        ))}
     </div>
   )
 }

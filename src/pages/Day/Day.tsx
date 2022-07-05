@@ -1,88 +1,29 @@
 import { FC } from 'react'
-import Info, { InfoPropsType } from '../../components/Info/Info'
+import { useLocation } from 'react-router-dom'
+import Info from '../../components/Info/Info'
+import { useDayQuery } from '../../redux/service'
 import css from './Day.module.scss'
 
-const days: InfoPropsType[] = [
-  {
-    props: {
-      to: '/workout',
-      title: 'Первый',
-      description: 'Подготовительный этап подготовки',
-      status: 'Завершено',
-      progress: 100,
-    },
-  },
-  {
-    props: {
-      to: '/workout',
-      title: 'Второй',
-      description: 'Подготовительный этап подготовки',
-      status: 'В работе',
-      progress: 60,
-    },
-  },
-  {
-    props: {
-      to: '/workout',
-      title: 'Третий',
-      description: 'Подготовительный этап подготовки',
-      status: 'Запланировано',
-      progress: 0,
-    },
-  },
-  {
-    props: {
-      to: '/workout',
-      title: 'Четвертый',
-      description: 'Подготовительный этап подготовки',
-      status: 'Запланировано',
-      progress: 0,
-    },
-  },
-  {
-    props: {
-      to: '/workout',
-      title: 'Пятоый',
-      description: 'Подготовительный этап подготовки',
-      status: 'Запланировано',
-      progress: 0,
-    },
-  },
-  {
-    props: {
-      to: '/workout',
-      title: 'Шестой',
-      description: 'Подготовительный этап подготовки',
-      status: 'Запланировано',
-      progress: 0,
-    },
-  },
-  {
-    props: {
-      to: '/workout',
-      title: 'Седьмой',
-      description: 'Подготовительный этап подготовки',
-      status: 'Запланировано',
-      progress: 0,
-    },
-  },
-  {
-    props: {
-      to: '/workout',
-      title: 'Восьмой',
-      description: 'Подготовительный этап подготовки',
-      status: 'Запланировано',
-      progress: 0,
-    },
-  },
-]
-
 const Day: FC = () => {
+  const { search } = useLocation()
+  const { isError, isLoading, data } = useDayQuery(search)
   return (
     <div className={css.list}>
-      {days.map((day) => (
-        <Info key={day.props.title} props={day.props} />
-      ))}
+      {isLoading && 'Загрузка...'}
+      {isError && 'Ошибка'}
+      {data &&
+        data.map((item) => (
+          <Info
+            key={item._id}
+            props={{
+              to: `/workout/?dayId=${item._id}`,
+              title: item.title,
+              description: item.description,
+              status: item.status,
+              progress: 30,
+            }}
+          />
+        ))}
     </div>
   )
 }
