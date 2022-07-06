@@ -1,10 +1,14 @@
 import { FC } from 'react'
 import Info from '../../components/Info/Info'
-import { usePlanQuery } from '../../redux/service'
+import {
+  useFindQuery,
+  useFindByIdAndUpdateMutation,
+} from '../../redux/plan/plan.service'
 import css from './Plan.module.scss'
 
 const Plan: FC = () => {
-  const { isError, isLoading, data } = usePlanQuery('')
+  const { isError, isLoading, data } = useFindQuery('')
+  const [update, {}] = useFindByIdAndUpdateMutation()
 
   return (
     <div className={css.list}>
@@ -19,7 +23,13 @@ const Plan: FC = () => {
               title: item.title,
               description: item.description,
               status: item.status,
-              progress: 30,
+              progress: item.status === 'Завершено' ? 100 : 0,
+              onClick: () =>
+                update({
+                  ...item,
+                  status:
+                    item.status === 'Завершено' ? 'В работе' : 'Завершено',
+                }),
             }}
           />
         ))}
