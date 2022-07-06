@@ -1,6 +1,5 @@
 import { FC } from 'react'
 import AffixButton from '../../components/AffixButton/AffixButton'
-import Drawer from '../../components/Drawer/Drawer'
 import Info from '../../components/Info/Info'
 import { useAppDispatch } from '../../hooks/useAppDispatch'
 import { drawerSlice } from '../../redux/drawer/drawer.slice'
@@ -9,7 +8,7 @@ import {
   useFindByIdAndUpdateMutation,
 } from '../../redux/plan/plan.service'
 import css from './Plan.module.scss'
-import PlanDrawet from './PlanDrawer/PlanDrawet'
+import PlanDrawer from './PlanDrawer/PlanDrawer'
 
 const Plan: FC = () => {
   const { isError, isLoading, data } = useFindQuery('')
@@ -43,7 +42,7 @@ const Plan: FC = () => {
       <AffixButton
         props={{ title: 'Добавить план', onClick: () => dispatch(show()) }}
       />
-      <PlanDrawet />
+      <PlanDrawer />
     </div>
   )
 }
