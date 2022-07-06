@@ -48,13 +48,13 @@ const Exercise: FC = () => {
                 />
               ))}
             </div>
-            <AffixButton
-              props={{
-                title: 'Завершить тренировку',
-              }}
-            />
           </div>
         ))}
+      <AffixButton
+        props={{
+          title: 'Добавить упражнение',
+        }}
+      />
     </>
   )
 }
