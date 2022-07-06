@@ -17,15 +17,19 @@ export const exerciseApi = createApi({
   reducerPath: 'exerciseApi',
   baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:5000/api/' }),
   endpoints: (builder) => ({
+    findById: builder.query<ExerciseType[], string>({
+      query: (param) => `/exercise/${param}`,
+      providesTags: ['Exercise'],
+    }),
     findByIdAndUpdate: builder.mutation<ExerciseType, ExerciseType>({
-      query: (option) => ({
-        url: `exercise/${option._id}`,
+      query: (exercise) => ({
+        url: `/exercise/${exercise._id}`,
         method: 'PATCH',
-        body: option,
+        body: exercise,
       }),
       invalidatesTags: ['Exercise'],
     }),
   }),
 })
 
-export const { useFindByIdAndUpdateMutation } = exerciseApi
+export const { useFindByIdQuery, useFindByIdAndUpdateMutation } = exerciseApi
