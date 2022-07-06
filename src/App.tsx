@@ -6,6 +6,7 @@ import {
   useLocation,
   useParams,
 } from 'react-router-dom'
+import Drawer from './components/Drawer/Drawer'
 
 import Header from './components/Header/Header'
 import Input from './components/Input/Input'
@@ -42,6 +43,7 @@ const App: FC = () => {
       <div className="app__container">
         <Header props={{ title }} />
         <div className="app__wrapper">
+          <Drawer props={{ close: false }} />
           <Routes>
             <Route path="/plan" element={<Plan />} />
             <Route path="/period" element={<Period />} />

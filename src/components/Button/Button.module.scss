@@ -15,4 +15,9 @@
         color: $gray-1;
         font-size: 14px;
     }
+
+    &[data-block="true"] {
+        padding: 12px 16px;
+        width: 100%;
+    }
 }
