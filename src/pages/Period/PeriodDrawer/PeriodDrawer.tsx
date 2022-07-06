@@ -4,7 +4,7 @@ import Drawer from '../../../components/Drawer/Drawer'
 import Input from '../../../components/Input/Input'
 import Textarea from '../../../components/Textarea/Textarea'
 
-const PlanDrawet: FC = () => {
+const PeriodDrawer: FC = () => {
   return (
     <Drawer
       props={{
@@ -41,7 +41,7 @@ const PlanDrawet: FC = () => {
                 value: 'Запланировано',
               }}
             />
-            <Button props={{ text: 'Сохранить план', block: true }} />
+            <Button props={{ text: 'Сохранить период', block: true }} />
           </>
         ),
       }}
@@ -49,4 +49,4 @@ const PlanDrawet: FC = () => {
   )
 }
 
-export default PlanDrawet
+export default PeriodDrawer
