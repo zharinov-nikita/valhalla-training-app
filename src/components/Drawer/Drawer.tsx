@@ -19,9 +19,9 @@ const Drawer: FC<DrawerPropsType> = ({ props }) => {
     <div
       className={css.drawer}
       data-visible={visible}
-      onClick={() => dispatch(hide())}
+      onClick={(e) => dispatch(hide())}
     >
-      <div className={css.container}>
+      <div className={css.container} onClick={(e) => e.stopPropagation()}>
         <div className={css.wrapper}>{props.children}</div>
       </div>
     </div>

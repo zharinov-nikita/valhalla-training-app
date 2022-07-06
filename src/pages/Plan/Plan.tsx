@@ -9,6 +9,7 @@ import {
   useFindByIdAndUpdateMutation,
 } from '../../redux/plan/plan.service'
 import css from './Plan.module.scss'
+import PlanDrawet from './PlanDrawer/PlanDrawet'
 
 const Plan: FC = () => {
   const { isError, isLoading, data } = useFindQuery('')
@@ -42,7 +43,7 @@ const Plan: FC = () => {
       <AffixButton
         props={{ title: 'Добавить план', onClick: () => dispatch(show()) }}
       />
-      <Drawer props={{}} />
+      <PlanDrawet />
     </div>
   )
 }
