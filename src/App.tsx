@@ -42,9 +42,6 @@ const App: FC = () => {
       <div className="app__container">
         <Header props={{ title }} />
         <div className="app__wrapper">
-          <Textarea
-            props={{ name: 'Textarea', placeholder: 'placeholder', value: '' }}
-          />
           <Routes>
             <Route path="/plan" element={<Plan />} />
             <Route path="/period" element={<Period />} />
