@@ -43,7 +43,7 @@ const Plan: FC = () => {
       <AffixButton
         props={{ title: 'Добавить план', onClick: () => dispatch(show()) }}
       />
-      <Drawer props={{}} />
+      <PlanDrawet />
     </div>
   )
 }
