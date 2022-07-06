@@ -5,7 +5,7 @@ export type DrawerStateType = {
 }
 
 const initialState: DrawerStateType = {
-  visible: true,
+  visible: false,
 }
 
 export const drawerSlice = createSlice({
