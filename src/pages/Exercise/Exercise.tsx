@@ -38,15 +38,16 @@ const Exercise: FC = () => {
               }}
             />
             <div className={css.property}>
-              {item.option.map((propterty) => (
-                <Property
-                  key={propterty.title}
-                  props={{
-                    name: propterty.title,
-                    value: propterty.value,
-                  }}
-                />
-              ))}
+              {item.option &&
+                item.option.map((propterty) => (
+                  <Property
+                    key={propterty.title}
+                    props={{
+                      name: propterty.title,
+                      value: propterty.value,
+                    }}
+                  />
+                ))}
             </div>
           </div>
         ))}
