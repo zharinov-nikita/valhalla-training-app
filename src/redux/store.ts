@@ -3,6 +3,7 @@ import { api } from './service'
 import { exerciseApi } from './exercise/exercise.service'
 import { workoutApi } from './workout/workout.service'
 import { dayApi } from './day/day.service'
+import { cycleApi } from './cycle/cycle.service'
 
 export const store = configureStore({
   reducer: {
@@ -10,13 +11,15 @@ export const store = configureStore({
     [exerciseApi.reducerPath]: exerciseApi.reducer,
     [workoutApi.reducerPath]: workoutApi.reducer,
     [dayApi.reducerPath]: dayApi.reducer,
+    [cycleApi.reducerPath]: cycleApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(
       api.middleware,
       exerciseApi.middleware,
       workoutApi.middleware,
-      dayApi.middleware
+      dayApi.middleware,
+      cycleApi.middleware
     ),
 })
 
