@@ -12,8 +12,7 @@ import css from './Exercise.module.scss'
 const Exercise: FC = () => {
   const { search } = useLocation()
   const { isError, isLoading, data } = useFindByIdQuery(search)
-  const [update, { isLoading: isLoadingUpdate }] =
-    useFindByIdAndUpdateMutation()
+  const [update, {}] = useFindByIdAndUpdateMutation()
 
   return (
     <>
@@ -45,13 +44,7 @@ const Exercise: FC = () => {
             </div>
             <AffixButton
               props={{
-                title: item.status === 'Завершено' ? 'Отменить' : 'Завершить',
-                onClick: () =>
-                  update({
-                    ...item,
-                    status:
-                      item.status === 'Завершено' ? 'В работе' : 'Завершено',
-                  }),
+                title: 'Завершить тренировку',
               }}
             />
           </div>
