@@ -1,6 +1,7 @@
 import { FC } from 'react'
 import AffixButton from '../../components/AffixButton/AffixButton'
 import Info from '../../components/Info/Info'
+import { useAppDispatch } from '../../hooks/useAppDispatch'
 import {
   useFindQuery,
   useFindByIdAndUpdateMutation,
@@ -10,6 +11,7 @@ import css from './Plan.module.scss'
 const Plan: FC = () => {
   const { isError, isLoading, data } = useFindQuery('')
   const [update, {}] = useFindByIdAndUpdateMutation()
+  const dispatch = useAppDispatch()
 
   return (
     <div className={css.list}>
