@@ -12,7 +12,8 @@ import css from './Exercise.module.scss'
 const Exercise: FC = () => {
   const { search } = useLocation()
   const { isError, isLoading, data } = useFindByIdQuery(search)
-  const [update, {}] = useFindByIdAndUpdateMutation()
+  const [update, { isLoading: isLoadingUpdate }] =
+    useFindByIdAndUpdateMutation()
 
   return (
     <>
