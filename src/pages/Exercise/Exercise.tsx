@@ -28,7 +28,13 @@ const Exercise: FC = () => {
                 title: item.title,
                 description: item.description,
                 status: item.status,
-                progress: 30,
+                progress: item.status === 'Завершено' ? 100 : 0,
+                onClick: () =>
+                  update({
+                    ...item,
+                    status:
+                      item.status === 'Завершено' ? 'В работе' : 'Завершено',
+                  }),
               }}
             />
             <div className={css.property}>
