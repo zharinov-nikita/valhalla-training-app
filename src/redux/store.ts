@@ -2,6 +2,7 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit'
 
 // slice
 import drawerReducer from './drawer/drawer.slice'
+import planReducer from './plan/plan.slice'
 
 // service
 import { planApi } from './plan/plan.service'
@@ -14,6 +15,7 @@ import { exerciseApi } from './exercise/exercise.service'
 const rootReducer = combineReducers({
   // slice
   drawer: drawerReducer,
+  plan: planReducer,
   // serivce
   [planApi.reducerPath]: planApi.reducer,
   [periodApi.reducerPath]: periodApi.reducer,
