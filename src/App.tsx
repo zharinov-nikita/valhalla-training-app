@@ -9,6 +9,7 @@ import {
 
 import Header from './components/Header/Header'
 import Input from './components/Input/Input'
+import Textarea from './components/Textarea/Textarea'
 import Cycle from './pages/Cycle/Cycle'
 import Day from './pages/Day/Day'
 import Exercise from './pages/Exercise/Exercise'
@@ -41,6 +42,9 @@ const App: FC = () => {
       <div className="app__container">
         <Header props={{ title }} />
         <div className="app__wrapper">
+          <Textarea
+            props={{ name: 'Textarea', placeholder: 'placeholder', value: '' }}
+          />
           <Routes>
             <Route path="/plan" element={<Plan />} />
             <Route path="/period" element={<Period />} />
