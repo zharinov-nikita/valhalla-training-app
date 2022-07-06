@@ -9,6 +9,7 @@ import {
   useFindByIdAndUpdateMutation,
 } from '../../redux/plan/plan.service'
 import css from './Plan.module.scss'
+import PlanDrawet from './PlanDrawer/PlanDrawet'
 
 const Plan: FC = () => {
   const { isError, isLoading, data } = useFindQuery('')
