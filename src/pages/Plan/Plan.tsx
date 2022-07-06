@@ -1,4 +1,5 @@
 import { FC } from 'react'
+import AffixButton from '../../components/AffixButton/AffixButton'
 import Info from '../../components/Info/Info'
 import {
   useFindQuery,
@@ -33,6 +34,7 @@ const Plan: FC = () => {
             }}
           />
         ))}
+      <AffixButton props={{ title: 'Добавить план' }} />
     </div>
   )
 }
