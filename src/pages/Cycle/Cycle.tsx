@@ -1,5 +1,6 @@
 import { FC } from 'react'
 import { useLocation } from 'react-router-dom'
+import AffixButton from '../../components/AffixButton/AffixButton'
 import Info from '../../components/Info/Info'
 import {
   useFindByIdAndUpdateMutation,
@@ -34,6 +35,7 @@ const Cycle: FC = () => {
             }}
           />
         ))}
+      <AffixButton props={{ title: 'Добавить цикл' }} />
     </div>
   )
 }
