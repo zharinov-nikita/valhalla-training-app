@@ -33,7 +33,11 @@
         }
     }
 
-    &[data-close="true"] {
+    &[data-visible="false"] {
         display: none;
+    }
+
+    &[data-visible="true"] {
+        display: block;
     }
 }
