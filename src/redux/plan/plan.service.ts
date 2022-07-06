@@ -4,6 +4,8 @@ export type PlanType = {
   _id: string
   title: string
   description: string
+  start: string
+  finish: string
   status: string
   planId: string
 }
@@ -11,8 +13,9 @@ export type PlanType = {
 export type PlanCreateType = {
   title: string
   description: string
+  start: string
+  finish: string
   status: string
-  planId: string
 }
 
 export const planApi = createApi({
@@ -43,4 +46,5 @@ export const planApi = createApi({
   }),
 })
 
-export const { useFindQuery, useFindByIdAndUpdateMutation } = planApi
+export const { useFindQuery, useCreateMutation, useFindByIdAndUpdateMutation } =
+  planApi

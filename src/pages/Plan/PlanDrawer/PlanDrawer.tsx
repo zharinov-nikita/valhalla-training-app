@@ -1,10 +1,12 @@
-import React, { FC } from 'react'
+import React, { FC, useEffect } from 'react'
 import Button from '../../../components/Button/Button'
 import Drawer from '../../../components/Drawer/Drawer'
 import Input from '../../../components/Input/Input'
 import Textarea from '../../../components/Textarea/Textarea'
 import { useAppDispatch } from '../../../hooks/useAppDispatch'
 import { useAppSelector } from '../../../hooks/useAppSelector'
+import { drawerSlice } from '../../../redux/drawer/drawer.slice'
+import { useCreateMutation } from '../../../redux/plan/plan.service'
 import { planSlice } from '../../../redux/plan/plan.slice'
 
 type ItemFormType = {
@@ -15,9 +17,11 @@ type ItemFormType = {
 }
 
 const PlanDrawer: FC = () => {
+  const [create, { isSuccess }] = useCreateMutation()
   const dispatch = useAppDispatch()
   const { form } = useAppSelector((state) => state.plan)
   const { updateForm } = planSlice.actions
+  const { hide } = drawerSlice.actions
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     dispatch(updateForm({ ...form, [e.target.name]: e.currentTarget.value }))
@@ -55,6 +59,12 @@ const PlanDrawer: FC = () => {
     },
   ]
 
+  useEffect(() => {
+    if (isSuccess) {
+      dispatch(hide())
+    }
+  }, [isSuccess])
+
   return (
     <Drawer
       props={{
@@ -84,7 +94,13 @@ const PlanDrawer: FC = () => {
                 )}
               </>
             ))}
-            <Button props={{ text: 'Сохранить план', block: true }} />
+            <Button
+              props={{
+                text: 'Сохранить план',
+                block: true,
+                onClick: () => create(form),
+              }}
+            />
           </>
         ),
       }}
