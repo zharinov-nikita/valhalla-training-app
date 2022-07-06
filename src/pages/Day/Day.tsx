@@ -1,5 +1,6 @@
 import { FC } from 'react'
 import { useLocation } from 'react-router-dom'
+import AffixButton from '../../components/AffixButton/AffixButton'
 import Info from '../../components/Info/Info'
 import {
   useFindByIdQuery,
@@ -34,6 +35,7 @@ const Day: FC = () => {
             }}
           />
         ))}
+      <AffixButton props={{ title: 'Добавить день' }} />
     </div>
   )
 }
