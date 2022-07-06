@@ -15,13 +15,13 @@ const Exercise: FC = () => {
   const [update, {}] = useFindByIdAndUpdateMutation()
 
   return (
-    <div className={css.list}>
+    <>
       {isLoading && 'Загрузка...'}
       {isError && 'Ошибка'}
 
       {data &&
         data.map((item) => (
-          <div key={item._id}>
+          <div className={css.list} key={item._id}>
             <Info
               key={item._id}
               props={{
@@ -42,11 +42,20 @@ const Exercise: FC = () => {
                 />
               ))}
             </div>
+            <AffixButton
+              props={{
+                title: item.status === 'Завершено' ? 'Отменить' : 'Завершить',
+                onClick: () =>
+                  update({
+                    ...item,
+                    status:
+                      item.status === 'Завершено' ? 'В работе' : 'Завершено',
+                  }),
+              }}
+            />
           </div>
         ))}
-
-      <AffixButton props={{ title: 'Завершить тренировку' }} />
-    </div>
+    </>
   )
 }
 
