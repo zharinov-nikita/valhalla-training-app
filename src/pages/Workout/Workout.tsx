@@ -1,5 +1,6 @@
 import { FC } from 'react'
 import { useLocation } from 'react-router-dom'
+import AffixButton from '../../components/AffixButton/AffixButton'
 import Info from '../../components/Info/Info'
 import {
   useFindByIdAndUpdateMutation,
@@ -34,6 +35,11 @@ const Workout: FC = () => {
             }}
           />
         ))}
+      <AffixButton
+        props={{
+          title: 'Добавить тренировку',
+        }}
+      />
     </div>
   )
 }
