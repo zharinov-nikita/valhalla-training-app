@@ -1,12 +1,16 @@
 import { FC } from 'react'
 import { useLocation } from 'react-router-dom'
 import Info from '../../components/Info/Info'
-import { usePeriodQuery } from '../../redux/service'
+import {
+  useFindByIdAndUpdateMutation,
+  useFindByIdQuery,
+} from '../../redux/period/period.service'
 import css from './Period.module.scss'
 
 const Period: FC = () => {
   const { search } = useLocation()
-  const { isError, isLoading, data } = usePeriodQuery(search)
+  const { isError, isLoading, data } = useFindByIdQuery(search)
+  const [update, {}] = useFindByIdAndUpdateMutation()
   return (
     <div className={css.list}>
       {isLoading && 'Загрузка...'}
@@ -20,7 +24,13 @@ const Period: FC = () => {
               title: item.title,
               description: item.description,
               status: item.status,
-              progress: 30,
+              progress: item.status === 'Завершено' ? 100 : 0,
+              onClick: () =>
+                update({
+                  ...item,
+                  status:
+                    item.status === 'Завершено' ? 'В работе' : 'Завершено',
+                }),
             }}
           />
         ))}

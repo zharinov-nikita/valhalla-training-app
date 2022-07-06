@@ -5,7 +5,6 @@ import {
   useFindByIdAndUpdateMutation,
   useFindByIdQuery,
 } from '../../redux/cycle/cycle.service'
-import { useCycleQuery } from '../../redux/service'
 import css from './Cycle.module.scss'
 
 const Cycle: FC = () => {
