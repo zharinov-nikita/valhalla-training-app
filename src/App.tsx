@@ -41,7 +41,6 @@ const App: FC = () => {
       <div className="app__container">
         <Header props={{ title }} />
         <div className="app__wrapper">
-          <Input />
           <Routes>
             <Route path="/plan" element={<Plan />} />
             <Route path="/period" element={<Period />} />
