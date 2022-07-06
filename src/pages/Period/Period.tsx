@@ -35,7 +35,7 @@ const Period: FC = () => {
             }}
           />
         ))}
-      <AffixButton props={{ title: 'Добавить цикл' }} />
+      <AffixButton props={{ title: 'Добавить период' }} />
     </div>
   )
 }
