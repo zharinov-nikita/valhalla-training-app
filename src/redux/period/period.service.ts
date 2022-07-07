@@ -22,7 +22,7 @@ export type PeriodCreateType = {
 export const periodApi = createApi({
   tagTypes: ['Period'],
   reducerPath: 'periodApi',
-  baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:5000/api/' }),
+  baseQuery: fetchBaseQuery({ baseUrl: 'http://37.77.105.195:8080/api' }),
   endpoints: (builder) => ({
     findById: builder.query<PeriodType[], string>({
       query: (param) => `/period/${param}`,

@@ -18,7 +18,7 @@ export type WorkoutCreateType = {
 export const workoutApi = createApi({
   tagTypes: ['Workout'],
   reducerPath: 'workoutApi',
-  baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:5000/api/' }),
+  baseQuery: fetchBaseQuery({ baseUrl: 'http://37.77.105.195:8080/api' }),
   endpoints: (builder) => ({
     findById: builder.query<WorkoutType[], string>({
       query: (param) => `/workout/${param}`,

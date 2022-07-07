@@ -21,7 +21,7 @@ export type PlanCreateType = {
 export const planApi = createApi({
   tagTypes: ['Plan'],
   reducerPath: 'planApi',
-  baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:5000/api/' }),
+  baseQuery: fetchBaseQuery({ baseUrl: 'http://37.77.105.195:8080/api' }),
   endpoints: (builder) => ({
     find: builder.query<PlanType[], string>({
       query: () => `/plan`,
