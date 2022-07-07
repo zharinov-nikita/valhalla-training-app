@@ -4,10 +4,8 @@ export type DayStateType = {
   form: {
     title: string
     description: string
-    start: string
-    finish: string
     status: string
-    dayId: string
+    cycleId: string
   }
 }
 
@@ -15,10 +13,8 @@ const initialState: DayStateType = {
   form: {
     title: '',
     description: '',
-    start: '',
-    finish: '',
     status: '',
-    dayId: '',
+    cycleId: '',
   },
 }
 
