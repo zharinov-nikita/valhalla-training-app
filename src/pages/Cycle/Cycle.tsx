@@ -26,7 +26,7 @@ const Cycle: FC = () => {
           <Info
             key={item._id}
             props={{
-              to: `/cycle/?periodId=${item._id}`,
+              to: `/day/?cycleId=${item._id}`,
               title: item.title,
               description: item.description,
               status: item.status,

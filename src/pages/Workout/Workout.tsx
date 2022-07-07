@@ -9,7 +9,6 @@ import {
   useFindByIdQuery,
 } from '../../redux/workout/workout.service'
 import css from './Workout.module.scss'
-import WorkoutDrawer from './WorkoutDrawer/WorkoutDrawet'
 
 const Workout: FC = () => {
   const { search } = useLocation()
@@ -46,7 +45,7 @@ const Workout: FC = () => {
           onClick: () => dispatch(show()),
         }}
       />
-      <WorkoutDrawer />
+      {/* <WorkoutDrawer /> */}
     </div>
   )
 }
