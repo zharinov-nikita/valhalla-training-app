@@ -36,6 +36,7 @@ const Plan: FC = () => {
                   status:
                     item.status === 'Завершено' ? 'В работе' : 'Завершено',
                 }),
+              onClickButton: () => dispatch(show()),
             }}
           />
         ))}
