@@ -6,8 +6,11 @@ import {
   useLocation,
   useParams,
 } from 'react-router-dom'
+import Drawer from './components/Drawer/Drawer'
 
 import Header from './components/Header/Header'
+import Input from './components/Input/Input'
+import Textarea from './components/Textarea/Textarea'
 import Cycle from './pages/Cycle/Cycle'
 import Day from './pages/Day/Day'
 import Exercise from './pages/Exercise/Exercise'

@@ -1,0 +1,15 @@
+@import "../../scss/variables.scss";
+
+.textarea {
+    width: 100%;
+    min-height: 180px;
+    resize: none;
+    display: flex;
+    padding: 12px 16px;
+    border: 1px solid $gray-5;
+    border-radius: 8px;
+    color: $gray-10;
+    &::placeholder {
+        color: $gray-5;
+    }
+}

@@ -4,8 +4,18 @@ export type PlanType = {
   _id: string
   title: string
   description: string
+  start: string
+  finish: string
   status: string
   planId: string
+}
+
+export type PlanCreateType = {
+  title: string
+  description: string
+  start: string
+  finish: string
+  status: string
 }
 
 export const planApi = createApi({
@@ -16,6 +26,14 @@ export const planApi = createApi({
     find: builder.query<PlanType[], string>({
       query: () => `/plan`,
       providesTags: ['Plan'],
+    }),
+    create: builder.mutation<PlanType, PlanCreateType>({
+      query: (plan) => ({
+        url: `/plan`,
+        method: 'POST',
+        body: plan,
+      }),
+      invalidatesTags: ['Plan'],
     }),
     findByIdAndUpdate: builder.mutation<PlanType, PlanType>({
       query: (plan) => ({
@@ -28,4 +46,5 @@ export const planApi = createApi({
   }),
 })
 
-export const { useFindQuery, useFindByIdAndUpdateMutation } = planApi
+export const { useFindQuery, useCreateMutation, useFindByIdAndUpdateMutation } =
+  planApi

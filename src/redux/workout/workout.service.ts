@@ -8,6 +8,13 @@ export type WorkoutType = {
   dayId: string
 }
 
+export type WorkoutCreateType = {
+  title: string
+  description: string
+  status: string
+  dayId: string
+}
+
 export const workoutApi = createApi({
   tagTypes: ['Workout'],
   reducerPath: 'workoutApi',
@@ -16,6 +23,14 @@ export const workoutApi = createApi({
     findById: builder.query<WorkoutType[], string>({
       query: (param) => `/workout/${param}`,
       providesTags: ['Workout'],
+    }),
+    create: builder.mutation<WorkoutType, WorkoutCreateType>({
+      query: (workout) => ({
+        url: `/workout`,
+        method: 'POST',
+        body: workout,
+      }),
+      invalidatesTags: ['Workout'],
     }),
     findByIdAndUpdate: builder.mutation<WorkoutType, WorkoutType>({
       query: (workout) => ({
@@ -28,4 +43,8 @@ export const workoutApi = createApi({
   }),
 })
 
-export const { useFindByIdQuery, useFindByIdAndUpdateMutation } = workoutApi
+export const {
+  useFindByIdQuery,
+  useCreateMutation,
+  useFindByIdAndUpdateMutation,
+} = workoutApi

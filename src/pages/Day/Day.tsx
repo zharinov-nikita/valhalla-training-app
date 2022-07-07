@@ -2,16 +2,21 @@ import { FC } from 'react'
 import { useLocation } from 'react-router-dom'
 import AffixButton from '../../components/AffixButton/AffixButton'
 import Info from '../../components/Info/Info'
+import { useAppDispatch } from '../../hooks/useAppDispatch'
 import {
   useFindByIdQuery,
   useFindByIdAndUpdateMutation,
 } from '../../redux/day/day.service'
+import { drawerSlice } from '../../redux/drawer/drawer.slice'
 import css from './Day.module.scss'
+import DayDrawer from './DayDrawer/DayDrawer'
 
 const Day: FC = () => {
   const { search } = useLocation()
   const { isError, isLoading, data } = useFindByIdQuery(search)
   const [update, {}] = useFindByIdAndUpdateMutation()
+  const dispatch = useAppDispatch()
+  const { show } = drawerSlice.actions
   return (
     <div className={css.list}>
       {isLoading && 'Загрузка...'}
@@ -35,7 +40,10 @@ const Day: FC = () => {
             }}
           />
         ))}
-      <AffixButton props={{ title: 'Добавить день' }} />
+      <AffixButton
+        props={{ title: 'Добавить день', onClick: () => dispatch(show()) }}
+      />
+      <DayDrawer />
     </div>
   )
 }

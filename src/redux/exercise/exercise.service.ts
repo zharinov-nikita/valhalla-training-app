@@ -5,10 +5,15 @@ export type ExerciseType = {
   title: string
   description: string
   status: string
-  option: Array<{
-    title: string
-    value: string
-  }>
+  option?: Array<{ title: string; value: string }>
+  workoutId: string
+}
+
+export type ExerciseCreateType = {
+  title: string
+  description: string
+  status: string
+  option?: Array<{ title: string; value: string }>
   workoutId: string
 }
 
@@ -21,6 +26,14 @@ export const exerciseApi = createApi({
       query: (param) => `/exercise/${param}`,
       providesTags: ['Exercise'],
     }),
+    create: builder.mutation<ExerciseType, ExerciseCreateType>({
+      query: (exercise) => ({
+        url: `/exercise`,
+        method: 'POST',
+        body: exercise,
+      }),
+      invalidatesTags: ['Exercise'],
+    }),
     findByIdAndUpdate: builder.mutation<ExerciseType, ExerciseType>({
       query: (exercise) => ({
         url: `/exercise/${exercise._id}`,
@@ -32,4 +45,8 @@ export const exerciseApi = createApi({
   }),
 })
 
-export const { useFindByIdQuery, useFindByIdAndUpdateMutation } = exerciseApi
+export const {
+  useFindByIdQuery,
+  useCreateMutation,
+  useFindByIdAndUpdateMutation,
+} = exerciseApi
