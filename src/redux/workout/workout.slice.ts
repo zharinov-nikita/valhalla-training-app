@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-export type DayStateType = {
+export type WorkoutStateType = {
   form: {
     title: string
     description: string
@@ -9,7 +9,7 @@ export type DayStateType = {
   }
 }
 
-const initialState: DayStateType = {
+const initialState: WorkoutStateType = {
   form: {
     title: '',
     description: '',
@@ -22,10 +22,13 @@ export const workoutSlice = createSlice({
   name: 'workout',
   initialState,
   reducers: {
-    updateForm(state: DayStateType, action: { payload: DayStateType['form'] }) {
+    updateForm(
+      state: WorkoutStateType,
+      action: { payload: WorkoutStateType['form'] }
+    ) {
       state.form = { ...state.form, ...action.payload }
     },
-    clearForm(state: DayStateType) {
+    clearForm(state: WorkoutStateType) {
       state.form = initialState.form
     },
   },
