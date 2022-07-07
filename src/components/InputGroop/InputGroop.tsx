@@ -1,14 +1,18 @@
-import { FC } from 'react'
+import { FC, MouseEventHandler, ReactNode } from 'react'
 import Button from '../Button/Button'
 import Input from '../Input/Input'
 import css from './InputGroop.module.scss'
 
-const InputGroop: FC = () => {
+export type InputGroopPropsType = {
+  children: ReactNode
+}
+
+const InputGroop: FC<InputGroopPropsType> = ({ children }) => {
   return (
     <div className={css.inputs}>
       <Input props={{ name: 'title', value: 'title', placeholder: 'title' }} />
       <Input props={{ name: 'value', value: 'value', placeholder: 'value' }} />
-      <Button props={{ text: 'Удалить' }} />
+      {children}
     </div>
   )
 }

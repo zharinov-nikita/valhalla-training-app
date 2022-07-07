@@ -19,7 +19,8 @@ const ExerciseDrawer: FC = () => {
   const [create, { isSuccess }] = useCreateMutation()
   const dispatch = useAppDispatch()
   const { form } = useAppSelector((state) => state.exercise)
-  const { updateForm, clearForm, addOptionForm } = exerciseSlice.actions
+  const { updateForm, clearForm, addOptionForm, deleteOptionForm } =
+    exerciseSlice.actions
   const { hide } = drawerSlice.actions
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) =>
@@ -36,7 +37,14 @@ const ExerciseDrawer: FC = () => {
     <Drawer>
       <List props={{ gap: 12 }}>
         {form.option.map((option) => (
-          <InputGroop />
+          <InputGroop key={option.id}>
+            <Button
+              props={{
+                text: 'Удалить',
+                onClick: () => dispatch(deleteOptionForm(option)),
+              }}
+            />
+          </InputGroop>
         ))}
         <Button
           props={{

@@ -34,7 +34,15 @@ export const exerciseSlice = createSlice({
       state: ExerciseStateType,
       action: { payload: { id: number; title: string; value: string } }
     ) {
-      state.form.option?.push(action.payload)
+      state.form.option.push(action.payload)
+    },
+    deleteOptionForm(
+      state: ExerciseStateType,
+      action: { payload: { id: number; title: string; value: string } }
+    ) {
+      state.form.option = state.form.option.filter(
+        (option) => option.id !== action.payload.id
+      )
     },
     clearForm(state: ExerciseStateType) {
       state.form = initialState.form
