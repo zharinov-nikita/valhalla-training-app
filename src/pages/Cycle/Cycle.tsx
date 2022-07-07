@@ -8,7 +8,7 @@ import {
   useFindByIdAndUpdateMutation,
   useFindByIdQuery,
 } from '../../redux/cycle/cycle.service'
-import css from './Cycle.mudule.scss'
+import css from './Cycle.module.scss'
 import CycleDrawer from './CycleDrawer/CycleDrawer'
 
 const Cycle: FC = () => {
