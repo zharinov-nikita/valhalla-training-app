@@ -8,10 +8,7 @@ export type ExerciseStateType = {
 
 const initialState: ExerciseStateType = {
   form: {
-    option: [
-      { id: 1, title: 'title', value: 'value' },
-      { id: 2, title: 'title', value: 'value' },
-    ],
+    option: [],
   },
 }
 
@@ -19,6 +16,20 @@ export const exerciseSlice = createSlice({
   name: 'exercise',
   initialState,
   reducers: {
+    addOptionForm(
+      state: ExerciseStateType,
+      action: { payload: { id: number; title: string; value: string } }
+    ) {
+      state.form.option.push(action.payload)
+    },
+    deleteOptionForm(
+      state: ExerciseStateType,
+      action: { payload: { id: number; title: string; value: string } }
+    ) {
+      state.form.option = state.form.option.filter(
+        (option) => option.id !== action.payload.id
+      )
+    },
     updateOptionForm(
       state: ExerciseStateType,
       action: { payload: { id: number; title: string; value: string } }
@@ -33,5 +44,6 @@ export const exerciseSlice = createSlice({
   },
 })
 
-export const { updateOptionForm } = exerciseSlice.actions
+export const { updateOptionForm, addOptionForm, deleteOptionForm } =
+  exerciseSlice.actions
 export default exerciseSlice.reducer

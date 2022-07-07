@@ -19,7 +19,8 @@ const ExerciseDrawer: FC = () => {
   const [create, { isSuccess }] = useCreateMutation()
   const dispatch = useAppDispatch()
   const { form } = useAppSelector((state) => state.exercise)
-  const { updateOptionForm } = exerciseSlice.actions
+  const { updateOptionForm, addOptionForm, deleteOptionForm } =
+    exerciseSlice.actions
   const { hide } = drawerSlice.actions
 
   // const onChange = (e: React.ChangeEvent<HTMLInputElement>) =>
@@ -37,20 +38,57 @@ const ExerciseDrawer: FC = () => {
       <List props={{ gap: 12 }}>
         {form.option.map((item) => (
           <InputGroop key={item.id}>
-            <input
-              value={item.title}
-              onChange={(e) =>
-                dispatch(updateOptionForm({ ...item, title: e.target.value }))
-              }
+            <Input
+              props={{
+                name: 'title',
+                value: item.title,
+                placeholder: 'Параметр',
+                onChange: (e: React.ChangeEvent<HTMLInputElement>) =>
+                  dispatch(
+                    updateOptionForm({ ...item, title: e.currentTarget.value })
+                  ),
+              }}
             />
-            <input
-              value={item.value}
-              onChange={(e) =>
-                dispatch(updateOptionForm({ ...item, value: e.target.value }))
-              }
+            <Input
+              props={{
+                name: 'value',
+                value: item.value,
+                placeholder: 'Значение',
+                onChange: (e: React.ChangeEvent<HTMLInputElement>) =>
+                  dispatch(
+                    updateOptionForm({ ...item, value: e.currentTarget.value })
+                  ),
+              }}
+            />
+            <Button
+              props={{
+                text: 'Удалить',
+                onClick: () => dispatch(deleteOptionForm(item)),
+              }}
             />
           </InputGroop>
         ))}
+        <Button
+          props={{
+            text: 'Добавить параметр',
+            block: true,
+            onClick: () =>
+              dispatch(
+                addOptionForm({
+                  id: Number(Date.now()),
+                  title: 'Параметр',
+                  value: 'Значение',
+                })
+              ),
+          }}
+        />
+        <Button
+          props={{
+            text: 'Console log',
+            block: true,
+            onClick: () => console.log(form),
+          }}
+        />
       </List>
     </Drawer>
   )
