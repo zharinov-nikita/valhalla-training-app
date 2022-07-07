@@ -32,7 +32,7 @@ const Exercise: FC = () => {
                 description: item.description,
                 status: item.status,
                 progress: item.status === 'Завершено' ? 100 : 0,
-                onClick: () =>
+                onClickStatus: () =>
                   update({
                     ...item,
                     status:
