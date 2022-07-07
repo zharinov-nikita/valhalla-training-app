@@ -19,50 +19,38 @@ const ExerciseDrawer: FC = () => {
   const [create, { isSuccess }] = useCreateMutation()
   const dispatch = useAppDispatch()
   const { form } = useAppSelector((state) => state.exercise)
-  const { updateForm, clearForm, addOptionForm, deleteOptionForm } =
-    exerciseSlice.actions
+  const { updateOptionForm } = exerciseSlice.actions
   const { hide } = drawerSlice.actions
 
-  const onChange = (e: React.ChangeEvent<HTMLInputElement>) =>
-    dispatch(updateForm({ ...form, [e.target.name]: e.currentTarget.value }))
+  // const onChange = (e: React.ChangeEvent<HTMLInputElement>) =>
+  //   dispatch(updateForm({ ...form, [e.target.name]: e.currentTarget.value }))
 
-  useEffect(() => {
-    if (isSuccess) {
-      dispatch(hide())
-      dispatch(clearForm())
-    }
-  }, [isSuccess])
+  // useEffect(() => {
+  //   if (isSuccess) {
+  //     dispatch(hide())
+  //     dispatch(clearForm())
+  //   }
+  // }, [isSuccess])
 
   return (
     <Drawer>
       <List props={{ gap: 12 }}>
-        {form.option.map((option) => (
-          <InputGroop key={option.id}>
-            <Button
-              props={{
-                text: 'Удалить',
-                onClick: () => dispatch(deleteOptionForm(option)),
-              }}
+        {form.option.map((item) => (
+          <InputGroop key={item.id}>
+            <input
+              value={item.title}
+              onChange={(e) =>
+                dispatch(updateOptionForm({ ...item, title: e.target.value }))
+              }
+            />
+            <input
+              value={item.value}
+              onChange={(e) =>
+                dispatch(updateOptionForm({ ...item, value: e.target.value }))
+              }
             />
           </InputGroop>
         ))}
-        <Button
-          props={{
-            text: 'Добавить параметры',
-            block: true,
-            onClick: () =>
-              dispatch(
-                addOptionForm({ id: Number(Date.now()), title: '', value: '' })
-              ),
-          }}
-        />
-        <Button
-          props={{
-            text: 'Сохранить тренировку',
-            block: true,
-            onClick: () => create({ ...form, workoutId }),
-          }}
-        />
       </List>
     </Drawer>
   )
