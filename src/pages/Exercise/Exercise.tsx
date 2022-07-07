@@ -1,7 +1,8 @@
-import { FC } from 'react'
+import React, { FC } from 'react'
 import { useLocation } from 'react-router-dom'
 import AffixButton from '../../components/AffixButton/AffixButton'
 import Info from '../../components/Info/Info'
+import Property from '../../components/Property/Property'
 import { useAppDispatch } from '../../hooks/useAppDispatch'
 import { drawerSlice } from '../../redux/drawer/drawer.slice'
 import {
@@ -23,22 +24,26 @@ const Exercise: FC = () => {
       {isError && 'Ошибка'}
       {data &&
         data.map((item) => (
-          <Info
-            key={item._id}
-            props={{
-              to: `/exercise/?exerciseId=${item._id}`,
-              title: item.title,
-              description: item.description,
-              status: item.status,
-              progress: item.status === 'Завершено' ? 100 : 0,
-              onClick: () =>
-                update({
-                  ...item,
-                  status:
-                    item.status === 'Завершено' ? 'В работе' : 'Завершено',
-                }),
-            }}
-          />
+          <React.Fragment key={item._id}>
+            <Info
+              key={item._id}
+              props={{
+                title: item.title,
+                description: item.description,
+                status: item.status,
+                progress: item.status === 'Завершено' ? 100 : 0,
+                onClick: () =>
+                  update({
+                    ...item,
+                    status:
+                      item.status === 'Завершено' ? 'В работе' : 'Завершено',
+                  }),
+              }}
+            />
+            {item.option?.map((option) => (
+              <Property props={option} />
+            ))}
+          </React.Fragment>
         ))}
       <AffixButton
         props={{

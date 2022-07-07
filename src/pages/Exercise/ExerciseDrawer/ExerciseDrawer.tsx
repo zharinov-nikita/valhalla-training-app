@@ -19,23 +19,55 @@ const ExerciseDrawer: FC = () => {
   const [create, { isSuccess }] = useCreateMutation()
   const dispatch = useAppDispatch()
   const { form } = useAppSelector((state) => state.exercise)
-  const { updateOptionForm, addOptionForm, deleteOptionForm } =
-    exerciseSlice.actions
+  const {
+    updateForm,
+    updateOptionForm,
+    addOptionForm,
+    deleteOptionForm,
+    clearForm,
+  } = exerciseSlice.actions
   const { hide } = drawerSlice.actions
 
-  // const onChange = (e: React.ChangeEvent<HTMLInputElement>) =>
-  //   dispatch(updateForm({ ...form, [e.target.name]: e.currentTarget.value }))
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) =>
+    dispatch(updateForm({ ...form, [e.target.name]: e.currentTarget.value }))
 
-  // useEffect(() => {
-  //   if (isSuccess) {
-  //     dispatch(hide())
-  //     dispatch(clearForm())
-  //   }
-  // }, [isSuccess])
+  useEffect(() => {
+    if (isSuccess) {
+      dispatch(hide())
+      dispatch(clearForm())
+    }
+  }, [isSuccess])
 
   return (
     <Drawer>
       <List props={{ gap: 12 }}>
+        <Input
+          props={{
+            name: 'title',
+            placeholder: 'Название',
+            value: form.title,
+            onChange,
+          }}
+        />
+
+        <Textarea
+          props={{
+            name: 'description',
+            placeholder: 'Описание',
+            value: form.description,
+            onChange,
+          }}
+        />
+
+        <Input
+          props={{
+            name: 'status',
+            placeholder: 'Статус',
+            value: form.status,
+            onChange,
+          }}
+        />
+
         {form.option.map((item) => (
           <InputGroop key={item.id}>
             <Input
@@ -84,9 +116,9 @@ const ExerciseDrawer: FC = () => {
         />
         <Button
           props={{
-            text: 'Console log',
+            text: 'Сохранить упражнение',
             block: true,
-            onClick: () => console.log(form),
+            onClick: () => create({ ...form, workoutId }),
           }}
         />
       </List>
