@@ -9,6 +9,7 @@ import {
 } from '../../redux/day/day.service'
 import { drawerSlice } from '../../redux/drawer/drawer.slice'
 import css from './Day.module.scss'
+import DayDrawer from './DayDrawer/DayDrawer'
 
 const Day: FC = () => {
   const { search } = useLocation()
@@ -42,7 +43,7 @@ const Day: FC = () => {
       <AffixButton
         props={{ title: 'Добавить день', onClick: () => dispatch(show()) }}
       />
-      {/* <DayDrawer /> */}
+      <DayDrawer />
     </div>
   )
 }

@@ -8,6 +8,13 @@ export type DayType = {
   cycleId: string
 }
 
+export type DayCreateType = {
+  title: string
+  description: string
+  status: string
+  cycleId: string
+}
+
 export const dayApi = createApi({
   tagTypes: ['Day'],
   reducerPath: 'dayApi',
@@ -16,6 +23,14 @@ export const dayApi = createApi({
     findById: builder.query<DayType[], string>({
       query: (param) => `/day/${param}`,
       providesTags: ['Day'],
+    }),
+    create: builder.mutation<DayType, DayCreateType>({
+      query: (day) => ({
+        url: `/day`,
+        method: 'POST',
+        body: day,
+      }),
+      invalidatesTags: ['Day'],
     }),
     findByIdAndUpdate: builder.mutation<DayType, DayType>({
       query: (day) => ({
@@ -28,4 +43,8 @@ export const dayApi = createApi({
   }),
 })
 
-export const { useFindByIdQuery, useFindByIdAndUpdateMutation } = dayApi
+export const {
+  useFindByIdQuery,
+  useCreateMutation,
+  useFindByIdAndUpdateMutation,
+} = dayApi
