@@ -1,19 +1,21 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-export type WorkoutStateType = {
+export type ExerciseStateType = {
   form: {
     title: string
     description: string
     status: string
+    option?: Array<{ title: string; value: string }>
     dayId: string
   }
 }
 
-const initialState: WorkoutStateType = {
+const initialState: ExerciseStateType = {
   form: {
     title: '',
     description: '',
     status: '',
+    option: [{ title: '', value: '' }],
     dayId: '',
   },
 }
@@ -23,12 +25,12 @@ export const workoutSlice = createSlice({
   initialState,
   reducers: {
     updateForm(
-      state: WorkoutStateType,
-      action: { payload: WorkoutStateType['form'] }
+      state: ExerciseStateType,
+      action: { payload: ExerciseStateType['form'] }
     ) {
       state.form = { ...state.form, ...action.payload }
     },
-    clearForm(state: WorkoutStateType) {
+    clearForm(state: ExerciseStateType) {
       state.form = initialState.form
     },
   },
