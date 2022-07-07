@@ -4,14 +4,14 @@ import css from './List.module.scss'
 export type ListPropsType = {
   props: {
     gap: 12 | 14 | 16 | 18
-    children?: ReactNode
   }
+  children?: ReactNode
 }
 
-const List: FC<ListPropsType> = ({ props }) => {
+const List: FC<ListPropsType> = ({ props, children }) => {
   return (
     <div className={css.list} data-gap={props.gap}>
-      {props.children}
+      {children}
     </div>
   )
 }

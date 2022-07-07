@@ -1,7 +1,9 @@
 import React, { FC, useEffect } from 'react'
+import { useLocation } from 'react-router-dom'
 import Button from '../../../components/Button/Button'
 import Drawer from '../../../components/Drawer/Drawer'
 import Input from '../../../components/Input/Input'
+import List from '../../../components/List/List'
 import Textarea from '../../../components/Textarea/Textarea'
 import { useAppDispatch } from '../../../hooks/useAppDispatch'
 import { useAppSelector } from '../../../hooks/useAppSelector'
@@ -73,45 +75,41 @@ const PlanDrawer: FC = () => {
   }, [isSuccess])
 
   return (
-    <Drawer
-      props={{
-        children: (
-          <>
-            {data.map((item) => (
-              <div key={item.id}>
-                {item.component === 'input' && (
-                  <Input
-                    props={{
-                      name: item.name,
-                      value: item.value,
-                      placeholder: item.placeholder,
-                      onChange,
-                    }}
-                  />
-                )}
-                {item.component === 'textarea' && (
-                  <Textarea
-                    props={{
-                      name: item.name,
-                      value: item.value,
-                      placeholder: item.placeholder,
-                      onChange,
-                    }}
-                  />
-                )}
-              </div>
-            ))}
-            <Button
-              props={{
-                text: 'Сохранить план',
-                block: true,
-                onClick: () => create(form),
-              }}
-            />
-          </>
-        ),
-      }}
-    />
+    <Drawer>
+      <List props={{ gap: 12 }}>
+        {data.map((item) => (
+          <React.Fragment key={item.id}>
+            {item.component === 'input' && (
+              <Input
+                props={{
+                  name: item.name,
+                  value: item.value,
+                  placeholder: item.placeholder,
+                  onChange,
+                }}
+              />
+            )}
+            {item.component === 'textarea' && (
+              <Textarea
+                props={{
+                  name: item.name,
+                  value: item.value,
+                  placeholder: item.placeholder,
+                  onChange,
+                }}
+              />
+            )}
+          </React.Fragment>
+        ))}
+        <Button
+          props={{
+            text: 'Сохранить план',
+            block: true,
+            onClick: () => create(form),
+          }}
+        />
+      </List>
+    </Drawer>
   )
 }
 
