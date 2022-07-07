@@ -16,7 +16,7 @@ const Textarea: FC<TextareaPropsType> = ({ props }) => {
       name={props.name}
       className={css.textarea}
       placeholder={props.placeholder}
-      defaultValue={props.value}
+      value={props.value}
       onChange={props.onChange}
     />
   )

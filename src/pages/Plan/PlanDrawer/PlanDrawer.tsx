@@ -10,6 +10,7 @@ import { useCreateMutation } from '../../../redux/plan/plan.service'
 import { planSlice } from '../../../redux/plan/plan.slice'
 
 type ItemFormType = {
+  id: number
   component: 'input' | 'textarea'
   name: string
   value: string
@@ -28,30 +29,35 @@ const PlanDrawer: FC = () => {
 
   const data: ItemFormType[] = [
     {
+      id: 1,
       component: 'input',
       name: 'title',
       placeholder: 'Название',
       value: form.title,
     },
     {
+      id: 2,
       component: 'textarea',
       name: 'description',
       placeholder: 'Описание',
       value: form.description,
     },
     {
+      id: 3,
       component: 'input',
       name: 'start',
       placeholder: 'Начало',
       value: form.start,
     },
     {
+      id: 4,
       component: 'input',
       name: 'finish',
       placeholder: 'Конец',
       value: form.finish,
     },
     {
+      id: 5,
       component: 'input',
       name: 'status',
       placeholder: 'Статус',
@@ -72,7 +78,7 @@ const PlanDrawer: FC = () => {
         children: (
           <>
             {data.map((item) => (
-              <>
+              <div key={item.id}>
                 {item.component === 'input' && (
                   <Input
                     props={{
@@ -93,7 +99,7 @@ const PlanDrawer: FC = () => {
                     }}
                   />
                 )}
-              </>
+              </div>
             ))}
             <Button
               props={{

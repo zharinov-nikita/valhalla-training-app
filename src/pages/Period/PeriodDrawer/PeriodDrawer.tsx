@@ -11,6 +11,7 @@ import { useCreateMutation } from '../../../redux/period/period.service'
 import { periodSlice } from '../../../redux/period/period.slice'
 
 type ItemFormType = {
+  id: number
   component: 'input' | 'textarea'
   name: string
   value: string
@@ -32,30 +33,35 @@ const PeriodDrawer: FC = () => {
 
   const data: ItemFormType[] = [
     {
+      id: 1,
       component: 'input',
       name: 'title',
       placeholder: 'Название',
       value: form.title,
     },
     {
+      id: 2,
       component: 'textarea',
       name: 'description',
       placeholder: 'Описание',
       value: form.description,
     },
     {
+      id: 3,
       component: 'input',
       name: 'start',
       placeholder: 'Начало',
       value: form.start,
     },
     {
+      id: 4,
       component: 'input',
       name: 'finish',
       placeholder: 'Конец',
       value: form.finish,
     },
     {
+      id: 5,
       component: 'input',
       name: 'status',
       placeholder: 'Статус',
@@ -76,7 +82,7 @@ const PeriodDrawer: FC = () => {
         children: (
           <>
             {data.map((item) => (
-              <div key={item.name}>
+              <div key={item.id}>
                 {item.component === 'input' && (
                   <Input
                     props={{
