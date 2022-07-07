@@ -4,8 +4,19 @@ export type PeriodType = {
   _id: string
   title: string
   description: string
+  start: string
+  finish: string
   status: string
-  periodId: string
+  planId: string
+}
+
+export type PeriodCreateType = {
+  title: string
+  description: string
+  start: string
+  finish: string
+  status: string
+  planId: string
 }
 
 export const periodApi = createApi({
@@ -16,6 +27,14 @@ export const periodApi = createApi({
     findById: builder.query<PeriodType[], string>({
       query: (param) => `/period/${param}`,
       providesTags: ['Period'],
+    }),
+    create: builder.mutation<PeriodType, PeriodCreateType>({
+      query: (period) => ({
+        url: `/period`,
+        method: 'POST',
+        body: period,
+      }),
+      invalidatesTags: ['Period'],
     }),
     findByIdAndUpdate: builder.mutation<PeriodType, PeriodType>({
       query: (period) => ({
