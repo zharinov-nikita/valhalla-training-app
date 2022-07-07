@@ -9,53 +9,21 @@ import Textarea from '../../../components/Textarea/Textarea'
 import { useAppDispatch } from '../../../hooks/useAppDispatch'
 import { useAppSelector } from '../../../hooks/useAppSelector'
 import { drawerSlice } from '../../../redux/drawer/drawer.slice'
-import { useCreateMutation } from '../../../redux/workout/workout.service'
-import { workoutSlice } from '../../../redux/workout/workout.slice'
-
-type ItemFormType = {
-  id: number
-  component: 'input' | 'textarea'
-  name: string
-  value: string
-  placeholder: string
-}
+import { useCreateMutation } from '../../../redux/exercise/exercise.service'
+import { exerciseSlice } from '../../../redux/exercise/exercise.slice'
 
 const ExerciseDrawer: FC = () => {
   const { search } = useLocation()
-  const dayId = search.split('dayId=')[1]
+  const workoutId = search.split('workoutId=')[1]
 
   const [create, { isSuccess }] = useCreateMutation()
   const dispatch = useAppDispatch()
-  const { form } = useAppSelector((state) => state.workout)
-  const { updateForm, clearForm } = workoutSlice.actions
+  const { form } = useAppSelector((state) => state.exercise)
+  const { updateForm, clearForm, addOptionForm } = exerciseSlice.actions
   const { hide } = drawerSlice.actions
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     dispatch(updateForm({ ...form, [e.target.name]: e.currentTarget.value }))
-
-  const data: ItemFormType[] = [
-    {
-      id: 1,
-      component: 'input',
-      name: 'title',
-      placeholder: 'Название',
-      value: form.title,
-    },
-    {
-      id: 2,
-      component: 'textarea',
-      name: 'description',
-      placeholder: 'Описание',
-      value: form.description,
-    },
-    {
-      id: 3,
-      component: 'input',
-      name: 'status',
-      placeholder: 'Статус',
-      value: form.status,
-    },
-  ]
 
   useEffect(() => {
     if (isSuccess) {
@@ -67,13 +35,24 @@ const ExerciseDrawer: FC = () => {
   return (
     <Drawer>
       <List props={{ gap: 12 }}>
-        <InputGroop></InputGroop>
-        <Button props={{ text: 'Добавить параметры', block: true }} />
+        {form.option.map((option) => (
+          <InputGroop />
+        ))}
+        <Button
+          props={{
+            text: 'Добавить параметры',
+            block: true,
+            onClick: () =>
+              dispatch(
+                addOptionForm({ id: Number(Date.now()), title: '', value: '' })
+              ),
+          }}
+        />
         <Button
           props={{
             text: 'Сохранить тренировку',
             block: true,
-            onClick: () => create({ ...form, dayId }),
+            onClick: () => create({ ...form, workoutId }),
           }}
         />
       </List>

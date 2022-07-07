@@ -5,7 +5,7 @@ export type ExerciseStateType = {
     title: string
     description: string
     status: string
-    option?: Array<{ title: string; value: string }>
+    option: Array<{ id: number; title: string; value: string }>
     dayId: string
   }
 }
@@ -15,13 +15,13 @@ const initialState: ExerciseStateType = {
     title: '',
     description: '',
     status: '',
-    option: [{ title: '', value: '' }],
+    option: [],
     dayId: '',
   },
 }
 
-export const workoutSlice = createSlice({
-  name: 'workout',
+export const exerciseSlice = createSlice({
+  name: 'exercise',
   initialState,
   reducers: {
     updateForm(
@@ -30,11 +30,17 @@ export const workoutSlice = createSlice({
     ) {
       state.form = { ...state.form, ...action.payload }
     },
+    addOptionForm(
+      state: ExerciseStateType,
+      action: { payload: { id: number; title: string; value: string } }
+    ) {
+      state.form.option?.push(action.payload)
+    },
     clearForm(state: ExerciseStateType) {
       state.form = initialState.form
     },
   },
 })
 
-export const { updateForm } = workoutSlice.actions
-export default workoutSlice.reducer
+export const { updateForm } = exerciseSlice.actions
+export default exerciseSlice.reducer
