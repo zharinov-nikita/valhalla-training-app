@@ -41,7 +41,7 @@ const Exercise: FC = () => {
               }}
             />
             {item.option?.map((option) => (
-              <Property props={option} />
+              <Property key={Number(option.id)} props={option} />
             ))}
           </React.Fragment>
         ))}

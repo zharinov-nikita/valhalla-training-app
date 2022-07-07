@@ -5,7 +5,7 @@ export type ExerciseType = {
   title: string
   description: string
   status: string
-  option?: Array<{ title: string; value: string }>
+  option?: Array<{ id: number; title: string; value: string }>
   workoutId: string
 }
 
@@ -13,7 +13,7 @@ export type ExerciseCreateType = {
   title: string
   description: string
   status: string
-  option?: Array<{ title: string; value: string }>
+  option?: Array<{ id: number; title: string; value: string }>
   workoutId: string
 }
 
