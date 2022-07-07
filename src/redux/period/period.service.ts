@@ -47,4 +47,8 @@ export const periodApi = createApi({
   }),
 })
 
-export const { useFindByIdQuery, useFindByIdAndUpdateMutation } = periodApi
+export const {
+  useFindByIdQuery,
+  useCreateMutation,
+  useFindByIdAndUpdateMutation,
+} = periodApi

@@ -17,7 +17,7 @@ const Input: FC<InputPropsType> = ({ props }) => {
       name={props.name}
       className={css.input}
       placeholder={props.placeholder}
-      value={props.value}
+      defaultValue={props.value}
       onChange={props.onChange}
     />
   )

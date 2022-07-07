@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-export type PlanStateType = {
+export type PeriodStateType = {
   form: {
     title: string
     description: string
@@ -11,7 +11,7 @@ export type PlanStateType = {
   }
 }
 
-const initialState: PlanStateType = {
+const initialState: PeriodStateType = {
   form: {
     title: '',
     description: '',
@@ -27,8 +27,8 @@ export const periodSlice = createSlice({
   initialState,
   reducers: {
     updateForm(
-      state: PlanStateType,
-      action: { payload: PlanStateType['form'] }
+      state: PeriodStateType,
+      action: { payload: PeriodStateType['form'] }
     ) {
       state.form = { ...state.form, ...action.payload }
     },
