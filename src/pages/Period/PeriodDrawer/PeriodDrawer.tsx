@@ -24,7 +24,7 @@ const PeriodDrawer: FC = () => {
   const [create, { isSuccess }] = useCreateMutation()
   const dispatch = useAppDispatch()
   const { form } = useAppSelector((state) => state.period)
-  const { updateForm } = periodSlice.actions
+  const { updateForm, clearForm } = periodSlice.actions
   const { hide } = drawerSlice.actions
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) =>
@@ -66,6 +66,7 @@ const PeriodDrawer: FC = () => {
   useEffect(() => {
     if (isSuccess) {
       dispatch(hide())
+      dispatch(clearForm())
     }
   }, [isSuccess])
 

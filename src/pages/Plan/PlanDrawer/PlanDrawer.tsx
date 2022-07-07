@@ -20,7 +20,7 @@ const PlanDrawer: FC = () => {
   const [create, { isSuccess }] = useCreateMutation()
   const dispatch = useAppDispatch()
   const { form } = useAppSelector((state) => state.plan)
-  const { updateForm } = planSlice.actions
+  const { updateForm, clearForm } = planSlice.actions
   const { hide } = drawerSlice.actions
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) =>
@@ -62,6 +62,7 @@ const PlanDrawer: FC = () => {
   useEffect(() => {
     if (isSuccess) {
       dispatch(hide())
+      dispatch(clearForm())
     }
   }, [isSuccess])
 

@@ -32,6 +32,9 @@ export const periodSlice = createSlice({
     ) {
       state.form = { ...state.form, ...action.payload }
     },
+    clearForm(state: PeriodStateType) {
+      state.form = initialState.form
+    },
   },
 })
 

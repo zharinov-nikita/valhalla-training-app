@@ -30,6 +30,9 @@ export const planSlice = createSlice({
     ) {
       state.form = { ...state.form, ...action.payload }
     },
+    clearForm(state: PlanStateType) {
+      state.form = initialState.form
+    },
   },
 })
 
