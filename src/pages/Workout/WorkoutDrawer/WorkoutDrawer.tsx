@@ -8,8 +8,8 @@ import Textarea from '../../../components/Textarea/Textarea'
 import { useAppDispatch } from '../../../hooks/useAppDispatch'
 import { useAppSelector } from '../../../hooks/useAppSelector'
 import { drawerSlice } from '../../../redux/drawer/drawer.slice'
-import { useCreateMutation } from '../../../redux/period/period.service'
-import { periodSlice } from '../../../redux/period/period.slice'
+import { useCreateMutation } from '../../../redux/workout/workout.service'
+import { workoutSlice } from '../../../redux/workout/workout.slice'
 
 type ItemFormType = {
   id: number
@@ -19,14 +19,14 @@ type ItemFormType = {
   placeholder: string
 }
 
-const PeriodDrawer: FC = () => {
+const WorkoutDrawer: FC = () => {
   const { search } = useLocation()
-  const planId = search.split('planId=')[1]
+  const dayId = search.split('dayId=')[1]
 
   const [create, { isSuccess }] = useCreateMutation()
   const dispatch = useAppDispatch()
-  const { form } = useAppSelector((state) => state.period)
-  const { updateForm, clearForm } = periodSlice.actions
+  const { form } = useAppSelector((state) => state.workout)
+  const { updateForm, clearForm } = workoutSlice.actions
   const { hide } = drawerSlice.actions
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) =>
@@ -49,20 +49,6 @@ const PeriodDrawer: FC = () => {
     },
     {
       id: 3,
-      component: 'input',
-      name: 'start',
-      placeholder: 'Начало',
-      value: form.start,
-    },
-    {
-      id: 4,
-      component: 'input',
-      name: 'finish',
-      placeholder: 'Конец',
-      value: form.finish,
-    },
-    {
-      id: 5,
       component: 'input',
       name: 'status',
       placeholder: 'Статус',
@@ -106,9 +92,9 @@ const PeriodDrawer: FC = () => {
         ))}
         <Button
           props={{
-            text: 'Сохранить период',
+            text: 'Сохранить тренировку',
             block: true,
-            onClick: () => create({ ...form, planId }),
+            onClick: () => create({ ...form, dayId }),
           }}
         />
       </List>
@@ -116,4 +102,4 @@ const PeriodDrawer: FC = () => {
   )
 }
 
-export default PeriodDrawer
+export default WorkoutDrawer

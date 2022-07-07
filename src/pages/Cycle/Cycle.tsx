@@ -3,11 +3,11 @@ import { useLocation } from 'react-router-dom'
 import AffixButton from '../../components/AffixButton/AffixButton'
 import Info from '../../components/Info/Info'
 import { useAppDispatch } from '../../hooks/useAppDispatch'
+import { drawerSlice } from '../../redux/drawer/drawer.slice'
 import {
   useFindByIdAndUpdateMutation,
   useFindByIdQuery,
 } from '../../redux/cycle/cycle.service'
-import { drawerSlice } from '../../redux/drawer/drawer.slice'
 import css from './Cycle.module.scss'
 import CycleDrawer from './CycleDrawer/CycleDrawer'
 

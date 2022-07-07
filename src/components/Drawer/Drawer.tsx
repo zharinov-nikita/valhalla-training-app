@@ -5,12 +5,10 @@ import { drawerSlice } from '../../redux/drawer/drawer.slice'
 import css from './Drawer.module.scss'
 
 export type DrawerPropsType = {
-  props: {
-    children?: ReactNode
-  }
+  children?: ReactNode
 }
 
-const Drawer: FC<DrawerPropsType> = ({ props }) => {
+const Drawer: FC<DrawerPropsType> = ({ children }) => {
   const { visible } = useAppSelector((state) => state.drawer)
   const dispatch = useAppDispatch()
   const { hide } = drawerSlice.actions
@@ -22,7 +20,7 @@ const Drawer: FC<DrawerPropsType> = ({ props }) => {
       onClick={(e) => dispatch(hide())}
     >
       <div className={css.container} onClick={(e) => e.stopPropagation()}>
-        <div className={css.wrapper}>{props.children}</div>
+        <div className={css.wrapper}>{children}</div>
       </div>
     </div>
   )
