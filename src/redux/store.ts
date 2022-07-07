@@ -6,6 +6,7 @@ import planReducer from './plan/plan.slice'
 import periodReducer from './period/period.slice'
 import cycleReducer from './cycle/cycle.slice'
 import dayReducer from './day/day.slice'
+import workoutReducer from './workout/workout.slice'
 
 // service
 import { planApi } from './plan/plan.service'
@@ -22,6 +23,7 @@ const rootReducer = combineReducers({
   period: periodReducer,
   cycle: cycleReducer,
   day: dayReducer,
+  workout: workoutReducer,
 
   // serivce
   [planApi.reducerPath]: planApi.reducer,
