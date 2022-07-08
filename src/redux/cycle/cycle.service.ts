@@ -22,7 +22,7 @@ export type CycleCreateType = {
 export const cycleApi = createApi({
   tagTypes: ['Cycle'],
   reducerPath: 'cycleApi',
-  baseQuery: fetchBaseQuery({ baseUrl: 'http://89.223.125.238:8080/api' }),
+  baseQuery: fetchBaseQuery({ baseUrl: process.env['REACT_APP_API_BASE_URL'] }),
   endpoints: (builder) => ({
     findById: builder.query<CycleType[], string>({
       query: (param) => `/cycle/${param}`,

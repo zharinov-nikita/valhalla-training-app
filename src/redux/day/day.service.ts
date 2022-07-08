@@ -18,7 +18,7 @@ export type DayCreateType = {
 export const dayApi = createApi({
   tagTypes: ['Day'],
   reducerPath: 'dayApi',
-  baseQuery: fetchBaseQuery({ baseUrl: 'http://89.223.125.238:8080/api' }),
+  baseQuery: fetchBaseQuery({ baseUrl: process.env['REACT_APP_API_BASE_URL'] }),
   endpoints: (builder) => ({
     findById: builder.query<DayType[], string>({
       query: (param) => `/day/${param}`,

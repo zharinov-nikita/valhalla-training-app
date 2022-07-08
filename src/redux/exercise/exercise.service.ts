@@ -20,7 +20,7 @@ export type ExerciseCreateType = {
 export const exerciseApi = createApi({
   tagTypes: ['Exercise'],
   reducerPath: 'exerciseApi',
-  baseQuery: fetchBaseQuery({ baseUrl: 'http://89.223.125.238:8080/api' }),
+  baseQuery: fetchBaseQuery({ baseUrl: process.env['REACT_APP_API_BASE_URL'] }),
   endpoints: (builder) => ({
     findById: builder.query<ExerciseType[], string>({
       query: (param) => `/exercise/${param}`,
