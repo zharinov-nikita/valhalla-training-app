@@ -7,6 +7,7 @@ import {
   useFindQuery,
   useFindByIdAndUpdateMutation,
 } from '../../redux/plan/plan.service'
+import DrawerCreate from './components/Drawer/DrawerCreate'
 import css from './Plan.module.scss'
 
 const Plan: FC = () => {
@@ -42,7 +43,7 @@ const Plan: FC = () => {
       <AffixButton
         props={{
           title: 'Добавить план',
-          onClick: () => dispatch(show('Создать')),
+          onClick: () => dispatch(show(<DrawerCreate />)),
         }}
       />
     </div>
