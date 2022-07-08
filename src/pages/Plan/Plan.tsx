@@ -8,7 +8,6 @@ import {
   useFindByIdAndUpdateMutation,
 } from '../../redux/plan/plan.service'
 import css from './Plan.module.scss'
-import PlanDrawer from './PlanDrawer/PlanDrawer'
 
 const Plan: FC = () => {
   const { isError, isLoading, data } = useFindQuery('')
@@ -36,14 +35,16 @@ const Plan: FC = () => {
                   status:
                     item.status === 'Завершено' ? 'В работе' : 'Завершено',
                 }),
-              onClickButton: () => dispatch(show()),
+              onClickButton: () => dispatch(show('Обновить')),
             }}
           />
         ))}
       <AffixButton
-        props={{ title: 'Добавить план', onClick: () => dispatch(show()) }}
+        props={{
+          title: 'Добавить план',
+          onClick: () => dispatch(show('Создать')),
+        }}
       />
-      <PlanDrawer />
     </div>
   )
 }

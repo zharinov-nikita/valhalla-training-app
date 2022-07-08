@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 
 export type PlanStateType = {
   form: {
+    action?: 'create' | 'update'
     title: string
     description: string
     start: string

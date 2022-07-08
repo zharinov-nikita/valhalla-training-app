@@ -10,7 +10,6 @@ import {
   useFindByIdQuery,
 } from '../../redux/exercise/exercise.service'
 import css from './Exercise.module.scss'
-import ExerciseDrawer from './ExerciseDrawer/ExerciseDrawer'
 
 const Exercise: FC = () => {
   const { search } = useLocation()
@@ -51,7 +50,6 @@ const Exercise: FC = () => {
           onClick: () => dispatch(show()),
         }}
       />
-      <ExerciseDrawer />
     </div>
   )
 }

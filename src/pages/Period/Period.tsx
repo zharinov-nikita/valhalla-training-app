@@ -9,7 +9,6 @@ import {
   useFindByIdQuery,
 } from '../../redux/period/period.service'
 import css from './Period.module.scss'
-import PeriodDrawer from './PeriodDrawer/PeriodDrawer'
 
 const Period: FC = () => {
   const { search } = useLocation()
@@ -43,7 +42,6 @@ const Period: FC = () => {
       <AffixButton
         props={{ title: 'Добавить период', onClick: () => dispatch(show()) }}
       />
-      <PeriodDrawer />
     </div>
   )
 }

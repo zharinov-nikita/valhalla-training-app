@@ -9,7 +9,6 @@ import {
   useFindByIdQuery,
 } from '../../redux/cycle/cycle.service'
 import css from './Cycle.module.scss'
-import CycleDrawer from './CycleDrawer/CycleDrawer'
 
 const Cycle: FC = () => {
   const { search } = useLocation()
@@ -43,7 +42,6 @@ const Cycle: FC = () => {
       <AffixButton
         props={{ title: 'Добавить цикл', onClick: () => dispatch(show()) }}
       />
-      <CycleDrawer />
     </div>
   )
 }

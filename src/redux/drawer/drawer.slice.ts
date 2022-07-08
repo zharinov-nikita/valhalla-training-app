@@ -1,7 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { ReactNode } from 'react'
 
 export type DrawerStateType = {
   visible: boolean
+  components?: ReactNode | string
 }
 
 const initialState: DrawerStateType = {
@@ -12,8 +14,9 @@ export const drawerSlice = createSlice({
   name: 'drawer',
   initialState,
   reducers: {
-    show(state: DrawerStateType) {
+    show(state: DrawerStateType, action: { payload: ReactNode }) {
       state.visible = true
+      state.components = action.payload
     },
     hide(state: DrawerStateType) {
       state.visible = false
