@@ -39,9 +39,9 @@ const Cycle: FC = () => {
             }}
           />
         ))}
-      <AffixButton
+      {/* <AffixButton
         props={{ title: 'Добавить цикл', onClick: () => dispatch(show()) }}
-      />
+      /> */}
     </div>
   )
 }

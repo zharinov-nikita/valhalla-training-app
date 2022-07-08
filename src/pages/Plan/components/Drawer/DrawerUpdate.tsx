@@ -6,7 +6,7 @@ import Textarea from '../../../../components/Textarea/Textarea'
 import { useAppDispatch } from '../../../../hooks/useAppDispatch'
 import { useAppSelector } from '../../../../hooks/useAppSelector'
 import { drawerSlice } from '../../../../redux/drawer/drawer.slice'
-import { useCreateMutation } from '../../../../redux/plan/plan.service'
+import { useFindByIdAndUpdateMutation } from '../../../../redux/plan/plan.service'
 import { planSlice } from '../../../../redux/plan/plan.slice'
 
 type ItemFormType = {
@@ -18,14 +18,19 @@ type ItemFormType = {
 }
 
 const DrawerUpdate: FC = () => {
-  const [create, { isSuccess }] = useCreateMutation()
+  const [update, { isSuccess }] = useFindByIdAndUpdateMutation()
   const dispatch = useAppDispatch()
-  const { form } = useAppSelector((state) => state.plan)
-  const { updateForm, clearForm } = planSlice.actions
+  const { formUpdate } = useAppSelector((state) => state.plan)
+  const { updateFormUpdate, clearFormUpdate } = planSlice.actions
   const { hide } = drawerSlice.actions
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) =>
-    dispatch(updateForm({ ...form, [e.target.name]: e.currentTarget.value }))
+    dispatch(
+      updateFormUpdate({
+        ...formUpdate,
+        [e.target.name]: e.currentTarget.value,
+      })
+    )
 
   const data: ItemFormType[] = [
     {
@@ -33,42 +38,42 @@ const DrawerUpdate: FC = () => {
       component: 'input',
       name: 'title',
       placeholder: 'Название',
-      value: form.title,
+      value: formUpdate.title,
     },
     {
       id: 2,
       component: 'textarea',
       name: 'description',
       placeholder: 'Описание',
-      value: form.description,
+      value: formUpdate.description,
     },
     {
       id: 3,
       component: 'input',
       name: 'start',
       placeholder: 'Начало',
-      value: form.start,
+      value: formUpdate.start,
     },
     {
       id: 4,
       component: 'input',
       name: 'finish',
       placeholder: 'Конец',
-      value: form.finish,
+      value: formUpdate.finish,
     },
     {
       id: 5,
       component: 'input',
       name: 'status',
       placeholder: 'Статус',
-      value: form.status,
+      value: formUpdate.status,
     },
   ]
 
   useEffect(() => {
     if (isSuccess) {
       dispatch(hide())
-      dispatch(clearForm())
+      dispatch(clearFormUpdate())
     }
   }, [isSuccess])
 
@@ -102,7 +107,7 @@ const DrawerUpdate: FC = () => {
         props={{
           text: 'Обновить план',
           block: true,
-          onClick: () => create(form),
+          onClick: () => update(formUpdate),
         }}
       />
     </List>

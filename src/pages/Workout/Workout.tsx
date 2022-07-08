@@ -39,12 +39,12 @@ const Workout: FC = () => {
             }}
           />
         ))}
-      <AffixButton
+      {/* <AffixButton
         props={{
           title: 'Добавить тренировку',
           onClick: () => dispatch(show()),
         }}
-      />
+      /> */}
     </div>
   )
 }

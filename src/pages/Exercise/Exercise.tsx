@@ -44,12 +44,12 @@ const Exercise: FC = () => {
             ))}
           </React.Fragment>
         ))}
-      <AffixButton
+      {/* <AffixButton
         props={{
           title: 'Добавить упражнение',
           onClick: () => dispatch(show()),
         }}
-      />
+      /> */}
     </div>
   )
 }

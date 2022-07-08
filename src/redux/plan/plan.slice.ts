@@ -1,23 +1,42 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 export type PlanStateType = {
-  form: {
-    action?: 'create' | 'update'
+  formCreate: {
     title: string
     description: string
     start: string
     finish: string
     status: string
+    planId: string
+  }
+  formUpdate: {
+    _id: string
+    title: string
+    description: string
+    start: string
+    finish: string
+    status: string
+    planId: string
   }
 }
 
 const initialState: PlanStateType = {
-  form: {
+  formCreate: {
     title: '',
     description: '',
     start: '',
     finish: '',
     status: '',
+    planId: '',
+  },
+  formUpdate: {
+    _id: '',
+    title: '',
+    description: '',
+    start: '',
+    finish: '',
+    status: '',
+    planId: '',
   },
 }
 
@@ -25,17 +44,31 @@ export const planSlice = createSlice({
   name: 'plan',
   initialState,
   reducers: {
-    updateForm(
+    updateFormCreate(
       state: PlanStateType,
-      action: { payload: PlanStateType['form'] }
+      action: { payload: PlanStateType['formCreate'] }
     ) {
-      state.form = { ...state.form, ...action.payload }
+      state.formCreate = { ...state.formCreate, ...action.payload }
     },
-    clearForm(state: PlanStateType) {
-      state.form = initialState.form
+    clearFormCreate(state: PlanStateType) {
+      state.formCreate = initialState.formCreate
+    },
+    updateFormUpdate(
+      state: PlanStateType,
+      action: { payload: PlanStateType['formUpdate'] }
+    ) {
+      state.formUpdate = { ...state.formUpdate, ...action.payload }
+    },
+    clearFormUpdate(state: PlanStateType) {
+      state.formUpdate = initialState.formUpdate
     },
   },
 })
 
-export const { updateForm } = planSlice.actions
+export const {
+  updateFormCreate,
+  clearFormCreate,
+  clearFormUpdate,
+  updateFormUpdate,
+} = planSlice.actions
 export default planSlice.reducer

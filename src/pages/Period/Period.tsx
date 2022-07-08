@@ -39,9 +39,9 @@ const Period: FC = () => {
             }}
           />
         ))}
-      <AffixButton
+      {/* <AffixButton
         props={{ title: 'Добавить период', onClick: () => dispatch(show()) }}
-      />
+      /> */}
     </div>
   )
 }

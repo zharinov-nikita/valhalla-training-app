@@ -20,12 +20,17 @@ type ItemFormType = {
 const DrawerCreate: FC = () => {
   const [create, { isSuccess }] = useCreateMutation()
   const dispatch = useAppDispatch()
-  const { form } = useAppSelector((state) => state.plan)
-  const { updateForm, clearForm } = planSlice.actions
+  const { formCreate } = useAppSelector((state) => state.plan)
+  const { updateFormCreate, clearFormCreate } = planSlice.actions
   const { hide } = drawerSlice.actions
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) =>
-    dispatch(updateForm({ ...form, [e.target.name]: e.currentTarget.value }))
+    dispatch(
+      updateFormCreate({
+        ...formCreate,
+        [e.target.name]: e.currentTarget.value,
+      })
+    )
 
   const data: ItemFormType[] = [
     {
@@ -33,42 +38,42 @@ const DrawerCreate: FC = () => {
       component: 'input',
       name: 'title',
       placeholder: 'Название',
-      value: form.title,
+      value: formCreate.title,
     },
     {
       id: 2,
       component: 'textarea',
       name: 'description',
       placeholder: 'Описание',
-      value: form.description,
+      value: formCreate.description,
     },
     {
       id: 3,
       component: 'input',
       name: 'start',
       placeholder: 'Начало',
-      value: form.start,
+      value: formCreate.start,
     },
     {
       id: 4,
       component: 'input',
       name: 'finish',
       placeholder: 'Конец',
-      value: form.finish,
+      value: formCreate.finish,
     },
     {
       id: 5,
       component: 'input',
       name: 'status',
       placeholder: 'Статус',
-      value: form.status,
+      value: formCreate.status,
     },
   ]
 
   useEffect(() => {
     if (isSuccess) {
       dispatch(hide())
-      dispatch(clearForm())
+      dispatch(clearFormCreate())
     }
   }, [isSuccess])
 
@@ -102,7 +107,7 @@ const DrawerCreate: FC = () => {
         props={{
           text: 'Создать план',
           block: true,
-          onClick: () => create(form),
+          onClick: () => create(formCreate),
         }}
       />
     </List>

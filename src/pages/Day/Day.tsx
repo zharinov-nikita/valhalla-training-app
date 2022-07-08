@@ -39,9 +39,9 @@ const Day: FC = () => {
             }}
           />
         ))}
-      <AffixButton
+      {/* <AffixButton
         props={{ title: 'Добавить день', onClick: () => dispatch(show()) }}
-      />
+      /> */}
     </div>
   )
 }

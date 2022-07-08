@@ -1,12 +1,5 @@
 import { FC, useEffect, useState } from 'react'
-import {
-  Navigate,
-  Route,
-  Routes,
-  useLocation,
-  useParams,
-} from 'react-router-dom'
-import Drawer from './components/Drawer/Drawer'
+import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
 import Header from './components/Header/Header'
 import Cycle from './pages/Cycle/Cycle'
 import Day from './pages/Day/Day'
@@ -50,7 +43,6 @@ const App: FC = () => {
             <Route path="*" element={<Navigate to="/plan" replace />} />
           </Routes>
         </div>
-        <Drawer />
       </div>
     </div>
   )
