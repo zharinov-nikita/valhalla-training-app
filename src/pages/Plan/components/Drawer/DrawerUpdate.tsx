@@ -17,7 +17,7 @@ type ItemFormType = {
   placeholder: string
 }
 
-const DrawerCreate: FC = () => {
+const DrawerUpdate: FC = () => {
   const [create, { isSuccess }] = useCreateMutation()
   const dispatch = useAppDispatch()
   const { form } = useAppSelector((state) => state.plan)
@@ -100,7 +100,7 @@ const DrawerCreate: FC = () => {
       ))}
       <Button
         props={{
-          text: 'Создать план',
+          text: 'Обновить план',
           block: true,
           onClick: () => create(form),
         }}
@@ -109,4 +109,4 @@ const DrawerCreate: FC = () => {
   )
 }
 
-export default DrawerCreate
+export default DrawerUpdate

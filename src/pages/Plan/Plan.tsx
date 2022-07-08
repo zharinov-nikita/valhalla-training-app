@@ -8,6 +8,7 @@ import {
   useFindByIdAndUpdateMutation,
 } from '../../redux/plan/plan.service'
 import DrawerCreate from './components/Drawer/DrawerCreate'
+import DrawerUpdate from './components/Drawer/DrawerUpdate'
 import css from './Plan.module.scss'
 
 const Plan: FC = () => {
@@ -36,13 +37,13 @@ const Plan: FC = () => {
                   status:
                     item.status === 'Завершено' ? 'В работе' : 'Завершено',
                 }),
-              onClickButton: () => dispatch(show('Обновить')),
+              onClickButton: () => dispatch(show(<DrawerUpdate />)),
             }}
           />
         ))}
       <AffixButton
         props={{
-          title: 'Добавить план',
+          title: 'Новый план',
           onClick: () => dispatch(show(<DrawerCreate />)),
         }}
       />
