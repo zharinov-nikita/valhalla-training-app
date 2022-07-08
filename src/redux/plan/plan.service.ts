@@ -43,8 +43,19 @@ export const planApi = createApi({
       }),
       invalidatesTags: ['Plan'],
     }),
+    findByIdAndDelete: builder.mutation<PlanType, PlanType>({
+      query: (plan) => ({
+        url: `/plan/${plan._id}`,
+        method: 'DELETE',
+      }),
+      invalidatesTags: ['Plan'],
+    }),
   }),
 })
 
-export const { useFindQuery, useCreateMutation, useFindByIdAndUpdateMutation } =
-  planApi
+export const {
+  useFindQuery,
+  useCreateMutation,
+  useFindByIdAndUpdateMutation,
+  useFindByIdAndDeleteMutation,
+} = planApi
