@@ -22,10 +22,10 @@ export type PeriodCreateType = {
 export const periodApi = createApi({
   tagTypes: ['Period'],
   reducerPath: 'periodApi',
-  baseQuery: fetchBaseQuery({ baseUrl: process.env['API_BASE_URL'] }),
+  baseQuery: fetchBaseQuery({ baseUrl: process.env['REACT_APP_API_BASE_URL'] }),
   endpoints: (builder) => ({
-    findById: builder.query<PeriodType[], string>({
-      query: (param) => `/period/${param}`,
+    find: builder.query<PeriodType[], string>({
+      query: () => `/period`,
       providesTags: ['Period'],
     }),
     create: builder.mutation<PeriodType, PeriodCreateType>({
@@ -44,11 +44,19 @@ export const periodApi = createApi({
       }),
       invalidatesTags: ['Period'],
     }),
+    findByIdAndDelete: builder.mutation<PeriodType, PeriodType>({
+      query: (period) => ({
+        url: `/period/${period._id}`,
+        method: 'DELETE',
+      }),
+      invalidatesTags: ['Period'],
+    }),
   }),
 })
 
 export const {
-  useFindByIdQuery,
+  useFindQuery,
   useCreateMutation,
   useFindByIdAndUpdateMutation,
+  useFindByIdAndDeleteMutation,
 } = periodApi

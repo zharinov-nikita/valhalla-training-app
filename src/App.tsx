@@ -1,12 +1,9 @@
 import { FC, useEffect, useState } from 'react'
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
 import Header from './components/Header/Header'
-import Cycle from './pages/Cycle/Cycle'
-import Day from './pages/Day/Day'
-import Exercise from './pages/Exercise/Exercise'
-import Period from './pages/Period/Period'
+
 import Plan from './pages/Plan/Plan'
-import Workout from './pages/Workout/Workout'
+import Period from './pages/Period/Period'
 
 const App: FC = () => {
   const [title, setTitle] = useState('План')
@@ -36,10 +33,6 @@ const App: FC = () => {
           <Routes>
             <Route path="/plan" element={<Plan />} />
             <Route path="/period" element={<Period />} />
-            <Route path="/cycle" element={<Cycle />} />
-            <Route path="/day" element={<Day />} />
-            <Route path="/workout" element={<Workout />} />
-            <Route path="/exercise" element={<Exercise />} />
             <Route path="*" element={<Navigate to="/plan" replace />} />
           </Routes>
         </div>
