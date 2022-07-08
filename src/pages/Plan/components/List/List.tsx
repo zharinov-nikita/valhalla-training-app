@@ -31,33 +31,36 @@ const List: FC = () => {
     return <>Ошибка</>
   }
 
+  if (data && data.length === 0) {
+    return <>Планов нет</>
+  }
+
   return (
     <div className={css.list}>
-      {data
-        ? data.map((item) => (
-            <Info
-              key={item._id}
-              props={{
-                to: `/period/?planId=${item._id}`,
-                title: item.title,
-                description: item.description,
-                status: item.status,
-                progress: item.status === 'Завершено' ? 100 : 0,
-                onClickStatus: () =>
-                  findByIdAndUpdate({
-                    ...item,
-                    status:
-                      item.status === 'Завершено' ? 'В работе' : 'Завершено',
-                  }),
-                onClickDrawer: () => {
-                  dispatch(updateFormUpdate(item))
-                  dispatch(show('update'))
-                },
-                onClickDelete: () => findByIdAndDelete(item),
-              }}
-            />
-          ))
-        : 'Нет планов'}
+      {data &&
+        data.map((item) => (
+          <Info
+            key={item._id}
+            props={{
+              to: `/period/?planId=${item._id}`,
+              title: item.title,
+              description: item.description,
+              status: item.status,
+              progress: item.status === 'Завершено' ? 100 : 0,
+              onClickStatus: () =>
+                findByIdAndUpdate({
+                  ...item,
+                  status:
+                    item.status === 'Завершено' ? 'В работе' : 'Завершено',
+                }),
+              onClickDrawer: () => {
+                dispatch(updateFormUpdate(item))
+                dispatch(show('update'))
+              },
+              onClickDelete: () => findByIdAndDelete(item),
+            }}
+          />
+        ))}
 
       <AffixButton
         props={{
