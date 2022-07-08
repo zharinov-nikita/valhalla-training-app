@@ -1,5 +1,4 @@
 import React, { FC } from 'react'
-import { render } from 'react-dom'
 import AffixButton from '../../components/AffixButton/AffixButton'
 import Drawer from '../../components/Drawer/Drawer'
 import Info from '../../components/Info/Info'
@@ -26,6 +25,7 @@ const Plan: FC = () => {
     <div className={css.list}>
       {isLoading && 'Загрузка...'}
       {isError && 'Ошибка'}
+
       {data &&
         data.map((item) => (
           <Info
@@ -49,6 +49,7 @@ const Plan: FC = () => {
             }}
           />
         ))}
+
       <AffixButton
         props={{
           title: 'Новый план',
