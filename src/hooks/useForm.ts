@@ -4,17 +4,10 @@ export function useForm(option: string[]) {
   const [disabled, setDisabed] = useState<boolean>(false)
 
   const isEmpty = option.map((item) => {
-    if (item.length === 0) {
-      return true
-    }
-    return false
+    return item.length === 0 ? true : false
   })
 
-  const checkEmpty = isEmpty.find((item) => {
-    if (item !== false) {
-      return true
-    }
-  })
+  const checkEmpty = Boolean(isEmpty.find((item) => item === true))
 
   useEffect(() => {
     if (checkEmpty) {
