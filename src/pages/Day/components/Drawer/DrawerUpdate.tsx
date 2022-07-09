@@ -6,8 +6,8 @@ import Textarea from '../../../../components/Textarea/Textarea'
 import { useAppDispatch } from '../../../../hooks/useAppDispatch'
 import { useAppSelector } from '../../../../hooks/useAppSelector'
 import { drawerSlice } from '../../../../redux/drawer/drawer.slice'
-import { useFindByIdAndUpdateMutation } from '../../../../redux/cycle/cycle.service'
-import { cycleSlice } from '../../../../redux/cycle/cycle.slice'
+import { useFindByIdAndUpdateMutation } from '../../../../redux/day/day.service'
+import { daySlice } from '../../../../redux/day/day.slice'
 
 type ItemFormType = {
   id: number
@@ -20,8 +20,8 @@ type ItemFormType = {
 const DrawerUpdate: FC = () => {
   const [update, { isSuccess }] = useFindByIdAndUpdateMutation()
   const dispatch = useAppDispatch()
-  const { formUpdate } = useAppSelector((state) => state.cycle)
-  const { updateFormUpdate, clearFormUpdate } = cycleSlice.actions
+  const { formUpdate } = useAppSelector((state) => state.day)
+  const { updateFormUpdate, clearFormUpdate } = daySlice.actions
   const { hide } = drawerSlice.actions
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) =>
@@ -49,20 +49,6 @@ const DrawerUpdate: FC = () => {
     },
     {
       id: 3,
-      component: 'input',
-      name: 'start',
-      placeholder: 'Начало',
-      value: formUpdate.start,
-    },
-    {
-      id: 4,
-      component: 'input',
-      name: 'finish',
-      placeholder: 'Конец',
-      value: formUpdate.finish,
-    },
-    {
-      id: 5,
       component: 'input',
       name: 'status',
       placeholder: 'Статус',
@@ -105,7 +91,7 @@ const DrawerUpdate: FC = () => {
       ))}
       <Button
         props={{
-          text: 'Обновить цикл',
+          text: 'Обновить день',
           block: true,
           onClick: () => update(formUpdate),
         }}
