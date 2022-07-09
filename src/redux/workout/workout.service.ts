@@ -1,5 +1,10 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
+// API
+const apiBaseUrl = process.env['REACT_APP_API_BASE_URL']
+const apiKey = process.env['REACT_APP_API_KEY']
+// API
+
 export type WorkoutType = {
   _id: string
   title: string
@@ -15,28 +20,49 @@ export type WorkoutCreateType = {
   dayId: string
 }
 
-export const workoutApi = createApi({
+export const dayApi = createApi({
   tagTypes: ['Workout'],
-  reducerPath: 'workoutApi',
-  baseQuery: fetchBaseQuery({ baseUrl: process.env['REACT_APP_API_BASE_URL'] }),
+  reducerPath: 'dayApi',
+  baseQuery: fetchBaseQuery({ baseUrl: apiBaseUrl }),
   endpoints: (builder) => ({
-    findById: builder.query<WorkoutType[], string>({
-      query: (param) => `/workout/${param}`,
+    findByField: builder.query<WorkoutType[], string>({
+      query: (_id) => ({
+        url: `/exercise?dayId=${_id}`,
+        headers: {
+          'api-key': apiKey,
+        },
+      }),
       providesTags: ['Workout'],
     }),
     create: builder.mutation<WorkoutType, WorkoutCreateType>({
-      query: (workout) => ({
-        url: `/workout`,
+      query: (day) => ({
+        url: `/day`,
         method: 'POST',
-        body: workout,
+        headers: {
+          'api-key': apiKey,
+        },
+        body: day,
       }),
       invalidatesTags: ['Workout'],
     }),
     findByIdAndUpdate: builder.mutation<WorkoutType, WorkoutType>({
-      query: (workout) => ({
-        url: `/workout/${workout._id}`,
+      query: (day) => ({
+        url: `/day/${day._id}`,
         method: 'PATCH',
-        body: workout,
+        headers: {
+          'api-key': apiKey,
+        },
+        body: day,
+      }),
+      invalidatesTags: ['Workout'],
+    }),
+    findByIdAndDelete: builder.mutation<WorkoutType, WorkoutType>({
+      query: (day) => ({
+        url: `/day/${day._id}`,
+        headers: {
+          'api-key': apiKey,
+        },
+        method: 'DELETE',
       }),
       invalidatesTags: ['Workout'],
     }),
@@ -44,7 +70,8 @@ export const workoutApi = createApi({
 })
 
 export const {
-  useFindByIdQuery,
+  useFindByFieldQuery,
   useCreateMutation,
   useFindByIdAndUpdateMutation,
-} = workoutApi
+  useFindByIdAndDeleteMutation,
+} = dayApi
