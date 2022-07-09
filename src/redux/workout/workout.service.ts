@@ -20,14 +20,14 @@ export type WorkoutCreateType = {
   dayId: string
 }
 
-export const dayApi = createApi({
+export const workoutApi = createApi({
   tagTypes: ['Workout'],
-  reducerPath: 'dayApi',
+  reducerPath: 'workoutApi',
   baseQuery: fetchBaseQuery({ baseUrl: apiBaseUrl }),
   endpoints: (builder) => ({
     findByField: builder.query<WorkoutType[], string>({
       query: (_id) => ({
-        url: `/exercise?dayId=${_id}`,
+        url: `/workout?dayId=${_id}`,
         headers: {
           'api-key': apiKey,
         },
@@ -35,30 +35,30 @@ export const dayApi = createApi({
       providesTags: ['Workout'],
     }),
     create: builder.mutation<WorkoutType, WorkoutCreateType>({
-      query: (day) => ({
-        url: `/day`,
+      query: (workout) => ({
+        url: `/workout`,
         method: 'POST',
         headers: {
           'api-key': apiKey,
         },
-        body: day,
+        body: workout,
       }),
       invalidatesTags: ['Workout'],
     }),
     findByIdAndUpdate: builder.mutation<WorkoutType, WorkoutType>({
-      query: (day) => ({
-        url: `/day/${day._id}`,
+      query: (workout) => ({
+        url: `/workout/${workout._id}`,
         method: 'PATCH',
         headers: {
           'api-key': apiKey,
         },
-        body: day,
+        body: workout,
       }),
       invalidatesTags: ['Workout'],
     }),
     findByIdAndDelete: builder.mutation<WorkoutType, WorkoutType>({
-      query: (day) => ({
-        url: `/day/${day._id}`,
+      query: (workout) => ({
+        url: `/workout/${workout._id}`,
         headers: {
           'api-key': apiKey,
         },
@@ -74,4 +74,4 @@ export const {
   useCreateMutation,
   useFindByIdAndUpdateMutation,
   useFindByIdAndDeleteMutation,
-} = dayApi
+} = workoutApi
