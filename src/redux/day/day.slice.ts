@@ -1,7 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 export type DayStateType = {
-  form: {
+  formCreate: {
+    title: string
+    description: string
+    status: string
+    cycleId: string
+  }
+  formUpdate: {
+    _id: string
     title: string
     description: string
     status: string
@@ -10,7 +17,14 @@ export type DayStateType = {
 }
 
 const initialState: DayStateType = {
-  form: {
+  formCreate: {
+    title: '',
+    description: '',
+    status: '',
+    cycleId: '',
+  },
+  formUpdate: {
+    _id: '',
     title: '',
     description: '',
     status: '',
@@ -22,14 +36,31 @@ export const daySlice = createSlice({
   name: 'day',
   initialState,
   reducers: {
-    updateForm(state: DayStateType, action: { payload: DayStateType['form'] }) {
-      state.form = { ...state.form, ...action.payload }
+    updateFormCreate(
+      state: DayStateType,
+      action: { payload: DayStateType['formCreate'] }
+    ) {
+      state.formCreate = { ...state.formCreate, ...action.payload }
     },
-    clearForm(state: DayStateType) {
-      state.form = initialState.form
+    clearFormCreate(state: DayStateType) {
+      state.formCreate = initialState.formCreate
+    },
+    updateFormUpdate(
+      state: DayStateType,
+      action: { payload: DayStateType['formUpdate'] }
+    ) {
+      state.formUpdate = { ...state.formUpdate, ...action.payload }
+    },
+    clearFormUpdate(state: DayStateType) {
+      state.formUpdate = initialState.formUpdate
     },
   },
 })
 
-export const { updateForm } = daySlice.actions
+export const {
+  updateFormCreate,
+  clearFormCreate,
+  clearFormUpdate,
+  updateFormUpdate,
+} = daySlice.actions
 export default daySlice.reducer

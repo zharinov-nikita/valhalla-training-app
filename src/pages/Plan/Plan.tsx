@@ -1,50 +1,36 @@
-import { FC } from 'react'
+import React, { FC } from 'react'
 import AffixButton from '../../components/AffixButton/AffixButton'
-import Info from '../../components/Info/Info'
+import Drawer from '../../components/Drawer/Drawer'
 import { useAppDispatch } from '../../hooks/useAppDispatch'
+import { useAppSelector } from '../../hooks/useAppSelector'
 import { drawerSlice } from '../../redux/drawer/drawer.slice'
-import {
-  useFindQuery,
-  useFindByIdAndUpdateMutation,
-} from '../../redux/plan/plan.service'
-import css from './Plan.module.scss'
-import PlanDrawer from './PlanDrawer/PlanDrawer'
+import DrawerCreate from './components/Drawer/DrawerCreate'
+import DrawerUpdate from './components/Drawer/DrawerUpdate'
+import List from './components/List/List'
 
 const Plan: FC = () => {
-  const { isError, isLoading, data } = useFindQuery('')
-  const [update, {}] = useFindByIdAndUpdateMutation()
   const dispatch = useAppDispatch()
   const { show } = drawerSlice.actions
+  const { action } = useAppSelector((state) => state.drawer)
 
   return (
-    <div className={css.list}>
-      {isLoading && 'Загрузка...'}
-      {isError && 'Ошибка'}
-      {data &&
-        data.map((item) => (
-          <Info
-            key={item._id}
-            props={{
-              to: `/period/?planId=${item._id}`,
-              title: item.title,
-              description: item.description,
-              status: item.status,
-              progress: item.status === 'Завершено' ? 100 : 0,
-              onClickStatus: () =>
-                update({
-                  ...item,
-                  status:
-                    item.status === 'Завершено' ? 'В работе' : 'Завершено',
-                }),
-              onClickButton: () => dispatch(show()),
-            }}
-          />
-        ))}
+    <React.Fragment>
+      <List />
       <AffixButton
-        props={{ title: 'Добавить план', onClick: () => dispatch(show()) }}
+        props={{
+          title: 'Новый план',
+          onClick: () => dispatch(show('create')),
+        }}
       />
-      <PlanDrawer />
-    </div>
+      <Drawer
+        children={
+          <React.Fragment>
+            {action === 'update' && <DrawerUpdate />}
+            {action === 'create' && <DrawerCreate />}
+          </React.Fragment>
+        }
+      />
+    </React.Fragment>
   )
 }
 

@@ -1,4 +1,4 @@
-import { HolderOutlined } from '@ant-design/icons'
+import { DeleteOutlined, HolderOutlined } from '@ant-design/icons'
 import { FC, MouseEventHandler } from 'react'
 import { Link } from 'react-router-dom'
 import Button from '../Button/Button'
@@ -13,7 +13,8 @@ export type InfoPropsType = {
     description: string
     progress: number | string
     onClickStatus?: MouseEventHandler
-    onClickButton?: MouseEventHandler
+    onClickDrawer?: MouseEventHandler
+    onClickDelete?: MouseEventHandler
   }
 }
 
@@ -25,7 +26,7 @@ const Info: FC<InfoPropsType> = ({ props }) => {
       </div>
       <div className={css.right}>
         <div className={css.header}>
-          <div>
+          <div className={css.header__left}>
             {props.to ? (
               <Link to={props.to} className={css.title}>
                 {props.title}
@@ -34,7 +35,7 @@ const Info: FC<InfoPropsType> = ({ props }) => {
               <div className={css.title}>{props.title}</div>
             )}
           </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
+          <div className={css.header__right}>
             <Status
               props={{ text: props.status, onClick: props.onClickStatus }}
             />
@@ -43,7 +44,15 @@ const Info: FC<InfoPropsType> = ({ props }) => {
                 icon: <HolderOutlined />,
                 size: 'small',
                 type: 'secondary',
-                onClick: props.onClickButton,
+                onClick: props.onClickDrawer,
+              }}
+            />
+            <Button
+              props={{
+                icon: <DeleteOutlined />,
+                size: 'small',
+                type: 'secondary',
+                onClick: props.onClickDelete,
               }}
             />
           </div>
