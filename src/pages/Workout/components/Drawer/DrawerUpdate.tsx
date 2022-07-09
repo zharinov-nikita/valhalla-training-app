@@ -5,6 +5,7 @@ import List from '../../../../components/List/List'
 import Textarea from '../../../../components/Textarea/Textarea'
 import { useAppDispatch } from '../../../../hooks/useAppDispatch'
 import { useAppSelector } from '../../../../hooks/useAppSelector'
+import { useForm } from '../../../../hooks/useForm'
 import { drawerSlice } from '../../../../redux/drawer/drawer.slice'
 import { useFindByIdAndUpdateMutation } from '../../../../redux/workout/workout.service'
 import { workoutSlice } from '../../../../redux/workout/workout.slice'
@@ -23,6 +24,9 @@ const DrawerUpdate: FC = () => {
   const { formUpdate } = useAppSelector((state) => state.workout)
   const { updateFormUpdate, clearFormUpdate } = workoutSlice.actions
   const { hide } = drawerSlice.actions
+
+  const { title, description, status } = formUpdate
+  const { disabled } = useForm([title, description, status])
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     dispatch(
@@ -93,6 +97,7 @@ const DrawerUpdate: FC = () => {
         props={{
           text: 'Обновить тренировку',
           block: true,
+          disabled,
           onClick: () => update(formUpdate),
         }}
       />
