@@ -8,6 +8,7 @@ import { useAppSelector } from '../../../../hooks/useAppSelector'
 import { drawerSlice } from '../../../../redux/drawer/drawer.slice'
 import { useFindByIdAndUpdateMutation } from '../../../../redux/cycle/cycle.service'
 import { cycleSlice } from '../../../../redux/cycle/cycle.slice'
+import { useForm } from '../../../../hooks/useForm'
 
 type ItemFormType = {
   id: number
@@ -23,6 +24,9 @@ const DrawerUpdate: FC = () => {
   const { formUpdate } = useAppSelector((state) => state.cycle)
   const { updateFormUpdate, clearFormUpdate } = cycleSlice.actions
   const { hide } = drawerSlice.actions
+
+  const { title, description, start, finish, status } = formUpdate
+  const { disabled } = useForm([title, description, start, finish, status])
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     dispatch(
@@ -107,6 +111,7 @@ const DrawerUpdate: FC = () => {
         props={{
           text: 'Обновить цикл',
           block: true,
+          disabled,
           onClick: () => update(formUpdate),
         }}
       />
