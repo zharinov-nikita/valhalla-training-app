@@ -85,13 +85,48 @@ export const exerciseSlice = createSlice({
         return item
       })
     },
+
+    // OPTION
+    addOptionFormUpdate(
+      state: ExerciseStateType,
+      action: { payload: { id: number; title: string; value: string } }
+    ) {
+      state.formUpdate.option.push(action.payload)
+    },
+    deleteOptionFormUpdate(
+      state: ExerciseStateType,
+      action: { payload: { id: number; title: string; value: string } }
+    ) {
+      state.formUpdate.option = state.formUpdate.option.filter(
+        (option) => option.id !== action.payload.id
+      )
+    },
+    updateOptionFormUpdate(
+      state: ExerciseStateType,
+      action: { payload: { id: number; title: string; value: string } }
+    ) {
+      state.formUpdate.option = state.formUpdate.option.map((item) => {
+        if (item.id === action.payload.id) {
+          item = { ...action.payload }
+        }
+        return item
+      })
+    },
   },
 })
 
 export const {
   updateFormCreate,
   clearFormCreate,
-  clearFormUpdate,
   updateFormUpdate,
+  clearFormUpdate,
+
+  addOptionFormCreate,
+  deleteOptionFormCreate,
+  updateOptionFormCreate,
+
+  addOptionFormUpdate,
+  deleteOptionFormUpdate,
+  updateOptionFormUpdate,
 } = exerciseSlice.actions
 export default exerciseSlice.reducer

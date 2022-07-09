@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom'
 import AffixButton from '../../../../components/AffixButton/AffixButton'
 import Drawer from '../../../../components/Drawer/Drawer'
 import Info from '../../../../components/Info/Info'
+import Property from '../../../../components/Property/Property'
 import { useAppDispatch } from '../../../../hooks/useAppDispatch'
 import { useAppSelector } from '../../../../hooks/useAppSelector'
 import { drawerSlice } from '../../../../redux/drawer/drawer.slice'
@@ -43,26 +44,31 @@ const List: FC = () => {
     <div className={css.list}>
       {data &&
         data.map((item) => (
-          <Info
-            key={item._id}
-            props={{
-              title: item.title,
-              description: item.description,
-              status: item.status,
-              progress: item.status === 'Завершено' ? 100 : 0,
-              onClickStatus: () =>
-                findByIdAndUpdate({
-                  ...item,
-                  status:
-                    item.status === 'Завершено' ? 'В работе' : 'Завершено',
-                }),
-              onClickDrawer: () => {
-                dispatch(updateFormUpdate(item))
-                dispatch(show('update'))
-              },
-              onClickDelete: () => findByIdAndDelete(item),
-            }}
-          />
+          <React.Fragment key={item._id}>
+            <Info
+              props={{
+                title: item.title,
+                description: item.description,
+                status: item.status,
+                progress: item.status === 'Завершено' ? 100 : 0,
+                onClickStatus: () =>
+                  findByIdAndUpdate({
+                    ...item,
+                    status:
+                      item.status === 'Завершено' ? 'В работе' : 'Завершено',
+                  }),
+                onClickDrawer: () => {
+                  dispatch(updateFormUpdate(item))
+                  dispatch(show('update'))
+                },
+                onClickDelete: () => findByIdAndDelete(item),
+              }}
+            />
+            {item.option &&
+              item.option.map((option) => (
+                <Property key={Number(option.id)} props={option} />
+              ))}
+          </React.Fragment>
         ))}
 
       <AffixButton
