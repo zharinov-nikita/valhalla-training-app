@@ -1,20 +1,38 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 export type ExerciseStateType = {
-  form: {
+  formCreate: {
     title: string
     description: string
     status: string
-    option: Array<{ id: number; title: string; value: string }>
+    option?: Array<{ id: number; title: string; value: string }>
+    workoutId: string
+  }
+  formUpdate: {
+    _id: string
+    title: string
+    description: string
+    status: string
+    option?: Array<{ id: number; title: string; value: string }>
+    workoutId: string
   }
 }
 
 const initialState: ExerciseStateType = {
-  form: {
+  formCreate: {
     title: '',
     description: '',
     status: '',
     option: [],
+    workoutId: '',
+  },
+  formUpdate: {
+    _id: '',
+    title: '',
+    description: '',
+    status: '',
+    option: [],
+    workoutId: '',
   },
 }
 
@@ -22,49 +40,31 @@ export const exerciseSlice = createSlice({
   name: 'exercise',
   initialState,
   reducers: {
-    updateForm(
+    updateFormCreate(
       state: ExerciseStateType,
-      action: { payload: ExerciseStateType['form'] }
+      action: { payload: ExerciseStateType['formCreate'] }
     ) {
-      state.form = { ...state.form, ...action.payload }
+      state.formCreate = { ...state.formCreate, ...action.payload }
     },
-
-    clearForm(state: ExerciseStateType) {
-      state.form = initialState.form
+    clearFormCreate(state: ExerciseStateType) {
+      state.formCreate = initialState.formCreate
     },
-    addOptionForm(
+    updateFormUpdate(
       state: ExerciseStateType,
-      action: { payload: { id: number; title: string; value: string } }
+      action: { payload: ExerciseStateType['formUpdate'] }
     ) {
-      state.form.option.push(action.payload)
+      state.formUpdate = { ...state.formUpdate, ...action.payload }
     },
-    deleteOptionForm(
-      state: ExerciseStateType,
-      action: { payload: { id: number; title: string; value: string } }
-    ) {
-      state.form.option = state.form.option.filter(
-        (option) => option.id !== action.payload.id
-      )
-    },
-    updateOptionForm(
-      state: ExerciseStateType,
-      action: { payload: { id: number; title: string; value: string } }
-    ) {
-      state.form.option = state.form.option.map((item) => {
-        if (item.id === action.payload.id) {
-          item = { ...action.payload }
-        }
-        return item
-      })
+    clearFormUpdate(state: ExerciseStateType) {
+      state.formUpdate = initialState.formUpdate
     },
   },
 })
 
 export const {
-  updateForm,
-  updateOptionForm,
-  addOptionForm,
-  deleteOptionForm,
-  clearForm,
+  updateFormCreate,
+  clearFormCreate,
+  clearFormUpdate,
+  updateFormUpdate,
 } = exerciseSlice.actions
 export default exerciseSlice.reducer

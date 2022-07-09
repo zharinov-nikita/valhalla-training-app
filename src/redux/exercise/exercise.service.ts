@@ -29,7 +29,7 @@ export const exerciseApi = createApi({
   endpoints: (builder) => ({
     findByField: builder.query<ExerciseType[], string>({
       query: (_id) => ({
-        url: `/exercise?dayId=${_id}`,
+        url: `/exercise?workoutId=${_id}`,
         headers: {
           'api-key': apiKey,
         },
