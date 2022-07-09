@@ -1,5 +1,10 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
+// API
+const apiBaseUrl = process.env['REACT_APP_API_BASE_URL']
+const apiKey = process.env['REACT_APP_API_KEY']
+// API
+
 export type PeriodType = {
   _id: string
   title: string
@@ -22,16 +27,24 @@ export type PeriodCreateType = {
 export const periodApi = createApi({
   tagTypes: ['Period'],
   reducerPath: 'periodApi',
-  baseQuery: fetchBaseQuery({ baseUrl: process.env['REACT_APP_API_BASE_URL'] }),
+  baseQuery: fetchBaseQuery({ baseUrl: apiBaseUrl }),
   endpoints: (builder) => ({
-    find: builder.query<PeriodType[], string>({
-      query: () => `/period`,
+    findByField: builder.query<PeriodType[], string>({
+      query: (_id) => ({
+        url: `/period?planId=${_id}`,
+        headers: {
+          'api-key': apiKey,
+        },
+      }),
       providesTags: ['Period'],
     }),
     create: builder.mutation<PeriodType, PeriodCreateType>({
       query: (period) => ({
         url: `/period`,
         method: 'POST',
+        headers: {
+          'api-key': apiKey,
+        },
         body: period,
       }),
       invalidatesTags: ['Period'],
@@ -40,6 +53,9 @@ export const periodApi = createApi({
       query: (period) => ({
         url: `/period/${period._id}`,
         method: 'PATCH',
+        headers: {
+          'api-key': apiKey,
+        },
         body: period,
       }),
       invalidatesTags: ['Period'],
@@ -47,6 +63,9 @@ export const periodApi = createApi({
     findByIdAndDelete: builder.mutation<PeriodType, PeriodType>({
       query: (period) => ({
         url: `/period/${period._id}`,
+        headers: {
+          'api-key': apiKey,
+        },
         method: 'DELETE',
       }),
       invalidatesTags: ['Period'],
@@ -55,7 +74,7 @@ export const periodApi = createApi({
 })
 
 export const {
-  useFindQuery,
+  useFindByFieldQuery,
   useCreateMutation,
   useFindByIdAndUpdateMutation,
   useFindByIdAndDeleteMutation,

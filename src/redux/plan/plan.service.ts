@@ -1,5 +1,10 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
+// API
+const apiBaseUrl = process.env['REACT_APP_API_BASE_URL']
+const apiKey = process.env['REACT_APP_API_KEY']
+// API
+
 export type PlanType = {
   _id: string
   title: string
@@ -21,16 +26,24 @@ export type PlanCreateType = {
 export const planApi = createApi({
   tagTypes: ['Plan'],
   reducerPath: 'planApi',
-  baseQuery: fetchBaseQuery({ baseUrl: process.env['REACT_APP_API_BASE_URL'] }),
+  baseQuery: fetchBaseQuery({ baseUrl: apiBaseUrl }),
   endpoints: (builder) => ({
     find: builder.query<PlanType[], string>({
-      query: () => `/plan`,
+      query: () => ({
+        url: `/plan`,
+        headers: {
+          'api-key': apiKey,
+        },
+      }),
       providesTags: ['Plan'],
     }),
     create: builder.mutation<PlanType, PlanCreateType>({
       query: (plan) => ({
         url: `/plan`,
         method: 'POST',
+        headers: {
+          'api-key': apiKey,
+        },
         body: plan,
       }),
       invalidatesTags: ['Plan'],
@@ -39,6 +52,9 @@ export const planApi = createApi({
       query: (plan) => ({
         url: `/plan/${plan._id}`,
         method: 'PATCH',
+        headers: {
+          'api-key': apiKey,
+        },
         body: plan,
       }),
       invalidatesTags: ['Plan'],
@@ -46,6 +62,9 @@ export const planApi = createApi({
     findByIdAndDelete: builder.mutation<PlanType, PlanType>({
       query: (plan) => ({
         url: `/plan/${plan._id}`,
+        headers: {
+          'api-key': apiKey,
+        },
         method: 'DELETE',
       }),
       invalidatesTags: ['Plan'],

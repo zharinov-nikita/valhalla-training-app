@@ -12,7 +12,6 @@ const Period: FC = () => {
   const dispatch = useAppDispatch()
   const { show } = drawerSlice.actions
   const { action } = useAppSelector((state) => state.drawer)
-  console.log(process.env['REACT_APP_API_BASE_URL'])
 
   return (
     <React.Fragment>
