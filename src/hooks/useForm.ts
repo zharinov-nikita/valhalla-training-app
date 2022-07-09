@@ -2,15 +2,17 @@ import { useEffect, useState } from 'react'
 
 export function useForm(option: string[]) {
   const [disabled, setDisabed] = useState<boolean>(false)
-  const [values, setValues] = useState<string[]>(option)
 
   useEffect(() => {
-    values.forEach((item) => {
+    option.forEach((item) => {
       if (item.length === 0) {
         setDisabed(true)
       }
+      if (item.length > 0) {
+        setDisabed(false)
+      }
     })
-  }, [])
+  }, [...option])
 
   return { disabled }
 }
