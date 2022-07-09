@@ -36,7 +36,7 @@ const List: FC = () => {
   }
 
   if (data && data.length === 0) {
-    return <>Циклов нет</>
+    return <>Дней нет</>
   }
 
   return (
