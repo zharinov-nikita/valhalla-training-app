@@ -6,6 +6,7 @@ import Plan from './pages/Plan/Plan'
 import Period from './pages/Period/Period'
 import Cycle from './pages/Cycle/Cycle'
 import Day from './pages/Day/Day'
+import Workout from './pages/Workout/Workout'
 
 const App: FC = () => {
   const [title, setTitle] = useState('План')
@@ -37,6 +38,7 @@ const App: FC = () => {
             <Route path="/period" element={<Period />} />
             <Route path="/cycle" element={<Cycle />} />
             <Route path="/day" element={<Day />} />
+            <Route path="/workout" element={<Workout />} />
             <Route path="*" element={<Navigate to="/plan" replace />} />
           </Routes>
         </div>
