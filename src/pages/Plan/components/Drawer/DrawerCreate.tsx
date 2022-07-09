@@ -107,6 +107,7 @@ const DrawerCreate: FC = () => {
         props={{
           text: 'Создать план',
           block: true,
+          disabled: true,
           onClick: () => create(formCreate),
         }}
       />
