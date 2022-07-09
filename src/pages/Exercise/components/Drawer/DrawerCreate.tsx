@@ -7,6 +7,7 @@ import List from '../../../../components/List/List'
 import Textarea from '../../../../components/Textarea/Textarea'
 import { useAppDispatch } from '../../../../hooks/useAppDispatch'
 import { useAppSelector } from '../../../../hooks/useAppSelector'
+import { useForm } from '../../../../hooks/useForm'
 import { drawerSlice } from '../../../../redux/drawer/drawer.slice'
 import { useCreateMutation } from '../../../../redux/exercise/exercise.service'
 import { exerciseSlice } from '../../../../redux/exercise/exercise.slice'
@@ -26,6 +27,12 @@ const DrawerCreate: FC = () => {
     addOptionFormCreate,
   } = exerciseSlice.actions
   const { hide } = drawerSlice.actions
+
+  const { title, description, status } = formCreate
+  const options = formCreate.option.map((item) => {
+    return item.title, item.value
+  })
+  const { disabled } = useForm([title, description, status, ...options])
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     dispatch(
@@ -129,6 +136,7 @@ const DrawerCreate: FC = () => {
         props={{
           text: 'Создать тренировку',
           block: true,
+          disabled,
           onClick: () => create({ ...formCreate, workoutId }),
         }}
       />
