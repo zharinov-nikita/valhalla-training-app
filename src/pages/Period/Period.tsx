@@ -1,50 +1,36 @@
-import { FC } from 'react'
-import { useLocation } from 'react-router-dom'
+import React, { FC } from 'react'
 import AffixButton from '../../components/AffixButton/AffixButton'
-import Info from '../../components/Info/Info'
+import Drawer from '../../components/Drawer/Drawer'
 import { useAppDispatch } from '../../hooks/useAppDispatch'
+import { useAppSelector } from '../../hooks/useAppSelector'
 import { drawerSlice } from '../../redux/drawer/drawer.slice'
-import {
-  useFindByIdAndUpdateMutation,
-  useFindByIdQuery,
-} from '../../redux/period/period.service'
-import css from './Period.module.scss'
-import PeriodDrawer from './PeriodDrawer/PeriodDrawer'
+import DrawerCreate from './components/Drawer/DrawerCreate'
+import DrawerUpdate from './components/Drawer/DrawerUpdate'
+import List from './components/List/List'
 
 const Period: FC = () => {
-  const { search } = useLocation()
-  const { isError, isLoading, data } = useFindByIdQuery(search)
-  const [update, {}] = useFindByIdAndUpdateMutation()
   const dispatch = useAppDispatch()
   const { show } = drawerSlice.actions
+  const { action } = useAppSelector((state) => state.drawer)
+
   return (
-    <div className={css.list}>
-      {isLoading && 'Загрузка...'}
-      {isError && 'Ошибка'}
-      {data &&
-        data.map((item) => (
-          <Info
-            key={item._id}
-            props={{
-              to: `/cycle/?periodId=${item._id}`,
-              title: item.title,
-              description: item.description,
-              status: item.status,
-              progress: item.status === 'Завершено' ? 100 : 0,
-              onClickStatus: () =>
-                update({
-                  ...item,
-                  status:
-                    item.status === 'Завершено' ? 'В работе' : 'Завершено',
-                }),
-            }}
-          />
-        ))}
+    <React.Fragment>
+      <List />
       <AffixButton
-        props={{ title: 'Добавить период', onClick: () => dispatch(show()) }}
+        props={{
+          title: 'Новый период',
+          onClick: () => dispatch(show('create')),
+        }}
       />
-      <PeriodDrawer />
-    </div>
+      <Drawer
+        children={
+          <React.Fragment>
+            {action === 'update' && <DrawerUpdate />}
+            {action === 'create' && <DrawerCreate />}
+          </React.Fragment>
+        }
+      />
+    </React.Fragment>
   )
 }
 

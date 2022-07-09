@@ -1,20 +1,38 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 export type ExerciseStateType = {
-  form: {
+  formCreate: {
     title: string
     description: string
     status: string
     option: Array<{ id: number; title: string; value: string }>
+    workoutId: string
+  }
+  formUpdate: {
+    _id: string
+    title: string
+    description: string
+    status: string
+    option: Array<{ id: number; title: string; value: string }>
+    workoutId: string
   }
 }
 
 const initialState: ExerciseStateType = {
-  form: {
+  formCreate: {
     title: '',
     description: '',
     status: '',
     option: [],
+    workoutId: '',
+  },
+  formUpdate: {
+    _id: '',
+    title: '',
+    description: '',
+    status: '',
+    option: [],
+    workoutId: '',
   },
 }
 
@@ -22,35 +40,72 @@ export const exerciseSlice = createSlice({
   name: 'exercise',
   initialState,
   reducers: {
-    updateForm(
+    updateFormCreate(
       state: ExerciseStateType,
-      action: { payload: ExerciseStateType['form'] }
+      action: { payload: ExerciseStateType['formCreate'] }
     ) {
-      state.form = { ...state.form, ...action.payload }
+      state.formCreate = { ...state.formCreate, ...action.payload }
+    },
+    clearFormCreate(state: ExerciseStateType) {
+      state.formCreate = initialState.formCreate
+    },
+    updateFormUpdate(
+      state: ExerciseStateType,
+      action: { payload: ExerciseStateType['formUpdate'] }
+    ) {
+      state.formUpdate = { ...state.formUpdate, ...action.payload }
+    },
+    clearFormUpdate(state: ExerciseStateType) {
+      state.formUpdate = initialState.formUpdate
     },
 
-    clearForm(state: ExerciseStateType) {
-      state.form = initialState.form
-    },
-    addOptionForm(
+    // OPTION
+    addOptionFormCreate(
       state: ExerciseStateType,
       action: { payload: { id: number; title: string; value: string } }
     ) {
-      state.form.option.push(action.payload)
+      state.formCreate.option.push(action.payload)
     },
-    deleteOptionForm(
+    deleteOptionFormCreate(
       state: ExerciseStateType,
       action: { payload: { id: number; title: string; value: string } }
     ) {
-      state.form.option = state.form.option.filter(
+      state.formCreate.option = state.formCreate.option.filter(
         (option) => option.id !== action.payload.id
       )
     },
-    updateOptionForm(
+    updateOptionFormCreate(
       state: ExerciseStateType,
       action: { payload: { id: number; title: string; value: string } }
     ) {
-      state.form.option = state.form.option.map((item) => {
+      state.formCreate.option = state.formCreate.option.map((item) => {
+        if (item.id === action.payload.id) {
+          item = { ...action.payload }
+        }
+        return item
+      })
+    },
+
+    // OPTION
+    addOptionFormUpdate(
+      state: ExerciseStateType,
+      action: { payload: { id: number; title: string; value: string } }
+    ) {
+      state.formUpdate.option.push(action.payload)
+    },
+    deleteOptionFormUpdate(
+      state: ExerciseStateType,
+      action: { payload: { id: number; title: string; value: string } }
+    ) {
+      state.formUpdate.option = state.formUpdate.option.filter(
+        (option) => option.id !== action.payload.id
+      )
+    },
+    updateOptionFormUpdate(
+      state: ExerciseStateType,
+      action: { payload: { id: number; title: string; value: string } }
+    ) {
+      state.formUpdate.option = state.formUpdate.option.map((item) => {
         if (item.id === action.payload.id) {
           item = { ...action.payload }
         }
@@ -61,10 +116,17 @@ export const exerciseSlice = createSlice({
 })
 
 export const {
-  updateForm,
-  updateOptionForm,
-  addOptionForm,
-  deleteOptionForm,
-  clearForm,
+  updateFormCreate,
+  clearFormCreate,
+  updateFormUpdate,
+  clearFormUpdate,
+
+  addOptionFormCreate,
+  deleteOptionFormCreate,
+  updateOptionFormCreate,
+
+  addOptionFormUpdate,
+  deleteOptionFormUpdate,
+  updateOptionFormUpdate,
 } = exerciseSlice.actions
 export default exerciseSlice.reducer

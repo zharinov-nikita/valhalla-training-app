@@ -1,47 +1,19 @@
-import { FC, useEffect, useState } from 'react'
-import {
-  Navigate,
-  Route,
-  Routes,
-  useLocation,
-  useParams,
-} from 'react-router-dom'
-import Drawer from './components/Drawer/Drawer'
+import { FC } from 'react'
+import { Navigate, Route, Routes } from 'react-router-dom'
 
 import Header from './components/Header/Header'
-import Input from './components/Input/Input'
-import Textarea from './components/Textarea/Textarea'
+import Plan from './pages/Plan/Plan'
+import Period from './pages/Period/Period'
 import Cycle from './pages/Cycle/Cycle'
 import Day from './pages/Day/Day'
-import Exercise from './pages/Exercise/Exercise'
-import Period from './pages/Period/Period'
-import Plan from './pages/Plan/Plan'
 import Workout from './pages/Workout/Workout'
+import Exercise from './pages/Exercise/Exercise'
 
 const App: FC = () => {
-  const [title, setTitle] = useState('План')
-  const headerTitles = [
-    { title: 'План', pathname: /plan/ },
-    { title: 'Период', pathname: /period/ },
-    { title: 'Цикл', pathname: /cycle/ },
-    { title: 'День', pathname: /day/ },
-    { title: 'Тренировка', pathname: /workout/ },
-    { title: 'Упражнение', pathname: /exercise/ },
-  ]
-  const { pathname } = useLocation()
-
-  useEffect(() => {
-    headerTitles.forEach((item) => {
-      if (pathname.match(item.pathname)) {
-        setTitle(item.title)
-      }
-    })
-  }, [pathname])
-
   return (
     <div className="app">
       <div className="app__container">
-        <Header props={{ title }} />
+        <Header />
         <div className="app__wrapper">
           <Routes>
             <Route path="/plan" element={<Plan />} />

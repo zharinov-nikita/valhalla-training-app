@@ -1,58 +1,36 @@
 import React, { FC } from 'react'
-import { useLocation } from 'react-router-dom'
 import AffixButton from '../../components/AffixButton/AffixButton'
-import Info from '../../components/Info/Info'
-import Property from '../../components/Property/Property'
+import Drawer from '../../components/Drawer/Drawer'
 import { useAppDispatch } from '../../hooks/useAppDispatch'
+import { useAppSelector } from '../../hooks/useAppSelector'
 import { drawerSlice } from '../../redux/drawer/drawer.slice'
-import {
-  useFindByIdAndUpdateMutation,
-  useFindByIdQuery,
-} from '../../redux/exercise/exercise.service'
-import css from './Exercise.module.scss'
-import ExerciseDrawer from './ExerciseDrawer/ExerciseDrawer'
+import DrawerCreate from './components/Drawer/DrawerCreate'
+import DrawerUpdate from './components/Drawer/DrawerUpdate'
+import List from './components/List/List'
 
 const Exercise: FC = () => {
-  const { search } = useLocation()
-  const { isError, isLoading, data } = useFindByIdQuery(search)
-  const [update, {}] = useFindByIdAndUpdateMutation()
   const dispatch = useAppDispatch()
   const { show } = drawerSlice.actions
+  const { action } = useAppSelector((state) => state.drawer)
+
   return (
-    <div className={css.list}>
-      {isLoading && 'Загрузка...'}
-      {isError && 'Ошибка'}
-      {data &&
-        data.map((item) => (
-          <React.Fragment key={item._id}>
-            <Info
-              key={item._id}
-              props={{
-                title: item.title,
-                description: item.description,
-                status: item.status,
-                progress: item.status === 'Завершено' ? 100 : 0,
-                onClickStatus: () =>
-                  update({
-                    ...item,
-                    status:
-                      item.status === 'Завершено' ? 'В работе' : 'Завершено',
-                  }),
-              }}
-            />
-            {item.option?.map((option) => (
-              <Property key={Number(option.id)} props={option} />
-            ))}
-          </React.Fragment>
-        ))}
+    <React.Fragment>
+      <List />
       <AffixButton
         props={{
-          title: 'Добавить упражнение',
-          onClick: () => dispatch(show()),
+          title: 'Новое упражнение',
+          onClick: () => dispatch(show('create')),
         }}
       />
-      <ExerciseDrawer />
-    </div>
+      <Drawer
+        children={
+          <React.Fragment>
+            {action === 'update' && <DrawerUpdate />}
+            {action === 'create' && <DrawerCreate />}
+          </React.Fragment>
+        }
+      />
+    </React.Fragment>
   )
 }
 

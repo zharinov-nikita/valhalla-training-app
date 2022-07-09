@@ -1,7 +1,16 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 export type CycleStateType = {
-  form: {
+  formCreate: {
+    title: string
+    description: string
+    start: string
+    finish: string
+    status: string
+    periodId: string
+  }
+  formUpdate: {
+    _id: string
     title: string
     description: string
     start: string
@@ -12,7 +21,16 @@ export type CycleStateType = {
 }
 
 const initialState: CycleStateType = {
-  form: {
+  formCreate: {
+    title: '',
+    description: '',
+    start: '',
+    finish: '',
+    status: '',
+    periodId: '',
+  },
+  formUpdate: {
+    _id: '',
     title: '',
     description: '',
     start: '',
@@ -26,17 +44,31 @@ export const cycleSlice = createSlice({
   name: 'cycle',
   initialState,
   reducers: {
-    updateForm(
+    updateFormCreate(
       state: CycleStateType,
-      action: { payload: CycleStateType['form'] }
+      action: { payload: CycleStateType['formCreate'] }
     ) {
-      state.form = { ...state.form, ...action.payload }
+      state.formCreate = { ...state.formCreate, ...action.payload }
     },
-    clearForm(state: CycleStateType) {
-      state.form = initialState.form
+    clearFormCreate(state: CycleStateType) {
+      state.formCreate = initialState.formCreate
+    },
+    updateFormUpdate(
+      state: CycleStateType,
+      action: { payload: CycleStateType['formUpdate'] }
+    ) {
+      state.formUpdate = { ...state.formUpdate, ...action.payload }
+    },
+    clearFormUpdate(state: CycleStateType) {
+      state.formUpdate = initialState.formUpdate
     },
   },
 })
 
-export const { updateForm } = cycleSlice.actions
+export const {
+  updateFormCreate,
+  clearFormCreate,
+  clearFormUpdate,
+  updateFormUpdate,
+} = cycleSlice.actions
 export default cycleSlice.reducer

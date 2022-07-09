@@ -1,4 +1,4 @@
-import { FC, ReactNode, useState } from 'react'
+import { FC, ReactNode } from 'react'
 import { useAppDispatch } from '../../hooks/useAppDispatch'
 import { useAppSelector } from '../../hooks/useAppSelector'
 import { drawerSlice } from '../../redux/drawer/drawer.slice'
@@ -20,7 +20,7 @@ const Drawer: FC<DrawerPropsType> = ({ children }) => {
       onClick={(e) => dispatch(hide())}
     >
       <div className={css.container} onClick={(e) => e.stopPropagation()}>
-        <div className={css.wrapper}>{children}</div>
+        <div className={css.wrapper}>{children && children}</div>
       </div>
     </div>
   )
