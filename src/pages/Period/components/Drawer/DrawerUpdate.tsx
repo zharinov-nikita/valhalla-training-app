@@ -6,8 +6,8 @@ import Textarea from '../../../../components/Textarea/Textarea'
 import { useAppDispatch } from '../../../../hooks/useAppDispatch'
 import { useAppSelector } from '../../../../hooks/useAppSelector'
 import { drawerSlice } from '../../../../redux/drawer/drawer.slice'
-import { useFindByIdAndUpdateMutation } from '../../../../redux/plan/plan.service'
-import { planSlice } from '../../../../redux/plan/plan.slice'
+import { useFindByIdAndUpdateMutation } from '../../../../redux/period/period.service'
+import { periodSlice } from '../../../../redux/period/period.slice'
 
 type ItemFormType = {
   id: number
@@ -20,8 +20,8 @@ type ItemFormType = {
 const DrawerUpdate: FC = () => {
   const [update, { isSuccess }] = useFindByIdAndUpdateMutation()
   const dispatch = useAppDispatch()
-  const { formUpdate } = useAppSelector((state) => state.plan)
-  const { updateFormUpdate, clearFormUpdate } = planSlice.actions
+  const { formUpdate } = useAppSelector((state) => state.period)
+  const { updateFormUpdate, clearFormUpdate } = periodSlice.actions
   const { hide } = drawerSlice.actions
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) =>
