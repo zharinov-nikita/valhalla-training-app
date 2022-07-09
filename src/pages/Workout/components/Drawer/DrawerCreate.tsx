@@ -7,8 +7,8 @@ import Textarea from '../../../../components/Textarea/Textarea'
 import { useAppDispatch } from '../../../../hooks/useAppDispatch'
 import { useAppSelector } from '../../../../hooks/useAppSelector'
 import { drawerSlice } from '../../../../redux/drawer/drawer.slice'
-import { useCreateMutation } from '../../../../redux/day/day.service'
-import { daySlice } from '../../../../redux/day/day.slice'
+import { useCreateMutation } from '../../../../redux/workout/workout.service'
+import { workoutSlice } from '../../../../redux/workout/workout.slice'
 
 type ItemFormType = {
   id: number
@@ -20,12 +20,12 @@ type ItemFormType = {
 
 const DrawerCreate: FC = () => {
   const { search } = useLocation()
-  const cycleId = search.split('cycleId=')[1]
+  const dayId = search.split('dayId=')[1]
 
   const [create, { isSuccess }] = useCreateMutation()
   const dispatch = useAppDispatch()
-  const { formCreate } = useAppSelector((state) => state.day)
-  const { updateFormCreate, clearFormCreate } = daySlice.actions
+  const { formCreate } = useAppSelector((state) => state.workout)
+  const { updateFormCreate, clearFormCreate } = workoutSlice.actions
   const { hide } = drawerSlice.actions
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) =>
@@ -97,7 +97,7 @@ const DrawerCreate: FC = () => {
         props={{
           text: 'Создать день',
           block: true,
-          onClick: () => create({ ...formCreate, cycleId }),
+          onClick: () => create({ ...formCreate, dayId }),
         }}
       />
     </List>
