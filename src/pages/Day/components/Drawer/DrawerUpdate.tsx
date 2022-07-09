@@ -97,6 +97,7 @@ const DrawerUpdate: FC = () => {
         props={{
           text: 'Обновить день',
           block: true,
+          disabled,
           onClick: () => update(formUpdate),
         }}
       />
