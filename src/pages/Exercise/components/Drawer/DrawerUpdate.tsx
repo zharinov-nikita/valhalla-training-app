@@ -9,14 +9,6 @@ import { drawerSlice } from '../../../../redux/drawer/drawer.slice'
 import { useFindByIdAndUpdateMutation } from '../../../../redux/exercise/exercise.service'
 import { exerciseSlice } from '../../../../redux/exercise/exercise.slice'
 
-type ItemFormType = {
-  id: number
-  component: 'input' | 'textarea'
-  name: string
-  value: string
-  placeholder: string
-}
-
 const DrawerUpdate: FC = () => {
   const [update, { isSuccess }] = useFindByIdAndUpdateMutation()
   const dispatch = useAppDispatch()
@@ -32,30 +24,6 @@ const DrawerUpdate: FC = () => {
       })
     )
 
-  const data: ItemFormType[] = [
-    {
-      id: 1,
-      component: 'input',
-      name: 'title',
-      placeholder: 'Название',
-      value: formUpdate.title,
-    },
-    {
-      id: 2,
-      component: 'textarea',
-      name: 'description',
-      placeholder: 'Описание',
-      value: formUpdate.description,
-    },
-    {
-      id: 3,
-      component: 'input',
-      name: 'status',
-      placeholder: 'Статус',
-      value: formUpdate.status,
-    },
-  ]
-
   useEffect(() => {
     if (isSuccess) {
       dispatch(hide())
@@ -65,30 +33,6 @@ const DrawerUpdate: FC = () => {
 
   return (
     <List props={{ gap: 12 }}>
-      {data.map((item) => (
-        <React.Fragment key={item.id}>
-          {item.component === 'input' && (
-            <Input
-              props={{
-                name: item.name,
-                value: item.value,
-                placeholder: item.placeholder,
-                onChange,
-              }}
-            />
-          )}
-          {item.component === 'textarea' && (
-            <Textarea
-              props={{
-                name: item.name,
-                value: item.value,
-                placeholder: item.placeholder,
-                onChange,
-              }}
-            />
-          )}
-        </React.Fragment>
-      ))}
       <Button
         props={{
           text: 'Обновить тренировку',
