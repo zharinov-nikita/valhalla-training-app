@@ -4,6 +4,7 @@ import Header from './components/Header/Header'
 
 import Plan from './pages/Plan/Plan'
 import Period from './pages/Period/Period'
+import Cycle from './pages/Cycle/Cycle'
 
 const App: FC = () => {
   const [title, setTitle] = useState('План')
@@ -33,6 +34,7 @@ const App: FC = () => {
           <Routes>
             <Route path="/plan" element={<Plan />} />
             <Route path="/period" element={<Period />} />
+            <Route path="/cycle" element={<Cycle />} />
             <Route path="*" element={<Navigate to="/plan" replace />} />
           </Routes>
         </div>
