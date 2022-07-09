@@ -9,6 +9,7 @@ import { useAppSelector } from '../../../../hooks/useAppSelector'
 import { drawerSlice } from '../../../../redux/drawer/drawer.slice'
 import { useCreateMutation } from '../../../../redux/cycle/cycle.service'
 import { cycleSlice } from '../../../../redux/cycle/cycle.slice'
+import { useForm } from '../../../../hooks/useForm'
 
 type ItemFormType = {
   id: number
@@ -27,6 +28,9 @@ const DrawerCreate: FC = () => {
   const { formCreate } = useAppSelector((state) => state.cycle)
   const { updateFormCreate, clearFormCreate } = cycleSlice.actions
   const { hide } = drawerSlice.actions
+
+  const { title, description, start, finish, status } = formCreate
+  const { disabled } = useForm([title, description, start, finish, status])
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     dispatch(
@@ -111,6 +115,7 @@ const DrawerCreate: FC = () => {
         props={{
           text: 'Создать цикл',
           block: true,
+          disabled,
           onClick: () => create({ ...formCreate, periodId }),
         }}
       />

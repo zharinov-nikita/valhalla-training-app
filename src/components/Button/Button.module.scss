@@ -35,4 +35,13 @@
             color: $gray-6;
         }
     }
+
+    &:disabled {
+        cursor: no-drop;
+        background-color: $gray-4;
+
+        & * {
+            color: $gray-5;
+        }
+    }
 }

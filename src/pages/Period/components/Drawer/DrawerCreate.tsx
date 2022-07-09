@@ -6,6 +6,7 @@ import List from '../../../../components/List/List'
 import Textarea from '../../../../components/Textarea/Textarea'
 import { useAppDispatch } from '../../../../hooks/useAppDispatch'
 import { useAppSelector } from '../../../../hooks/useAppSelector'
+import { useForm } from '../../../../hooks/useForm'
 import { drawerSlice } from '../../../../redux/drawer/drawer.slice'
 import { useCreateMutation } from '../../../../redux/period/period.service'
 import { periodSlice } from '../../../../redux/period/period.slice'
@@ -27,6 +28,9 @@ const DrawerCreate: FC = () => {
   const { formCreate } = useAppSelector((state) => state.period)
   const { updateFormCreate, clearFormCreate } = periodSlice.actions
   const { hide } = drawerSlice.actions
+
+  const { title, description, start, finish, status } = formCreate
+  const { disabled } = useForm([title, description, start, finish, status])
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     dispatch(
@@ -111,6 +115,7 @@ const DrawerCreate: FC = () => {
         props={{
           text: 'Создать период',
           block: true,
+          disabled,
           onClick: () => create({ ...formCreate, planId }),
         }}
       />
