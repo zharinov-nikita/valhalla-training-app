@@ -6,8 +6,8 @@ import Textarea from '../../../../components/Textarea/Textarea'
 import { useAppDispatch } from '../../../../hooks/useAppDispatch'
 import { useAppSelector } from '../../../../hooks/useAppSelector'
 import { drawerSlice } from '../../../../redux/drawer/drawer.slice'
-import { useFindByIdAndUpdateMutation } from '../../../../redux/day/day.service'
-import { daySlice } from '../../../../redux/day/day.slice'
+import { useFindByIdAndUpdateMutation } from '../../../../redux/workout/workout.service'
+import { workoutSlice } from '../../../../redux/workout/workout.slice'
 
 type ItemFormType = {
   id: number
@@ -20,8 +20,8 @@ type ItemFormType = {
 const DrawerUpdate: FC = () => {
   const [update, { isSuccess }] = useFindByIdAndUpdateMutation()
   const dispatch = useAppDispatch()
-  const { formUpdate } = useAppSelector((state) => state.day)
-  const { updateFormUpdate, clearFormUpdate } = daySlice.actions
+  const { formUpdate } = useAppSelector((state) => state.workout)
+  const { updateFormUpdate, clearFormUpdate } = workoutSlice.actions
   const { hide } = drawerSlice.actions
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) =>
@@ -91,7 +91,7 @@ const DrawerUpdate: FC = () => {
       ))}
       <Button
         props={{
-          text: 'Обновить день',
+          text: 'Обновить тренировку',
           block: true,
           onClick: () => update(formUpdate),
         }}

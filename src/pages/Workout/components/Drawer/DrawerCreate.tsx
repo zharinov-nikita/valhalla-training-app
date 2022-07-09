@@ -95,7 +95,7 @@ const DrawerCreate: FC = () => {
       ))}
       <Button
         props={{
-          text: 'Создать день',
+          text: 'Создать тренировку',
           block: true,
           onClick: () => create({ ...formCreate, dayId }),
         }}
