@@ -1,4 +1,5 @@
 import React, { FC, useEffect } from 'react'
+import { useLocation } from 'react-router-dom'
 import Button from '../../../../components/Button/Button'
 import Input from '../../../../components/Input/Input'
 import List from '../../../../components/List/List'
@@ -6,8 +7,8 @@ import Textarea from '../../../../components/Textarea/Textarea'
 import { useAppDispatch } from '../../../../hooks/useAppDispatch'
 import { useAppSelector } from '../../../../hooks/useAppSelector'
 import { drawerSlice } from '../../../../redux/drawer/drawer.slice'
-import { useCreateMutation } from '../../../../redux/plan/plan.service'
-import { planSlice } from '../../../../redux/plan/plan.slice'
+import { useCreateMutation } from '../../../../redux/period/period.service'
+import { periodSlice } from '../../../../redux/period/period.slice'
 
 type ItemFormType = {
   id: number
@@ -18,10 +19,13 @@ type ItemFormType = {
 }
 
 const DrawerCreate: FC = () => {
+  const { search } = useLocation()
+  const planId = search.split('planId=')[1]
+
   const [create, { isSuccess }] = useCreateMutation()
   const dispatch = useAppDispatch()
-  const { formCreate } = useAppSelector((state) => state.plan)
-  const { updateFormCreate, clearFormCreate } = planSlice.actions
+  const { formCreate } = useAppSelector((state) => state.period)
+  const { updateFormCreate, clearFormCreate } = periodSlice.actions
   const { hide } = drawerSlice.actions
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) =>
@@ -107,7 +111,7 @@ const DrawerCreate: FC = () => {
         props={{
           text: 'Создать период',
           block: true,
-          onClick: () => create(formCreate),
+          onClick: () => create({ ...formCreate, planId }),
         }}
       />
     </List>
