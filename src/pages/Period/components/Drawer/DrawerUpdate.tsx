@@ -5,6 +5,7 @@ import List from '../../../../components/List/List'
 import Textarea from '../../../../components/Textarea/Textarea'
 import { useAppDispatch } from '../../../../hooks/useAppDispatch'
 import { useAppSelector } from '../../../../hooks/useAppSelector'
+import { useForm } from '../../../../hooks/useForm'
 import { drawerSlice } from '../../../../redux/drawer/drawer.slice'
 import { useFindByIdAndUpdateMutation } from '../../../../redux/period/period.service'
 import { periodSlice } from '../../../../redux/period/period.slice'
@@ -23,6 +24,9 @@ const DrawerUpdate: FC = () => {
   const { formUpdate } = useAppSelector((state) => state.period)
   const { updateFormUpdate, clearFormUpdate } = periodSlice.actions
   const { hide } = drawerSlice.actions
+
+  const { title, description, start, finish, status } = formUpdate
+  const { disabled } = useForm([title, description, start, finish, status])
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     dispatch(
@@ -107,6 +111,7 @@ const DrawerUpdate: FC = () => {
         props={{
           text: 'Обновить период',
           block: true,
+          disabled,
           onClick: () => update(formUpdate),
         }}
       />

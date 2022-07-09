@@ -8,6 +8,7 @@ import { useAppSelector } from '../../../../hooks/useAppSelector'
 import { drawerSlice } from '../../../../redux/drawer/drawer.slice'
 import { useFindByIdAndUpdateMutation } from '../../../../redux/day/day.service'
 import { daySlice } from '../../../../redux/day/day.slice'
+import { useForm } from '../../../../hooks/useForm'
 
 type ItemFormType = {
   id: number
@@ -23,6 +24,9 @@ const DrawerUpdate: FC = () => {
   const { formUpdate } = useAppSelector((state) => state.day)
   const { updateFormUpdate, clearFormUpdate } = daySlice.actions
   const { hide } = drawerSlice.actions
+
+  const { title, description, status } = formUpdate
+  const { disabled } = useForm([title, description, status])
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     dispatch(
@@ -93,6 +97,7 @@ const DrawerUpdate: FC = () => {
         props={{
           text: 'Обновить день',
           block: true,
+          disabled,
           onClick: () => update(formUpdate),
         }}
       />

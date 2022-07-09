@@ -9,6 +9,7 @@ import { useAppSelector } from '../../../../hooks/useAppSelector'
 import { drawerSlice } from '../../../../redux/drawer/drawer.slice'
 import { useCreateMutation } from '../../../../redux/day/day.service'
 import { daySlice } from '../../../../redux/day/day.slice'
+import { useForm } from '../../../../hooks/useForm'
 
 type ItemFormType = {
   id: number
@@ -27,6 +28,9 @@ const DrawerCreate: FC = () => {
   const { formCreate } = useAppSelector((state) => state.day)
   const { updateFormCreate, clearFormCreate } = daySlice.actions
   const { hide } = drawerSlice.actions
+
+  const { title, description, status } = formCreate
+  const { disabled } = useForm([title, description, status])
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     dispatch(
@@ -97,6 +101,7 @@ const DrawerCreate: FC = () => {
         props={{
           text: 'Создать день',
           block: true,
+          disabled,
           onClick: () => create({ ...formCreate, cycleId }),
         }}
       />
