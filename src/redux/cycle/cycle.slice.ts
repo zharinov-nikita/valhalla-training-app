@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-export type PeriodStateType = {
+export type CycleStateType = {
   formCreate: {
     title: string
     description: string
@@ -20,7 +20,7 @@ export type PeriodStateType = {
   }
 }
 
-const initialState: PeriodStateType = {
+const initialState: CycleStateType = {
   formCreate: {
     title: '',
     description: '',
@@ -45,21 +45,21 @@ export const cycleSlice = createSlice({
   initialState,
   reducers: {
     updateFormCreate(
-      state: PeriodStateType,
-      action: { payload: PeriodStateType['formCreate'] }
+      state: CycleStateType,
+      action: { payload: CycleStateType['formCreate'] }
     ) {
       state.formCreate = { ...state.formCreate, ...action.payload }
     },
-    clearFormCreate(state: PeriodStateType) {
+    clearFormCreate(state: CycleStateType) {
       state.formCreate = initialState.formCreate
     },
     updateFormUpdate(
-      state: PeriodStateType,
-      action: { payload: PeriodStateType['formUpdate'] }
+      state: CycleStateType,
+      action: { payload: CycleStateType['formUpdate'] }
     ) {
       state.formUpdate = { ...state.formUpdate, ...action.payload }
     },
-    clearFormUpdate(state: PeriodStateType) {
+    clearFormUpdate(state: CycleStateType) {
       state.formUpdate = initialState.formUpdate
     },
   },

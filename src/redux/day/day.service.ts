@@ -1,5 +1,10 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
+// API
+const apiBaseUrl = process.env['REACT_APP_API_BASE_URL']
+const apiKey = process.env['REACT_APP_API_KEY']
+// API
+
 export type DayType = {
   _id: string
   title: string
@@ -18,16 +23,24 @@ export type DayCreateType = {
 export const dayApi = createApi({
   tagTypes: ['Day'],
   reducerPath: 'dayApi',
-  baseQuery: fetchBaseQuery({ baseUrl: process.env['REACT_APP_API_BASE_URL'] }),
+  baseQuery: fetchBaseQuery({ baseUrl: apiBaseUrl }),
   endpoints: (builder) => ({
-    findById: builder.query<DayType[], string>({
-      query: (param) => `/day/${param}`,
+    findByField: builder.query<DayType[], string>({
+      query: (_id) => ({
+        url: `/day?cycleId=${_id}`,
+        headers: {
+          'api-key': apiKey,
+        },
+      }),
       providesTags: ['Day'],
     }),
     create: builder.mutation<DayType, DayCreateType>({
       query: (day) => ({
         url: `/day`,
         method: 'POST',
+        headers: {
+          'api-key': apiKey,
+        },
         body: day,
       }),
       invalidatesTags: ['Day'],
@@ -36,7 +49,20 @@ export const dayApi = createApi({
       query: (day) => ({
         url: `/day/${day._id}`,
         method: 'PATCH',
+        headers: {
+          'api-key': apiKey,
+        },
         body: day,
+      }),
+      invalidatesTags: ['Day'],
+    }),
+    findByIdAndDelete: builder.mutation<DayType, DayType>({
+      query: (day) => ({
+        url: `/day/${day._id}`,
+        headers: {
+          'api-key': apiKey,
+        },
+        method: 'DELETE',
       }),
       invalidatesTags: ['Day'],
     }),
@@ -44,7 +70,8 @@ export const dayApi = createApi({
 })
 
 export const {
-  useFindByIdQuery,
+  useFindByFieldQuery,
   useCreateMutation,
   useFindByIdAndUpdateMutation,
+  useFindByIdAndDeleteMutation,
 } = dayApi
