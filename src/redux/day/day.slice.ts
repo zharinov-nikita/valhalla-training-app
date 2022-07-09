@@ -5,14 +5,14 @@ export type DayStateType = {
     title: string
     description: string
     status: string
-    periodId: string
+    cycleId: string
   }
   formUpdate: {
     _id: string
     title: string
     description: string
     status: string
-    periodId: string
+    cycleId: string
   }
 }
 
@@ -21,14 +21,14 @@ const initialState: DayStateType = {
     title: '',
     description: '',
     status: '',
-    periodId: '',
+    cycleId: '',
   },
   formUpdate: {
     _id: '',
     title: '',
     description: '',
     status: '',
-    periodId: '',
+    cycleId: '',
   },
 }
 

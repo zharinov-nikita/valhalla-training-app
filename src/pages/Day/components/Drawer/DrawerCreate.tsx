@@ -7,8 +7,8 @@ import Textarea from '../../../../components/Textarea/Textarea'
 import { useAppDispatch } from '../../../../hooks/useAppDispatch'
 import { useAppSelector } from '../../../../hooks/useAppSelector'
 import { drawerSlice } from '../../../../redux/drawer/drawer.slice'
-import { useCreateMutation } from '../../../../redux/cycle/cycle.service'
-import { cycleSlice } from '../../../../redux/cycle/cycle.slice'
+import { useCreateMutation } from '../../../../redux/day/day.service'
+import { daySlice } from '../../../../redux/day/day.slice'
 
 type ItemFormType = {
   id: number
@@ -20,12 +20,12 @@ type ItemFormType = {
 
 const DrawerCreate: FC = () => {
   const { search } = useLocation()
-  const periodId = search.split('periodId=')[1]
+  const cycleId = search.split('cycleId=')[1]
 
   const [create, { isSuccess }] = useCreateMutation()
   const dispatch = useAppDispatch()
-  const { formCreate } = useAppSelector((state) => state.cycle)
-  const { updateFormCreate, clearFormCreate } = cycleSlice.actions
+  const { formCreate } = useAppSelector((state) => state.day)
+  const { updateFormCreate, clearFormCreate } = daySlice.actions
   const { hide } = drawerSlice.actions
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) =>
@@ -53,20 +53,6 @@ const DrawerCreate: FC = () => {
     },
     {
       id: 3,
-      component: 'input',
-      name: 'start',
-      placeholder: 'Начало',
-      value: formCreate.start,
-    },
-    {
-      id: 4,
-      component: 'input',
-      name: 'finish',
-      placeholder: 'Конец',
-      value: formCreate.finish,
-    },
-    {
-      id: 5,
       component: 'input',
       name: 'status',
       placeholder: 'Статус',
@@ -111,7 +97,7 @@ const DrawerCreate: FC = () => {
         props={{
           text: 'Создать цикл',
           block: true,
-          onClick: () => create({ ...formCreate, periodId }),
+          onClick: () => create({ ...formCreate, cycleId }),
         }}
       />
     </List>

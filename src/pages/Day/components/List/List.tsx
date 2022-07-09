@@ -10,17 +10,17 @@ import {
   useFindByIdAndUpdateMutation,
   useFindByIdAndDeleteMutation,
   useFindByFieldQuery,
-} from '../../../../redux/cycle/cycle.service'
-import { updateFormUpdate } from '../../../../redux/cycle/cycle.slice'
+} from '../../../../redux/day/day.service'
+import { updateFormUpdate } from '../../../../redux/day/day.slice'
 import DrawerCreate from '../../components/Drawer/DrawerCreate'
 import DrawerUpdate from '../../components/Drawer/DrawerUpdate'
 import css from './List.module.scss'
 
 const List: FC = () => {
   const { search } = useLocation()
-  const periodId = search.split('periodId=')[1]
+  const cycleId = search.split('cycleId=')[1]
 
-  const { isError, isLoading, data } = useFindByFieldQuery(periodId)
+  const { isError, isLoading, data } = useFindByFieldQuery(cycleId)
   const [findByIdAndUpdate, {}] = useFindByIdAndUpdateMutation()
   const [findByIdAndDelete, {}] = useFindByIdAndDeleteMutation()
   const dispatch = useAppDispatch()
@@ -46,7 +46,7 @@ const List: FC = () => {
           <Info
             key={item._id}
             props={{
-              to: `/day/?cycleId=${item._id}`,
+              to: `/workout/?dayId=${item._id}`,
               title: item.title,
               description: item.description,
               status: item.status,
@@ -68,7 +68,7 @@ const List: FC = () => {
 
       <AffixButton
         props={{
-          title: 'Новый цикл',
+          title: 'Новый день',
           onClick: () => dispatch(show('create')),
         }}
       />
