@@ -1,7 +1,7 @@
-import { FC, useEffect, useState } from 'react'
-import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
-import Header from './components/Header/Header'
+import { FC } from 'react'
+import { Navigate, Route, Routes } from 'react-router-dom'
 
+import Header from './components/Header/Header'
 import Plan from './pages/Plan/Plan'
 import Period from './pages/Period/Period'
 import Cycle from './pages/Cycle/Cycle'
