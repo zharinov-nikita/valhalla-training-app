@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  service_client:
+    container_name: container_client
+    build: .
+    restart: always
+    ports:
+      - "3000:3000"
+    command: "${REACT_APP_COMMAND}"
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
