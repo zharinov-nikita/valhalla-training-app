@@ -1,10 +1,12 @@
 import { AimOutlined } from '@ant-design/icons'
 import { FC } from 'react'
+import { useAppSelector } from '../../hooks/useAppSelector'
 import css from './Menu.module.scss'
 
 const Menu: FC = () => {
+  const { visible } = useAppSelector((state) => state.menu)
   return (
-    <div className={css.menu} data-visible={false}>
+    <div className={css.menu} data-visible={visible}>
       <div className={css.wrapper}>
         <div className={css.list}>
           <div className={css.item}>

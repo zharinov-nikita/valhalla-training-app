@@ -12,6 +12,9 @@ export const menuSlice = createSlice({
   name: 'menu',
   initialState,
   reducers: {
+    toggle(state: MenuStateType) {
+      state.visible = !state.visible
+    },
     show(state: MenuStateType) {
       state.visible = true
     },
