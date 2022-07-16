@@ -23,7 +23,9 @@ const List: FC = () => {
   const { search } = useLocation()
   const workoutId = search.split('workoutId=')[1]
 
-  const { isError, isLoading, data } = useFindByFieldQuery(workoutId)
+  const { isError, isLoading, data } = useFindByFieldQuery(workoutId, {
+    pollingInterval: 3,
+  })
 
   const [findByIdAndUpdate, {}] = useFindByIdAndUpdateMutation()
   const [findByIdAndDelete, {}] = useFindByIdAndDeleteMutation()

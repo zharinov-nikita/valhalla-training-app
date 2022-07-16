@@ -20,7 +20,9 @@ const List: FC = () => {
   const { search } = useLocation()
   const planId = search.split('planId=')[1]
 
-  const { isError, isLoading, data } = useFindByFieldQuery(planId)
+  const { isError, isLoading, data } = useFindByFieldQuery(planId, {
+    pollingInterval: 3,
+  })
   const [findByIdAndUpdate, {}] = useFindByIdAndUpdateMutation()
   const [findByIdAndDelete, {}] = useFindByIdAndDeleteMutation()
   const dispatch = useAppDispatch()
