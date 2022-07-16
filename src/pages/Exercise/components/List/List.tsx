@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import AffixButton from '../../../../components/AffixButton/AffixButton'
 import Approach from '../../../../components/Approach/Approach'

@@ -13,6 +13,9 @@
         background-color: $gray-2;
         height: calc(100vh - 48px);
         padding: 12px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
 
         & .list {
             display: flex;
@@ -66,5 +69,27 @@
 
     &[data-visible="false"] {
         display: none;
+    }
+
+    .footer {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+
+        & .version {
+            cursor: pointer;
+        }
+
+        & .tag {
+            font-size: 10px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: $green-2;
+            color: $green-6;
+            padding: 1px 2px;
+            border-radius: 4px;
+        }
     }
 }
