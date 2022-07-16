@@ -1,21 +1,5 @@
 @import "../../scss/variables.scss";
 
-@media screen and (min-width: 360px) {
-    .list {
-        & .item {
-            min-width: calc(25% - 12px);
-        }
-    }
-}
-
-@media screen and (max-width: 360px) {
-    .list {
-        & .item {
-            min-width: calc(33.333% - 12px);
-        }
-    }
-}
-
 .list {
     display: flex;
     flex-direction: row;
@@ -24,6 +8,10 @@
     border-radius: 8px;
     gap: 12px;
     padding: 12px;
+
+    & .item {
+        min-width: calc(33.333% - 8px);
+    }
 
     & .item {
         cursor: pointer;

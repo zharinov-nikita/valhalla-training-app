@@ -10,6 +10,7 @@ export type InfoPropsType = {
     to?: string
     status: string
     title: string
+    counter?: number
     description: string
     progress: number | string
     onClickStatus?: MouseEventHandler
@@ -21,9 +22,6 @@ export type InfoPropsType = {
 const Info: FC<InfoPropsType> = ({ props }) => {
   return (
     <div className={css.info}>
-      {/* <div className={css.left}>
-        <div className={css.icon}></div>
-      </div> */}
       <div className={css.right}>
         <div className={css.header}>
           <div className={css.header__left}>
@@ -32,7 +30,10 @@ const Info: FC<InfoPropsType> = ({ props }) => {
                 {props.title}
               </Link>
             ) : (
-              <div className={css.title}>{props.title}</div>
+              <div className={css.title}>
+                {props.title}
+                {/* <span>{props.counter && Number(props.counter)}</span> */}
+              </div>
             )}
           </div>
           <div className={css.header__right}>

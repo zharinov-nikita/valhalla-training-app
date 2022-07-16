@@ -3,6 +3,7 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit'
 // slice
 import headerReducer from './header/header.slice'
 import drawerReducer from './drawer/drawer.slice'
+import menuReducer from './menu/menu.slice'
 import planReducer from './plan/plan.slice'
 import periodReducer from './period/period.slice'
 import cycleReducer from './cycle/cycle.slice'
@@ -22,6 +23,7 @@ const rootReducer = combineReducers({
   // slice
   header: headerReducer,
   drawer: drawerReducer,
+  menu: menuReducer,
   plan: planReducer,
   period: periodReducer,
   cycle: cycleReducer,

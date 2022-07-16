@@ -1,12 +1,19 @@
 import { FC, useEffect } from 'react'
-import { ArrowLeftOutlined } from '@ant-design/icons'
+import {
+  ArrowLeftOutlined,
+  CloseOutlined,
+  MenuOutlined,
+} from '@ant-design/icons'
 import { useAppSelector } from '../../hooks/useAppSelector'
 import { useAppDispatch } from '../../hooks/useAppDispatch'
 import { headerSlice } from '../../redux/header/header.slice'
 import { useLocation } from 'react-router-dom'
 import css from './Header.module.scss'
+import { menuSlice } from '../../redux/menu/menu.slice'
 
 const Header: FC = () => {
+  const { toggle } = menuSlice.actions
+  const { visible } = useAppSelector((state) => state.menu)
   const { pathname } = useLocation()
   const dispatch = useAppDispatch()
   const { updateTitle } = headerSlice.actions
@@ -30,6 +37,8 @@ const Header: FC = () => {
     })
   }, [pathname])
 
+  const menuHandler = () => dispatch(toggle())
+
   return (
     <div className={css.header}>
       <div className={css.wrapper}>
@@ -37,7 +46,9 @@ const Header: FC = () => {
           <ArrowLeftOutlined />
         </div>
         <div className={css.center}>{title}</div>
-        <div className={css.right}></div>
+        <div className={css.right} onClick={menuHandler}>
+          {visible ? <CloseOutlined /> : <MenuOutlined />}
+        </div>
       </div>
     </div>
   )

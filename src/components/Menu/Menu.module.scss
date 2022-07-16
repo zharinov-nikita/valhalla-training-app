@@ -1,0 +1,95 @@
+@import "../../scss/variables.scss";
+
+.menu {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 48px;
+    width: 480px;
+    max-width: 100%;
+    margin: 0px auto;
+    z-index: 999;
+    & .wrapper {
+        background-color: $gray-2;
+        height: calc(100vh - 48px);
+        padding: 12px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        & .list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            font-size: 14px;
+
+            & .item {
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                padding: 8px;
+                gap: 8px;
+                border-radius: 8px;
+
+                & .icon {
+                    display: inline-flex;
+                    align-items: center;
+                    justify-content: center;
+                    background-color: $gray-4;
+                    padding: 6px;
+                    border-radius: 8px;
+
+                    & > * {
+                        color: $gray-6;
+                    }
+                }
+
+                & .text {
+                    display: flex;
+                    align-items: center;
+                    gap: 4px;
+                    & .tag {
+                        font-size: 10px;
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        background-color: $blue-2;
+                        color: $blue-6;
+                        padding: 1px 2px;
+                        border-radius: 4px;
+                    }
+                }
+            }
+        }
+    }
+
+    &[data-visible="true"] {
+        display: block;
+    }
+
+    &[data-visible="false"] {
+        display: none;
+    }
+
+    .footer {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+
+        & .version {
+            cursor: pointer;
+        }
+
+        & .tag {
+            font-size: 10px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: $green-2;
+            color: $green-6;
+            padding: 1px 2px;
+            border-radius: 4px;
+        }
+    }
+}
