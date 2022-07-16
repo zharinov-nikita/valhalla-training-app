@@ -2,6 +2,7 @@ import React, { FC } from 'react'
 import { useLocation } from 'react-router-dom'
 import AffixButton from '../../../../components/AffixButton/AffixButton'
 import Approach from '../../../../components/Approach/Approach'
+import ApproachList from '../../../../components/Approach/ApproachList'
 import Drawer from '../../../../components/Drawer/Drawer'
 import Info from '../../../../components/Info/Info'
 import Property from '../../../../components/Property/Property'
@@ -69,26 +70,29 @@ const List: FC = () => {
                 onClickDelete: () => findByIdAndDelete(item),
               }}
             />
-            {item.option &&
-              item.option.map((option) => (
-                <React.Fragment key={option.id}>
-                  <Approach
-                    props={option}
-                    onClick={() => {
-                      const result = item.option.map((mapOption) => {
-                        if (mapOption.id === option.id) {
-                          mapOption = {
-                            ...mapOption,
-                            completed: !mapOption.completed,
+            {item.option && (
+              <ApproachList>
+                {item.option.map((option) => (
+                  <React.Fragment key={option.id}>
+                    <Approach
+                      props={option}
+                      onClick={() => {
+                        const result = item.option.map((mapOption) => {
+                          if (mapOption.id === option.id) {
+                            mapOption = {
+                              ...mapOption,
+                              completed: !mapOption.completed,
+                            }
                           }
-                        }
-                        return mapOption
-                      })
-                      findByIdAndUpdate({ ...item, option: result })
-                    }}
-                  />
-                </React.Fragment>
-              ))}
+                          return mapOption
+                        })
+                        findByIdAndUpdate({ ...item, option: result })
+                      }}
+                    />
+                  </React.Fragment>
+                ))}
+              </ApproachList>
+            )}
           </React.Fragment>
         ))}
 
