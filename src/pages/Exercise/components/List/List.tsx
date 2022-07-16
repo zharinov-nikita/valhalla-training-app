@@ -13,8 +13,6 @@ import {
   useFindByIdAndUpdateMutation,
   useFindByIdAndDeleteMutation,
   useFindByFieldQuery,
-  useFindByIdAndCompletedMutation,
-  ExerciseType,
 } from '../../../../redux/exercise/exercise.service'
 import { updateFormUpdate } from '../../../../redux/exercise/exercise.slice'
 import DrawerCreate from '../../components/Drawer/DrawerCreate'
@@ -70,29 +68,38 @@ const List: FC = () => {
                 onClickDelete: () => findByIdAndDelete(item),
               }}
             />
-            {item.option && (
-              <ApproachList>
-                {item.option.map((option) => (
-                  <React.Fragment key={option.id}>
-                    <Approach
-                      props={option}
-                      onClick={() => {
-                        const result = item.option.map((mapOption) => {
-                          if (mapOption.id === option.id) {
-                            mapOption = {
-                              ...mapOption,
-                              completed: !mapOption.completed,
+            <React.Fragment>
+              {item.title !== 'Бег' && (
+                <ApproachList>
+                  {item.option.map((option) => (
+                    <React.Fragment key={option.id}>
+                      <Approach
+                        props={option}
+                        onClick={() => {
+                          const result = item.option.map((mapOption) => {
+                            if (mapOption.id === option.id) {
+                              mapOption = {
+                                ...mapOption,
+                                completed: !mapOption.completed,
+                              }
                             }
-                          }
-                          return mapOption
-                        })
-                        findByIdAndUpdate({ ...item, option: result })
-                      }}
-                    />
-                  </React.Fragment>
-                ))}
-              </ApproachList>
-            )}
+                            return mapOption
+                          })
+                          findByIdAndUpdate({ ...item, option: result })
+                        }}
+                      />
+                    </React.Fragment>
+                  ))}
+                </ApproachList>
+              )}
+              {item.title === 'Бег' && (
+                <React.Fragment>
+                  {item.option.map((option) => (
+                    <Property key={option.id} props={option} />
+                  ))}
+                </React.Fragment>
+              )}
+            </React.Fragment>
           </React.Fragment>
         ))}
 
