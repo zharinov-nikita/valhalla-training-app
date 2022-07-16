@@ -1,6 +1,7 @@
 import React, { FC } from 'react'
 import { useLocation } from 'react-router-dom'
 import AffixButton from '../../../../components/AffixButton/AffixButton'
+import Approach from '../../../../components/Approach/Approach'
 import Drawer from '../../../../components/Drawer/Drawer'
 import Info from '../../../../components/Info/Info'
 import Property from '../../../../components/Property/Property'
@@ -64,10 +65,7 @@ const List: FC = () => {
                 onClickDelete: () => findByIdAndDelete(item),
               }}
             />
-            {item.option &&
-              item.option.map((option) => (
-                <Property key={Number(option.id)} props={option} />
-              ))}
+            <Approach props={item.option} />
           </React.Fragment>
         ))}
 

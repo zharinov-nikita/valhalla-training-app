@@ -126,6 +126,7 @@ const DrawerCreate: FC = () => {
               addOptionFormCreate({
                 id: Number(Date.now()),
                 title: '',
+                completed: false,
                 value: '',
               })
             ),

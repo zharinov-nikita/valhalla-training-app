@@ -5,7 +5,12 @@ export type ExerciseStateType = {
     title: string
     description: string
     status: string
-    option: Array<{ id: number; title: string; value: string }>
+    option: Array<{
+      id: number
+      completed: boolean
+      title: string
+      value: string
+    }>
     workoutId: string
   }
   formUpdate: {
@@ -13,7 +18,12 @@ export type ExerciseStateType = {
     title: string
     description: string
     status: string
-    option: Array<{ id: number; title: string; value: string }>
+    option: Array<{
+      id: number
+      completed: boolean
+      title: string
+      value: string
+    }>
     workoutId: string
   }
 }
@@ -62,13 +72,27 @@ export const exerciseSlice = createSlice({
     // OPTION
     addOptionFormCreate(
       state: ExerciseStateType,
-      action: { payload: { id: number; title: string; value: string } }
+      action: {
+        payload: {
+          id: number
+          completed: boolean
+          title: string
+          value: string
+        }
+      }
     ) {
       state.formCreate.option.push(action.payload)
     },
     deleteOptionFormCreate(
       state: ExerciseStateType,
-      action: { payload: { id: number; title: string; value: string } }
+      action: {
+        payload: {
+          id: number
+          completed: boolean
+          title: string
+          value: string
+        }
+      }
     ) {
       state.formCreate.option = state.formCreate.option.filter(
         (option) => option.id !== action.payload.id
@@ -76,7 +100,14 @@ export const exerciseSlice = createSlice({
     },
     updateOptionFormCreate(
       state: ExerciseStateType,
-      action: { payload: { id: number; title: string; value: string } }
+      action: {
+        payload: {
+          id: number
+          completed: boolean
+          title: string
+          value: string
+        }
+      }
     ) {
       state.formCreate.option = state.formCreate.option.map((item) => {
         if (item.id === action.payload.id) {
@@ -89,13 +120,27 @@ export const exerciseSlice = createSlice({
     // OPTION
     addOptionFormUpdate(
       state: ExerciseStateType,
-      action: { payload: { id: number; title: string; value: string } }
+      action: {
+        payload: {
+          id: number
+          completed: boolean
+          title: string
+          value: string
+        }
+      }
     ) {
       state.formUpdate.option.push(action.payload)
     },
     deleteOptionFormUpdate(
       state: ExerciseStateType,
-      action: { payload: { id: number; title: string; value: string } }
+      action: {
+        payload: {
+          id: number
+          completed: boolean
+          title: string
+          value: string
+        }
+      }
     ) {
       state.formUpdate.option = state.formUpdate.option.filter(
         (option) => option.id !== action.payload.id
@@ -103,7 +148,14 @@ export const exerciseSlice = createSlice({
     },
     updateOptionFormUpdate(
       state: ExerciseStateType,
-      action: { payload: { id: number; title: string; value: string } }
+      action: {
+        payload: {
+          id: number
+          completed: boolean
+          title: string
+          value: string
+        }
+      }
     ) {
       state.formUpdate.option = state.formUpdate.option.map((item) => {
         if (item.id === action.payload.id) {

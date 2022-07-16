@@ -127,6 +127,7 @@ const DrawerUpdate: FC = () => {
               addOptionFormUpdate({
                 id: Number(Date.now()),
                 title: '',
+                completed: false,
                 value: '',
               })
             ),
