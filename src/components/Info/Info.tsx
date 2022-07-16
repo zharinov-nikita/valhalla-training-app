@@ -21,9 +21,9 @@ export type InfoPropsType = {
 const Info: FC<InfoPropsType> = ({ props }) => {
   return (
     <div className={css.info}>
-      <div className={css.left}>
+      {/* <div className={css.left}>
         <div className={css.icon}></div>
-      </div>
+      </div> */}
       <div className={css.right}>
         <div className={css.header}>
           <div className={css.header__left}>
