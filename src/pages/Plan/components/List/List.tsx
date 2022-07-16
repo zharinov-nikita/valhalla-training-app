@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, useState } from 'react'
 import AffixButton from '../../../../components/AffixButton/AffixButton'
 import Drawer from '../../../../components/Drawer/Drawer'
 import Info from '../../../../components/Info/Info'
@@ -16,7 +16,8 @@ import DrawerUpdate from '../../components/Drawer/DrawerUpdate'
 import css from './List.module.scss'
 
 const List: FC = () => {
-  const { isError, isLoading, data } = useFindQuery('')
+  const { isError, isLoading, data } = useFindQuery('', { pollingInterval: 3 })
+
   const [findByIdAndUpdate, {}] = useFindByIdAndUpdateMutation()
   const [findByIdAndDelete, {}] = useFindByIdAndDeleteMutation()
   const dispatch = useAppDispatch()

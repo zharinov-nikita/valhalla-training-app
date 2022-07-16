@@ -1,0 +1,79 @@
+@import "../../scss/variables.scss";
+
+@media screen and (min-width: 360px) {
+    .list {
+        & .item {
+            min-width: calc(25% - 12px);
+        }
+    }
+}
+
+@media screen and (max-width: 360px) {
+    .list {
+        & .item {
+            min-width: calc(33.333% - 12px);
+        }
+    }
+}
+
+.list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    background-color: $gray-4;
+    border-radius: 8px;
+    gap: 12px;
+    padding: 12px;
+
+    & .item {
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        padding: 8px;
+        border-radius: 8px;
+
+        & .header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+
+        & .footer {
+            font-size: 12px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4px 8px;
+            border-radius: 8px;
+        }
+    }
+
+    & .item[data-completed="false"] {
+        background-color: $gray-3;
+
+        & .header {
+            color: $gray-6;
+        }
+
+        & .footer {
+            background-color: $gray-4;
+            color: $gray-5;
+        }
+    }
+
+    & .item[data-completed="true"] {
+        background-color: $green-2;
+
+        & .header {
+            color: $green-5;
+        }
+
+        & .footer {
+            background-color: $green-6;
+            color: $green-7;
+        }
+    }
+}

@@ -10,7 +10,12 @@ export type ExerciseType = {
   title: string
   description: string
   status: string
-  option: Array<{ id: number; title: string; value: string }>
+  option: Array<{
+    id: number
+    completed: boolean
+    title: string
+    value: string
+  }>
   workoutId: string
 }
 
@@ -18,7 +23,12 @@ export type ExerciseCreateType = {
   title: string
   description: string
   status: string
-  option: Array<{ id: number; title: string; value: string }>
+  option: Array<{
+    id: number
+    completed: boolean
+    title: string
+    value: string
+  }>
   workoutId: string
 }
 
@@ -58,6 +68,19 @@ export const exerciseApi = createApi({
       }),
       invalidatesTags: ['Exercise'],
     }),
+
+    findByIdAndCompleted: builder.mutation<any, any>({
+      query: (exercise) => ({
+        url: `/exercise/${exercise._id}`,
+        method: 'PATCH',
+        headers: {
+          'api-key': apiKey,
+        },
+        body: exercise,
+      }),
+      invalidatesTags: ['Exercise'],
+    }),
+
     findByIdAndDelete: builder.mutation<ExerciseType, ExerciseType>({
       query: (exercise) => ({
         url: `/exercise/${exercise._id}`,
@@ -76,4 +99,5 @@ export const {
   useCreateMutation,
   useFindByIdAndUpdateMutation,
   useFindByIdAndDeleteMutation,
+  useFindByIdAndCompletedMutation,
 } = exerciseApi

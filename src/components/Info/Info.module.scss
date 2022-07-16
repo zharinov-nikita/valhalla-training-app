@@ -9,13 +9,13 @@
 
     & .left {
         background-color: $gray-5;
-        width: 52px;
+        width: 8px;
         border-radius: 8px;
     }
     & .icon {
     }
     & .right {
-        width: calc(100% - 52px - 12px);
+        width: 100%;
         display: flex;
         flex-direction: column;
         gap: 8px;
@@ -49,7 +49,6 @@
     }
     & .body {
         width: 100%;
-        border: 1px solid $gray-6;
         background-color: $gray-3;
         color: $gray-6;
         padding: 8px;
@@ -75,6 +74,6 @@
         bottom: 0;
         height: 8px;
         border-radius: 8px;
-        background-color: $gray-6;
+        background-color: $green-5;
     }
 }

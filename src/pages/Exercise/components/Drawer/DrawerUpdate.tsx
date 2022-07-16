@@ -127,6 +127,7 @@ const DrawerUpdate: FC = () => {
               addOptionFormUpdate({
                 id: Number(Date.now()),
                 title: '',
+                completed: false,
                 value: '',
               })
             ),
@@ -135,7 +136,7 @@ const DrawerUpdate: FC = () => {
 
       <Button
         props={{
-          text: 'Обновить тренировку',
+          text: 'Обновить упражнение',
           block: true,
           disabled,
           onClick: () => update({ ...formUpdate, workoutId }),

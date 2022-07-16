@@ -1,6 +1,8 @@
 import React, { FC } from 'react'
 import { useLocation } from 'react-router-dom'
 import AffixButton from '../../../../components/AffixButton/AffixButton'
+import Approach from '../../../../components/Approach/Approach'
+import ApproachList from '../../../../components/Approach/ApproachList'
 import Drawer from '../../../../components/Drawer/Drawer'
 import Info from '../../../../components/Info/Info'
 import Property from '../../../../components/Property/Property'
@@ -21,9 +23,13 @@ const List: FC = () => {
   const { search } = useLocation()
   const workoutId = search.split('workoutId=')[1]
 
-  const { isError, isLoading, data } = useFindByFieldQuery(workoutId)
+  const { isError, isLoading, data } = useFindByFieldQuery(workoutId, {
+    pollingInterval: 3,
+  })
+
   const [findByIdAndUpdate, {}] = useFindByIdAndUpdateMutation()
   const [findByIdAndDelete, {}] = useFindByIdAndDeleteMutation()
+
   const dispatch = useAppDispatch()
   const { show } = drawerSlice.actions
   const { action } = useAppSelector((state) => state.drawer)
@@ -64,10 +70,38 @@ const List: FC = () => {
                 onClickDelete: () => findByIdAndDelete(item),
               }}
             />
-            {item.option &&
-              item.option.map((option) => (
-                <Property key={Number(option.id)} props={option} />
-              ))}
+            <React.Fragment>
+              {item.title !== 'Бег' && (
+                <ApproachList>
+                  {item.option.map((option) => (
+                    <React.Fragment key={option.id}>
+                      <Approach
+                        props={option}
+                        onClick={() => {
+                          const result = item.option.map((mapOption) => {
+                            if (mapOption.id === option.id) {
+                              mapOption = {
+                                ...mapOption,
+                                completed: !mapOption.completed,
+                              }
+                            }
+                            return mapOption
+                          })
+                          findByIdAndUpdate({ ...item, option: result })
+                        }}
+                      />
+                    </React.Fragment>
+                  ))}
+                </ApproachList>
+              )}
+              {item.title === 'Бег' && (
+                <React.Fragment>
+                  {item.option.map((option) => (
+                    <Property key={option.id} props={option} />
+                  ))}
+                </React.Fragment>
+              )}
+            </React.Fragment>
           </React.Fragment>
         ))}
 
