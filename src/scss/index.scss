@@ -19,6 +19,17 @@
     }
 }
 
+a {
+    color: $gray-10;
+    &:active,
+    &:hover,
+    &:focus {
+        text-decoration: none;
+        outline: none;
+        color: $gray-10;
+    }
+}
+
 body {
     background-color: $gray-1;
     min-height: calc(100vh - 68px);
