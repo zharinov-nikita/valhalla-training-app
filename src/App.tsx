@@ -8,12 +8,14 @@ import Cycle from './pages/Cycle/Cycle'
 import Day from './pages/Day/Day'
 import Workout from './pages/Workout/Workout'
 import Exercise from './pages/Exercise/Exercise'
+import Menu from './components/Menu/Menu'
 
 const App: FC = () => {
   return (
     <div className="app">
       <div className="app__container">
         <Header />
+        <Menu />
         <div className="app__wrapper">
           <Routes>
             <Route path="/plan" element={<Plan />} />
