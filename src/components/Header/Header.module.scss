@@ -22,6 +22,10 @@
         cursor: pointer;
     }
 
+    & .right {
+        cursor: pointer;
+    }
+
     & > * {
         color: $gray-10;
         font-weight: 500;

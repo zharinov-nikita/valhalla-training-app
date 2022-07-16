@@ -1,5 +1,5 @@
 import { FC, useEffect } from 'react'
-import { ArrowLeftOutlined } from '@ant-design/icons'
+import { ArrowLeftOutlined, MenuOutlined } from '@ant-design/icons'
 import { useAppSelector } from '../../hooks/useAppSelector'
 import { useAppDispatch } from '../../hooks/useAppDispatch'
 import { headerSlice } from '../../redux/header/header.slice'
@@ -37,7 +37,9 @@ const Header: FC = () => {
           <ArrowLeftOutlined />
         </div>
         <div className={css.center}>{title}</div>
-        <div className={css.right}></div>
+        <div className={css.right}>
+          <MenuOutlined />
+        </div>
       </div>
     </div>
   )
