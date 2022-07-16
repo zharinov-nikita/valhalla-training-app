@@ -10,7 +10,11 @@ export type StatusPropsType = {
 
 const Status: FC<StatusPropsType> = ({ props }) => {
   return (
-    <div className={css.status} onClick={props.onClick}>
+    <div
+      className={css.status}
+      onClick={props.onClick}
+      data-status={props.text}
+    >
       <div className={css.elipse}></div>
       <div className={css.text}>{props.text}</div>
     </div>
