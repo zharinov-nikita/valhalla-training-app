@@ -134,7 +134,7 @@ const DrawerCreate: FC = () => {
 
       <Button
         props={{
-          text: 'Создать тренировку',
+          text: 'Создать упражнение',
           block: true,
           disabled,
           onClick: () => create({ ...formCreate, workoutId }),
