@@ -24,7 +24,7 @@ const Menu: FC = () => {
       <div className={css.wrapper}>
         <div className={css.list}>
           <Link
-            to={'/period/?planId=62d2776c5154ed09fec00744'}
+            to={'/day/?cycleId=62d27db3e8abbafbac301b53'}
             onClick={() => setClick(Number(Date.now()))}
             className={css.item}
           >
