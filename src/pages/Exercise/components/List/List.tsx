@@ -12,6 +12,8 @@ import {
   useFindByIdAndUpdateMutation,
   useFindByIdAndDeleteMutation,
   useFindByFieldQuery,
+  useFindByIdAndCompletedMutation,
+  ExerciseType,
 } from '../../../../redux/exercise/exercise.service'
 import { updateFormUpdate } from '../../../../redux/exercise/exercise.slice'
 import DrawerCreate from '../../components/Drawer/DrawerCreate'
@@ -23,8 +25,10 @@ const List: FC = () => {
   const workoutId = search.split('workoutId=')[1]
 
   const { isError, isLoading, data } = useFindByFieldQuery(workoutId)
+
   const [findByIdAndUpdate, {}] = useFindByIdAndUpdateMutation()
   const [findByIdAndDelete, {}] = useFindByIdAndDeleteMutation()
+
   const dispatch = useAppDispatch()
   const { show } = drawerSlice.actions
   const { action } = useAppSelector((state) => state.drawer)
@@ -65,7 +69,26 @@ const List: FC = () => {
                 onClickDelete: () => findByIdAndDelete(item),
               }}
             />
-            <Approach props={item.option} />
+            {item.option &&
+              item.option.map((option) => (
+                <React.Fragment key={option.id}>
+                  <Approach
+                    props={option}
+                    onClick={() => {
+                      const result = item.option.map((mapOption) => {
+                        if (mapOption.id === option.id) {
+                          mapOption = {
+                            ...mapOption,
+                            completed: !mapOption.completed,
+                          }
+                        }
+                        return mapOption
+                      })
+                      findByIdAndUpdate({ ...item, option: result })
+                    }}
+                  />
+                </React.Fragment>
+              ))}
           </React.Fragment>
         ))}
 

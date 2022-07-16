@@ -68,6 +68,19 @@ export const exerciseApi = createApi({
       }),
       invalidatesTags: ['Exercise'],
     }),
+
+    findByIdAndCompleted: builder.mutation<any, any>({
+      query: (exercise) => ({
+        url: `/exercise/${exercise._id}`,
+        method: 'PATCH',
+        headers: {
+          'api-key': apiKey,
+        },
+        body: exercise,
+      }),
+      invalidatesTags: ['Exercise'],
+    }),
+
     findByIdAndDelete: builder.mutation<ExerciseType, ExerciseType>({
       query: (exercise) => ({
         url: `/exercise/${exercise._id}`,
@@ -86,4 +99,5 @@ export const {
   useCreateMutation,
   useFindByIdAndUpdateMutation,
   useFindByIdAndDeleteMutation,
+  useFindByIdAndCompletedMutation,
 } = exerciseApi
