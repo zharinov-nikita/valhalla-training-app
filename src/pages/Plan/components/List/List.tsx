@@ -16,7 +16,8 @@ import DrawerUpdate from '../../components/Drawer/DrawerUpdate'
 import css from './List.module.scss'
 
 const List: FC = () => {
-  const { isError, isLoading, data } = useFindQuery('', { pollingInterval: 3 })
+  const pollingInterval = Number(process.env['REACT_APP_POLLING_INTERVAL'])
+  const { isError, isLoading, data } = useFindQuery('', { pollingInterval })
 
   const [findByIdAndUpdate, {}] = useFindByIdAndUpdateMutation()
   const [findByIdAndDelete, {}] = useFindByIdAndDeleteMutation()
