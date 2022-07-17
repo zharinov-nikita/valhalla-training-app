@@ -9,11 +9,13 @@ import Day from './pages/Day/Day'
 import Workout from './pages/Workout/Workout'
 import Exercise from './pages/Exercise/Exercise'
 import Menu from './components/Menu/Menu'
+import Modal from './components/Modal/Modal'
 
 const App: FC = () => {
   return (
     <div className="app">
       <div className="app__container">
+        <Modal />
         <Header />
         <Menu />
         <div className="app__wrapper">
