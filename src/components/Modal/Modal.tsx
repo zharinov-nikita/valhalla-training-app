@@ -1,5 +1,4 @@
 import { FC, useEffect, useState } from 'react'
-import { useCookies } from 'react-cookie'
 import Button from '../Button/Button'
 import Input from '../Input/Input'
 import css from './Modal.module.scss'
@@ -8,10 +7,9 @@ import AccessPrivate from './AccessPrivate'
 import AccessOpen from './AccessOpen'
 
 const Modal: FC = () => {
-  const [cookies, setCookie, removeCookie] = useCookies(['token'])
+  const accessToken: string = String(process.env['REACT_APP_TOKEN'])
 
-  const accessToken = process.env['REACT_APP_TOKEN']
-
+  const [modal, setModal] = useState<boolean>(false)
   const [text, setText] = useState<string>('Valhalla ID')
   const [token, setToken] = useState<string>('')
   const [disabled, setDisabled] = useState<boolean>(true)
@@ -30,13 +28,15 @@ const Modal: FC = () => {
     }
   }, [token])
 
-  const onClick = () => setCookie('token', accessToken)
+  const onClick = () => {
+    localStorage.setItem('token', String(accessToken))
+    setModal(true)
+  }
+
+  const isLocalToken = localStorage.getItem('token') ? true : modal
 
   return (
-    <div
-      className={css.modal}
-      data-token={cookies.token === accessToken ? true : false}
-    >
+    <div className={css.modal} data-token={isLocalToken}>
       <div className={css.container}>
         <div className={css.wrapper}>
           <div className={css.header}>

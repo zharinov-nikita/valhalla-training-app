@@ -48,4 +48,8 @@
     &[data-token="true"] {
         display: none;
     }
+
+    &[data-token="false"] {
+        display: block;
+    }
 }
