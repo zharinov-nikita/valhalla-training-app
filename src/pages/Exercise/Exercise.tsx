@@ -23,7 +23,7 @@ const Exercise: FC = () => {
           title: 'Новое упражнение',
           onClick: () => {
             dispatch(show('create'))
-            dispathc(fix())
+            dispatch(fix())
           },
         }}
       />
