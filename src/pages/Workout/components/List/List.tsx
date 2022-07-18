@@ -1,10 +1,7 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 import { useLocation } from 'react-router-dom'
-import AffixButton from '../../../../components/AffixButton/AffixButton'
-import Drawer from '../../../../components/Drawer/Drawer'
 import Info from '../../../../components/Info/Info'
 import { useAppDispatch } from '../../../../hooks/useAppDispatch'
-import { useAppSelector } from '../../../../hooks/useAppSelector'
 import { drawerSlice } from '../../../../redux/drawer/drawer.slice'
 import { appSlice } from '../../../../redux/app/app.slice'
 import {
@@ -13,11 +10,10 @@ import {
   useFindByFieldQuery,
 } from '../../../../redux/workout/workout.service'
 import { updateFormUpdate } from '../../../../redux/workout/workout.slice'
-import DrawerCreate from '../../components/Drawer/DrawerCreate'
-import DrawerUpdate from '../../components/Drawer/DrawerUpdate'
 import css from './List.module.scss'
 import Empty from '../../../../components/Empty/Empty'
 import Loader from '../../../../components/Loader/Loader'
+import { useStatus } from '../../../../hooks/useStatus'
 
 const List: FC = () => {
   const { search } = useLocation()
@@ -34,8 +30,8 @@ const List: FC = () => {
   const dispatch = useAppDispatch()
 
   const { show } = drawerSlice.actions
-  const { action } = useAppSelector((state) => state.drawer)
   const { fix } = appSlice.actions
+  const { updateStatus } = useStatus()
 
   if (isLoading) {
     return <Empty children={<Loader />} />
@@ -47,16 +43,6 @@ const List: FC = () => {
 
   if (data && data.length === 0) {
     return <Empty children={'Тренировок нет 🌱'} />
-  }
-
-  const updateStatus = (status: string): string => {
-    if (status === 'Запланировано') {
-      return 'В работе'
-    }
-    if (status === 'В работе') {
-      return 'Завершено'
-    }
-    return 'Запланировано'
   }
 
   return (
