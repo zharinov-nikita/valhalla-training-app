@@ -7,6 +7,7 @@ import { useAppDispatch } from '../../../../hooks/useAppDispatch'
 import { useAppSelector } from '../../../../hooks/useAppSelector'
 import { useForm } from '../../../../hooks/useForm'
 import { drawerSlice } from '../../../../redux/drawer/drawer.slice'
+import { appSlice } from '../../../../redux/app/app.slice'
 import { useFindByIdAndUpdateMutation } from '../../../../redux/workout/workout.service'
 import { workoutSlice } from '../../../../redux/workout/workout.slice'
 
@@ -27,6 +28,7 @@ const DrawerUpdate: FC = () => {
 
   const { title, description, status } = formUpdate
   const { disabled } = useForm([title, description, status])
+  const { unpin } = appSlice.actions
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     dispatch(
@@ -99,7 +101,10 @@ const DrawerUpdate: FC = () => {
           block: true,
           disabled,
           type: 'warning',
-          onClick: () => update(formUpdate),
+          onClick: () => {
+            update(formUpdate)
+            dispatch(unpin())
+          },
         }}
       />
     </List>
