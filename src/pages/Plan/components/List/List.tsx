@@ -12,9 +12,8 @@ import {
   useFindByIdAndDeleteMutation,
 } from '../../../../redux/plan/plan.service'
 import { updateFormUpdate } from '../../../../redux/plan/plan.slice'
-import DrawerCreate from '../../components/Drawer/DrawerCreate'
-import DrawerUpdate from '../../components/Drawer/DrawerUpdate'
 import css from './List.module.scss'
+import Empty from '../../../../components/Empty/Empty'
 
 const List: FC = () => {
   const pollingInterval = Number(process.env['REACT_APP_POLLING_INTERVAL'])
@@ -24,7 +23,6 @@ const List: FC = () => {
   const [findByIdAndDelete, {}] = useFindByIdAndDeleteMutation()
   const dispatch = useAppDispatch()
   const { show } = drawerSlice.actions
-  const { action } = useAppSelector((state) => state.drawer)
   const { fix } = appSlice.actions
 
   if (isLoading) {
@@ -36,7 +34,7 @@ const List: FC = () => {
   }
 
   if (data && data.length === 0) {
-    return <>Планов нет</>
+    return <Empty />
   }
 
   const updateStatus = (status: string): string => {
@@ -75,22 +73,6 @@ const List: FC = () => {
             }}
           />
         ))}
-
-      <AffixButton
-        props={{
-          title: 'Новый план',
-          onClick: () => dispatch(show('create')),
-        }}
-      />
-
-      <Drawer
-        children={
-          <React.Fragment>
-            {action === 'update' && <DrawerUpdate />}
-            {action === 'create' && <DrawerCreate />}
-          </React.Fragment>
-        }
-      />
     </div>
   )
 }
