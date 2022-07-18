@@ -25,6 +25,8 @@ body {
 }
 
 a {
+    color: var(--color-primary-1);
+
     &:active,
     &:hover,
     &:focus {
