@@ -1,10 +1,7 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 import { useLocation } from 'react-router-dom'
-import AffixButton from '../../../../components/AffixButton/AffixButton'
-import Drawer from '../../../../components/Drawer/Drawer'
 import Info from '../../../../components/Info/Info'
 import { useAppDispatch } from '../../../../hooks/useAppDispatch'
-import { useAppSelector } from '../../../../hooks/useAppSelector'
 import { drawerSlice } from '../../../../redux/drawer/drawer.slice'
 import { appSlice } from '../../../../redux/app/app.slice'
 import {
@@ -13,9 +10,10 @@ import {
   useFindByFieldQuery,
 } from '../../../../redux/day/day.service'
 import { updateFormUpdate } from '../../../../redux/day/day.slice'
-import DrawerCreate from '../../components/Drawer/DrawerCreate'
-import DrawerUpdate from '../../components/Drawer/DrawerUpdate'
 import css from './List.module.scss'
+import Empty from '../../../../components/Empty/Empty'
+import Loader from '../../../../components/Loader/Loader'
+import { useStatus } from '../../../../hooks/useStatus'
 
 const List: FC = () => {
   const { search } = useLocation()
@@ -29,29 +27,21 @@ const List: FC = () => {
   const [findByIdAndUpdate, {}] = useFindByIdAndUpdateMutation()
   const [findByIdAndDelete, {}] = useFindByIdAndDeleteMutation()
   const dispatch = useAppDispatch()
+
   const { show } = drawerSlice.actions
-  const { action } = useAppSelector((state) => state.drawer)
+  const { updateStatus } = useStatus()
   const { fix } = appSlice.actions
+
   if (isLoading) {
-    return <>Загрузка...</>
+    return <Empty children={<Loader />} />
   }
 
   if (isError) {
-    return <>Ошибка</>
+    return <Empty children={'Произошла ошибка'} />
   }
 
   if (data && data.length === 0) {
-    return <>Дней нет</>
-  }
-
-  const updateStatus = (status: string): string => {
-    if (status === 'Запланировано') {
-      return 'В работе'
-    }
-    if (status === 'В работе') {
-      return 'Завершено'
-    }
-    return 'Запланировано'
+    return <Empty children={'Дней нет 🌱'} />
   }
 
   return (
@@ -80,22 +70,6 @@ const List: FC = () => {
             }}
           />
         ))}
-
-      <AffixButton
-        props={{
-          title: 'Новый день',
-          onClick: () => dispatch(show('create')),
-        }}
-      />
-
-      <Drawer
-        children={
-          <React.Fragment>
-            {action === 'update' && <DrawerUpdate />}
-            {action === 'create' && <DrawerCreate />}
-          </React.Fragment>
-        }
-      />
     </div>
   )
 }

@@ -16,6 +16,9 @@ import { updateFormUpdate } from '../../../../redux/period/period.slice'
 import DrawerCreate from '../../components/Drawer/DrawerCreate'
 import DrawerUpdate from '../../components/Drawer/DrawerUpdate'
 import css from './List.module.scss'
+import Empty from '../../../../components/Empty/Empty'
+import Loader from '../../../../components/Loader/Loader'
+import { useStatus } from '../../../../hooks/useStatus'
 
 const List: FC = () => {
   const { search } = useLocation()
@@ -29,29 +32,21 @@ const List: FC = () => {
   const [findByIdAndUpdate, {}] = useFindByIdAndUpdateMutation()
   const [findByIdAndDelete, {}] = useFindByIdAndDeleteMutation()
   const dispatch = useAppDispatch()
+
   const { show } = drawerSlice.actions
-  const { action } = useAppSelector((state) => state.drawer)
   const { fix } = appSlice.actions
+  const { updateStatus } = useStatus()
+
   if (isLoading) {
-    return <>Загрузка...</>
+    return <Empty children={<Loader />} />
   }
 
   if (isError) {
-    return <>Ошибка</>
+    return <Empty children={'Произошла ошибка'} />
   }
 
   if (data && data.length === 0) {
-    return <>Периодов нет</>
-  }
-
-  const updateStatus = (status: string): string => {
-    if (status === 'Запланировано') {
-      return 'В работе'
-    }
-    if (status === 'В работе') {
-      return 'Завершено'
-    }
-    return 'Запланировано'
+    return <Empty children={'Периодов нет 🌱'} />
   }
 
   return (
@@ -80,22 +75,6 @@ const List: FC = () => {
             }}
           />
         ))}
-
-      <AffixButton
-        props={{
-          title: 'Новый период',
-          onClick: () => dispatch(show('create')),
-        }}
-      />
-
-      <Drawer
-        children={
-          <React.Fragment>
-            {action === 'update' && <DrawerUpdate />}
-            {action === 'create' && <DrawerCreate />}
-          </React.Fragment>
-        }
-      />
     </div>
   )
 }
