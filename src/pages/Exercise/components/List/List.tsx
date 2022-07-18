@@ -1,13 +1,10 @@
 import React, { FC } from 'react'
 import { useLocation } from 'react-router-dom'
-import AffixButton from '../../../../components/AffixButton/AffixButton'
 import Approach from '../../../../components/Approach/Approach'
 import ApproachList from '../../../../components/Approach/ApproachList'
-import Drawer from '../../../../components/Drawer/Drawer'
 import Info from '../../../../components/Info/Info'
 import Property from '../../../../components/Property/Property'
 import { useAppDispatch } from '../../../../hooks/useAppDispatch'
-import { useAppSelector } from '../../../../hooks/useAppSelector'
 import { drawerSlice } from '../../../../redux/drawer/drawer.slice'
 import { appSlice } from '../../../../redux/app/app.slice'
 import {
@@ -16,11 +13,10 @@ import {
   useFindByFieldQuery,
 } from '../../../../redux/exercise/exercise.service'
 import { updateFormUpdate } from '../../../../redux/exercise/exercise.slice'
-import DrawerCreate from '../../components/Drawer/DrawerCreate'
-import DrawerUpdate from '../../components/Drawer/DrawerUpdate'
 import css from './List.module.scss'
 import Loader from '../../../../components/Loader/Loader'
 import Empty from '../../../../components/Empty/Empty'
+import { useStatus } from '../../../../hooks/useStatus'
 
 const List: FC = () => {
   const { search } = useLocation()
@@ -35,9 +31,10 @@ const List: FC = () => {
   const [findByIdAndDelete, {}] = useFindByIdAndDeleteMutation()
 
   const dispatch = useAppDispatch()
+
   const { show } = drawerSlice.actions
-  const { action } = useAppSelector((state) => state.drawer)
   const { fix } = appSlice.actions
+  const { updateStatus } = useStatus()
 
   if (isLoading) {
     return <Empty children={<Loader />} />
@@ -49,16 +46,6 @@ const List: FC = () => {
 
   if (data && data.length === 0) {
     return <Empty children={'Упражнений нет 🌱'} />
-  }
-
-  const updateStatus = (status: string): string => {
-    if (status === 'Запланировано') {
-      return 'В работе'
-    }
-    if (status === 'В работе') {
-      return 'Завершено'
-    }
-    return 'Запланировано'
   }
 
   return (
