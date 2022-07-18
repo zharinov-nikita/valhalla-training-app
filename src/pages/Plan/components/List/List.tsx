@@ -12,6 +12,7 @@ import { updateFormUpdate } from '../../../../redux/plan/plan.slice'
 import css from './List.module.scss'
 import Empty from '../../../../components/Empty/Empty'
 import Loader from '../../../../components/Loader/Loader'
+import { useStatus } from '../../../../hooks/useStatus'
 
 const List: FC = () => {
   const pollingInterval = Number(process.env['REACT_APP_POLLING_INTERVAL'])
@@ -20,8 +21,10 @@ const List: FC = () => {
   const [findByIdAndUpdate, {}] = useFindByIdAndUpdateMutation()
   const [findByIdAndDelete, {}] = useFindByIdAndDeleteMutation()
   const dispatch = useAppDispatch()
+
   const { show } = drawerSlice.actions
   const { fix } = appSlice.actions
+  const { updateStatus } = useStatus()
 
   if (isLoading) {
     return <Empty children={<Loader />} />
@@ -33,16 +36,6 @@ const List: FC = () => {
 
   if (data && data.length === 0) {
     return <Empty children={'Планов нет 🌱'} />
-  }
-
-  const updateStatus = (status: string): string => {
-    if (status === 'Запланировано') {
-      return 'В работе'
-    }
-    if (status === 'В работе') {
-      return 'Завершено'
-    }
-    return 'Запланировано'
   }
 
   return (
