@@ -18,6 +18,7 @@ import DrawerUpdate from '../../components/Drawer/DrawerUpdate'
 import css from './List.module.scss'
 import Empty from '../../../../components/Empty/Empty'
 import Loader from '../../../../components/Loader/Loader'
+import { useStatus } from '../../../../hooks/useStatus'
 
 const List: FC = () => {
   const { search } = useLocation()
@@ -31,9 +32,10 @@ const List: FC = () => {
   const [findByIdAndUpdate, {}] = useFindByIdAndUpdateMutation()
   const [findByIdAndDelete, {}] = useFindByIdAndDeleteMutation()
   const dispatch = useAppDispatch()
+
   const { show } = drawerSlice.actions
-  const { action } = useAppSelector((state) => state.drawer)
   const { fix } = appSlice.actions
+  const { updateStatus } = useStatus()
 
   if (isLoading) {
     return <Empty children={<Loader />} />
@@ -45,16 +47,6 @@ const List: FC = () => {
 
   if (data && data.length === 0) {
     return <Empty children={'Периодов нет 🌱'} />
-  }
-
-  const updateStatus = (status: string): string => {
-    if (status === 'Запланировано') {
-      return 'В работе'
-    }
-    if (status === 'В работе') {
-      return 'Завершено'
-    }
-    return 'Запланировано'
   }
 
   return (
