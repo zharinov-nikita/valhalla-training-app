@@ -28,7 +28,16 @@
     }
 
     &[data-type="secondary"] {
-        background-color: var(--background-color-primary-3);
+        background-color: var(--background-color-primary-1);
+        border: 1px solid var(--background-color-primary-4);
+
+        & * {
+            color: var(--color-primary-4);
+        }
+    }
+
+    &[data-type="primary"] {
+        background-color: var(--background-color-primary-1);
         border: 1px solid var(--background-color-primary-4);
 
         & * {

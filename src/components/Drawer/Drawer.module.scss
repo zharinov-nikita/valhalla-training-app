@@ -9,6 +9,7 @@
     height: 100vh;
     width: 100%;
     background-color: rgba(38, 38, 38, 0.7);
+    backdrop-filter: blur(5px);
     z-index: 9999;
     & .container {
         width: 480px;
