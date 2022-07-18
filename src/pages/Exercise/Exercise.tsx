@@ -4,6 +4,7 @@ import Drawer from '../../components/Drawer/Drawer'
 import { useAppDispatch } from '../../hooks/useAppDispatch'
 import { useAppSelector } from '../../hooks/useAppSelector'
 import { drawerSlice } from '../../redux/drawer/drawer.slice'
+import { appSlice } from '../../redux/app/app.slice'
 import DrawerCreate from './components/Drawer/DrawerCreate'
 import DrawerUpdate from './components/Drawer/DrawerUpdate'
 import List from './components/List/List'
@@ -12,6 +13,7 @@ const Exercise: FC = () => {
   const dispatch = useAppDispatch()
   const { show } = drawerSlice.actions
   const { action } = useAppSelector((state) => state.drawer)
+  const { fix } = appSlice.actions
 
   return (
     <React.Fragment>
@@ -19,7 +21,10 @@ const Exercise: FC = () => {
       <AffixButton
         props={{
           title: 'Новое упражнение',
-          onClick: () => dispatch(show('create')),
+          onClick: () => {
+            dispatch(show('create'))
+            dispatch(fix())
+          },
         }}
       />
       <Drawer

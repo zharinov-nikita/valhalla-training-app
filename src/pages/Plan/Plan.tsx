@@ -3,6 +3,7 @@ import AffixButton from '../../components/AffixButton/AffixButton'
 import Drawer from '../../components/Drawer/Drawer'
 import { useAppDispatch } from '../../hooks/useAppDispatch'
 import { useAppSelector } from '../../hooks/useAppSelector'
+import { appSlice } from '../../redux/app/app.slice'
 import { drawerSlice } from '../../redux/drawer/drawer.slice'
 import DrawerCreate from './components/Drawer/DrawerCreate'
 import DrawerUpdate from './components/Drawer/DrawerUpdate'
@@ -12,6 +13,7 @@ const Plan: FC = () => {
   const dispatch = useAppDispatch()
   const { show } = drawerSlice.actions
   const { action } = useAppSelector((state) => state.drawer)
+  const { fix } = appSlice.actions
 
   return (
     <React.Fragment>
@@ -19,7 +21,10 @@ const Plan: FC = () => {
       <AffixButton
         props={{
           title: 'Новый план',
-          onClick: () => dispatch(show('create')),
+          onClick: () => {
+            dispatch(show('create'))
+            dispatch(fix())
+          },
         }}
       />
       <Drawer

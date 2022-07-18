@@ -5,6 +5,7 @@ import Info from '../../../../components/Info/Info'
 import { useAppDispatch } from '../../../../hooks/useAppDispatch'
 import { useAppSelector } from '../../../../hooks/useAppSelector'
 import { drawerSlice } from '../../../../redux/drawer/drawer.slice'
+import { appSlice } from '../../../../redux/app/app.slice'
 import {
   useFindQuery,
   useFindByIdAndUpdateMutation,
@@ -24,6 +25,7 @@ const List: FC = () => {
   const dispatch = useAppDispatch()
   const { show } = drawerSlice.actions
   const { action } = useAppSelector((state) => state.drawer)
+  const { fix } = appSlice.actions
 
   if (isLoading) {
     return <>Загрузка...</>
@@ -58,6 +60,7 @@ const List: FC = () => {
               onClickDrawer: () => {
                 dispatch(updateFormUpdate(item))
                 dispatch(show('update'))
+                dispatch(fix())
               },
               onClickDelete: () => findByIdAndDelete(item),
             }}
