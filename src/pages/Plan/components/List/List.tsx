@@ -1,9 +1,6 @@
-import React, { FC, useState } from 'react'
-import AffixButton from '../../../../components/AffixButton/AffixButton'
-import Drawer from '../../../../components/Drawer/Drawer'
+import { FC } from 'react'
 import Info from '../../../../components/Info/Info'
 import { useAppDispatch } from '../../../../hooks/useAppDispatch'
-import { useAppSelector } from '../../../../hooks/useAppSelector'
 import { drawerSlice } from '../../../../redux/drawer/drawer.slice'
 import { appSlice } from '../../../../redux/app/app.slice'
 import {
@@ -14,6 +11,7 @@ import {
 import { updateFormUpdate } from '../../../../redux/plan/plan.slice'
 import css from './List.module.scss'
 import Empty from '../../../../components/Empty/Empty'
+import Loader from '../../../../components/Loader/Loader'
 
 const List: FC = () => {
   const pollingInterval = Number(process.env['REACT_APP_POLLING_INTERVAL'])
@@ -26,15 +24,15 @@ const List: FC = () => {
   const { fix } = appSlice.actions
 
   if (isLoading) {
-    return <>Загрузка...</>
+    return <Empty children={<Loader />} />
   }
 
   if (isError) {
-    return <>Ошибка</>
+    return <Empty children={'Произошла ошибка'} />
   }
 
   if (data && data.length === 0) {
-    return <Empty />
+    return <Empty children={'Планов нет'} />
   }
 
   const updateStatus = (status: string): string => {
