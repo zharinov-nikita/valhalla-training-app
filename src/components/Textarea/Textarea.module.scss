@@ -10,7 +10,12 @@
     border-radius: 8px;
     color: var(--color-primary-1);
     background-color: var(--background-color-primary-2);
+
     &::placeholder {
         color: var(--color-primary-7);
+    }
+
+    &:focus {
+        border: 2px solid $yellow-7;
     }
 }

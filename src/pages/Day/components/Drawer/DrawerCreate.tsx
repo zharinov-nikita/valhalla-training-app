@@ -102,6 +102,7 @@ const DrawerCreate: FC = () => {
           text: 'Создать день',
           block: true,
           disabled,
+          type: 'warning',
           onClick: () => create({ ...formCreate, cycleId }),
         }}
       />

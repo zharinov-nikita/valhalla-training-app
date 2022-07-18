@@ -36,9 +36,19 @@
         }
     }
 
+    &[data-type="warning"] {
+        background-color: $yellow-7;
+        border: 1px solid $yellow-7;
+
+        & * {
+            color: var(--color-primary-4);
+        }
+    }
+
     &:disabled {
         cursor: no-drop;
         background-color: var(--background-color-primary-2);
+        border: 0;
 
         & * {
             color: var(--color-primary-8);
