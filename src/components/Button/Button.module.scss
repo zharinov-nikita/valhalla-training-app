@@ -9,7 +9,7 @@
     gap: 4px;
     border-radius: 8px;
     padding: 12px 16px;
-    background-color: $gray-10;
+    background-color: var(--background-color-primary-2);
 
     & > * {
         color: $gray-1;
@@ -28,20 +28,20 @@
     }
 
     &[data-type="secondary"] {
-        background-color: $gray-1;
-        border: 1px solid $gray-6;
+        background-color: var(--background-color-primary-3);
+        border: 1px solid var(--background-color-primary-4);
 
         & * {
-            color: $gray-6;
+            color: var(--color-primary-4);
         }
     }
 
     &:disabled {
         cursor: no-drop;
-        background-color: $gray-4;
+        background-color: var(--background-color-primary-3);
 
         & * {
-            color: $gray-5;
+            color: var(--color-primary-7);
         }
     }
 }
