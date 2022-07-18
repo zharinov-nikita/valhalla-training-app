@@ -2,7 +2,6 @@ import { FC } from 'react'
 import { useLocation } from 'react-router-dom'
 import Info from '../../../../components/Info/Info'
 import { useAppDispatch } from '../../../../hooks/useAppDispatch'
-import { useAppSelector } from '../../../../hooks/useAppSelector'
 import { drawerSlice } from '../../../../redux/drawer/drawer.slice'
 import { appSlice } from '../../../../redux/app/app.slice'
 import {
@@ -14,6 +13,7 @@ import { updateFormUpdate } from '../../../../redux/day/day.slice'
 import css from './List.module.scss'
 import Empty from '../../../../components/Empty/Empty'
 import Loader from '../../../../components/Loader/Loader'
+import { useStatus } from '../../../../hooks/useStatus'
 
 const List: FC = () => {
   const { search } = useLocation()
@@ -27,8 +27,9 @@ const List: FC = () => {
   const [findByIdAndUpdate, {}] = useFindByIdAndUpdateMutation()
   const [findByIdAndDelete, {}] = useFindByIdAndDeleteMutation()
   const dispatch = useAppDispatch()
+
   const { show } = drawerSlice.actions
-  const { action } = useAppSelector((state) => state.drawer)
+  const { updateStatus } = useStatus()
   const { fix } = appSlice.actions
 
   if (isLoading) {
@@ -41,16 +42,6 @@ const List: FC = () => {
 
   if (data && data.length === 0) {
     return <Empty children={'Дней нет 🌱'} />
-  }
-
-  const updateStatus = (status: string): string => {
-    if (status === 'Запланировано') {
-      return 'В работе'
-    }
-    if (status === 'В работе') {
-      return 'Завершено'
-    }
-    return 'Запланировано'
   }
 
   return (
