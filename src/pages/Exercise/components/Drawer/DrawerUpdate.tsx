@@ -8,6 +8,7 @@ import Textarea from '../../../../components/Textarea/Textarea'
 import { useAppDispatch } from '../../../../hooks/useAppDispatch'
 import { useAppSelector } from '../../../../hooks/useAppSelector'
 import { useForm } from '../../../../hooks/useForm'
+import { appSlice } from '../../../../redux/app/app.slice'
 import { drawerSlice } from '../../../../redux/drawer/drawer.slice'
 import { useFindByIdAndUpdateMutation } from '../../../../redux/exercise/exercise.service'
 import { exerciseSlice } from '../../../../redux/exercise/exercise.slice'
@@ -27,7 +28,9 @@ const DrawerUpdate: FC = () => {
     deleteOptionFormUpdate,
     addOptionFormUpdate,
   } = exerciseSlice.actions
+
   const { hide } = drawerSlice.actions
+  const { unpin } = appSlice.actions
 
   const { title, description, status } = formUpdate
   const options = formUpdate.option.map((item) => {
@@ -136,10 +139,14 @@ const DrawerUpdate: FC = () => {
 
       <Button
         props={{
+          text: 'Обновить упражнение',
           block: true,
           disabled,
           type: 'warning',
-          onClick: () => update({ ...formUpdate, workoutId }),
+          onClick: () => {
+            update({ ...formUpdate, workoutId })
+            dispatch(unpin())
+          },
         }}
       />
     </List>

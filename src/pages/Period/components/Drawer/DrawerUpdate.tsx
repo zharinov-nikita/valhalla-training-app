@@ -7,6 +7,7 @@ import { useAppDispatch } from '../../../../hooks/useAppDispatch'
 import { useAppSelector } from '../../../../hooks/useAppSelector'
 import { useForm } from '../../../../hooks/useForm'
 import { drawerSlice } from '../../../../redux/drawer/drawer.slice'
+import { appSlice } from '../../../../redux/app/app.slice'
 import { useFindByIdAndUpdateMutation } from '../../../../redux/period/period.service'
 import { periodSlice } from '../../../../redux/period/period.slice'
 
@@ -23,7 +24,9 @@ const DrawerUpdate: FC = () => {
   const dispatch = useAppDispatch()
   const { formUpdate } = useAppSelector((state) => state.period)
   const { updateFormUpdate, clearFormUpdate } = periodSlice.actions
+
   const { hide } = drawerSlice.actions
+  const { unpin } = appSlice.actions
 
   const { title, description, start, finish, status } = formUpdate
   const { disabled } = useForm([title, description, start, finish, status])
@@ -109,10 +112,14 @@ const DrawerUpdate: FC = () => {
       ))}
       <Button
         props={{
+          text: 'Обновить период',
           block: true,
           disabled,
           type: 'warning',
-          onClick: () => update(formUpdate),
+          onClick: () => {
+            update(formUpdate)
+            dispatch(unpin())
+          },
         }}
       />
     </List>

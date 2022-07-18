@@ -8,6 +8,7 @@ import Textarea from '../../../../components/Textarea/Textarea'
 import { useAppDispatch } from '../../../../hooks/useAppDispatch'
 import { useAppSelector } from '../../../../hooks/useAppSelector'
 import { useForm } from '../../../../hooks/useForm'
+import { appSlice } from '../../../../redux/app/app.slice'
 import { drawerSlice } from '../../../../redux/drawer/drawer.slice'
 import { useCreateMutation } from '../../../../redux/exercise/exercise.service'
 import { exerciseSlice } from '../../../../redux/exercise/exercise.slice'
@@ -26,7 +27,9 @@ const DrawerCreate: FC = () => {
     deleteOptionFormCreate,
     addOptionFormCreate,
   } = exerciseSlice.actions
+
   const { hide } = drawerSlice.actions
+  const { unpin } = appSlice.actions
 
   const { title, description, status } = formCreate
   const options = formCreate.option.map((item) => {
@@ -139,7 +142,10 @@ const DrawerCreate: FC = () => {
           block: true,
           disabled,
           type: 'warning',
-          onClick: () => create({ ...formCreate, workoutId }),
+          onClick: () => {
+            create({ ...formCreate, workoutId })
+            dispatch(unpin())
+          },
         }}
       />
     </List>

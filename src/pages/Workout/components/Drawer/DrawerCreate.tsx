@@ -8,6 +8,7 @@ import { useAppDispatch } from '../../../../hooks/useAppDispatch'
 import { useAppSelector } from '../../../../hooks/useAppSelector'
 import { useForm } from '../../../../hooks/useForm'
 import { drawerSlice } from '../../../../redux/drawer/drawer.slice'
+import { appSlice } from '../../../../redux/app/app.slice'
 import { useCreateMutation } from '../../../../redux/workout/workout.service'
 import { workoutSlice } from '../../../../redux/workout/workout.slice'
 
@@ -31,6 +32,7 @@ const DrawerCreate: FC = () => {
 
   const { title, description, status } = formCreate
   const { disabled } = useForm([title, description, status])
+  const { unpin } = appSlice.actions
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     dispatch(
@@ -103,7 +105,11 @@ const DrawerCreate: FC = () => {
           block: true,
           disabled,
           type: 'warning',
-          onClick: () => create({ ...formCreate, dayId }),
+
+          onClick: () => {
+            create({ ...formCreate, dayId })
+            dispatch(unpin())
+          },
         }}
       />
     </List>
