@@ -14,7 +14,7 @@ import Modal from './components/Modal/Modal'
 
 const App: FC = () => {
   return (
-    <div className="app" data-theme={'dark'}>
+    <div className="app" data-theme={'dark'} data-fixed={true}>
       <div className="app__container">
         <Header />
         <Menu />

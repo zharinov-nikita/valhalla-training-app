@@ -51,4 +51,12 @@ a {
         padding-bottom: 84px;
         padding-top: 68px;
     }
+
+    &[data-fixed="true"] {
+        overflow-y: hidden;
+    }
+
+    &[data-fixed="false"] {
+        overflow-y: scroll;
+    }
 }
