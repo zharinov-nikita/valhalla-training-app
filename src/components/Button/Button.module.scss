@@ -9,10 +9,10 @@
     gap: 4px;
     border-radius: 8px;
     padding: 12px 16px;
-    background-color: var(--background-color-primary-2);
+    background-color: var(--background-color-primary-1);
 
     & > * {
-        color: $gray-1;
+        color: var(--color-primary-1);
         font-size: 14px;
     }
 
@@ -28,16 +28,7 @@
     }
 
     &[data-type="secondary"] {
-        background-color: var(--background-color-primary-1);
-        border: 1px solid var(--background-color-primary-4);
-
-        & * {
-            color: var(--color-primary-4);
-        }
-    }
-
-    &[data-type="primary"] {
-        background-color: var(--background-color-primary-1);
+        background-color: var(--background-color-primary-3);
         border: 1px solid var(--background-color-primary-4);
 
         & * {
@@ -47,10 +38,11 @@
 
     &:disabled {
         cursor: no-drop;
-        background-color: var(--background-color-primary-3);
+        background-color: var(--background-color-primary-2);
+        border: 1px solid var(--background-color-primary-4);
 
         & * {
-            color: var(--color-primary-7);
+            color: var(--color-primary-8);
         }
     }
 }
