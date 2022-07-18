@@ -32,7 +32,7 @@ const List: FC = () => {
   }
 
   if (data && data.length === 0) {
-    return <Empty children={'Планов нет'} />
+    return <Empty children={'Планов нет 🌱'} />
   }
 
   const updateStatus = (status: string): string => {
