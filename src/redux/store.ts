@@ -1,6 +1,7 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
 
 // slice
+import appReducer from './app/app.slice'
 import headerReducer from './header/header.slice'
 import drawerReducer from './drawer/drawer.slice'
 import menuReducer from './menu/menu.slice'
@@ -21,6 +22,7 @@ import { exerciseApi } from './exercise/exercise.service'
 
 const rootReducer = combineReducers({
   // slice
+  app: appReducer,
   header: headerReducer,
   drawer: drawerReducer,
   menu: menuReducer,
