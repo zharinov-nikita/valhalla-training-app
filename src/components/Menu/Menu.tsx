@@ -91,7 +91,7 @@ const Menu: FC = () => {
             target={'_blank'}
             className={css.version}
           >
-            v2.2.2
+            v2.3.2
           </a>
           <div className={css.tag}>latest</div>
         </div>
