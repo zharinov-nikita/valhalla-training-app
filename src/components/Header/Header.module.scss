@@ -10,7 +10,7 @@
     margin: 0px auto;
     z-index: 999;
     & .wrapper {
-        background-color: $gray-4;
+        background-color: var(--background-color-primary-2);
         height: 48px;
         display: flex;
         align-items: center;
@@ -27,7 +27,7 @@
     }
 
     & > * {
-        color: $gray-10;
+        color: var(--color-primary-2);
         font-weight: 500;
     }
 }
