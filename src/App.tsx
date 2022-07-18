@@ -1,5 +1,6 @@
-import { FC, useEffect } from 'react'
+import { FC } from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
+import './scss/index.scss'
 
 import Header from './components/Header/Header'
 import Plan from './pages/Plan/Plan'
@@ -13,7 +14,7 @@ import Modal from './components/Modal/Modal'
 
 const App: FC = () => {
   return (
-    <div className="app">
+    <div className="app" data-theme={'dark'}>
       <div className="app__container">
         <Header />
         <Menu />

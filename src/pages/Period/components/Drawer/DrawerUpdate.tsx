@@ -109,9 +109,9 @@ const DrawerUpdate: FC = () => {
       ))}
       <Button
         props={{
-          text: 'Обновить период',
           block: true,
           disabled,
+          type: 'warning',
           onClick: () => update(formUpdate),
         }}
       />

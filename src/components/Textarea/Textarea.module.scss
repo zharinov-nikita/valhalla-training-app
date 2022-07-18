@@ -6,10 +6,17 @@
     resize: none;
     display: flex;
     padding: 12px 16px;
-    border: 1px solid $gray-5;
+    border: 2px solid var(--background-color-primary-3);
     border-radius: 8px;
-    color: $gray-10;
+    color: var(--color-primary-1);
+    background-color: var(--background-color-primary-2);
+
     &::placeholder {
-        color: $gray-5;
+        color: var(--color-primary-7);
+    }
+
+    &:focus {
+        border: 2px solid $blue-6;
+        background-color: var(--background-color-primary-1);
     }
 }

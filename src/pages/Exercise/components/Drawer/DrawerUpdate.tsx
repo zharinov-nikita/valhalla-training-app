@@ -136,9 +136,9 @@ const DrawerUpdate: FC = () => {
 
       <Button
         props={{
-          text: 'Обновить упражнение',
           block: true,
           disabled,
+          type: 'warning',
           onClick: () => update({ ...formUpdate, workoutId }),
         }}
       />

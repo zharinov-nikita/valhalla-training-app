@@ -98,6 +98,7 @@ const DrawerUpdate: FC = () => {
           text: 'Обновить тренировку',
           block: true,
           disabled,
+          type: 'warning',
           onClick: () => update(formUpdate),
         }}
       />
