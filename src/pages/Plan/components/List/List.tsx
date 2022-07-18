@@ -39,6 +39,16 @@ const List: FC = () => {
     return <>Планов нет</>
   }
 
+  const updateStatus = (status: string): string => {
+    if (status === 'Запланировано') {
+      return 'В работе'
+    }
+    if (status === 'В работе') {
+      return 'Завершено'
+    }
+    return 'Запланировано'
+  }
+
   return (
     <div className={css.list}>
       {data &&
@@ -54,8 +64,7 @@ const List: FC = () => {
               onClickStatus: () =>
                 findByIdAndUpdate({
                   ...item,
-                  status:
-                    item.status === 'Завершено' ? 'В работе' : 'Завершено',
+                  status: updateStatus(item.status),
                 }),
               onClickDrawer: () => {
                 dispatch(updateFormUpdate(item))
