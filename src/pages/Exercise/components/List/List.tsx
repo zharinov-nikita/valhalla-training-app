@@ -37,18 +37,6 @@ const List: FC = () => {
   const { fix } = appSlice.actions
   const { updateStatus } = useStatus()
 
-  if (isLoading) {
-    return <Empty children={<Loader />} />
-  }
-
-  if (isError) {
-    return <Empty children={'Произошла ошибка'} />
-  }
-
-  if (data && data.length === 0) {
-    return <Empty children={'Упражнений нет 🌱'} />
-  }
-
   const onClickStatus = (item: ExerciseType) => {
     findByIdAndUpdate({
       ...item,
@@ -70,6 +58,18 @@ const List: FC = () => {
       return option
     })
     findByIdAndUpdate({ ...item, option })
+  }
+
+  if (isLoading) {
+    return <Empty children={<Loader />} />
+  }
+
+  if (isError) {
+    return <Empty children={'Произошла ошибка'} />
+  }
+
+  if (data && data.length === 0) {
+    return <Empty children={'Упражнений нет 🌱'} />
   }
 
   return (
