@@ -16,6 +16,7 @@
     }
 
     &:focus {
-        border: 2px solid $yellow-7;
+        border: 2px solid $blue-6;
+        background-color: var(--background-color-primary-1);
     }
 }

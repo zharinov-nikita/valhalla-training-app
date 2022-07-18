@@ -54,7 +54,7 @@ const Info: FC<InfoPropsType> = ({ props }) => {
                 size: 'small',
                 type: 'secondary',
                 onClick: props.onClickDelete,
-                disabled: true,
+                disabled: false,
               }}
             />
           </div>

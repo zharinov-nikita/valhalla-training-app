@@ -2,6 +2,7 @@
 
 .info {
     background-color: var(--background-color-primary-2);
+    border: 1px solid var(--background-color-primary-3);
     display: flex;
     gap: 12px;
     border-radius: 8px;
@@ -52,10 +53,11 @@
     }
     & .body {
         width: 100%;
-        background-color: var(--background-color-primary-3);
-        color: var(--color-primary-5);
+        background-color: var(--background-color-primary-2);
+        color: var(--color-primary-7);
         padding: 8px;
         border-radius: 8px;
+        position: relative;
     }
     & .description {
         font-size: 12px;
