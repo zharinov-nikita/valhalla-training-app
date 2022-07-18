@@ -7,6 +7,7 @@ import Textarea from '../../../../components/Textarea/Textarea'
 import { useAppDispatch } from '../../../../hooks/useAppDispatch'
 import { useAppSelector } from '../../../../hooks/useAppSelector'
 import { useForm } from '../../../../hooks/useForm'
+import { appSlice } from '../../../../redux/app/app.slice'
 import { drawerSlice } from '../../../../redux/drawer/drawer.slice'
 import { useCreateMutation } from '../../../../redux/period/period.service'
 import { periodSlice } from '../../../../redux/period/period.slice'
@@ -27,7 +28,9 @@ const DrawerCreate: FC = () => {
   const dispatch = useAppDispatch()
   const { formCreate } = useAppSelector((state) => state.period)
   const { updateFormCreate, clearFormCreate } = periodSlice.actions
+
   const { hide } = drawerSlice.actions
+  const { unpin } = appSlice.actions
 
   const { title, description, start, finish, status } = formCreate
   const { disabled } = useForm([title, description, start, finish, status])
@@ -117,7 +120,10 @@ const DrawerCreate: FC = () => {
           block: true,
           disabled,
           type: 'warning',
-          onClick: () => create({ ...formCreate, planId }),
+          onClick: () => {
+            create({ ...formCreate, planId })
+            dispatch(unpin())
+          },
         }}
       />
     </List>
