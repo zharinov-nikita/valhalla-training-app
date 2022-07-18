@@ -1,14 +1,14 @@
 @import "../../scss/variables.scss";
 
 .info {
-    background-color: $gray-4;
+    background-color: var(--background-color-primary-2);
     display: flex;
     gap: 12px;
     border-radius: 8px;
     padding: 12px;
 
     & .left {
-        background-color: $gray-5;
+        background-color: var(--background-color-primary-3);
         width: 8px;
         border-radius: 8px;
     }
@@ -45,15 +45,15 @@
     & .title {
         font-size: 14px;
         font-weight: 500;
-        color: $gray-7;
+        color: var(--color-primary-5);
         display: flex;
         align-items: center;
         gap: 4px;
     }
     & .body {
         width: 100%;
-        background-color: $gray-3;
-        color: $gray-6;
+        background-color: var(--background-color-primary-3);
+        color: var(--color-primary-5);
         padding: 8px;
         border-radius: 8px;
     }
@@ -64,7 +64,7 @@
     }
     & .progress {
         position: relative;
-        background-color: $gray-5;
+        background-color: var(--background-color-primary-5);
         width: 100%;
         height: 8px;
         border-radius: 8px;
