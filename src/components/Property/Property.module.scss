@@ -1,7 +1,7 @@
 @import "../../scss/variables.scss";
 
 .property {
-    background-color: $gray-3;
+    background-color: var(--background-color-primary-2);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -10,7 +10,7 @@
 
     & .name {
         cursor: pointer;
-        color: $gray-6;
+        color: var(--color-primary-6);
         width: fit-content;
         display: inline-flex;
         align-items: center;
@@ -23,9 +23,9 @@
 
     & .value {
         cursor: pointer;
-        color: $gray-7;
-        border: 1px solid $gray-6;
-        background-color: $gray-5;
+        color: var(--color-primary-6);
+        border: 1px solid var(--background-color-primary-4);
+        background-color: var(--background-color-primary-3);
         width: fit-content;
         display: inline-flex;
         align-items: center;
