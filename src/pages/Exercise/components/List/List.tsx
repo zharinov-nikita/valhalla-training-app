@@ -11,6 +11,7 @@ import {
   useFindByIdAndUpdateMutation,
   useFindByIdAndDeleteMutation,
   useFindByFieldQuery,
+  ExerciseType,
 } from '../../../../redux/exercise/exercise.service'
 import { updateFormUpdate } from '../../../../redux/exercise/exercise.slice'
 import css from './List.module.scss'
@@ -48,6 +49,29 @@ const List: FC = () => {
     return <Empty children={'Упражнений нет 🌱'} />
   }
 
+  const onClickStatus = (item: ExerciseType) => {
+    findByIdAndUpdate({
+      ...item,
+      status: updateStatus(item.status),
+    })
+  }
+
+  const onClickDrawer = (item: ExerciseType) => {
+    dispatch(updateFormUpdate(item))
+    dispatch(show('update'))
+    dispatch(fix())
+  }
+
+  const onClickApproach = (item: ExerciseType, optionId: number) => {
+    const option = item.option.map((option) => {
+      if (option.id === optionId) {
+        option = { ...option, completed: !option.completed }
+      }
+      return option
+    })
+    findByIdAndUpdate({ ...item, option })
+  }
+
   return (
     <div className={css.list}>
       {data &&
@@ -59,38 +83,19 @@ const List: FC = () => {
                 description: item.description,
                 status: item.status,
                 progress: item.status === 'Завершено' ? 100 : 0,
-                onClickStatus: () =>
-                  findByIdAndUpdate({
-                    ...item,
-                    status: updateStatus(item.status),
-                  }),
-                onClickDrawer: () => {
-                  dispatch(updateFormUpdate(item))
-                  dispatch(show('update'))
-                  dispatch(fix())
-                },
+                onClickStatus: () => onClickStatus(item),
+                onClickDrawer: () => onClickDrawer(item),
                 onClickDelete: () => findByIdAndDelete(item),
               }}
             />
             <React.Fragment>
-              {item.title !== 'Бег' && (
+              {item.title !== 'Бег' && item.option.length > 0 && (
                 <ApproachList>
                   {item.option.map((option) => (
                     <React.Fragment key={option.id}>
                       <Approach
                         props={option}
-                        onClick={() => {
-                          const result = item.option.map((mapOption) => {
-                            if (mapOption.id === option.id) {
-                              mapOption = {
-                                ...mapOption,
-                                completed: !mapOption.completed,
-                              }
-                            }
-                            return mapOption
-                          })
-                          findByIdAndUpdate({ ...item, option: result })
-                        }}
+                        onClick={() => onClickApproach(item, option.id)}
                       />
                     </React.Fragment>
                   ))}
