@@ -5,6 +5,7 @@ import Info from '../../../../components/Info/Info'
 import { useAppDispatch } from '../../../../hooks/useAppDispatch'
 import { useAppSelector } from '../../../../hooks/useAppSelector'
 import { drawerSlice } from '../../../../redux/drawer/drawer.slice'
+import { appSlice } from '../../../../redux/app/app.slice'
 import {
   useFindQuery,
   useFindByIdAndUpdateMutation,
@@ -24,6 +25,7 @@ const List: FC = () => {
   const dispatch = useAppDispatch()
   const { show } = drawerSlice.actions
   const { action } = useAppSelector((state) => state.drawer)
+  const { fix } = appSlice.actions
 
   if (isLoading) {
     return <>Загрузка...</>
@@ -35,6 +37,16 @@ const List: FC = () => {
 
   if (data && data.length === 0) {
     return <>Планов нет</>
+  }
+
+  const updateStatus = (status: string): string => {
+    if (status === 'Запланировано') {
+      return 'В работе'
+    }
+    if (status === 'В работе') {
+      return 'Завершено'
+    }
+    return 'Запланировано'
   }
 
   return (
@@ -52,12 +64,12 @@ const List: FC = () => {
               onClickStatus: () =>
                 findByIdAndUpdate({
                   ...item,
-                  status:
-                    item.status === 'Завершено' ? 'В работе' : 'Завершено',
+                  status: updateStatus(item.status),
                 }),
               onClickDrawer: () => {
                 dispatch(updateFormUpdate(item))
                 dispatch(show('update'))
+                dispatch(fix())
               },
               onClickDelete: () => findByIdAndDelete(item),
             }}

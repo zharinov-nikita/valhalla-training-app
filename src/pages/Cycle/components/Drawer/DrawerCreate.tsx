@@ -116,6 +116,7 @@ const DrawerCreate: FC = () => {
           text: 'Создать цикл',
           block: true,
           disabled,
+          type: 'warning',
           onClick: () => create({ ...formCreate, periodId }),
         }}
       />

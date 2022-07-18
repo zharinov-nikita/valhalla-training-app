@@ -138,6 +138,7 @@ const DrawerCreate: FC = () => {
           text: 'Создать упражнение',
           block: true,
           disabled,
+          type: 'warning',
           onClick: () => create({ ...formCreate, workoutId }),
         }}
       />

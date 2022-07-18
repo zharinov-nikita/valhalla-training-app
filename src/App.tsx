@@ -1,5 +1,6 @@
-import { FC, useEffect } from 'react'
+import { FC } from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
+import './scss/index.scss'
 
 import Header from './components/Header/Header'
 import Plan from './pages/Plan/Plan'
@@ -10,10 +11,12 @@ import Workout from './pages/Workout/Workout'
 import Exercise from './pages/Exercise/Exercise'
 import Menu from './components/Menu/Menu'
 import Modal from './components/Modal/Modal'
+import { useAppSelector } from './hooks/useAppSelector'
 
 const App: FC = () => {
+  const { fixed } = useAppSelector((state) => state.app)
   return (
-    <div className="app">
+    <div className="app" data-theme={'dark'} data-fixed={fixed}>
       <div className="app__container">
         <Header />
         <Menu />

@@ -3,7 +3,6 @@ import App from './App'
 import { BrowserRouter } from 'react-router-dom'
 import { setupStore } from './redux/store'
 import { Provider } from 'react-redux'
-import './scss/index.scss'
 
 const store = setupStore()
 

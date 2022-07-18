@@ -10,40 +10,53 @@
         "Open Sans", "Helvetica Neue", sans-serif;
     font-size: 14px;
     text-decoration: none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 
     &:active,
     &:hover,
     &:focus {
         text-decoration: none;
         outline: none;
-    }
-}
-
-a {
-    color: $gray-10;
-    &:active,
-    &:hover,
-    &:focus {
-        text-decoration: none;
-        outline: none;
-        color: $gray-10;
     }
 }
 
 body {
-    background-color: $gray-1;
-    min-height: calc(100vh - 68px);
+    background-color: var(--background-color-primary-1);
+    color: var(--color-primary-1);
+}
+
+a {
+    color: var(--color-primary-1);
+
+    &:active,
+    &:hover,
+    &:focus {
+        text-decoration: none;
+        outline: none;
+    }
 }
 
 .app {
+    height: 100vh;
+    background-color: var(--background-color-primary-1);
+    color: var(--color-primary-1);
+
     &__container {
         width: 480px;
         max-width: 100%;
         margin: 0px auto;
     }
     &__wrapper {
-        margin-top: 68px;
         padding: 0px 16px;
-        padding-bottom: 74px;
+        padding-bottom: 84px;
+        padding-top: 68px;
+    }
+
+    &[data-fixed="true"] {
+        overflow-y: hidden;
+    }
+
+    &[data-fixed="false"] {
+        overflow-y: scroll;
     }
 }

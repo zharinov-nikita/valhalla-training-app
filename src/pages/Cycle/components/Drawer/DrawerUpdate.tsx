@@ -112,6 +112,7 @@ const DrawerUpdate: FC = () => {
           text: 'Обновить цикл',
           block: true,
           disabled,
+          type: 'warning',
           onClick: () => update(formUpdate),
         }}
       />

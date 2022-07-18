@@ -112,6 +112,7 @@ const DrawerCreate: FC = () => {
           text: 'Создать план',
           block: true,
           disabled,
+          type: 'warning',
           onClick: () => create(formCreate),
         }}
       />

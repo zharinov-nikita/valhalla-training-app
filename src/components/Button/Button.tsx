@@ -4,7 +4,7 @@ import css from './Button.module.scss'
 export type ButtonPropsType = {
   props: {
     size?: 'small' | 'defalut' | 'large'
-    type?: 'primary' | 'secondary'
+    type?: 'primary' | 'secondary' | 'warning'
     text?: string
     icon?: ReactNode
     block?: boolean
