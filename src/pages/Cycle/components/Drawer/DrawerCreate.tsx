@@ -10,6 +10,7 @@ import { drawerSlice } from '../../../../redux/drawer/drawer.slice'
 import { useCreateMutation } from '../../../../redux/cycle/cycle.service'
 import { cycleSlice } from '../../../../redux/cycle/cycle.slice'
 import { useForm } from '../../../../hooks/useForm'
+import { appSlice } from '../../../../redux/app/app.slice'
 
 type ItemFormType = {
   id: number
@@ -27,7 +28,9 @@ const DrawerCreate: FC = () => {
   const dispatch = useAppDispatch()
   const { formCreate } = useAppSelector((state) => state.cycle)
   const { updateFormCreate, clearFormCreate } = cycleSlice.actions
+
   const { hide } = drawerSlice.actions
+  const { unpin } = appSlice.actions
 
   const { title, description, start, finish, status } = formCreate
   const { disabled } = useForm([title, description, start, finish, status])
@@ -117,7 +120,10 @@ const DrawerCreate: FC = () => {
           block: true,
           disabled,
           type: 'warning',
-          onClick: () => create({ ...formCreate, periodId }),
+          onClick: () => {
+            create({ ...formCreate, periodId })
+            dispatch(unpin())
+          },
         }}
       />
     </List>

@@ -57,6 +57,6 @@ a {
     }
 
     &[data-fixed="false"] {
-        overflow-y: scroll;
+        overflow-y: auto;
     }
 }

@@ -9,6 +9,7 @@ import { drawerSlice } from '../../../../redux/drawer/drawer.slice'
 import { useFindByIdAndUpdateMutation } from '../../../../redux/day/day.service'
 import { daySlice } from '../../../../redux/day/day.slice'
 import { useForm } from '../../../../hooks/useForm'
+import { appSlice } from '../../../../redux/app/app.slice'
 
 type ItemFormType = {
   id: number
@@ -23,7 +24,9 @@ const DrawerUpdate: FC = () => {
   const dispatch = useAppDispatch()
   const { formUpdate } = useAppSelector((state) => state.day)
   const { updateFormUpdate, clearFormUpdate } = daySlice.actions
+
   const { hide } = drawerSlice.actions
+  const { unpin } = appSlice.actions
 
   const { title, description, status } = formUpdate
   const { disabled } = useForm([title, description, status])
@@ -99,7 +102,10 @@ const DrawerUpdate: FC = () => {
           block: true,
           disabled,
           type: 'warning',
-          onClick: () => update(formUpdate),
+          onClick: () => {
+            update(formUpdate)
+            dispatch(unpin())
+          },
         }}
       />
     </List>
