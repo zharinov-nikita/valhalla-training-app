@@ -5,6 +5,11 @@ const apiBaseUrl = process.env['REACT_APP_API_BASE_URL']
 const apiKey = process.env['REACT_APP_API_KEY']
 // API
 
+// user
+const login: string = localStorage.getItem('login') || ''
+const password: string = localStorage.getItem('password') || ''
+// user
+
 export type ExerciseType = {
   _id: string
   title: string
@@ -42,6 +47,8 @@ export const exerciseApi = createApi({
         url: `/exercise?workoutId=${_id}`,
         headers: {
           'api-key': apiKey,
+          login,
+          password,
         },
       }),
       providesTags: ['Exercise'],
@@ -52,6 +59,8 @@ export const exerciseApi = createApi({
         method: 'POST',
         headers: {
           'api-key': apiKey,
+          login,
+          password,
         },
         body: exercise,
       }),
@@ -63,6 +72,8 @@ export const exerciseApi = createApi({
         method: 'PATCH',
         headers: {
           'api-key': apiKey,
+          login,
+          password,
         },
         body: exercise,
       }),
@@ -75,6 +86,8 @@ export const exerciseApi = createApi({
         method: 'PATCH',
         headers: {
           'api-key': apiKey,
+          login,
+          password,
         },
         body: exercise,
       }),
@@ -86,6 +99,8 @@ export const exerciseApi = createApi({
         url: `/exercise/${exercise._id}`,
         headers: {
           'api-key': apiKey,
+          login,
+          password,
         },
         method: 'DELETE',
       }),
