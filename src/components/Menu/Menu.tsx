@@ -12,9 +12,12 @@ import { Link, useLocation } from 'react-router-dom'
 import { useAppDispatch } from '../../hooks/useAppDispatch'
 import { useAppSelector } from '../../hooks/useAppSelector'
 import { menuSlice } from '../../redux/menu/menu.slice'
+import { useFindQuery } from '../../redux/user/user.service'
 import css from './Menu.module.scss'
 
 const Menu: FC = () => {
+  const { data } = useFindQuery('')
+  const userId = data && data[data?.length - 1]._id
   const [click, setClick] = useState<number>(1)
   const dispatch = useAppDispatch()
   const { hide } = menuSlice.actions
@@ -43,7 +46,7 @@ const Menu: FC = () => {
             </div>
           </Link>
           <Link
-            to={'/plan'}
+            to={`/plan/?userId=${userId}`}
             onClick={() => setClick(Number(Date.now()))}
             className={css.item}
           >

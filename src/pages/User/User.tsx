@@ -13,10 +13,6 @@ const User: FC = () => {
     return <Empty children={<Loader />} />
   }
 
-  if (isError) {
-    return <Empty children={'Произошла ошибка'} />
-  }
-
   if (data && data.length === 0) {
     return <Empty children={'Упс 🌱'} />
   }
