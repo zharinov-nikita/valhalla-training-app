@@ -1,66 +1,26 @@
-import axios from 'axios'
-import { FC, useState } from 'react'
-import Button from '../../components/Button/Button'
-import Input from '../../components/Input/Input'
-import { UserType } from '../../redux/user/user.service'
-
-const apiKey: string = String(process.env['REACT_APP_API_KEY'])
-const apiBaseUrl: string = String(process.env['REACT_APP_API_BASE_URL'])
+import { FC } from 'react'
+import { useAppDispatch } from '../../hooks/useAppDispatch'
+import { useAppSelector } from '../../hooks/useAppSelector'
+import { appSlice } from '../../redux/app/app.slice'
 
 const Login: FC = () => {
-  const [isUser, setIsUser] = useState<{ login: string; password: string }>({
-    login: '',
-    password: '',
-  })
-
-  const auth = async () => {
-    try {
-      const user = await axios.get<UserType[]>(`${apiBaseUrl}/user`, {
-        headers: {
-          'api-key': apiKey,
-          login: isUser.login,
-          password: isUser.password,
-        },
-      })
-      if (user.data.length > 0) {
-        localStorage.setItem('login', String(isUser.login))
-        localStorage.setItem('password', String(isUser.password))
-        window.location.replace('/user')
-      }
-    } catch (e) {
-      console.log(e)
-    }
-  }
-
-  const onChange = (e: React.ChangeEvent<HTMLInputElement>) =>
-    setIsUser({ ...isUser, [e.target.name]: e.currentTarget.value })
-
+  const dispatch = useAppDispatch()
+  const { user } = useAppSelector((state) => state.app)
+  const { updateUser } = appSlice.actions
   return (
     <div>
-      <Input
-        props={{
-          name: 'login',
-          placeholder: 'login',
-          value: isUser.login,
-          onChange,
+      <button
+        onClick={() => {
+          localStorage.setItem('login', 'zharinov')
+          localStorage.setItem('password', 'password')
+          dispatch(
+            updateUser({ ...user, login: 'zharinov', password: 'password' })
+          )
+          window.location.replace('/user')
         }}
-      />
-      <Input
-        props={{
-          name: 'password',
-          placeholder: 'password',
-          value: isUser.password,
-          onChange,
-        }}
-      />
-      <Button
-        props={{
-          text: 'Авторизация',
-          block: true,
-          type: 'warning',
-          onClick: () => auth(),
-        }}
-      />
+      >
+        Login
+      </button>
     </div>
   )
 }

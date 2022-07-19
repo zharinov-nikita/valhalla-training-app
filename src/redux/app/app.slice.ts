@@ -1,20 +1,20 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createAction, createSlice } from '@reduxjs/toolkit'
 
 export type AppStateType = {
   fixed: boolean
   user: {
-    token: string
-    login: string
-    password: string
+    token: string | null
+    login: string | null
+    password: string | null
   }
 }
 
 const initialState: AppStateType = {
   fixed: false,
   user: {
-    token: localStorage.getItem('token') || '',
-    login: localStorage.getItem('login') || '',
-    password: localStorage.getItem('password') || '',
+    token: localStorage.getItem('token') || null,
+    login: localStorage.getItem('login') || null,
+    password: localStorage.getItem('password') || null,
   },
 }
 

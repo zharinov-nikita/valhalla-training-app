@@ -1,5 +1,6 @@
 import React, { FC } from 'react'
 import { Link } from 'react-router-dom'
+import { useAppSelector } from '../../hooks/useAppSelector'
 import { useFindQuery } from '../../redux/user/user.service'
 
 const User: FC = () => {

@@ -17,40 +17,47 @@ import Token from './pages/Token/Token'
 
 const App: FC = () => {
   const { fixed, user } = useAppSelector((state) => state.app)
-  return (
-    <div className="app" data-theme={'dark'} data-fixed={fixed}>
-      {user.token ? (
-        <div className="app__container">
-          <Header />
-          <Menu />
-          <div className="app__wrapper">
-            <Routes>
-              {user.login && user.password ? (
-                <>
-                  <Route path="/user" element={<User />} />
-                  <Route path="/plan" element={<Plan />} />
-                  <Route path="/period" element={<Period />} />
-                  <Route path="/cycle" element={<Cycle />} />
-                  <Route path="/day" element={<Day />} />
-                  <Route path="/workout" element={<Workout />} />
-                  <Route path="/exercise" element={<Exercise />} />
-                  <Route path="*" element={<Navigate to="/user" replace />} />
-                </>
-              ) : (
-                <>
-                  <Route path="/login" element={<Login />} />
-                  <Route path="*" element={<Navigate to="/login" replace />} />
-                </>
-              )}
-            </Routes>
-          </div>
-        </div>
-      ) : (
+
+  if (!user.token) {
+    return (
+      <div className="app" data-theme={'dark'} data-fixed={fixed}>
         <Routes>
           <Route path="/token" element={<Token />} />
           <Route path="*" element={<Navigate to="/token" replace />} />
         </Routes>
-      )}
+      </div>
+    )
+  }
+
+  if (!user.login && !user.password) {
+    return (
+      <div className="app" data-theme={'dark'} data-fixed={fixed}>
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="*" element={<Navigate to="/login" replace />} />
+        </Routes>
+      </div>
+    )
+  }
+
+  return (
+    <div className="app" data-theme={'dark'} data-fixed={fixed}>
+      <div className="app__container">
+        <Header />
+        <Menu />
+        <div className="app__wrapper">
+          <Routes>
+            <Route path="/user" element={<User />} />
+            <Route path="/plan" element={<Plan />} />
+            <Route path="/period" element={<Period />} />
+            <Route path="/cycle" element={<Cycle />} />
+            <Route path="/day" element={<Day />} />
+            <Route path="/workout" element={<Workout />} />
+            <Route path="/exercise" element={<Exercise />} />
+            <Route path="*" element={<Navigate to="/user" replace />} />
+          </Routes>
+        </div>
+      </div>
     </div>
   )
 }
