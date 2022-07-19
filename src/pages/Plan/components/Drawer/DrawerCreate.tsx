@@ -1,4 +1,5 @@
 import React, { FC, useEffect } from 'react'
+import { useLocation } from 'react-router-dom'
 import Button from '../../../../components/Button/Button'
 import Input from '../../../../components/Input/Input'
 import List from '../../../../components/List/List'
@@ -19,6 +20,9 @@ type ItemFormType = {
 }
 
 const DrawerCreate: FC = () => {
+  const { search } = useLocation()
+  const userId = search.split('userId=')[1]
+
   const [create, { isSuccess }] = useCreateMutation()
   const dispatch = useAppDispatch()
   const { formCreate } = useAppSelector((state) => state.plan)
@@ -113,7 +117,7 @@ const DrawerCreate: FC = () => {
           block: true,
           disabled,
           type: 'warning',
-          onClick: () => create(formCreate),
+          onClick: () => create({ ...formCreate, userId }),
         }}
       />
     </List>

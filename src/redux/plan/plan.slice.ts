@@ -7,7 +7,7 @@ export type PlanStateType = {
     start: string
     finish: string
     status: string
-    planId: string
+    userId: string
   }
   formUpdate: {
     _id: string
@@ -16,7 +16,7 @@ export type PlanStateType = {
     start: string
     finish: string
     status: string
-    planId: string
+    userId: string
   }
 }
 
@@ -27,7 +27,7 @@ const initialState: PlanStateType = {
     start: '',
     finish: '',
     status: '',
-    planId: '',
+    userId: '',
   },
   formUpdate: {
     _id: '',
@@ -36,7 +36,7 @@ const initialState: PlanStateType = {
     start: '',
     finish: '',
     status: '',
-    planId: '',
+    userId: '',
   },
 }
 

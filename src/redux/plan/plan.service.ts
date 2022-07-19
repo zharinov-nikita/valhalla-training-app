@@ -17,7 +17,7 @@ export type PlanType = {
   start: string
   finish: string
   status: string
-  planId: string
+  userId: string
 }
 
 export type PlanCreateType = {
@@ -26,6 +26,7 @@ export type PlanCreateType = {
   start: string
   finish: string
   status: string
+  userId: string
 }
 
 export const planApi = createApi({
