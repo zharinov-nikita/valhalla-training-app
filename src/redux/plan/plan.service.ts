@@ -5,6 +5,11 @@ const apiBaseUrl = process.env['REACT_APP_API_BASE_URL']
 const apiKey = process.env['REACT_APP_API_KEY']
 // API
 
+// user
+const login: string = localStorage.getItem('login') || ''
+const password: string = localStorage.getItem('password') || ''
+// user
+
 export type PlanType = {
   _id: string
   title: string
@@ -29,12 +34,12 @@ export const planApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: apiBaseUrl }),
   endpoints: (builder) => ({
     find: builder.query<PlanType[], string>({
-      query: () => ({
-        url: `/plan`,
+      query: (_id) => ({
+        url: `/plan/?userId=${_id}`,
         headers: {
           'api-key': apiKey,
-          login: 'zharinov-danil',
-          password: 'password',
+          login,
+          password,
         },
       }),
       providesTags: ['Plan'],
@@ -45,6 +50,8 @@ export const planApi = createApi({
         method: 'POST',
         headers: {
           'api-key': apiKey,
+          login,
+          password,
         },
         body: plan,
       }),
@@ -56,6 +63,8 @@ export const planApi = createApi({
         method: 'PATCH',
         headers: {
           'api-key': apiKey,
+          login,
+          password,
         },
         body: plan,
       }),
@@ -66,6 +75,8 @@ export const planApi = createApi({
         url: `/plan/${plan._id}`,
         headers: {
           'api-key': apiKey,
+          login,
+          password,
         },
         method: 'DELETE',
       }),

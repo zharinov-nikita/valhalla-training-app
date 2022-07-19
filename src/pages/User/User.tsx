@@ -9,7 +9,11 @@ const User: FC = () => {
     <div>
       <div></div>
       {data &&
-        data.map((item) => <Link to={`/plan/?userId=${item._id}`}>План</Link>)}
+        data.map((item) => (
+          <Link key={item._id} to={`/plan/?userId=${item._id}`}>
+            План
+          </Link>
+        ))}
     </div>
   )
 }

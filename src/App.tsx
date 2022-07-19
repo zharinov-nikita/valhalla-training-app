@@ -1,5 +1,6 @@
 import { FC } from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
+import { useAppSelector } from './hooks/useAppSelector'
 import './scss/index.scss'
 
 import Header from './components/Header/Header'
@@ -11,8 +12,8 @@ import Workout from './pages/Workout/Workout'
 import Exercise from './pages/Exercise/Exercise'
 import Menu from './components/Menu/Menu'
 import Modal from './components/Modal/Modal'
-import { useAppSelector } from './hooks/useAppSelector'
 import User from './pages/User/User'
+import Login from './pages/Login/Login'
 
 const App: FC = () => {
   const { fixed } = useAppSelector((state) => state.app)
@@ -24,6 +25,7 @@ const App: FC = () => {
         <Modal />
         <div className="app__wrapper">
           <Routes>
+            <Route path="/login" element={<Login />} />
             <Route path="/user" element={<User />} />
             <Route path="/plan" element={<Plan />} />
             <Route path="/period" element={<Period />} />
