@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import Info from '../../../../components/Info/Info'
 import { useAppDispatch } from '../../../../hooks/useAppDispatch'
@@ -29,7 +29,7 @@ const List: FC = () => {
   const dispatch = useAppDispatch()
 
   const { show } = drawerSlice.actions
-  const { fix } = appSlice.actions
+  const { fix, setCurrentWeek } = appSlice.actions
   const { updateStatus } = useStatus()
 
   if (isLoading) {

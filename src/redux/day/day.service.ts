@@ -5,6 +5,11 @@ const apiBaseUrl = process.env['REACT_APP_API_BASE_URL']
 const apiKey = process.env['REACT_APP_API_KEY']
 // API
 
+// user
+const login: string = localStorage.getItem('login') || ''
+const password: string = localStorage.getItem('password') || ''
+// user
+
 export type DayType = {
   _id: string
   title: string
@@ -30,6 +35,8 @@ export const dayApi = createApi({
         url: `/day?cycleId=${_id}`,
         headers: {
           'api-key': apiKey,
+          login,
+          password,
         },
       }),
       providesTags: ['Day'],
@@ -40,6 +47,8 @@ export const dayApi = createApi({
         method: 'POST',
         headers: {
           'api-key': apiKey,
+          login,
+          password,
         },
         body: day,
       }),
@@ -51,6 +60,8 @@ export const dayApi = createApi({
         method: 'PATCH',
         headers: {
           'api-key': apiKey,
+          login,
+          password,
         },
         body: day,
       }),
@@ -61,6 +72,8 @@ export const dayApi = createApi({
         url: `/day/${day._id}`,
         headers: {
           'api-key': apiKey,
+          login,
+          password,
         },
         method: 'DELETE',
       }),

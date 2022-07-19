@@ -13,7 +13,7 @@ export type InputPropsType = {
 const Input: FC<InputPropsType> = ({ props }) => {
   return (
     <input
-      type="text"
+      type={'text'}
       name={props.name}
       className={css.input}
       placeholder={props.placeholder}

@@ -13,6 +13,7 @@ import workoutReducer from './workout/workout.slice'
 import exerciseReducer from './exercise/exercise.slice'
 
 // service
+import { userApi } from './user/user.service'
 import { planApi } from './plan/plan.service'
 import { periodApi } from './period/period.service'
 import { cycleApi } from './cycle/cycle.service'
@@ -34,6 +35,7 @@ const rootReducer = combineReducers({
   exercise: exerciseReducer,
 
   // serivce
+  [userApi.reducerPath]: userApi.reducer,
   [planApi.reducerPath]: planApi.reducer,
   [periodApi.reducerPath]: periodApi.reducer,
   [cycleApi.reducerPath]: cycleApi.reducer,
@@ -47,6 +49,7 @@ export const setupStore = () => {
     reducer: rootReducer,
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware().concat(
+        userApi.middleware,
         planApi.middleware,
         periodApi.middleware,
         cycleApi.middleware,

@@ -21,6 +21,8 @@ const Header: FC = () => {
   const onClick = () => window.history.back()
 
   const data = [
+    { title: 'Авторизация', pathname: /login/ },
+    { title: 'Аккаунт', pathname: /user/ },
     { title: 'План', pathname: /plan/ },
     { title: 'Период', pathname: /period/ },
     { title: 'Цикл', pathname: /cycle/ },

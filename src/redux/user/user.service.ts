@@ -1,5 +1,4 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-
 // API
 const apiBaseUrl = process.env['REACT_APP_API_BASE_URL']
 const apiKey = process.env['REACT_APP_API_KEY']
@@ -10,66 +9,69 @@ const login: string = localStorage.getItem('login') || ''
 const password: string = localStorage.getItem('password') || ''
 // user
 
-export type WorkoutType = {
+export type UserType = {
   _id: string
-  title: string
-  description: string
-  status: string
-  dayId: string
+  name: string
+  login: string
+  password: string
 }
 
-export type WorkoutCreateType = {
-  title: string
-  description: string
-  status: string
-  dayId: string
+export type UserCreateType = {
+  name: string
+  login: string
+  password: string
 }
 
-export const workoutApi = createApi({
-  tagTypes: ['Workout'],
-  reducerPath: 'workoutApi',
+export type UserAuthType = {
+  login: string
+  password: string
+}
+
+export const userApi = createApi({
+  tagTypes: ['User'],
+  reducerPath: 'userApi',
   baseQuery: fetchBaseQuery({ baseUrl: apiBaseUrl }),
   endpoints: (builder) => ({
-    findByField: builder.query<WorkoutType[], string>({
-      query: (_id) => ({
-        url: `/workout?dayId=${_id}`,
+    find: builder.query<UserType[], string>({
+      query: (user) => ({
+        url: `/user`,
         headers: {
           'api-key': apiKey,
           login,
           password,
         },
       }),
-      providesTags: ['Workout'],
+      providesTags: ['User'],
     }),
-    create: builder.mutation<WorkoutType, WorkoutCreateType>({
-      query: (workout) => ({
-        url: `/workout`,
+    create: builder.mutation<UserType, UserCreateType>({
+      query: (user) => ({
+        url: `/user`,
         method: 'POST',
         headers: {
           'api-key': apiKey,
           login,
           password,
         },
-        body: workout,
+        body: user,
       }),
-      invalidatesTags: ['Workout'],
+      invalidatesTags: ['User'],
     }),
-    findByIdAndUpdate: builder.mutation<WorkoutType, WorkoutType>({
-      query: (workout) => ({
-        url: `/workout/${workout._id}`,
+    findByIdAndUpdate: builder.mutation<UserType, UserType>({
+      query: (user) => ({
+        url: `/user/${user._id}`,
         method: 'PATCH',
         headers: {
           'api-key': apiKey,
           login,
           password,
         },
-        body: workout,
+        body: user,
       }),
-      invalidatesTags: ['Workout'],
+      invalidatesTags: ['User'],
     }),
-    findByIdAndDelete: builder.mutation<WorkoutType, WorkoutType>({
-      query: (workout) => ({
-        url: `/workout/${workout._id}`,
+    findByIdAndDelete: builder.mutation<UserType, UserType>({
+      query: (user) => ({
+        url: `/user/${user._id}`,
         headers: {
           'api-key': apiKey,
           login,
@@ -77,14 +79,14 @@ export const workoutApi = createApi({
         },
         method: 'DELETE',
       }),
-      invalidatesTags: ['Workout'],
+      invalidatesTags: ['User'],
     }),
   }),
 })
 
 export const {
-  useFindByFieldQuery,
+  useFindQuery,
   useCreateMutation,
   useFindByIdAndUpdateMutation,
   useFindByIdAndDeleteMutation,
-} = workoutApi
+} = userApi

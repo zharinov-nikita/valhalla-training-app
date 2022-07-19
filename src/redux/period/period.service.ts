@@ -5,6 +5,11 @@ const apiBaseUrl = process.env['REACT_APP_API_BASE_URL']
 const apiKey = process.env['REACT_APP_API_KEY']
 // API
 
+// user
+const login: string = localStorage.getItem('login') || ''
+const password: string = localStorage.getItem('password') || ''
+// user
+
 export type PeriodType = {
   _id: string
   title: string
@@ -34,6 +39,8 @@ export const periodApi = createApi({
         url: `/period?planId=${_id}`,
         headers: {
           'api-key': apiKey,
+          login,
+          password,
         },
       }),
       providesTags: ['Period'],
@@ -44,6 +51,8 @@ export const periodApi = createApi({
         method: 'POST',
         headers: {
           'api-key': apiKey,
+          login,
+          password,
         },
         body: period,
       }),
@@ -55,6 +64,8 @@ export const periodApi = createApi({
         method: 'PATCH',
         headers: {
           'api-key': apiKey,
+          login,
+          password,
         },
         body: period,
       }),
@@ -65,6 +76,8 @@ export const periodApi = createApi({
         url: `/period/${period._id}`,
         headers: {
           'api-key': apiKey,
+          login,
+          password,
         },
         method: 'DELETE',
       }),

@@ -5,6 +5,7 @@ import {
   GithubOutlined,
   IssuesCloseOutlined,
   ProjectOutlined,
+  UserOutlined,
 } from '@ant-design/icons'
 import { FC, useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
@@ -29,6 +30,18 @@ const Menu: FC = () => {
     <div className={css.menu} data-visible={visible}>
       <div className={css.wrapper}>
         <div className={css.list}>
+          <Link
+            to={'/user'}
+            onClick={() => setClick(Number(Date.now()))}
+            className={css.item}
+          >
+            <div className={css.icon}>
+              <UserOutlined />
+            </div>
+            <div className={css.text}>
+              <span>Аккаунт</span>
+            </div>
+          </Link>
           <Link
             to={'/plan'}
             onClick={() => setClick(Number(Date.now()))}

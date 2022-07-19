@@ -13,10 +13,14 @@ import css from './List.module.scss'
 import Empty from '../../../../components/Empty/Empty'
 import Loader from '../../../../components/Loader/Loader'
 import { useStatus } from '../../../../hooks/useStatus'
+import { useLocation } from 'react-router-dom'
 
 const List: FC = () => {
+  const { search } = useLocation()
+  const userId = search.split('userId=')[1]
+
   const pollingInterval = Number(process.env['REACT_APP_POLLING_INTERVAL'])
-  const { isError, isLoading, data } = useFindQuery('', { pollingInterval })
+  const { isError, isLoading, data } = useFindQuery(userId, { pollingInterval })
 
   const [findByIdAndUpdate, {}] = useFindByIdAndUpdateMutation()
   const [findByIdAndDelete, {}] = useFindByIdAndDeleteMutation()
