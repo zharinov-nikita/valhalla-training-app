@@ -11,20 +11,12 @@ import Day from './pages/Day/Day'
 import Workout from './pages/Workout/Workout'
 import Exercise from './pages/Exercise/Exercise'
 import Menu from './components/Menu/Menu'
-import Modal from './components/Modal/Modal'
 import User from './pages/User/User'
 import Login from './pages/Login/Login'
 import Token from './pages/Token/Token'
 
-const user = {
-  token: localStorage.getItem('token'),
-  login: localStorage.getItem('login'),
-  password: localStorage.getItem('password'),
-}
-
 const App: FC = () => {
-  const { fixed } = useAppSelector((state) => state.app)
-
+  const { fixed, user } = useAppSelector((state) => state.app)
   return (
     <div className="app" data-theme={'dark'} data-fixed={fixed}>
       {user.token ? (
