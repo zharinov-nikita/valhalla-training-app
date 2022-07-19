@@ -12,6 +12,7 @@ import Exercise from './pages/Exercise/Exercise'
 import Menu from './components/Menu/Menu'
 import Modal from './components/Modal/Modal'
 import { useAppSelector } from './hooks/useAppSelector'
+import User from './pages/User/User'
 
 const App: FC = () => {
   const { fixed } = useAppSelector((state) => state.app)
@@ -23,13 +24,14 @@ const App: FC = () => {
         <Modal />
         <div className="app__wrapper">
           <Routes>
+            <Route path="/user" element={<User />} />
             <Route path="/plan" element={<Plan />} />
             <Route path="/period" element={<Period />} />
             <Route path="/cycle" element={<Cycle />} />
             <Route path="/day" element={<Day />} />
             <Route path="/workout" element={<Workout />} />
             <Route path="/exercise" element={<Exercise />} />
-            <Route path="*" element={<Navigate to="/plan" replace />} />
+            <Route path="*" element={<Navigate to="/user" replace />} />
           </Routes>
         </div>
       </div>
