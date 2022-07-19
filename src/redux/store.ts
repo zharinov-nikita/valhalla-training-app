@@ -49,6 +49,7 @@ export const setupStore = () => {
     reducer: rootReducer,
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware().concat(
+        userApi.middleware,
         planApi.middleware,
         periodApi.middleware,
         cycleApi.middleware,

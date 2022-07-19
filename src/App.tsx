@@ -14,29 +14,51 @@ import Menu from './components/Menu/Menu'
 import Modal from './components/Modal/Modal'
 import User from './pages/User/User'
 import Login from './pages/Login/Login'
+import Token from './pages/Token/Token'
+
+const user = {
+  token: localStorage.getItem('token'),
+  login: localStorage.getItem('login'),
+  password: localStorage.getItem('password'),
+}
 
 const App: FC = () => {
   const { fixed } = useAppSelector((state) => state.app)
+
   return (
     <div className="app" data-theme={'dark'} data-fixed={fixed}>
-      <div className="app__container">
-        <Header />
-        <Menu />
-        <Modal />
-        <div className="app__wrapper">
-          <Routes>
-            <Route path="/login" element={<Login />} />
-            <Route path="/user" element={<User />} />
-            <Route path="/plan" element={<Plan />} />
-            <Route path="/period" element={<Period />} />
-            <Route path="/cycle" element={<Cycle />} />
-            <Route path="/day" element={<Day />} />
-            <Route path="/workout" element={<Workout />} />
-            <Route path="/exercise" element={<Exercise />} />
-            <Route path="*" element={<Navigate to="/user" replace />} />
-          </Routes>
+      {user.token ? (
+        <div className="app__container">
+          <Header />
+          <Menu />
+          <div className="app__wrapper">
+            <Routes>
+              {user.login && user.password ? (
+                <>
+                  <Route path="/user" element={<User />} />
+                  <Route path="/plan" element={<Plan />} />
+                  <Route path="/period" element={<Period />} />
+                  <Route path="/cycle" element={<Cycle />} />
+                  <Route path="/day" element={<Day />} />
+                  <Route path="/workout" element={<Workout />} />
+                  <Route path="/exercise" element={<Exercise />} />
+                  <Route path="*" element={<Navigate to="/user" replace />} />
+                </>
+              ) : (
+                <>
+                  <Route path="/login" element={<Login />} />
+                  <Route path="*" element={<Navigate to="/login" replace />} />
+                </>
+              )}
+            </Routes>
+          </div>
         </div>
-      </div>
+      ) : (
+        <Routes>
+          <Route path="/token" element={<Token />} />
+          <Route path="*" element={<Navigate to="/token" replace />} />
+        </Routes>
+      )}
     </div>
   )
 }

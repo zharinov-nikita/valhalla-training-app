@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import React, { FC } from 'react'
 import { Link } from 'react-router-dom'
 import { useFindQuery } from '../../redux/user/user.service'
 
@@ -10,9 +10,10 @@ const User: FC = () => {
       <div></div>
       {data &&
         data.map((item) => (
-          <Link key={item._id} to={`/plan/?userId=${item._id}`}>
-            План
-          </Link>
+          <React.Fragment key={item._id}>
+            <div>Привет, {item.name}</div>
+            <Link to={`/plan/?userId=${item._id}`}>План</Link>
+          </React.Fragment>
         ))}
     </div>
   )

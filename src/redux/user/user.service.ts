@@ -5,6 +5,11 @@ const apiBaseUrl = process.env['REACT_APP_API_BASE_URL']
 const apiKey = process.env['REACT_APP_API_KEY']
 // API
 
+// user
+const login: string = localStorage.getItem('login') || ''
+const password: string = localStorage.getItem('password') || ''
+// user
+
 export type UserType = {
   _id: string
   name: string
@@ -14,6 +19,11 @@ export type UserType = {
 
 export type UserCreateType = {
   name: string
+  login: string
+  password: string
+}
+
+export type UserAuthType = {
   login: string
   password: string
 }
@@ -28,8 +38,8 @@ export const userApi = createApi({
         url: `/user`,
         headers: {
           'api-key': apiKey,
-          login: 'zharinov-danil',
-          password: 'password',
+          login,
+          password,
         },
       }),
       providesTags: ['User'],
@@ -40,6 +50,8 @@ export const userApi = createApi({
         method: 'POST',
         headers: {
           'api-key': apiKey,
+          login,
+          password,
         },
         body: user,
       }),
@@ -51,6 +63,8 @@ export const userApi = createApi({
         method: 'PATCH',
         headers: {
           'api-key': apiKey,
+          login,
+          password,
         },
         body: user,
       }),
@@ -61,6 +75,8 @@ export const userApi = createApi({
         url: `/user/${user._id}`,
         headers: {
           'api-key': apiKey,
+          login,
+          password,
         },
         method: 'DELETE',
       }),
