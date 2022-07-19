@@ -33,6 +33,8 @@ export const planApi = createApi({
         url: `/plan`,
         headers: {
           'api-key': apiKey,
+          login: 'zharinov-danil',
+          password: 'password',
         },
       }),
       providesTags: ['Plan'],
