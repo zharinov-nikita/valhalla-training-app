@@ -1,6 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 export type AppStateType = {
+  userId: string
+  currentWeek: string
   fixed: boolean
   user: {
     token: string | null
@@ -10,6 +12,8 @@ export type AppStateType = {
 }
 
 const initialState: AppStateType = {
+  userId: '',
+  currentWeek: '',
   fixed: false,
   user: {
     token: localStorage.getItem('token') || null,
@@ -30,6 +34,9 @@ export const appSlice = createSlice({
     },
     updateUser(state: AppStateType, action: { payload: AppStateType['user'] }) {
       state.user = { ...state.user, ...action.payload }
+    },
+    setCurrentWeek(state: AppStateType, action: { payload: string }) {
+      state.currentWeek = action.payload
     },
   },
 })

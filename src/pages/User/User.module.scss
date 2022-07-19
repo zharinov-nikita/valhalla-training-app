@@ -21,11 +21,11 @@
                     height: 32px;
                     border-radius: 50%;
                     background-color: $blue-2;
-                    color: $blue-4;
+                    color: $blue-6;
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    border: 1px solid $blue-4;
+                    border: 1px solid $blue-6;
                 }
 
                 & .data {
@@ -54,7 +54,8 @@
                     justify-content: center;
                     gap: 8px;
                     background-color: $blue-2;
-                    color: $blue-4;
+                    border: 1px solid $blue-6;
+                    color: $blue-6;
                     border-radius: 8px;
                     font-size: 12px;
                     padding: 4px 8px;

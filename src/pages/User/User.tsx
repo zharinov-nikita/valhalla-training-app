@@ -36,7 +36,10 @@ const User: FC = () => {
                   </div>
                 </div>
                 <div className={css.left}>
-                  <Link to={''} className={css.link}>
+                  <Link
+                    to={`/day/?cycleId=62d27db3e8abbafbac301b53`}
+                    className={css.link}
+                  >
                     Моя неделя
                   </Link>
                 </div>
