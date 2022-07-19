@@ -1,0 +1,65 @@
+@import "../../scss/variables.scss";
+
+.user {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    & .info {
+        & .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+
+            & .left {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                & .icon {
+                    width: 32px;
+                    height: 32px;
+                    border-radius: 50%;
+                    background-color: $blue-2;
+                    color: $blue-4;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    border: 1px solid $blue-4;
+                }
+
+                & .data {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 2px;
+
+                    & .top {
+                        font-size: 14px;
+                        font-weight: 700;
+                        color: var(--color-primary-1);
+                    }
+
+                    & .buttom {
+                        font-size: 12px;
+                        color: var(--color-primary-6);
+                    }
+                }
+            }
+
+            & .left {
+                & .link {
+                    width: fit-content;
+                    display: inline-flex;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 8px;
+                    background-color: $blue-2;
+                    color: $blue-4;
+                    border-radius: 8px;
+                    font-size: 12px;
+                    padding: 4px 8px;
+                }
+            }
+        }
+    }
+}
