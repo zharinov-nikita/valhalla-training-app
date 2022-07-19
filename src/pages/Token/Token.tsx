@@ -20,7 +20,11 @@ const Token: FC = () => {
 
   useEffect(() => {
     if (isToken === token) {
-      setDisabled(false)
+      return setDisabled(false)
+    }
+
+    if (isToken !== token) {
+      return setDisabled(true)
     }
   }, [token])
 
@@ -34,24 +38,26 @@ const Token: FC = () => {
       <div className={css.container}>
         <div className={css.wrapper}>
           <div className={css.modal}>
-            <Input
-              props={{
-                name: 'token',
-                placeholder: 'Valhalla token',
-                value: token,
-                onChange,
-              }}
-            />
-            <Button
-              props={{
-                block: true,
-                text: 'Авторизация',
-                disabled,
-                type: 'warning',
-                onClick,
-              }}
-            />
-            s
+            <div className={css.header}></div>
+            <div className={css.body}>
+              <Input
+                props={{
+                  name: 'token',
+                  placeholder: 'Valhalla token',
+                  value: token,
+                  onChange,
+                }}
+              />
+              <Button
+                props={{
+                  block: true,
+                  text: 'Авторизация',
+                  disabled,
+                  type: 'warning',
+                  onClick,
+                }}
+              />
+            </div>
           </div>
         </div>
       </div>
