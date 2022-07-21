@@ -1,0 +1,127 @@
+@import "../styles/variables.scss";
+
+.button {
+    cursor: pointer;
+    width: fit-content;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    border-radius: 8px;
+    background-color: transparent;
+    border: none;
+}
+
+// size
+
+.button {
+    &[data-size="small"] {
+        font-size: 12px;
+        padding: 6px 10px;
+    }
+
+    &[data-size="medium"] {
+        font-size: 14px;
+        padding: 8px 12px;
+    }
+
+    &[data-size="large"] {
+        font-size: 16px;
+        padding: 10px 14px;
+    }
+}
+
+// color
+
+.button {
+    &.transparent {
+        &.gray {
+            background-color: $gray-2;
+            color: $gray-7;
+        }
+
+        &.blue {
+            background-color: $blue-2;
+            color: $blue-7;
+        }
+        &.green {
+            background-color: $green-2;
+            color: $green-7;
+        }
+        &.red {
+            background-color: $red-2;
+            color: $red-7;
+        }
+        &.yellow {
+            background-color: $yellow-2;
+            color: $yellow-7;
+        }
+    }
+
+    &.fill {
+        border: none !important;
+        &.gray {
+            background-color: $gray-6;
+            color: $gray-1;
+        }
+
+        &.blue {
+            background-color: $blue-6;
+            color: $blue-1;
+        }
+        &.green {
+            background-color: $green-6;
+            color: $green-1;
+        }
+        &.red {
+            background-color: $red-6;
+            color: $red-1;
+        }
+        &.yellow {
+            background-color: $yellow-6;
+            color: $yellow-1;
+        }
+    }
+}
+
+// border
+
+.button {
+    &[data-border="solid"] {
+        border: 1px solid;
+    }
+
+    &[data-border="none"] {
+        border: none;
+    }
+}
+
+// block
+.button {
+    &[data-block="true"] {
+        display: flex;
+        width: 100%;
+    }
+
+    &[data-block="false"] {
+        display: inline-flex;
+        width: fit-content;
+    }
+}
+
+// disabled
+
+.button {
+    &:disabled {
+        opacity: 0.4;
+        cursor: no-drop;
+    }
+}
+
+// hover
+
+.button {
+    &:hover {
+        filter: brightness(90%);
+    }
+}
