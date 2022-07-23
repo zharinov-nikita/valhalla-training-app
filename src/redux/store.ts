@@ -3,6 +3,7 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit'
 // slice
 import appReducer from './app/app.slice'
 import userReducer from './user/user.slice'
+import headerReducer from './header/header.slice'
 import navigationReducer from './navigation/navigation.slice'
 
 // service
@@ -12,6 +13,7 @@ const rootReducer = combineReducers({
   // slice
   app: appReducer,
   user: userReducer,
+  header: headerReducer,
   navigation: navigationReducer,
 
   // serivce
