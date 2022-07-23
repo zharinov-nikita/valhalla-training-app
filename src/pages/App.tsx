@@ -6,6 +6,7 @@ import '../styles/index.scss'
 const App: FC = () => {
   const { theme, positon } = useAppSelector((state) => state.app)
   const { isAuth } = useAppSelector((state) => state.user)
+
   return (
     <div className="app" data-theme={theme} data-positon={positon}>
       <div className="container">
@@ -13,7 +14,7 @@ const App: FC = () => {
           {isAuth ? (
             <Routes>
               <Route path="/user" element={'user'} />
-              <Route path="*" element={<Navigate to={'/user'} replace />} />
+              <Route path="*" element={'404'} />
             </Routes>
           ) : (
             <Routes>
