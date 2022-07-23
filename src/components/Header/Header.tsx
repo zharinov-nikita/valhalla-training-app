@@ -1,9 +1,9 @@
-import { CloseOutlined, LeftOutlined, MenuOutlined } from '@ant-design/icons'
 import { FC } from 'react'
 import { useTitle } from './hooks/useTitle'
+import { useVisible } from './hooks/useVisible'
 import Button from '../Button/Button'
 import style from './Header.module.scss'
-import { useVisible } from './hooks/useVisible'
+import { CloseOutlined, LeftOutlined, MenuOutlined } from '@ant-design/icons'
 
 const Header: FC = () => {
   const { title } = useTitle()

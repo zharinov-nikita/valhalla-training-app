@@ -20,9 +20,11 @@ export const appSlice = createSlice({
     },
     changeToFixedPostion(state: AppStateType) {
       state.positon = 'fixed'
+      document.body.style.overflow = 'hidden'
     },
     changeToScrollPostion(state: AppStateType) {
       state.positon = 'scroll'
+      document.body.style.overflow = 'auto'
     },
   },
 })
