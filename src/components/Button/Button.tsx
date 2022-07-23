@@ -1,15 +1,15 @@
-import { FC, MouseEventHandler } from 'react'
+import { FC, MouseEventHandler, ReactNode } from 'react'
 import style from './Button.module.scss'
 
 export type ButtonPropsType = {
   props: {
-    text: string
+    text: string | ReactNode
     block: boolean
-    color: {
+    color?: {
       type: 'fill' | 'transparent'
       value: 'purple' | 'green' | 'red' | 'yellow'
     }
-    size: 'small' | 'medium' | 'large'
+    size: 'small' | 'medium'
     disabled?: boolean
   }
 
@@ -20,8 +20,8 @@ const Button: FC<ButtonPropsType> = ({ props, onClick }) => {
   return (
     <button
       className={style.button}
-      data-color-value={props.color.value}
-      data-color-type={props.color.type}
+      data-color-value={props.color?.value}
+      data-color-type={props.color?.type}
       data-size={props.size}
       data-block={props.block}
       disabled={props.disabled}
