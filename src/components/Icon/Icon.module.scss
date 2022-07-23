@@ -1,16 +1,16 @@
-.button {
-    cursor: pointer;
+.icon {
+    width: fit-content;
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    padding: 4px;
     border-radius: 8px;
-    background: transparent;
-    color: var(--color-primary-0);
-    border: none;
+    min-width: 22px;
+    min-height: 22px;
 }
 
 // color
-.button {
+.icon {
     &[data-color-type="fill"] {
         &[data-color-value="purple"] {
             background-color: var(--purple);
@@ -50,49 +50,8 @@
     }
 }
 
-// size
-.button {
-    &[data-size="small"] {
-        padding: 6px 10px;
-        font-size: 12px;
-    }
-    &[data-size="medium"] {
-        padding: 8px 12px;
-        font-size: 14px;
-    }
-}
-
-// block
-
-.button {
-    &[data-block="false"] {
-        display: inline-flex;
-        width: fit-content;
-    }
-
-    &[data-block="true"] {
-        display: flex;
-        width: 100%;
-    }
-}
-
-// disabled
-.button {
-    &:disabled {
-        opacity: 0.4;
-        cursor: no-drop;
-    }
-}
-
-// hover
-.button {
-    &:hover {
-        filter: brightness(90%);
-    }
-}
-
 // border
-.button {
+.icon {
     &[data-border="solid"] {
         border: 1px solid;
     }

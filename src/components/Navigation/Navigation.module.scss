@@ -33,18 +33,6 @@
                 border-radius: 8px;
                 background-color: var(--background-color-primary-4);
 
-                & .icon {
-                    display: inline-flex;
-                    align-items: center;
-                    justify-content: center;
-                    background-color: var(--purple20);
-                    color: var(--purple);
-                    padding: 4px;
-                    border-radius: 8px;
-                    min-width: 22px;
-                    min-height: 22px;
-                }
-
                 & .text {
                     display: flex;
                     flex-direction: column;

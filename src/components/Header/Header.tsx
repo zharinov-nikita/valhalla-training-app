@@ -19,7 +19,6 @@ const Header: FC = () => {
           </div>
           <div className={style.center}>Страница</div>
           <div className={style.right}>
-            {' '}
             <Button
               props={{
                 text: <MenuOutlined />,

@@ -1,3 +1,4 @@
+import { ZoomOutOutlined } from '@ant-design/icons'
 import { FC } from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
 import Button from '../components/Button/Button'
@@ -15,7 +16,18 @@ const App: FC = () => {
       <div className="container">
         <div className="wrapper">
           <Header />
-          <Navigation />
+          <Navigation
+            props={{
+              list: [
+                {
+                  id: 1,
+                  title: 'Профиль',
+                  description: 'Страница, на которой находиться ваш профиль',
+                  icon: <ZoomOutOutlined />,
+                },
+              ],
+            }}
+          />
           {isAuth ? (
             <Routes>
               <Route path="/user" element={'user'} />

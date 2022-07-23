@@ -10,6 +10,7 @@ export type ButtonPropsType = {
       value: 'purple' | 'green' | 'red' | 'yellow'
     }
     size: 'small' | 'medium'
+    border?: 'solid'
     disabled?: boolean
   }
 
@@ -25,6 +26,7 @@ const Button: FC<ButtonPropsType> = ({ props, onClick }) => {
       data-size={props.size}
       data-block={props.block}
       disabled={props.disabled}
+      data-border={props.border}
       onClick={onClick}
     >
       {props.text}
