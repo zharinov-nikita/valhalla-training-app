@@ -1,0 +1,93 @@
+.button {
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+}
+
+// color
+.button {
+    &[data-color-type="fill"] {
+        &[data-color-value="purple"] {
+            background-color: var(--purple);
+            color: var(--color-primary-0);
+        }
+        &[data-color-value="red"] {
+            background-color: var(--red);
+            color: var(--color-primary-0);
+        }
+        &[data-color-value="green"] {
+            background-color: var(--green);
+            color: var(--color-primary-0);
+        }
+        &[data-color-value="yellow"] {
+            background-color: var(--yellow);
+            color: var(--color-primary-0);
+        }
+    }
+
+    &[data-color-type="transparent"] {
+        &[data-color-value="purple"] {
+            background-color: var(--purple20);
+            color: var(--purple);
+            border: 1px solid var(--purple);
+        }
+        &[data-color-value="red"] {
+            background-color: var(--red20);
+            color: var(--red);
+            border: 1px solid var(--red);
+        }
+        &[data-color-value="green"] {
+            background-color: var(--green20);
+            color: var(--green);
+            border: 1px solid var(--green);
+        }
+        &[data-color-value="yellow"] {
+            background-color: var(--yellow20);
+            color: var(--yellow);
+            border: 1px solid var(--yellow);
+        }
+    }
+}
+
+// size
+.button {
+    &[data-size="small"] {
+        padding: 6px 10px;
+        font-size: 12px;
+    }
+    &[data-size="medium"] {
+        padding: 8px 12px;
+        font-size: 14px;
+    }
+}
+
+// block
+
+.button {
+    &[data-block="false"] {
+        display: inline-flex;
+        width: fit-content;
+    }
+
+    &[data-block="true"] {
+        display: flex;
+        width: 100%;
+    }
+}
+
+// disabled
+.button {
+    &:disabled {
+        opacity: 0.4;
+        cursor: no-drop;
+    }
+}
+
+// hover
+.button {
+    &:hover {
+        filter: brightness(90%);
+    }
+}

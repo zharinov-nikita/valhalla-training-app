@@ -1,27 +1,77 @@
+:root [data-theme="dark"] {
+    // background
+    --background-color-primary-0: #030305;
+    --background-color-primary-1: #040608;
+    --background-color-primary-2: #07090c;
+    --background-color-primary-3: #090b0f;
+    --background-color-primary-4: #0b0e13;
+    --background-color-primary-5: #0d1117;
+    --background-color-primary-6: #35393e;
+    --background-color-primary-7: #5e6064;
+    --background-color-primary-8: #86888b;
+    --background-color-primary-9: #aeb0b2;
+    --background-color-primary-10: #cfcfd1;
+
+    --color-primary-10: #030305;
+    --color-primary-9: #040608;
+    --color-primary-8: #07090c;
+    --color-primary-7: #090b0f;
+    --color-primary-6: #0b0e13;
+    --color-primary-5: #0d1117;
+    --color-primary-4: #35393e;
+    --color-primary-3: #5e6064;
+    --color-primary-2: #86888b;
+    --color-primary-1: #aeb0b2;
+    --color-primary-0: #ffffff;
+
+    --purple: #6b53fd;
+    --purple20: rgba(107, 83, 253, 0.2);
+
+    --green: #3fb950;
+    --green20: rgba(63, 185, 80, 0.2);
+
+    --red: #f85149;
+    --red20: rgba(248, 81, 73, 0.2);
+
+    --yellow: #fbca04;
+    --yellow20: rgba(251, 202, 4, 0.2);
+}
+
 :root [data-theme="light"] {
     // background
-    --background-color-primary-10: #262626;
-    --background-color-primary-9: #434343;
-    --background-color-primary-8: #595959;
-    --background-color-primary-7: #8c8c8c;
-    --background-color-primary-6: #bfbfbf;
-    --background-color-primary-5: #d9d9d9;
-    --background-color-primary-4: #f0f0f0;
-    --background-color-primary-3: #f5f5f5;
-    --background-color-primary-2: #fafafa;
-    --background-color-primary-1: #ffffff;
-    // background
+    --background-color-primary-10: #030305;
+    --background-color-primary-9: #040608;
+    --background-color-primary-8: #07090c;
+    --background-color-primary-7: #090b0f;
+    --background-color-primary-6: #0b0e13;
+    --background-color-primary-5: #0d1117;
+    --background-color-primary-4: #35393e;
+    --background-color-primary-3: #5e6064;
+    --background-color-primary-2: #86888b;
+    --background-color-primary-1: #aeb0b2;
+    --background-color-primary-0: #cfcfd1;
 
-    // background
-    --color-primary-10: #ffffff;
-    --color-primary-9: #fafafa;
-    --color-primary-8: #f5f5f5;
-    --color-primary-7: #f0f0f0;
-    --color-primary-6: #d9d9d9;
-    --color-primary-5: #bfbfbf;
-    --color-primary-4: #8c8c8c;
-    --color-primary-3: #595959;
-    --color-primary-2: #434343;
-    --color-primary-1: #262626;
-    // background
+    --color-primary-0: #030305;
+    --color-primary-1: #040608;
+    --color-primary-2: #07090c;
+    --color-primary-4: #090b0f;
+    --color-primary-4: #0b0e13;
+    --color-primary-5: #0d1117;
+    --color-primary-6: #35393e;
+    --color-primary-7: #5e6064;
+    --color-primary-8: #86888b;
+    --color-primary-9: #aeb0b2;
+    --color-primary-10: #cfcfd1;
+
+    --purple: #6b53fd;
+    --purple20: rgba(107, 83, 253, 0.2);
+
+    --green: #3fb950;
+    --green20: rgba(63, 185, 80, 0.2);
+
+    --red: #f85149;
+    --red20: rgba(248, 81, 73, 0.2);
+
+    --yellow: #fbca04;
+    --yellow20: rgba(251, 202, 4, 0.2);
 }

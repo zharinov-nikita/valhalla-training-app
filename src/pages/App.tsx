@@ -1,5 +1,6 @@
 import { FC } from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
+import Button from '../components/Button/Button'
 import { useAppSelector } from '../hooks/useAppSelector'
 import '../styles/index.scss'
 
@@ -11,6 +12,16 @@ const App: FC = () => {
     <div className="app" data-theme={theme} data-positon={positon}>
       <div className="container">
         <div className="wrapper">
+          <Button
+            props={{
+              text: 'Кнопка',
+              disabled: false,
+              block: true,
+              color: { value: 'yellow', type: 'transparent' },
+              size: 'medium',
+            }}
+            onClick={() => console.log(true)}
+          />
           {isAuth ? (
             <Routes>
               <Route path="/user" element={'user'} />
