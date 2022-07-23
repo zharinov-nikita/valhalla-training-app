@@ -1,4 +1,8 @@
-import { ZoomOutOutlined } from '@ant-design/icons'
+import {
+  SettingOutlined,
+  UserOutlined,
+  ZoomOutOutlined,
+} from '@ant-design/icons'
 import { FC } from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
 import Button from '../components/Button/Button'
@@ -24,6 +28,18 @@ const App: FC = () => {
                   title: 'Профиль',
                   description: 'Страница, на которой находиться ваш профиль',
                   icon: <ZoomOutOutlined />,
+                },
+                {
+                  id: 2,
+                  title: 'Аккаунт',
+                  description: 'Страница, на которой находиться ваш профиль',
+                  icon: <UserOutlined />,
+                },
+                {
+                  id: 3,
+                  title: 'Моя неделя',
+                  description: 'Страница, на которой находиться ваш профиль',
+                  icon: <SettingOutlined />,
                 },
               ],
             }}
