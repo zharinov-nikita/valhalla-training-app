@@ -1,5 +1,6 @@
 import { SettingOutlined } from '@ant-design/icons'
 import { FC, ReactNode } from 'react'
+import { useAppSelector } from '../../hooks/useAppSelector'
 import Icon from '../Icon/Icon'
 import style from './Navigation.module.scss'
 
@@ -15,8 +16,9 @@ export type NavigationPropsType = {
 }
 
 export const Navigation: FC<NavigationPropsType> = ({ props }) => {
+  const { visible } = useAppSelector((state) => state.navigation)
   return (
-    <div className={style.navigation}>
+    <div className={style.navigation} data-visible={visible}>
       <div className={style.container}>
         <div className={style.wrapper}>
           <div className={style.list}>

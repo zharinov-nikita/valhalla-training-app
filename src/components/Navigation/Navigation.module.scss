@@ -51,3 +51,12 @@
         }
     }
 }
+
+.navigation {
+    &[data-visible="true"] {
+        display: block;
+    }
+    &[data-visible="false"] {
+        display: none;
+    }
+}
