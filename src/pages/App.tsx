@@ -4,7 +4,6 @@ import Navigation from './Navigation/Navigation'
 import Header from '../components/Header/Header'
 import { useAppSelector } from '../hooks/store/useAppSelector'
 import '../styles/index.scss'
-import Spin from '../components/Spin/Spin'
 
 const App: FC = () => {
   const { theme } = useAppSelector((state) => state.app)
