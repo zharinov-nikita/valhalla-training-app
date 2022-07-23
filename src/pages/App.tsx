@@ -2,6 +2,7 @@ import { FC } from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
 import Button from '../components/Button/Button'
 import Header from '../components/Header/Header'
+import Navigation from '../components/Navigation/Navigation'
 import { useAppSelector } from '../hooks/useAppSelector'
 import '../styles/index.scss'
 
@@ -14,6 +15,7 @@ const App: FC = () => {
       <div className="container">
         <div className="wrapper">
           <Header />
+          <Navigation />
           {isAuth ? (
             <Routes>
               <Route path="/user" element={'user'} />
