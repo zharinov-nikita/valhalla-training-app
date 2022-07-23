@@ -2,6 +2,7 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit'
 
 // slice
 import appReducer from './app/app.slice'
+import userReducer from './user/user.slice'
 
 // service
 import { userApi } from './user/user.service'
@@ -9,6 +10,7 @@ import { userApi } from './user/user.service'
 const rootReducer = combineReducers({
   // slice
   app: appReducer,
+  user: userReducer,
 
   // serivce
   [userApi.reducerPath]: userApi.reducer,

@@ -5,7 +5,7 @@ export type UserStateType = {
 }
 
 const initialState: UserStateType = {
-  isAuth: false,
+  isAuth: true,
 }
 
 export const userSlice = createSlice({
