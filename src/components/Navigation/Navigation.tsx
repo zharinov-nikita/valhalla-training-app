@@ -1,6 +1,6 @@
 import { SettingOutlined } from '@ant-design/icons'
 import { FC, ReactNode } from 'react'
-import { useAppSelector } from '../../hooks/useAppSelector'
+import { useAppSelector } from '../../hooks/store/useAppSelector'
 import Icon from '../Icon/Icon'
 import style from './Navigation.module.scss'
 

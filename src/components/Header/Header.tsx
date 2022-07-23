@@ -1,40 +1,13 @@
 import { CloseOutlined, LeftOutlined, MenuOutlined } from '@ant-design/icons'
-import { FC, useEffect } from 'react'
-import { useLocation } from 'react-router-dom'
-import { useAppDispatch } from '../../hooks/useAppDispatch'
-import { useAppSelector } from '../../hooks/useAppSelector'
-import { headerSlice } from '../../redux/header/header.slice'
-import { navigationSlice } from '../../redux/navigation/navigation.slice'
+import { FC } from 'react'
+import { useTitle } from './hooks/useTitle'
 import Button from '../Button/Button'
 import style from './Header.module.scss'
-
-const data = [
-  { title: 'Авторизация', pathname: /login/ },
-  { title: 'Аккаунт', pathname: /user/ },
-  { title: 'План', pathname: /plan/ },
-  { title: 'Период', pathname: /period/ },
-  { title: 'Цикл', pathname: /cycle/ },
-  { title: 'День', pathname: /day/ },
-  { title: 'Тренировка', pathname: /workout/ },
-  { title: 'Упражнение', pathname: /exercise/ },
-]
+import { useVisible } from './hooks/useVisible'
 
 const Header: FC = () => {
-  const dispatch = useAppDispatch()
-  const { title } = useAppSelector((state) => state.header)
-  const { visible } = useAppSelector((state) => state.navigation)
-  const { changeVisible } = navigationSlice.actions
-  const { changeTitle } = headerSlice.actions
-
-  const { pathname } = useLocation()
-
-  useEffect(() => {
-    data.forEach((item) => {
-      if (pathname.match(item.pathname)) {
-        return dispatch(changeTitle(item.title))
-      }
-    })
-  }, [pathname])
+  const { title } = useTitle()
+  const { visible, actionChangeVisible } = useVisible()
 
   return (
     <div className={style.header}>
@@ -47,6 +20,7 @@ const Header: FC = () => {
                 size: 'medium',
                 block: false,
               }}
+              onClick={() => window.history.back()}
             />
           </div>
           <div className={style.center}>{title}</div>
@@ -57,7 +31,7 @@ const Header: FC = () => {
                 size: 'medium',
                 block: false,
               }}
-              onClick={() => dispatch(changeVisible())}
+              onClick={actionChangeVisible}
             />
           </div>
         </div>

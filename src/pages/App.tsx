@@ -8,7 +8,7 @@ import { Navigate, Route, Routes } from 'react-router-dom'
 import Button from '../components/Button/Button'
 import Header from '../components/Header/Header'
 import Navigation from '../components/Navigation/Navigation'
-import { useAppSelector } from '../hooks/useAppSelector'
+import { useAppSelector } from '../hooks/store/useAppSelector'
 import '../styles/index.scss'
 
 const App: FC = () => {
