@@ -12,6 +12,9 @@ export const navigationSlice = createSlice({
   name: 'navigation',
   initialState,
   reducers: {
+    changeVisibleNavigation(state: NavigationStateType) {
+      state.visible = !state.visible
+    },
     showNavigation(state: NavigationStateType) {
       state.visible = true
     },

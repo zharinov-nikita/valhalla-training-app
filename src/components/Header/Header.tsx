@@ -1,9 +1,15 @@
-import { LeftOutlined, MenuOutlined } from '@ant-design/icons'
+import { CloseOutlined, LeftOutlined, MenuOutlined } from '@ant-design/icons'
 import { FC } from 'react'
+import { useAppDispatch } from '../../hooks/useAppDispatch'
+import { useAppSelector } from '../../hooks/useAppSelector'
+import { navigationSlice } from '../../redux/navigation/navigation.slice'
 import Button from '../Button/Button'
 import style from './Header.module.scss'
 
 const Header: FC = () => {
+  const { visible } = useAppSelector((state) => state.navigation)
+  const dispatch = useAppDispatch()
+  const { changeVisibleNavigation } = navigationSlice.actions
   return (
     <div className={style.header}>
       <div className={style.container}>
@@ -21,10 +27,11 @@ const Header: FC = () => {
           <div className={style.right}>
             <Button
               props={{
-                text: <MenuOutlined />,
+                text: visible ? <CloseOutlined /> : <MenuOutlined />,
                 size: 'medium',
                 block: false,
               }}
+              onClick={() => dispatch(changeVisibleNavigation())}
             />
           </div>
         </div>
