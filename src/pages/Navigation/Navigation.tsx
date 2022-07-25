@@ -31,6 +31,13 @@ export default function () {
             description: 'Страница, на которой находиться ваш профиль',
             icon: <SettingOutlined />,
           },
+          {
+            id: 4,
+            to: '/setting',
+            title: 'Настройки',
+            description: 'Страница, на которой находиться ваш профиль',
+            icon: <SettingOutlined />,
+          },
         ],
       }}
     />

@@ -1,0 +1,24 @@
+.item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 12px;
+    border-radius: 8px;
+    background-color: var(--background-color-primary-5);
+
+    & .left {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+
+        & .title {
+            color: var(--color-primary-0);
+        }
+
+        & .description {
+            color: var(--color-primary-2);
+            font-size: 12px;
+        }
+    }
+}

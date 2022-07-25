@@ -5,6 +5,8 @@ import Header from '../components/Header/Header'
 import { useAppSelector } from '../hooks/store/useAppSelector'
 import '../styles/index.scss'
 
+import Setting from './Setting/Setting'
+
 const App: FC = () => {
   const { theme } = useAppSelector((state) => state.app)
   const { isAuth } = useAppSelector((state) => state.user)
@@ -18,6 +20,7 @@ const App: FC = () => {
           {isAuth ? (
             <Routes>
               <Route path="/user" element={'user'} />
+              <Route path="/setting" element={<Setting />} />
               <Route path="*" element={'404'} />
             </Routes>
           ) : (
