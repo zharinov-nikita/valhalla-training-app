@@ -38,6 +38,13 @@ export default function () {
             description: 'Страница, на которой находиться ваш профиль',
             icon: <SettingOutlined />,
           },
+          {
+            id: 5,
+            to: '/exercise',
+            title: 'Упражнения',
+            description: 'Страница, на которой находиться ваш профиль',
+            icon: <SettingOutlined />,
+          },
         ],
       }}
     />
