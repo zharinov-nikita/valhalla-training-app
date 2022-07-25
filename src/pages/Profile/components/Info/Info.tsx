@@ -1,5 +1,6 @@
 import { FC } from 'react'
 import Button from '../../../../components/Button/Button'
+import Icon from '../../../../components/Icon/Icon'
 import style from './Info.module.scss'
 
 export type InfoPropsType = {
@@ -13,7 +14,12 @@ const Info: FC<InfoPropsType> = ({ props }) => {
   return (
     <div className={style.info}>
       <div className={style.left}>
-        <div className={style.icon}>{props.name.split('')[0]}</div>
+        <Icon
+          props={{
+            children: props.name.split('')[0],
+            color: { type: 'transparent', value: 'purple' },
+          }}
+        />
         <div className={style.data}>
           <div className={style.name}>{props.name}</div>
           <div className={style.login}>{props.login}</div>

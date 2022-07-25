@@ -11,17 +11,6 @@
         align-items: center;
         gap: 8px;
 
-        & .icon {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background-color: var(--purple20);
-            border-radius: 8px;
-            color: var(--purple);
-        }
-
         & .data {
             display: flex;
             flex-direction: column;
