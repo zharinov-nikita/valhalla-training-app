@@ -18,5 +18,13 @@
         background-color: var(--background-color-primary-5);
         padding: 0px 16px;
         height: 52px;
+
+        & .left {
+            margin-left: -12px;
+        }
+
+        & .right {
+            margin-right: -12px;
+        }
     }
 }
