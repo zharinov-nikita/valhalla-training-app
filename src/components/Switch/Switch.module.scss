@@ -1,0 +1,35 @@
+.switch {
+    cursor: pointer;
+    width: 48px;
+    height: 24px;
+    padding: 0px 4px;
+    display: inline-flex;
+    align-items: center;
+    border-radius: 8px;
+    background-color: var(--background-color-primary-6);
+    border: none;
+
+    & .circle {
+        width: 1em;
+        height: 1em;
+        border-radius: 50%;
+    }
+}
+
+.switch {
+    &[data-checked="false"] {
+        justify-content: flex-start;
+
+        .circle {
+            background-color: var(--background-color-primary-7);
+        }
+    }
+
+    &[data-checked="true"] {
+        justify-content: flex-end;
+
+        .circle {
+            background-color: var(--green);
+        }
+    }
+}
