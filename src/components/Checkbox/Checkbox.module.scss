@@ -1,0 +1,33 @@
+.checkbox {
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+    padding: 0px 4px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    border: none;
+}
+
+.checkbox {
+    &[data-checked="false"] {
+        background-color: var(--background-color-primary-6);
+        & .check {
+            & svg {
+                fill: transparent;
+                opacity: 0;
+            }
+        }
+    }
+
+    &[data-checked="true"] {
+        background-color: var(--green);
+
+        & .check {
+            & svg {
+                fill: var(--color-primary-0);
+            }
+        }
+    }
+}
