@@ -1,0 +1,40 @@
+.item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+
+    & .left {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+
+        & .info {
+            display: flex;
+            flex-direction: column;
+
+            & .title {
+            }
+
+            & .description {
+                color: var(--color-primary-2);
+                font-size: 12px;
+            }
+        }
+    }
+    & .right {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        & .counter {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-primary-2);
+            padding: 12px;
+            border-radius: 8px;
+            background-color: transparent;
+        }
+    }
+}
