@@ -6,6 +6,7 @@ import { useAppSelector } from '../hooks/store/useAppSelector'
 import '../styles/index.scss'
 
 import Setting from './Setting/Setting'
+import Profile from './Profile/Profile'
 
 const App: FC = () => {
   const { theme } = useAppSelector((state) => state.app)
@@ -21,6 +22,7 @@ const App: FC = () => {
             <Routes>
               <Route path="/user" element={'user'} />
               <Route path="/setting" element={<Setting />} />
+              <Route path="/profile" element={<Profile />} />
               <Route path="*" element={'404'} />
             </Routes>
           ) : (

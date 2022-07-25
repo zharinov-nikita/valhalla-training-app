@@ -1,0 +1,39 @@
+.info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 12px;
+    background-color: var(--background-color-primary-5);
+    border-radius: 8px;
+    & .left {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+
+        & .icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: var(--purple20);
+            border-radius: 8px;
+            color: var(--purple);
+        }
+
+        & .data {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+
+            & .name {
+                color: var(--color-primary-0);
+            }
+
+            & .login {
+                color: var(--color-primary-2);
+            }
+        }
+    }
+}

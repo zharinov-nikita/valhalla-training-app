@@ -12,7 +12,7 @@ export default function () {
         list: [
           {
             id: 1,
-            to: '/user',
+            to: '/profile',
             title: 'Профиль',
             description: 'Страница, на которой находиться ваш профиль',
             icon: <ZoomOutOutlined />,
