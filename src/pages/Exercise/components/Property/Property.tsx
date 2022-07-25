@@ -5,7 +5,7 @@ import Switch from '../../../../components/Switch/Switch'
 import style from './Property.module.scss'
 
 const Property: FC = () => {
-  const [visible, setVisible] = useState<boolean>(false)
+  const [visible, setVisible] = useState<boolean>(true)
   return (
     <div className={style.property}>
       <div className={style.header}>
