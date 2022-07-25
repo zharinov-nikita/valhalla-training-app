@@ -1,14 +1,8 @@
 import { FC } from 'react'
-import Groop from './components/Groop/Groop'
-import Item from './components/Item/Item'
-import style from './Setting.module.scss'
+import List from './components/List/List'
 
 const Setting: FC = () => {
-  return (
-    <div className={style.setting}>
-      <Groop />
-    </div>
-  )
+  return <List />
 }
 
 export default Setting

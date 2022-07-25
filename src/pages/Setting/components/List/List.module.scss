@@ -1,0 +1,24 @@
+.list {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+
+    & .groop {
+        display: flex;
+        flex-direction: column;
+
+        & .item {
+            border-radius: 0px;
+            border-bottom: 1.5px solid var(--background-color-primary-6);
+        }
+
+        & .item:first-child {
+            border-radius: 8px 8px 0px 0px;
+        }
+
+        & .item:last-child {
+            border-radius: 0px 0px 8px 8px;
+            border: none;
+        }
+    }
+}

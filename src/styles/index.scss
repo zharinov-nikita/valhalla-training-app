@@ -50,6 +50,7 @@ a {
     & .wrapper {
         padding: 0px 16px;
         padding-top: calc(52px + 24px);
+        padding-bottom: 24px;
     }
 
     &[data-positon="fixed"] {
