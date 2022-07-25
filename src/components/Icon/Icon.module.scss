@@ -56,3 +56,12 @@
         border: 1px solid;
     }
 }
+
+// size
+.icon {
+    &[data-size="small"] {
+        padding: 8px;
+        min-height: 22px;
+        min-width: 22px;
+    }
+}

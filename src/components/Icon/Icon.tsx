@@ -9,6 +9,7 @@ export type IconPropsType = {
       value: 'purple' | 'green' | 'red' | 'yellow'
     }
     border?: 'solid'
+    size?: 'small' | 'medium' | 'large'
   }
 
   onClick?: MouseEventHandler
@@ -22,6 +23,7 @@ const Icon: FC<IconPropsType> = ({ props, onClick }) => {
       data-color-type={props.color?.type}
       data-color-value={props.color?.value}
       data-border={props.border}
+      data-size={props.size}
     >
       {props.children}
     </div>
