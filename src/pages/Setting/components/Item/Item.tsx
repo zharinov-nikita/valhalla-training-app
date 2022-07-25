@@ -8,12 +8,13 @@ export type ItemPropsType = {
     description: string
     checked: boolean
   }
+  className?: string
 }
 
-const Item: FC<ItemPropsType> = ({ props }) => {
+const Item: FC<ItemPropsType> = ({ props, className }) => {
   const [checked, setChecked] = useState<boolean>(props.checked)
   return (
-    <div className={style.item}>
+    <div className={`${style.item} ${className}`}>
       <div className={style.left}>
         <div className={style.title}>{props.title}</div>
         <div className={style.description}>{props.description}</div>
