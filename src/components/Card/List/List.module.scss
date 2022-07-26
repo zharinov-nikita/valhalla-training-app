@@ -1,0 +1,27 @@
+.list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    & .item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        & .key {
+            font-size: 12px;
+            color: var(--color-primary-1);
+        }
+
+        & .value {
+            width: fit-content;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2px 6px;
+            border-radius: 8px;
+            font-size: 10px;
+            color: var(--yellow);
+            background-color: var(--yellow20);
+        }
+    }
+}

@@ -13,6 +13,7 @@ import Card from '../components/Card/Card'
 import Icon from '../components/Icon/Icon'
 import { AppstoreOutlined } from '@ant-design/icons'
 import Button from '../components/Button/Button'
+import List from '../components/Card/List/List'
 
 const App: FC = () => {
   const { theme } = useAppSelector((state) => state.app)
@@ -29,25 +30,24 @@ const App: FC = () => {
                   props={{
                     children: <AppstoreOutlined />,
                     size: 'small',
-                    color: { type: 'transparent', value: 'green' },
+                    color: { type: 'transparent', value: 'yellow' },
                   }}
                 />
               ),
               title: 'Параметры',
-              description: (
-                <Button
-                  props={{
-                    block: false,
-                    size: 'small',
-                    text: 'afafsdfda',
-                    color: { type: 'transparent', value: 'green' },
-                  }}
-                />
-              ),
               visible: false,
             }}
           >
-            dsaf
+            <List
+              props={{
+                list: [
+                  { id: 1, key: 'Вид спорта', value: 'Бег' },
+                  { id: 2, key: 'Длительность (мин)', value: 120 },
+                  { id: 3, key: 'Пульсовая зона (чсс)', value: '144 - 167' },
+                  { id: 4, key: 'Интенсивность', value: 'Низкая' },
+                ],
+              }}
+            />
           </Card>
           <Header />
           <Navigation />
@@ -57,7 +57,7 @@ const App: FC = () => {
               <Route path="/setting" element={<Setting />} />
               <Route path="/profile" element={<Profile />} />
               <Route path="/exercise" element={<Exercise />} />
-              <Route path="*" element={'404'} />
+              {/* <Route path="*" element={'404'} /> */}
             </Routes>
           ) : (
             <Routes>
