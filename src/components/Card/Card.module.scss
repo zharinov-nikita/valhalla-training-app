@@ -1,4 +1,4 @@
-.approach {
+.card {
     display: flex;
     flex-direction: column;
     gap: 16px;
@@ -26,15 +26,6 @@
                 }
 
                 & .description {
-                    display: inline-flex;
-                    align-items: center;
-                    justify-content: center;
-                    width: fit-content;
-                    font-size: 10px;
-                    background-color: var(--yellow20);
-                    color: var(--yellow);
-                    padding: 2px 4px;
-                    border-radius: 8px;
                 }
             }
         }
@@ -102,9 +93,8 @@
     }
 }
 
-.approach {
-    & .body,
-    & .footer {
+.card {
+    & .body {
         &[data-visible="true"] {
             display: flex;
         }

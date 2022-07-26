@@ -4,7 +4,13 @@ import Icon from '../../../../components/Icon/Icon'
 import Switch from '../../../../components/Switch/Switch'
 import style from './Execution.module.scss'
 
-const Execution: FC = () => {
+export type ExecutionPropsType = {
+  props: {
+    text: string
+  }
+}
+
+const Execution: FC<ExecutionPropsType> = ({ props }) => {
   const [visible, setVisible] = useState<boolean>(false)
   return (
     <div className={style.execution}>
@@ -27,9 +33,7 @@ const Execution: FC = () => {
         </div>
       </div>
       <div className={style.body} data-visible={visible}>
-        Сверхдистанционая тренировка со скоростынми интервалами. Выполняйте
-        длительный бег втечение 120 минут. Каждые 20 минут делайте ускорение в
-        течение 20 секунд
+        {props.text}
       </div>
     </div>
   )

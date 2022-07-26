@@ -4,7 +4,13 @@ import Icon from '../../../../components/Icon/Icon'
 import Switch from '../../../../components/Switch/Switch'
 import style from './Hint.module.scss'
 
-const Hint: FC = () => {
+export type HintPropsType = {
+  props: {
+    text: string
+  }
+}
+
+const Hint: FC<HintPropsType> = ({ props }) => {
   const [visible, setVisible] = useState<boolean>(false)
   return (
     <div className={style.hint}>
@@ -27,7 +33,7 @@ const Hint: FC = () => {
         </div>
       </div>
       <div className={style.body} data-visible={visible}>
-        После старта упражнения здесь начнут появляться подсказки
+        {props.text}
       </div>
     </div>
   )
