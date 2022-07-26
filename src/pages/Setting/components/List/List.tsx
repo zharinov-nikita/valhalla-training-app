@@ -17,7 +17,7 @@ const List: FC<ListPropsType> = () => {
       <Item
         props={{
           title: `Тема`,
-          description: `Настройка темы. Сейчас установлена ${
+          description: `Сейчас установлена ${
             theme === 'dark' ? 'темная' : 'светлая'
           } тема`,
           checked: theme === 'dark' ? true : false,

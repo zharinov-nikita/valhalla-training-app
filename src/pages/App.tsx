@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, useEffect } from 'react'
 import '../styles/index.scss'
 
 import { AppstoreOutlined } from '@ant-design/icons'
@@ -11,14 +11,23 @@ import Header from '../components/Header/Header'
 import Setting from './Setting/Setting'
 import Profile from './Profile/Profile'
 import Exercise from './Exercise/Exercise'
-import Card from '../components/Card/Card'
-import Icon from '../components/Icon/Icon'
-import List from '../components/Card/List/List'
-import Message from '../components/Card/Message/Message'
 
 const App: FC = () => {
   const { theme } = useAppSelector((state) => state.app)
   const { isAuth } = useAppSelector((state) => state.user)
+
+  useEffect(() => {
+    if (theme === 'dark') {
+      document
+        .querySelector('meta[name=theme-color]')
+        ?.setAttribute('content', '#1e1e1e')
+    }
+    if (theme === 'light') {
+      document
+        .querySelector('meta[name=theme-color]')
+        ?.setAttribute('content', '#fff')
+    }
+  }, [theme])
 
   return (
     <div className="app" data-theme={theme}>

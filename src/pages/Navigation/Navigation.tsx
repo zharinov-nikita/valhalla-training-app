@@ -1,5 +1,6 @@
 import {
   SettingOutlined,
+  UserAddOutlined,
   UserOutlined,
   ZoomOutOutlined,
 } from '@ant-design/icons'
@@ -15,35 +16,21 @@ export default function () {
             to: '/profile',
             title: 'Профиль',
             description: 'Страница, на которой находиться ваш профиль',
-            icon: <ZoomOutOutlined />,
-          },
-          {
-            id: 2,
-            to: '/plan',
-            title: 'Аккаунт',
-            description: 'Страница, на которой находиться ваш профиль',
             icon: <UserOutlined />,
           },
           {
-            id: 3,
-            to: '/cycle',
-            title: 'Моя неделя',
-            description: 'Страница, на которой находиться ваш профиль',
-            icon: <SettingOutlined />,
-          },
-          {
-            id: 4,
+            id: 2,
             to: '/setting',
             title: 'Настройки',
             description: 'Страница, на которой находиться ваш профиль',
             icon: <SettingOutlined />,
           },
           {
-            id: 5,
+            id: 3,
             to: '/exercise',
             title: 'Упражнения',
             description: 'Страница, на которой находиться ваш профиль',
-            icon: <SettingOutlined />,
+            icon: <UserAddOutlined />,
           },
         ],
       }}

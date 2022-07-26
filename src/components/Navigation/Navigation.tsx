@@ -28,7 +28,7 @@ export const Navigation: FC<NavigationPropsType> = ({ props }) => {
               <Link to={to} className={style.item} key={id}>
                 <Icon
                   props={{
-                    color: { value: 'purple', type: 'transparent' },
+                    color: { value: 'green', type: 'transparent' },
                     children: icon,
                   }}
                 />
