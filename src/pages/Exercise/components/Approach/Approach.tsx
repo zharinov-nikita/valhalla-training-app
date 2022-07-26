@@ -19,10 +19,6 @@ export type ApproachPropsType = {
 }
 
 const Approach: FC<ApproachPropsType> = ({ props }) => {
-  const [completeds, setCompleteds] = useState<boolean[]>([])
-  const [isCompleteds, setIsCompleteds] = useState<boolean[]>([])
-
-  let [progress, setProgress] = useState<number>(0)
   const [visible, setVisible] = useState<boolean>(true)
 
   return (
@@ -51,29 +47,10 @@ const Approach: FC<ApproachPropsType> = ({ props }) => {
             props={{
               completed: item.completed,
               list: item.list,
-              calback: (completed: boolean) => {
-                if (completed) {
-                  setCompleteds([...completeds, completed])
-                  console.log(completeds)
-                }
-                if (!completed) {
-                  setIsCompleteds([...isCompleteds, !completed])
-                }
-              },
             }}
             key={item.id}
           />
         ))}
-      </div>
-      <div className={style.footer} data-visible={visible}>
-        <div className={style.progress}>
-          <div
-            className={style.placeholder}
-            style={{
-              width: `${(completeds.length * 100) / props.box.list.length}%`,
-            }}
-          ></div>
-        </div>
       </div>
     </div>
   )

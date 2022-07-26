@@ -4,7 +4,6 @@ import Checkbox from '../../../../../components/Checkbox/Checkbox'
 
 export type BoxPropsType = {
   props: {
-    calback: any
     completed: boolean
     list: Array<{ id: number | string; title: string; value: string }>
   }
@@ -12,15 +11,6 @@ export type BoxPropsType = {
 
 const Box: FC<BoxPropsType> = ({ props }) => {
   const [completed, setCompleted] = useState<boolean>(props.completed)
-
-  useEffect(() => {
-    if (completed) {
-      props.calback(completed)
-    }
-    if (!completed) {
-      props.calback(completed)
-    }
-  }, [completed])
 
   return (
     <div className={style.box}>
