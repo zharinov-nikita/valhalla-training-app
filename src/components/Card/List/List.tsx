@@ -1,4 +1,5 @@
 import { FC } from 'react'
+import Tag from '../../Tag/Tag'
 import style from './List.module.scss'
 
 export type ListPropsType = {
@@ -13,7 +14,13 @@ const List: FC<ListPropsType> = ({ props }) => {
       {props.list.map((item) => (
         <div className={style.item} key={item.id}>
           <div className={style.key}>{item.key}</div>
-          <div className={style.value}>{item.value}</div>
+          <Tag
+            props={{
+              size: 'small',
+              color: { type: 'transparent', value: 'yellow' },
+              text: item.value,
+            }}
+          />
         </div>
       ))}
     </div>
