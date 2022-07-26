@@ -1,13 +1,30 @@
-import { SmileOutlined, UnorderedListOutlined } from '@ant-design/icons'
-import { FC, useState } from 'react'
-import Checkbox from '../../../../components/Checkbox/Checkbox'
+import { FC, useEffect, useState } from 'react'
+import { OrderedListOutlined } from '@ant-design/icons'
 import Icon from '../../../../components/Icon/Icon'
 import Switch from '../../../../components/Switch/Switch'
 import style from './Approach.module.scss'
+import Box from './Box/Box'
 
-const Approach: FC = () => {
-  const [checked, setChecked] = useState<boolean>(false)
+export type ApproachPropsType = {
+  props: {
+    box: {
+      title: string
+      list: Array<{
+        id: string | number
+        completed: boolean
+        list: Array<{ id: string | number; title: string; value: string }>
+      }>
+    }
+  }
+}
+
+const Approach: FC<ApproachPropsType> = ({ props }) => {
+  const [completeds, setCompleteds] = useState<boolean[]>([])
+  const [isCompleteds, setIsCompleteds] = useState<boolean[]>([])
+
+  let [progress, setProgress] = useState<number>(0)
   const [visible, setVisible] = useState<boolean>(true)
+
   return (
     <div className={style.approach}>
       <div className={style.header}>
@@ -15,11 +32,11 @@ const Approach: FC = () => {
           <Icon
             props={{
               color: { type: 'transparent', value: 'green' },
-              children: <SmileOutlined />,
+              children: <OrderedListOutlined />,
               size: 'small',
             }}
           />
-          <div className={style.title}>Подтягивания</div>
+          <div className={style.title}>{props.box.title}</div>
         </div>
         <div className={style.right}>
           <Switch
@@ -29,44 +46,33 @@ const Approach: FC = () => {
         </div>
       </div>
       <div className={style.body} data-visible={visible}>
-        <div className={style.box}>
-          <Checkbox props={{ checked }} onClick={() => setChecked(!checked)} />
-          <div className={style.list}>
-            <div className={style.item}>
-              <div className={style.title}>Количество (раз)</div>
-              <div className={style.value}>17</div>
-            </div>
-            <div className={style.item}>
-              <div className={style.title}>Отдых (сек)</div>
-              <div className={style.value}>180</div>
-            </div>
-          </div>
-        </div>
-        <div className={style.box}>
-          <Checkbox props={{ checked: false }} />
-          <div className={style.list}>
-            <div className={style.item}>
-              <div className={style.title}>Количество (раз)</div>
-              <div className={style.value}>15</div>
-            </div>
-            <div className={style.item}>
-              <div className={style.title}>Отдых (сек)</div>
-              <div className={style.value}>120</div>
-            </div>
-          </div>
-        </div>
-        <div className={style.box}>
-          <Checkbox props={{ checked: false }} />
-          <div className={style.list}>
-            <div className={style.item}>
-              <div className={style.title}>Количество (раз)</div>
-              <div className={style.value}>15</div>
-            </div>
-            <div className={style.item}>
-              <div className={style.title}>Отдых (сек)</div>
-              <div className={style.value}>120</div>
-            </div>
-          </div>
+        {props.box.list.map((item) => (
+          <Box
+            props={{
+              completed: item.completed,
+              list: item.list,
+              calback: (completed: boolean) => {
+                if (completed) {
+                  setCompleteds([...completeds, completed])
+                  console.log(completeds)
+                }
+                if (!completed) {
+                  setIsCompleteds([...isCompleteds, !completed])
+                }
+              },
+            }}
+            key={item.id}
+          />
+        ))}
+      </div>
+      <div className={style.footer} data-visible={visible}>
+        <div className={style.progress}>
+          <div
+            className={style.placeholder}
+            style={{
+              width: `${(completeds.length * 100) / props.box.list.length}%`,
+            }}
+          ></div>
         </div>
       </div>
     </div>
