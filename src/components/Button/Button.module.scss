@@ -5,7 +5,7 @@
     justify-content: center;
     border-radius: 8px;
     background: transparent;
-    color: var(--color-primary-0);
+    color: var(--color-primary-1);
     border: none;
 }
 
@@ -14,19 +14,19 @@
     &[data-color-type="fill"] {
         &[data-color-value="purple"] {
             background-color: var(--purple);
-            color: var(--color-primary-0);
+            color: var(--color-primary-1);
         }
         &[data-color-value="red"] {
             background-color: var(--red);
-            color: var(--color-primary-0);
+            color: var(--color-primary-1);
         }
         &[data-color-value="green"] {
             background-color: var(--green);
-            color: var(--color-primary-0);
+            color: var(--color-primary-1);
         }
         &[data-color-value="yellow"] {
             background-color: var(--yellow);
-            color: var(--color-primary-0);
+            color: var(--color-primary-1);
         }
     }
 

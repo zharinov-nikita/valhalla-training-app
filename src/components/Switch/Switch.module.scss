@@ -6,7 +6,7 @@
     display: inline-flex;
     align-items: center;
     border-radius: 8px;
-    background-color: var(--background-color-primary-6);
+    background-color: var(--background-color-primary-3);
     border: none;
 
     & .circle {
@@ -21,7 +21,7 @@
         justify-content: flex-start;
 
         .circle {
-            background-color: var(--background-color-primary-7);
+            background-color: var(--background-color-primary-6);
         }
     }
 

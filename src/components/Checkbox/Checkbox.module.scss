@@ -12,7 +12,7 @@
 
 .checkbox {
     &[data-checked="false"] {
-        background-color: var(--background-color-primary-6);
+        background-color: var(--background-color-primary-4);
         & .check {
             & svg {
                 fill: transparent;
@@ -26,7 +26,7 @@
 
         & .check {
             & svg {
-                fill: var(--color-primary-0);
+                fill: var(--color-primary-1);
             }
         }
     }

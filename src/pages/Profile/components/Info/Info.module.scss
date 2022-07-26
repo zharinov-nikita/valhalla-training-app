@@ -4,7 +4,7 @@
     justify-content: space-between;
     gap: 12px;
     padding: 12px;
-    background-color: var(--background-color-primary-5);
+    background-color: var(--background-color-primary-2);
     border-radius: 8px;
     & .left {
         display: flex;
@@ -17,11 +17,11 @@
             gap: 4px;
 
             & .name {
-                color: var(--color-primary-0);
+                color: var(--color-primary-1);
             }
 
             & .login {
-                color: var(--color-primary-2);
+                color: var(--color-primary-6);
             }
         }
     }

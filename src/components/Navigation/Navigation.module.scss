@@ -17,7 +17,7 @@
         display: flex;
         padding: 24px 16px;
         height: 100vh;
-        background-color: var(--background-color-primary-4);
+        background-color: var(--background-color-primary-2);
 
         & .list {
             width: 100%;
@@ -31,7 +31,6 @@
                 align-items: center;
                 gap: 8px;
                 border-radius: 8px;
-                // background-color: var(--background-color-primary-4);
 
                 & .text {
                     display: flex;
@@ -39,7 +38,7 @@
                     gap: 2px;
 
                     & .title {
-                        color: var(--color-primary-0);
+                        color: var(--color-primary-1);
                     }
 
                     & .description {

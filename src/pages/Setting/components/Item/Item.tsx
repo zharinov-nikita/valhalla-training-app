@@ -1,4 +1,4 @@
-import { FC, useState } from 'react'
+import { FC, MouseEventHandler } from 'react'
 import Switch from '../../../../components/Switch/Switch'
 import style from './Item.module.scss'
 
@@ -9,10 +9,10 @@ export type ItemPropsType = {
     checked: boolean
   }
   className?: string
+  onClick?: MouseEventHandler
 }
 
-const Item: FC<ItemPropsType> = ({ props, className }) => {
-  const [checked, setChecked] = useState<boolean>(props.checked)
+const Item: FC<ItemPropsType> = ({ props, className, onClick }) => {
   return (
     <div className={`${style.item} ${className}`}>
       <div className={style.left}>
@@ -20,7 +20,7 @@ const Item: FC<ItemPropsType> = ({ props, className }) => {
         <div className={style.description}>{props.description}</div>
       </div>
       <div className={style.right}>
-        <Switch props={{ checked }} onClick={() => setChecked(!checked)} />
+        <Switch props={{ checked: props.checked }} onClick={onClick} />
       </div>
     </div>
   )
