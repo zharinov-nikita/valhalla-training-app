@@ -1,0 +1,18 @@
+.affix {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+
+    & .container {
+        width: 480px;
+        max-width: 100%;
+        margin: 0px auto;
+    }
+
+    & .wrapper {
+        background-color: var(--background-color-primary-1);
+        padding: 16px;
+    }
+}

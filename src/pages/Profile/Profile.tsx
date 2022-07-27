@@ -1,4 +1,5 @@
 import { ApiOutlined, UserOutlined } from '@ant-design/icons'
+import Affix from '../../components/Affix/Affix'
 import Button from '../../components/Button/Button'
 import Card from '../../components/Card/Card'
 import ListCard from '../../components/Card/List/List'
@@ -185,6 +186,17 @@ export default function () {
           },
         ]}
       />
+
+      <Affix>
+        <Button
+          props={{
+            size: 'medium',
+            block: true,
+            text: 'Завершить тренировку',
+            color: { type: 'fill', value: 'purple' },
+          }}
+        />
+      </Affix>
     </List>
   )
 }
