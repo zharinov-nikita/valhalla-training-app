@@ -1,6 +1,7 @@
 import { FC, ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 import Icon from '../Icon/Icon'
+import List from '../List/List'
 import { useVisible } from './hooks/useVisible'
 import style from './Navigation.module.scss'
 
@@ -23,7 +24,7 @@ export const Navigation: FC<NavigationPropsType> = ({ props }) => {
     <div className={style.navigation} data-visible={visible}>
       <div className={style.container}>
         <div className={style.wrapper}>
-          <div className={style.list}>
+          <List>
             {props.list.map(({ id, to, icon, title, description }) => (
               <Link to={to} className={style.item} key={id}>
                 <Icon
@@ -39,7 +40,7 @@ export const Navigation: FC<NavigationPropsType> = ({ props }) => {
                 </div>
               </Link>
             ))}
-          </div>
+          </List>
         </div>
       </div>
     </div>

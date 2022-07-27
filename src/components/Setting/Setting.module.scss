@@ -30,7 +30,9 @@
 
 .setting {
     &[data-type="item"] {
-        border-radius: 8px;
+        & .item {
+            border-radius: 8px;
+        }
     }
     &[data-type="groop"] {
         & .item {

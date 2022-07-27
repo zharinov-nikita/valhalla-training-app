@@ -10,6 +10,7 @@ import Header from '../components/Header/Header'
 import Profile from './Profile/Profile'
 import Exercise from './Exercise/Exercise'
 import Setting from '../components/Setting/Setting'
+import List from '../components/List/List'
 
 const App: FC = () => {
   const { theme } = useAppSelector((state) => state.app)
@@ -32,15 +33,17 @@ const App: FC = () => {
     <div className="app" data-theme={theme}>
       <div className="container">
         <div className="wrapper">
-          <Setting
-            props={[
-              { id: 1, title: 'Тема', description: 'Настройка темы' },
-              { id: 2, title: 'Тема', description: 'Настройка темы' },
-              { id: 3, title: 'Тема', description: 'Настройка темы' },
-              { id: 4, title: 'Тема', description: 'Настройка темы' },
-              { id: 5, title: 'Тема', description: 'Настройка темы' },
-            ]}
-          />
+          <List>
+            <Setting
+              props={[{ id: 1, title: 'Тема', description: 'Настройка темы' }]}
+            />
+            <Setting
+              props={[
+                { id: 1, title: 'Тема', description: 'Настройка темы' },
+                { id: 2, title: 'Тема', description: 'Настройка темы' },
+              ]}
+            />
+          </List>
           <Header />
           <Navigation />
           {isAuth ? (
