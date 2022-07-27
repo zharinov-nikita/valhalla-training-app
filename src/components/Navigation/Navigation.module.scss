@@ -17,7 +17,7 @@
         display: flex;
         padding: 24px 16px;
         height: 100vh;
-        background-color: var(--background-color-primary-2);
+        background-color: var(--background-color-primary-1);
 
         & .list {
             width: 100%;
@@ -43,7 +43,7 @@
 
                     & .description {
                         font-size: 12px;
-                        color: var(--color-primary-6);
+                        color: var(--color-primary-2);
                     }
                 }
             }

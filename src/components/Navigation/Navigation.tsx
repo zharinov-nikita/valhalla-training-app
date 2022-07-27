@@ -30,6 +30,7 @@ export const Navigation: FC<NavigationPropsType> = ({ props }) => {
                   props={{
                     color: { value: 'green', type: 'transparent' },
                     children: icon,
+                    size: 'small',
                   }}
                 />
                 <div className={style.text}>

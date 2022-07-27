@@ -31,7 +31,6 @@ const Info: FC<InfoPropsType> = ({ props }) => {
             block: false,
             size: 'small',
             color: { type: 'transparent', value: 'purple' },
-            border: 'solid',
             text: 'Обновить',
           }}
         />

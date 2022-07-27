@@ -22,7 +22,7 @@
 }
 
 body {
-    background-color: var(--background-color-primary-1);
+    background-color: var(--background-color-primary-default);
     color: var(--color-primary-1);
 }
 
@@ -40,7 +40,7 @@ a {
 .app {
     height: 100%;
     min-height: 100vh;
-    background-color: var(--background-color-primary-1);
+    background-color: var(--background-color-primary-default);
     color: var(--color-primary-1);
 
     & .container {

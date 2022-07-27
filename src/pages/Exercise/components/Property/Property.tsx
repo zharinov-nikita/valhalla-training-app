@@ -5,7 +5,10 @@ import Icon from './Icon'
 
 const list: ListPropsType = {
   props: {
-    list: [{ id: 1, key: 'Вид спорта', value: 'Бег' }],
+    list: [
+      { id: 1, key: 'Вид спорта', value: 'Бег' },
+      { id: 2, key: 'Интенсивность', value: 'Низкая' },
+    ],
   },
 }
 

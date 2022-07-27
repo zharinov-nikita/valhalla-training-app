@@ -5,7 +5,7 @@
     gap: 12px;
     padding: 12px;
     border-radius: 8px;
-    background-color: var(--background-color-primary-2);
+    background-color: var(--palette-1);
 
     & .left {
         display: flex;
@@ -17,7 +17,7 @@
         }
 
         & .description {
-            color: var(--color-primary-6);
+            color: var(--color-primary-2);
             font-size: 12px;
         }
     }

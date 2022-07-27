@@ -4,7 +4,7 @@
     justify-content: space-between;
     gap: 12px;
     padding: 12px;
-    background-color: var(--background-color-primary-2);
+    background-color: var(--palette-1);
     border-radius: 8px;
     & .left {
         display: flex;
@@ -21,7 +21,7 @@
             }
 
             & .login {
-                color: var(--color-primary-6);
+                color: var(--color-primary-2);
             }
         }
     }
