@@ -4,7 +4,7 @@ import style from './Button.module.scss'
 export type ButtonPropsType = {
   props: {
     text: string | ReactNode
-    block: boolean
+    block?: boolean
     color?: {
       type: 'fill' | 'transparent'
       value: 'purple' | 'green' | 'red' | 'yellow'
@@ -12,6 +12,7 @@ export type ButtonPropsType = {
     size: 'small' | 'medium'
     border?: 'solid'
     disabled?: boolean
+    palette?: boolean
   }
 
   onClick?: MouseEventHandler
@@ -27,6 +28,7 @@ const Button: FC<ButtonPropsType> = ({ props, onClick }) => {
       data-block={props.block}
       disabled={props.disabled}
       data-border={props.border}
+      data-palette={!props.color && props.palette}
       onClick={onClick}
     >
       {props.text}

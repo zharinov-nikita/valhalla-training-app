@@ -18,7 +18,6 @@ const Header: FC = () => {
               props={{
                 text: <LeftOutlined />,
                 size: 'medium',
-                block: false,
               }}
               onClick={() => window.history.back()}
             />
@@ -29,7 +28,6 @@ const Header: FC = () => {
               props={{
                 text: visible ? <CloseOutlined /> : <MenuOutlined />,
                 size: 'medium',
-                block: false,
               }}
               onClick={actionChangeVisible}
             />

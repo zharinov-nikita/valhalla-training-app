@@ -98,3 +98,10 @@
         border: 1px solid;
     }
 }
+
+// palette
+.button {
+    &[data-palette="true"] {
+        background-color: var(--palette-1);
+    }
+}

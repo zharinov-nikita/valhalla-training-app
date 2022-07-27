@@ -2,7 +2,6 @@ import {
   SettingOutlined,
   UserAddOutlined,
   UserOutlined,
-  ZoomOutOutlined,
 } from '@ant-design/icons'
 import Navigation from '../../components/Navigation/Navigation'
 

@@ -65,3 +65,11 @@
         min-width: 22px;
     }
 }
+
+// palette
+
+.icon {
+    &[data-palette="true"] {
+        background-color: var(--palette-1);
+    }
+}

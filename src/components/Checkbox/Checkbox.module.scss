@@ -8,11 +8,11 @@
     justify-content: center;
     border-radius: 8px;
     border: none;
+    background-color: var(--palette-1);
 }
 
 .checkbox {
     &[data-checked="false"] {
-        background-color: var(--background-color-primary-1);
         & .check {
             & svg {
                 fill: transparent;
