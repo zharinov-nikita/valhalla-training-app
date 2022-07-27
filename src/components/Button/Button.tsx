@@ -1,4 +1,4 @@
-import { FC, MouseEventHandler, ReactNode } from 'react'
+import { FC, MouseEventHandler, ReactNode, StyleHTMLAttributes } from 'react'
 import style from './Button.module.scss'
 
 export type ButtonPropsType = {
@@ -13,8 +13,8 @@ export type ButtonPropsType = {
     border?: 'solid'
     disabled?: boolean
     palette?: boolean
+    action?: number
   }
-
   onClick?: MouseEventHandler
 }
 
@@ -32,6 +32,7 @@ const Button: FC<ButtonPropsType> = ({ props, onClick }) => {
       onClick={onClick}
     >
       {props.text}
+      {props.action && <span className={style.action}>{props.action}</span>}
     </button>
   )
 }

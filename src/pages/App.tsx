@@ -12,6 +12,7 @@ import List from '../components/List/List'
 import Icon from '../components/Icon/Icon'
 import Switch from '../components/Switch/Switch'
 import Button from '../components/Button/Button'
+import Workout from '../components/Workout/Workout'
 
 const App: FC = () => {
   const { theme } = useAppSelector((state) => state.app)

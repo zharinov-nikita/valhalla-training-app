@@ -23,9 +23,12 @@
                 gap: 2px;
 
                 & .title {
+                    color: var(--color-primary-1);
                 }
 
                 & .description {
+                    color: var(--color-primary-2);
+                    font-size: 12px;
                 }
             }
         }
