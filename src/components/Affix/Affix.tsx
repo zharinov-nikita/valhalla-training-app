@@ -7,7 +7,7 @@ export type AffixPropsType = {
 
 const Affix: FC<AffixPropsType> = ({ children }) => {
   return (
-    <div className={style.affix}>
+    <div className={style.affix} data-component={'affix'}>
       <div className={style.container}>
         <div className={style.wrapper}>{children}</div>
       </div>

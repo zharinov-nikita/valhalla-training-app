@@ -7,12 +7,6 @@ import { useAppSelector } from '../hooks/store/useAppSelector'
 import Navigation from './Navigation/Navigation'
 import Header from '../components/Header/Header'
 import Profile from './Profile/Profile'
-import Setting from '../components/Setting/Setting'
-import List from '../components/List/List'
-import Icon from '../components/Icon/Icon'
-import Switch from '../components/Switch/Switch'
-import Button from '../components/Button/Button'
-import Workout from '../components/Workout/Workout'
 
 const App: FC = () => {
   const { theme } = useAppSelector((state) => state.app)

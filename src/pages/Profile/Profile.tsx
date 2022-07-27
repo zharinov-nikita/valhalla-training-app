@@ -17,59 +17,9 @@ export default function () {
   const dispatch = useAppDispatch()
   const { switchTheme } = appSlice.actions
   const { theme } = useAppSelector((state) => state.app)
+
   return (
     <List>
-      <Card
-        props={{
-          icon: (
-            <Icon
-              props={{
-                children: <ApiOutlined />,
-                color: { type: 'transparent', value: 'yellow' },
-                size: 'small',
-              }}
-            />
-          ),
-          title: 'Бег',
-          description: 'Беговая тренировка',
-          visible: true,
-        }}
-      >
-        <ListCard
-          props={[
-            { id: 1, key: 'Длительность (мин)', value: 40 },
-            { id: 2, key: 'Интенсивность', value: 'Низкая' },
-            { id: 3, key: 'Пульс (чсс)', value: '144 - 167' },
-          ]}
-        />
-      </Card>
-
-      <Card
-        props={{
-          icon: (
-            <Icon
-              props={{
-                children: <ApiOutlined />,
-                color: { type: 'transparent', value: 'yellow' },
-                size: 'small',
-              }}
-            />
-          ),
-          title: 'Подсказка',
-          description: 'Инструкция для тренировки',
-          visible: true,
-        }}
-      >
-        <Message
-          props={{
-            text: 'Моя беговая тренировка на своф а овыфл афыв алвфыо алвыфо алдфыво лдаовы фаалдф ыла фл ыыо алфоыаыфавыф',
-          }}
-        />
-      </Card>
-
-      <Workout />
-      <Workout />
-
       <Setting
         props={[
           {
@@ -145,7 +95,7 @@ export default function () {
             ),
           },
           {
-            id: 2,
+            id: 3,
             title: 'Предстоящие',
             description: 'Предстоящие тренировки',
             before: (
