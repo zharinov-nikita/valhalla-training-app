@@ -8,6 +8,8 @@ const list: ListPropsType = {
     list: [
       { id: 1, key: 'Вид спорта', value: 'Бег' },
       { id: 2, key: 'Интенсивность', value: 'Низкая' },
+      { id: 3, key: 'Интенсивность', value: 'Низкая' },
+      { id: 4, key: 'Интенсивность', value: 'Низкая' },
     ],
   },
 }
