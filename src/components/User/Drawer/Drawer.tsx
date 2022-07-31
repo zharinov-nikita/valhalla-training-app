@@ -8,22 +8,23 @@ import Input from '../../Common/Input/Input'
 import List from '../../Common/List/List'
 
 const Drawer: FC = () => {
-  const { drawer } = useAppSelector((state) => state.user)
+  const { data } = useAppSelector((state) => state.user)
   const dispatch = useAppDispatch()
   const { changeData } = userSlice.actions
   return (
     <CommonDrawer>
       <List gap={12}>
         <Input
-          value={drawer.value}
+          value={data.value}
           onChange={(e) =>
-            dispatch(changeData({ ...drawer, value: e.target.value }))
+            dispatch(changeData({ ...data, value: e.target.value }))
           }
         />
         <Button
           block={true}
           size="medium"
-          text={'Обновить данные'}
+          disabled={data.value.length > 0 ? false : true}
+          text={`Обновить ${data.key.toLowerCase()}`}
           color={{ type: 'fill', value: 'purple' }}
         />
       </List>

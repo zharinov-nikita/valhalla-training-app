@@ -8,3 +8,10 @@
     color: var(--color-primary-1);
     border: none;
 }
+
+.input {
+    &:active,
+    &:focus {
+        border: 1px solid var(--purple);
+    }
+}

@@ -3,26 +3,39 @@ import List from '../../components/Common/List/List'
 import Drawer from '../../components/User/Drawer/Drawer'
 import Info from '../../components/User/Info/Info'
 import SettingList from '../../components/User/SettingList/SettingList'
+import { user } from './data'
 
 const User: FC = () => {
+  const { _id, firstname, lastname, role, login, password } = user
+  const list = () => {
+    if (!lastname) {
+      return [
+        { key: 'Идентификатор', value: _id },
+        { key: 'Имя', value: firstname },
+        { key: 'Роль', value: role },
+        { key: 'Логин', value: login },
+        { key: 'Пароль', value: password },
+      ]
+    }
+    return [
+      { key: 'Идентификатор', value: _id },
+      { key: 'Имя', value: firstname },
+      { key: 'Фамилия', value: lastname },
+      { key: 'Роль', value: role },
+      { key: 'Логин', value: login },
+      { key: 'Пароль', value: password },
+    ]
+  }
   return (
     <List>
       <Drawer />
       <Info
-        firstname="Данил"
-        lastname="Жаринов"
-        login="zharinov_danil"
-        role="Спортсмен"
+        firstname={firstname}
+        lastname={lastname}
+        login={login}
+        role={role}
       />
-      <SettingList
-        list={[
-          { key: 'Имя', value: 'Данил' },
-          { key: 'Фамилия', value: 'Жаринов' },
-          { key: 'Роль', value: 'Спортсмен' },
-          { key: 'Логин', value: 'zharinov_danil' },
-          { key: 'Пароль', value: 'password' },
-        ]}
-      />
+      <SettingList list={list()} />
     </List>
   )
 }

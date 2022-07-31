@@ -12,9 +12,9 @@ export default function () {
         list: [
           {
             id: 1,
-            to: '/plan',
-            title: 'План',
-            description: 'Страница, на которой находиться ваш план',
+            to: '/user',
+            title: 'Аккаунт',
+            description: 'Страница, на которой находиться ваш аккаунт',
             icon: <UserOutlined />,
           },
         ],

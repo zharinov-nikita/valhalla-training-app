@@ -2,12 +2,12 @@ import { createSlice } from '@reduxjs/toolkit'
 
 export type UserStateType = {
   isAuth: boolean
-  drawer: { key: string; value: string }
+  data: { key: string; value: string }
 }
 
 const initialState: UserStateType = {
   isAuth: true,
-  drawer: {
+  data: {
     key: '',
     value: '',
   },
@@ -19,9 +19,9 @@ export const userSlice = createSlice({
   reducers: {
     changeData(
       state: UserStateType,
-      action: { payload: UserStateType['drawer'] }
+      action: { payload: UserStateType['data'] }
     ) {
-      state.drawer = { ...state.drawer, ...action.payload }
+      state.data = { ...state.data, ...action.payload }
     },
   },
 })
