@@ -12,24 +12,10 @@ export default function () {
         list: [
           {
             id: 1,
-            to: '/profile',
-            title: 'Профиль',
-            description: 'Страница, на которой находиться ваш профиль',
+            to: '/plan',
+            title: 'План',
+            description: 'Страница, на которой находиться ваш план',
             icon: <UserOutlined />,
-          },
-          {
-            id: 2,
-            to: '/setting',
-            title: 'Настройки',
-            description: 'Страница, на которой находиться ваш профиль',
-            icon: <SettingOutlined />,
-          },
-          {
-            id: 3,
-            to: '/exercise',
-            title: 'Упражнения',
-            description: 'Страница, на которой находиться ваш профиль',
-            icon: <UserAddOutlined />,
           },
         ],
       }}

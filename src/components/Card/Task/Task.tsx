@@ -8,7 +8,7 @@ import Center from './Center'
 
 export type TaskPropsType = {
   props: Array<{
-    id: number | string
+    id?: number | string
     completed: boolean
     option: Array<{ id: number | string; key: string; value: number | string }>
   }>

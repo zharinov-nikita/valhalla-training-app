@@ -7,7 +7,7 @@ export type SettingPropsType = {
     before?: ReactNode
     after?: ReactNode
     title: string
-    description?: string
+    description?: ReactNode | string
   }>
 }
 
