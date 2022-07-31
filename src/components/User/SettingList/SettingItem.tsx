@@ -28,6 +28,9 @@ const SettingItem: FC<SettingItemPropsType> = ({
         <Button
           size="small"
           text="Обновить"
+          disabled={
+            settingkey === 'Логин' || settingkey === 'Роль' ? true : false
+          }
           palette={true}
           onClick={() => {
             dispatch(changeData({ key: settingkey, value: settingValue }))
