@@ -3,6 +3,7 @@ import style from './SettingList.module.scss'
 import Button from '../../Common/Button/Button'
 import { drawerSlice } from '../../../redux/drawer/drawer.slice'
 import { useAppDispatch } from '../../../hooks/store/useAppDispatch'
+import { userSlice } from '../../../redux/user/user.slice'
 
 export type SettingItemPropsType = {
   settingkey: string
@@ -13,6 +14,7 @@ const SettingItem: FC<SettingItemPropsType> = ({
   settingkey,
   settingValue,
 }) => {
+  const { changeData } = userSlice.actions
   const { show } = drawerSlice.actions
   const dispatch = useAppDispatch()
 
@@ -27,7 +29,10 @@ const SettingItem: FC<SettingItemPropsType> = ({
           size="small"
           text="Обновить"
           palette={true}
-          onClick={() => dispatch(show('update'))}
+          onClick={() => {
+            dispatch(changeData({ key: settingkey, value: settingValue }))
+            dispatch(show())
+          }}
         />
       </div>
     </div>

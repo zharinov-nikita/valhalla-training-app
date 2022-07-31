@@ -2,18 +2,15 @@ import { FC } from 'react'
 import style from './SettingList.module.scss'
 import SettingItem from './SettingItem'
 
-const SettingList: FC = () => {
+export type SettingListType = {
+  list: Array<{ key: string; value: string }>
+}
+
+const SettingList: FC<SettingListType> = ({ list }) => {
   return (
     <div className={style.list}>
-      {[
-        { settingKey: 'Имя', settingValue: 'Данил' },
-        { settingKey: 'Фамилия', settingValue: 'Жаринов' },
-      ].map((item) => (
-        <SettingItem
-          key={item.settingValue}
-          settingkey={item.settingKey}
-          settingValue={item.settingValue}
-        />
+      {list.map(({ key, value }) => (
+        <SettingItem key={key} settingkey={key} settingValue={value} />
       ))}
     </div>
   )

@@ -6,9 +6,7 @@ import { useAppSelector } from '../hooks/store/useAppSelector'
 
 import Navigation from './Navigation/Navigation'
 import Header from '../components/Header/Header'
-import Plan from './Plan/Plan'
-import Info from '../components/User/Info/Info'
-import SettingList from '../components/User/SettingList/SettingList'
+import User from './User/User'
 
 const App: FC = () => {
   const { theme } = useAppSelector((state) => state.app)
@@ -18,19 +16,11 @@ const App: FC = () => {
     <div className="app" data-theme={theme}>
       <div className="container">
         <div className="wrapper">
-          <Info
-            firstname="Данил"
-            lastname="Жаринов"
-            login="zharinov_danil"
-            role="Спортсмен"
-          />
-          <SettingList />
           <Header />
           <Navigation />
           {isAuth ? (
             <Routes>
-              <Route path="/user" element={'user'} />
-              <Route path="/plan" element={<Plan />} />
+              <Route path="/user" element={<User />} />
             </Routes>
           ) : (
             <Routes>
