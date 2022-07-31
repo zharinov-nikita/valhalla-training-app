@@ -1,4 +1,4 @@
-import { FC, MouseEventHandler } from 'react'
+import { FC } from 'react'
 import style from './SettingList.module.scss'
 import Button from '../../Common/Button/Button'
 import { drawerSlice } from '../../../redux/drawer/drawer.slice'
@@ -27,7 +27,7 @@ const SettingItem: FC<SettingItemPropsType> = ({
           size="small"
           text="Обновить"
           palette={true}
-          onClick={() => dispatch(show())}
+          onClick={() => dispatch(show('update'))}
         />
       </div>
     </div>

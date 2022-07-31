@@ -2,9 +2,7 @@ import { FC } from 'react'
 import style from './SettingList.module.scss'
 import SettingItem from './SettingItem'
 
-export type SettingPropsType = {}
-
-const SettingList: FC<SettingPropsType> = () => {
+const SettingList: FC = () => {
   return (
     <div className={style.list}>
       {[

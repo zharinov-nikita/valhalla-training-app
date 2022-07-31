@@ -5,7 +5,7 @@ import { drawerSlice } from '../../../redux/drawer/drawer.slice'
 import style from './Drawer.module.scss'
 
 export type DrawerPropsType = {
-  children: ReactNode
+  children?: ReactNode
 }
 
 const Drawer: FC<DrawerPropsType> = ({ children }) => {
