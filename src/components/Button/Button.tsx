@@ -1,30 +1,38 @@
-import { FC, MouseEventHandler, ReactNode } from 'react'
-import css from './Button.module.scss'
+import { FC, MouseEventHandler, ReactNode, StyleHTMLAttributes } from 'react'
+import style from './Button.module.scss'
 
 export type ButtonPropsType = {
   props: {
-    size?: 'small' | 'defalut' | 'large'
-    type?: 'primary' | 'secondary' | 'warning'
-    text?: string
-    icon?: ReactNode
+    text: string | ReactNode
     block?: boolean
+    color?: {
+      type: 'fill' | 'transparent'
+      value: 'purple' | 'green' | 'red' | 'yellow'
+    }
+    size: 'small' | 'medium'
+    border?: 'solid'
     disabled?: boolean
-    onClick?: MouseEventHandler
+    palette?: boolean
+    action?: number
   }
+  onClick?: MouseEventHandler
 }
 
-const Button: FC<ButtonPropsType> = ({ props }) => {
+const Button: FC<ButtonPropsType> = ({ props, onClick }) => {
   return (
     <button
-      className={css.button}
-      data-block={props.block}
-      data-type={props.type}
+      className={style.button}
+      data-color-value={props.color?.value}
+      data-color-type={props.color?.type}
       data-size={props.size}
-      onClick={props.onClick}
+      data-block={props.block}
       disabled={props.disabled}
+      data-border={props.border}
+      data-palette={!props.color && props.palette}
+      onClick={onClick}
     >
-      {props.text && <div className={css.text}>{props.text}</div>}
-      {props.icon && props.icon}
+      {props.text}
+      {props.action && <span className={style.action}>{props.action}</span>}
     </button>
   )
 }

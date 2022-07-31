@@ -1,32 +1,49 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-
 // API
 const apiBaseUrl = process.env['REACT_APP_API_BASE_URL']
 const apiKey = process.env['REACT_APP_API_KEY']
 // API
 
-// user
-const login: string = localStorage.getItem('login') || ''
-const password: string = localStorage.getItem('password') || ''
-// user
-
 export type PlanType = {
   _id: string
   title: string
-  description: string
-  start: string
-  finish: string
-  status: string
-  userId: string
-}
+  status: 'ЗАПЛАНИРОВАНО' | 'ПРОЦЕСС' | 'ЗАВЕРШЕНО'
+  athlete: string
 
-export type PlanCreateType = {
-  title: string
-  description: string
-  start: string
-  finish: string
-  status: string
-  userId: string
+  periods?: Array<{
+    type:
+      | 'ПОДГОТОВИТЕЛЬНЫЙ'
+      | 'БАЗОВЫЙ'
+      | 'ИНТЕСИВНЫЙ'
+      | 'СОРЕВНОВАТЕЛЬНЫЙ'
+      | 'ВОССТАНОВИТЕЛЬНЫЙ'
+    status: 'ЗАПЛАНИРОВАНО' | 'ПРОЦЕСС' | 'ЗАВЕРШЕНО'
+
+    cycles?: Array<{
+      type: 'ПЕРВЫЙ' | 'ВТОРОЙ' | 'ТРЕТИЙ' | 'ЧЕТВЕРТЫЙ'
+      status: 'ЗАПЛАНИРОВАНО' | 'ПРОЦЕСС' | 'ЗАВЕРШЕНО'
+
+      days?: Array<{
+        type: 'ТРЕНИРОВКА' | 'ВЫХОДНОЙ'
+        status: 'ЗАПЛАНИРОВАНО' | 'ПРОЦЕСС' | 'ЗАВЕРШЕНО'
+
+        workouts?: Array<{
+          type: 'ДИСТАНЦИЯ' | 'СВЕРХ_ДИСТАНЦИЯ'
+          completed: boolean
+
+          exercises?: Array<{
+            title: string
+            completed: boolean
+
+            options: Array<{
+              completed?: boolean
+              subOptions: Array<{ key: string; value: string }>
+            }>
+          }>
+        }>
+      }>
+    }>
+  }>
 }
 
 export const planApi = createApi({
@@ -35,49 +52,41 @@ export const planApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: apiBaseUrl }),
   endpoints: (builder) => ({
     find: builder.query<PlanType[], string>({
-      query: (_id) => ({
-        url: `/plan/?userId=${_id}`,
+      query: (plan) => ({
+        url: `/plan/?athlete=zharinov-danil`,
         headers: {
           'api-key': apiKey,
-          login,
-          password,
         },
       }),
       providesTags: ['Plan'],
     }),
-    create: builder.mutation<PlanType, PlanCreateType>({
+    create: builder.mutation<PlanType, any>({
       query: (plan) => ({
         url: `/plan`,
         method: 'POST',
         headers: {
           'api-key': apiKey,
-          login,
-          password,
         },
         body: plan,
       }),
       invalidatesTags: ['Plan'],
     }),
-    findByIdAndUpdate: builder.mutation<PlanType, PlanType>({
+    findByIdAndUpdate: builder.mutation<PlanType, any>({
       query: (plan) => ({
         url: `/plan/${plan._id}`,
         method: 'PATCH',
         headers: {
           'api-key': apiKey,
-          login,
-          password,
         },
         body: plan,
       }),
       invalidatesTags: ['Plan'],
     }),
-    findByIdAndDelete: builder.mutation<PlanType, PlanType>({
+    findByIdAndDelete: builder.mutation<PlanType, any>({
       query: (plan) => ({
         url: `/plan/${plan._id}`,
         headers: {
           'api-key': apiKey,
-          login,
-          password,
         },
         method: 'DELETE',
       }),

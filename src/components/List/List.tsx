@@ -1,25 +1,20 @@
 import { FC, ReactNode } from 'react'
-import css from './List.module.scss'
+import style from './List.module.scss'
 
 export type ListPropsType = {
-  props: {
-    gap: 12 | 14 | 16 | 18
+  props?: {
+    gap: number
   }
-  children?: ReactNode
+  children: ReactNode
+  className?: string
 }
 
-const List: FC<ListPropsType> = ({ props, children }) => {
+const List: FC<ListPropsType> = ({ props, className, children }) => {
   return (
-    <div className={css.list} data-gap={props.gap}>
+    <div className={`${style.list} ${className}`} style={{ gap: props?.gap }}>
       {children}
     </div>
   )
-}
-
-List.defaultProps = {
-  props: {
-    gap: 12,
-  },
 }
 
 export default List

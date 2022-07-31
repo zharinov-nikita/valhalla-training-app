@@ -1,4 +1,4 @@
-.button {
+.tag {
     cursor: pointer;
     display: inline-flex;
     align-items: center;
@@ -10,7 +10,7 @@
 }
 
 // color
-.button {
+.tag {
     &[data-color-type="fill"] {
         &[data-color-value="purple"] {
             background-color: var(--purple);
@@ -51,20 +51,20 @@
 }
 
 // size
-.button {
+.tag {
     &[data-size="small"] {
-        padding: 6px 10px;
-        font-size: 12px;
+        padding: 2px 6px;
+        font-size: 10px;
     }
     &[data-size="medium"] {
-        padding: 8px 12px;
-        font-size: 14px;
+        padding: 4px 10px;
+        font-size: 12px;
     }
 }
 
 // block
 
-.button {
+.tag {
     &[data-block="false"] {
         display: inline-flex;
         width: fit-content;
@@ -78,7 +78,7 @@
 }
 
 // disabled
-.button {
+.tag {
     &:disabled {
         opacity: 0.4;
         cursor: no-drop;
@@ -86,43 +86,15 @@
 }
 
 // hover
-.button {
+.tag {
     &:hover {
         filter: brightness(90%);
     }
 }
 
 // border
-.button {
+.tag {
     &[data-border="solid"] {
         border: 1px solid;
-    }
-}
-
-// palette
-.button {
-    &[data-palette="true"] {
-        background-color: var(--palette-1);
-    }
-}
-
-.button {
-    position: relative;
-    & .action {
-        position: absolute;
-        z-index: 1;
-        right: -4px;
-        top: -4px;
-        background-color: var(--red);
-        font-size: 10px;
-        color: #fff;
-        width: fit-content;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        padding: 2px;
-        border-radius: 50%;
-        width: 16px;
-        height: 16px;
     }
 }

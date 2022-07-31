@@ -5,14 +5,14 @@ export type HeaderStateType = {
 }
 
 const initialState: HeaderStateType = {
-  title: '',
+  title: 'Приложение',
 }
 
 export const headerSlice = createSlice({
   name: 'header',
   initialState,
   reducers: {
-    updateTitle(state: HeaderStateType, action: { payload: string }) {
+    changeTitle(state: HeaderStateType, action: { payload: string }) {
       state.title = action.payload
     },
   },

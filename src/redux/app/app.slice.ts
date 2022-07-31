@@ -1,42 +1,30 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 export type AppStateType = {
-  userId: string
-  currentWeek: string
-  fixed: boolean
-  user: {
-    token: string | null
-    login: string | null
-    password: string | null
-  }
+  theme: 'dark' | 'light'
+  positon: 'fixed' | 'scroll'
 }
 
 const initialState: AppStateType = {
-  userId: '',
-  currentWeek: '',
-  fixed: false,
-  user: {
-    token: localStorage.getItem('token') || null,
-    login: localStorage.getItem('login') || null,
-    password: localStorage.getItem('password') || null,
-  },
+  theme: <AppStateType['theme']>localStorage.getItem('theme') || 'dark',
+  positon: 'scroll',
 }
 
 export const appSlice = createSlice({
   name: 'app',
   initialState,
   reducers: {
-    fix(state: AppStateType) {
-      state.fixed = true
+    switchTheme(state: AppStateType) {
+      state.theme = state.theme === 'dark' ? 'light' : 'dark'
+      localStorage.setItem('theme', state.theme)
     },
-    unpin(state: AppStateType) {
-      state.fixed = false
+    changeToFixedPostion(state: AppStateType) {
+      state.positon = 'fixed'
+      document.body.style.overflow = 'hidden'
     },
-    updateUser(state: AppStateType, action: { payload: AppStateType['user'] }) {
-      state.user = { ...state.user, ...action.payload }
-    },
-    setCurrentWeek(state: AppStateType, action: { payload: string }) {
-      state.currentWeek = action.payload
+    changeToScrollPostion(state: AppStateType) {
+      state.positon = 'scroll'
+      document.body.style.overflow = 'auto'
     },
   },
 })

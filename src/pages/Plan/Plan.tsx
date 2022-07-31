@@ -1,42 +1,30 @@
-import React, { FC } from 'react'
-import AffixButton from '../../components/AffixButton/AffixButton'
-import Drawer from '../../components/Drawer/Drawer'
-import { useAppDispatch } from '../../hooks/useAppDispatch'
-import { useAppSelector } from '../../hooks/useAppSelector'
-import { appSlice } from '../../redux/app/app.slice'
-import { drawerSlice } from '../../redux/drawer/drawer.slice'
-import DrawerCreate from './components/Drawer/DrawerCreate'
-import DrawerUpdate from './components/Drawer/DrawerUpdate'
-import List from './components/List/List'
+import { AimOutlined } from '@ant-design/icons'
+import Card from '../../components/Card/Card'
+import Task from '../../components/Card/Task/Task'
+import Icon from '../../components/Icon/Icon'
+import List from '../../components/List/List'
+import { useFindQuery } from '../../redux/plan/plan.service'
 
-const Plan: FC = () => {
-  const dispatch = useAppDispatch()
-  const { show } = drawerSlice.actions
-  const { action } = useAppSelector((state) => state.drawer)
-  const { fix } = appSlice.actions
+export default function () {
+  const { data, isError, isLoading } = useFindQuery('')
 
-  return (
-    <React.Fragment>
-      <List />
-      <AffixButton
-        props={{
-          title: 'Новый план',
-          onClick: () => {
-            dispatch(show('create'))
-            dispatch(fix())
-          },
-        }}
-      />
-      <Drawer
-        children={
-          <React.Fragment>
-            {action === 'update' && <DrawerUpdate />}
-            {action === 'create' && <DrawerCreate />}
-          </React.Fragment>
-        }
-      />
-    </React.Fragment>
+  if (isLoading) {
+    return <>Загрузка...</>
+  }
+
+  if (isError || data?.length === 0) {
+    return <>Планов нет</>
+  }
+
+  const workouts = data?.map(({ periods }) =>
+    periods?.map(({ cycles }) =>
+      cycles?.map(({ days }) =>
+        days?.map(({ workouts }) => workouts?.map(({ exercises }) => exercises))
+      )
+    )
   )
-}
 
-export default Plan
+  console.log(workouts)
+
+  return <List>{''}</List>
+}
