@@ -20,7 +20,7 @@ const App: FC = () => {
       <div className="container">
         <div className="wrapper">
           <SettingList />
-          <Drawer visible={true}>Hello Drawer</Drawer>
+          <Drawer>Hello Drawer</Drawer>
           <Info
             firstname="Данил"
             lastname="Жаринов"

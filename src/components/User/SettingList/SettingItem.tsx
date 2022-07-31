@@ -1,6 +1,8 @@
 import { FC, MouseEventHandler } from 'react'
 import style from './SettingList.module.scss'
 import Button from '../../Common/Button/Button'
+import { drawerSlice } from '../../../redux/drawer/drawer.slice'
+import { useAppDispatch } from '../../../hooks/store/useAppDispatch'
 
 export type SettingItemPropsType = {
   settingkey: string
@@ -11,6 +13,9 @@ const SettingItem: FC<SettingItemPropsType> = ({
   settingkey,
   settingValue,
 }) => {
+  const { show } = drawerSlice.actions
+  const dispatch = useAppDispatch()
+
   return (
     <div className={style.item}>
       <div className={style.left}>
@@ -22,7 +27,7 @@ const SettingItem: FC<SettingItemPropsType> = ({
           size="small"
           text="Обновить"
           palette={true}
-          onClick={() => console.log(settingValue)}
+          onClick={() => dispatch(show())}
         />
       </div>
     </div>
