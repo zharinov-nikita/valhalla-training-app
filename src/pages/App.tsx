@@ -9,6 +9,7 @@ import Header from '../components/Header/Header'
 import Plan from './Plan/Plan'
 import Info from '../components/User/Info/Info'
 import SettingList from '../components/User/SettingList/SettingList'
+import Drawer from '../components/Common/Drawer/Drawer'
 
 const App: FC = () => {
   const { theme } = useAppSelector((state) => state.app)
@@ -19,6 +20,7 @@ const App: FC = () => {
       <div className="container">
         <div className="wrapper">
           <SettingList />
+          <Drawer visible={true}>Hello Drawer</Drawer>
           <Info
             firstname="Данил"
             lastname="Жаринов"
