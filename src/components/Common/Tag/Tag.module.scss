@@ -1,0 +1,100 @@
+.tag {
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    background: transparent;
+    color: var(--color-primary-1);
+    border: none;
+}
+
+// color
+.tag {
+    &[data-color-type="fill"] {
+        &[data-color-value="purple"] {
+            background-color: var(--purple);
+            color: var(--color-primary-1);
+        }
+        &[data-color-value="red"] {
+            background-color: var(--red);
+            color: var(--color-primary-1);
+        }
+        &[data-color-value="green"] {
+            background-color: var(--green);
+            color: var(--color-primary-1);
+        }
+        &[data-color-value="yellow"] {
+            background-color: var(--yellow);
+            color: var(--color-primary-1);
+        }
+    }
+
+    &[data-color-type="transparent"] {
+        &[data-color-value="purple"] {
+            background-color: var(--purple20);
+            color: var(--purple);
+        }
+        &[data-color-value="red"] {
+            background-color: var(--red20);
+            color: var(--red);
+        }
+        &[data-color-value="green"] {
+            background-color: var(--green20);
+            color: var(--green);
+        }
+        &[data-color-value="yellow"] {
+            background-color: var(--yellow20);
+            color: var(--yellow);
+        }
+    }
+}
+
+// size
+.tag {
+    &[data-size="small"] {
+        padding: 2px 6px;
+        font-size: 10px;
+    }
+    &[data-size="medium"] {
+        padding: 4px 10px;
+        font-size: 12px;
+    }
+}
+
+// block
+
+.tag {
+    &[data-block="false"] {
+        display: inline-flex;
+        width: fit-content;
+    }
+
+    &[data-block="true"] {
+        display: flex;
+        width: 100%;
+        padding: 12px;
+    }
+}
+
+// disabled
+.tag {
+    &:disabled {
+        opacity: 0.4;
+        cursor: no-drop;
+    }
+}
+
+// hover
+.tag {
+    &:hover {
+        filter: brightness(90%);
+    }
+}
+
+// border
+.tag {
+    &[data-border="solid"] {
+        border: 1px solid;
+    }
+}

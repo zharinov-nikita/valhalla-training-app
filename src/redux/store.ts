@@ -16,7 +16,6 @@ const rootReducer = combineReducers({
   user: userReducer,
   header: headerReducer,
   navigation: navigationReducer,
-
   // serivce
   [userApi.reducerPath]: userApi.reducer,
   [planApi.reducerPath]: planApi.reducer,
