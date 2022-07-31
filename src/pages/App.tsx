@@ -17,7 +17,12 @@ const App: FC = () => {
     <div className="app" data-theme={theme}>
       <div className="container">
         <div className="wrapper">
-          <Info />
+          <Info
+            firstname="Данил"
+            lastname="Жаринов"
+            login="zharinov_danil"
+            role="Спортсмен"
+          />
           <Header />
           <Navigation />
           {isAuth ? (
