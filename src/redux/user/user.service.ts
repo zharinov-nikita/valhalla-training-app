@@ -9,7 +9,7 @@ export type UserType = {
   _id: string
   firstname: string
   lastname: string
-  role: string
+  role: 'Спортсмен' | 'Тренер'
   login: string
   password: string
   plans: Array<string>
@@ -20,12 +20,12 @@ export const userApi = createApi({
   reducerPath: 'userApi',
   baseQuery: fetchBaseQuery({
     baseUrl: apiBaseUrl,
-    headers: { 'api-key': String(apiKey) },
   }),
   endpoints: (builder) => ({
     findById: builder.query<UserType, string>({
       query: (_id) => ({
         url: `/user/62e65432fd1fc3f24598b813`,
+        headers: { 'api-key': String(apiKey) },
       }),
       providesTags: ['User'],
     }),

@@ -1,0 +1,46 @@
+.info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px;
+    border-radius: 8px;
+    background-color: var(--palette-1);
+
+    & .icon {
+        width: 40px;
+        height: 40px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background-color: var(--purple20);
+        color: var(--purple);
+        border-radius: 8px;
+    }
+
+    & .data {
+        height: 40px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        & .header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+
+            & .left {
+                display: flex;
+                align-items: center;
+                gap: 4px;
+                color: var(--color-primary-1);
+            }
+        }
+
+        & .body {
+            & .login {
+                font-size: 12px;
+                color: var(--color-primary-2);
+            }
+        }
+    }
+}
