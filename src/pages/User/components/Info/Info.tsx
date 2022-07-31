@@ -4,8 +4,8 @@ import style from './Info.module.scss'
 
 export type InfoPropsType = {
   firstname: string
-  lastname?: string
-  role: 'Спортсмен' | 'Тренер'
+  lastname: string
+  role: string
   login: string
 }
 
@@ -17,7 +17,7 @@ const Info: FC<InfoPropsType> = ({ firstname, lastname, login, role }) => {
         <div className={style.header}>
           <div className={style.left}>
             <span className={style.firstname}>{firstname}</span>
-            {lastname && <span className={style.lastname}>{lastname}</span>}
+            <span className={style.lastname}>{lastname}</span>
           </div>
           <div className={style.right}>
             <Tag

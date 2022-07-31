@@ -2,14 +2,25 @@ import { createSlice } from '@reduxjs/toolkit'
 
 export type UserStateType = {
   isAuth: boolean
-  data: { key: string; value: string }
+  data: {
+    _id: string
+    firstname: string
+    lastname: string
+    role: string
+    login: string
+    password: string
+  }
 }
 
 const initialState: UserStateType = {
   isAuth: true,
   data: {
-    key: '',
-    value: '',
+    _id: '',
+    firstname: '',
+    lastname: '',
+    role: '',
+    login: '',
+    password: '',
   },
 }
 

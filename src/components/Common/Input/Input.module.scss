@@ -15,3 +15,9 @@
         border: 1px solid var(--purple);
     }
 }
+
+.input {
+    &::placeholder {
+        color: var(--color-primary-2);
+    }
+}

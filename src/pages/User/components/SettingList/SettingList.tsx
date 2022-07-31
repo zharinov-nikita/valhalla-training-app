@@ -10,7 +10,7 @@ const SettingList: FC<SettingListType> = ({ list }) => {
   return (
     <div className={style.list}>
       {list.map(({ key, value }) => (
-        <SettingItem key={key} settingkey={key} settingValue={value} />
+        <SettingItem key={key} settingKey={key} settingValue={value} />
       ))}
     </div>
   )

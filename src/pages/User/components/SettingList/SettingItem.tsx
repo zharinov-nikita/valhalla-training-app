@@ -8,39 +8,29 @@ import { useAppSelector } from '../../../../hooks/store/useAppSelector'
 import Tag from '../../../../components/Common/Tag/Tag'
 
 export type SettingItemPropsType = {
-  settingkey: string
+  settingKey: string
   settingValue: string
 }
 
 const SettingItem: FC<SettingItemPropsType> = ({
-  settingkey,
+  settingKey,
   settingValue,
 }) => {
-  const { data } = useAppSelector((state) => state.user)
-  const { changeData } = userSlice.actions
   const { show } = drawerSlice.actions
   const dispatch = useAppDispatch()
-  const onClick = () => {
-    dispatch(changeData({ ...data, key: settingkey, value: settingValue }))
-    dispatch(show())
-  }
+  const onClick = () => dispatch(show(settingKey))
 
-  const disabled =
-    settingkey === 'Идентификатор' ||
-    settingkey === 'Роль' ||
-    settingkey === 'Логин'
-      ? true
-      : false
+  const disabled = settingKey === 'Идентификатор' ? true : false
 
   return (
     <div className={style.item}>
       <div className={style.left}>
-        <div className={style.key}>{settingkey}</div>
+        <div className={style.key}>{settingKey}</div>
         <div className={style.value}>
           <Tag
             size="small"
             text={
-              settingkey === 'Пароль'
+              settingKey === 'Пароль'
                 ? '*'.repeat(settingValue.length)
                 : settingValue
             }
