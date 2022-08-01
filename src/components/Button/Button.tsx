@@ -1,38 +1,46 @@
-import { FC, MouseEventHandler, ReactNode, StyleHTMLAttributes } from 'react'
+import { FC, MouseEventHandler, ReactNode } from 'react'
 import style from './Button.module.scss'
 
 export type ButtonPropsType = {
-  props: {
-    text: string | ReactNode
-    block?: boolean
-    color?: {
-      type: 'fill' | 'transparent'
-      value: 'purple' | 'green' | 'red' | 'yellow'
-    }
-    size: 'small' | 'medium'
-    border?: 'solid'
-    disabled?: boolean
-    palette?: boolean
-    action?: number
+  text: string | ReactNode
+  block?: boolean
+  color?: {
+    type: 'fill' | 'transparent'
+    value: 'purple' | 'green' | 'red' | 'yellow'
   }
+  size: 'small' | 'medium'
+  border?: 'solid'
+  disabled?: boolean
+  palette?: boolean
+  action?: number
   onClick?: MouseEventHandler
 }
 
-const Button: FC<ButtonPropsType> = ({ props, onClick }) => {
+const Button: FC<ButtonPropsType> = ({
+  text,
+  block,
+  color,
+  size,
+  border,
+  disabled,
+  palette,
+  action,
+  onClick,
+}) => {
   return (
     <button
       className={style.button}
-      data-color-value={props.color?.value}
-      data-color-type={props.color?.type}
-      data-size={props.size}
-      data-block={props.block}
-      disabled={props.disabled}
-      data-border={props.border}
-      data-palette={!props.color && props.palette}
+      data-color-value={color?.value}
+      data-color-type={color?.type}
+      data-size={size}
+      data-block={block}
+      disabled={disabled}
+      data-border={border}
+      data-palette={!color && palette}
       onClick={onClick}
     >
-      {props.text}
-      {props.action && <span className={style.action}>{props.action}</span>}
+      {text}
+      {action && <span className={style.action}>{action}</span>}
     </button>
   )
 }

@@ -14,21 +14,13 @@ const Header: FC = () => {
       <div className={style.container}>
         <div className={style.wrapper}>
           <div className={style.left}>
-            <Button
-              props={{
-                text: <LeftOutlined />,
-                size: 'medium',
-              }}
-              onClick={() => window.history.back()}
-            />
+            <Button text={<LeftOutlined />} size={'medium'} onClick={() => window.history.back()} />
           </div>
           <div className={style.center}>{title}</div>
           <div className={style.right}>
             <Button
-              props={{
-                text: visible ? <CloseOutlined /> : <MenuOutlined />,
-                size: 'medium',
-              }}
+              text={visible ? <CloseOutlined /> : <MenuOutlined />}
+              size={'medium'}
               onClick={actionChangeVisible}
             />
           </div>

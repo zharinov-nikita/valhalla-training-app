@@ -1,0 +1,36 @@
+.drawer {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 3;
+    background-color: var(--palette-1);
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+    height: 100vh;
+    & .container {
+        width: 480px;
+        max-width: 100%;
+        height: 100vh;
+        margin: 0px auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: end;
+    }
+
+    & .wrapper {
+        width: 100%;
+        padding: 24px 16px;
+        border-radius: 8px 8px 0px 0px;
+        background-color: var(--background-color-primary-2);
+    }
+}
+
+.drawer {
+    &[data-visible="true"] {
+        display: block;
+    }
+    &[data-visible="false"] {
+        display: none;
+    }
+}

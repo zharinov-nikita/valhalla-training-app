@@ -6,7 +6,7 @@ import { useAppSelector } from '../hooks/store/useAppSelector'
 
 import Navigation from './Navigation/Navigation'
 import Header from '../components/Header/Header'
-import Plan from './Plan/Plan'
+import User from './User/User'
 
 const App: FC = () => {
   const { theme } = useAppSelector((state) => state.app)
@@ -20,8 +20,7 @@ const App: FC = () => {
           <Navigation />
           {isAuth ? (
             <Routes>
-              <Route path="/user" element={'user'} />
-              <Route path="/plan" element={<Plan />} />
+              <Route path="/user" element={<User />} />
             </Routes>
           ) : (
             <Routes>

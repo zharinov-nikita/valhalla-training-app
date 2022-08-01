@@ -1,0 +1,34 @@
+.input {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    border-radius: 8px;
+    padding: 12px;
+    background: var(--palette-1);
+    color: var(--color-primary-1);
+    border: 1px solid var(--palette-1);
+}
+
+.input {
+    &:active,
+    &:focus {
+        border: 1px solid var(--purple);
+    }
+}
+
+.input {
+    &::placeholder {
+        color: var(--color-primary-2);
+    }
+}
+
+.input {
+    &[data-type="error"] {
+        border: 1px solid var(--red);
+    }
+}
+
+.message {
+    min-height: 24px;
+    color: var(--red);
+}
