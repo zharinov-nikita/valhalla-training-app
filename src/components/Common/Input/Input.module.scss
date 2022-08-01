@@ -21,3 +21,14 @@
         color: var(--color-primary-2);
     }
 }
+
+.input {
+    &[data-type="error"] {
+        border: 1px solid var(--red);
+    }
+}
+
+.message {
+    min-height: 24px;
+    color: var(--red);
+}
