@@ -4,9 +4,11 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 const apiBaseUrl = process.env['REACT_APP_API_BASE_URL']
 const apiKey = process.env['REACT_APP_API_KEY']
 // API
-
-const login = localStorage.getItem('login') || ''
-const password = localStorage.getItem('password') || ''
+const headers = {
+  'api-key': String(apiKey),
+  login: localStorage.getItem('login') || '',
+  password: localStorage.getItem('password') || '',
+}
 
 export type UserType = {
   _id: string
@@ -32,6 +34,10 @@ export type UserAuthorizationType = {
 }
 
 export type UserUpdateType = {
+  headers: {
+    login: string
+    password: string
+  }
   _id: string
   firstname?: string
   lastname?: string
@@ -54,15 +60,11 @@ export const userApi = createApi({
     baseUrl: apiBaseUrl,
   }),
   endpoints: (builder) => ({
-    findByLogin: builder.query<UserType, any>({
+    findByLogin: builder.query<UserType, UserAuthorizationType>({
       query: (user) => ({
         url: `/user`,
         method: 'GET',
-        headers: {
-          'api-key': String(apiKey),
-          login: login.length > 0 ? login : user.login,
-          password: login.length > 0 ? password : user.password,
-        },
+        headers: { ...headers, login: user.login, password: user.password },
       }),
       providesTags: ['User'],
     }),
@@ -70,11 +72,7 @@ export const userApi = createApi({
       query: (user) => ({
         url: `/user/authorization`,
         method: 'POST',
-        headers: {
-          'api-key': String(apiKey),
-          login: login.length > 0 ? login : user.login,
-          password: login.length > 0 ? password : user.password,
-        },
+        headers: { ...headers, login: user.login, password: user.password },
       }),
       invalidatesTags: ['User'],
     }),
@@ -83,11 +81,7 @@ export const userApi = createApi({
         url: `/user/registration`,
         method: 'POST',
         body: user,
-        headers: {
-          'api-key': String(apiKey),
-          login: login.length > 0 ? login : user.login,
-          password: login.length > 0 ? password : user.password,
-        },
+        headers,
       }),
       invalidatesTags: ['User'],
     }),
@@ -96,11 +90,7 @@ export const userApi = createApi({
         url: `/user/${user._id}`,
         method: 'PATCH',
         body: user,
-        headers: {
-          'api-key': String(apiKey),
-          login: login.length > 0 ? login : user.login,
-          password: login.length > 0 ? password : user.password,
-        },
+        headers: { ...headers, ...user.headers },
       }),
       invalidatesTags: ['User'],
     }),
@@ -108,11 +98,7 @@ export const userApi = createApi({
       query: (user) => ({
         url: `/user/${user._id}`,
         method: 'DELETE',
-        headers: {
-          'api-key': String(apiKey),
-          login: login.length > 0 ? login : user.login,
-          password: login.length > 0 ? password : user.password,
-        },
+        headers,
       }),
       invalidatesTags: ['User'],
     }),

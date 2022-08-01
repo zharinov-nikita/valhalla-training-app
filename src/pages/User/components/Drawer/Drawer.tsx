@@ -1,12 +1,9 @@
-import { FC, useEffect, useMemo } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { FC } from 'react'
 import Button from '../../../../components/Button/Button'
 import CommonDrawer from '../../../../components/Drawer/Drawer'
 import Input from '../../../../components/Input/Input'
 import List from '../../../../components/List/List'
-import { useAppDispatch } from '../../../../hooks/store/useAppDispatch'
 import { useFindByIdAndUpdateMutation } from '../../../../redux/user/user.service'
-import { userSlice } from '../../../../redux/user/user.slice'
 import { useDrawer } from './hooks/useDrawer'
 
 const Drawer: FC = () => {
@@ -18,7 +15,8 @@ const Drawer: FC = () => {
     message,
     text,
     type,
-    data,
+    updateUser,
+    currentUser,
     disabled,
     handlerChangeData,
   } = useDrawer(isError, isSuccess)
@@ -27,7 +25,7 @@ const Drawer: FC = () => {
     <CommonDrawer>
       <List gap={12}>
         <Input
-          value={data[key]}
+          value={updateUser[key]}
           placeholder={type}
           message={message}
           type={inputType}
@@ -39,7 +37,16 @@ const Drawer: FC = () => {
           size="medium"
           text={text}
           color={{ type: 'fill', value: 'purple' }}
-          onClick={() => findByIdAndUpdate({ _id: data._id, [key]: data[key] })}
+          onClick={() =>
+            findByIdAndUpdate({
+              headers: {
+                login: currentUser.login,
+                password: currentUser.password,
+              },
+              _id: currentUser._id,
+              [key]: updateUser[key],
+            })
+          }
         />
       </List>
     </CommonDrawer>

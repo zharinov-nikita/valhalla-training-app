@@ -2,36 +2,45 @@ import { createSlice } from '@reduxjs/toolkit'
 
 export type UserStateType = {
   isAuth: boolean
-  authData: {
-    login: string
-    password: string
-  }
-  data: {
+  currentUser: {
     _id: string
     firstname: string
     lastname: string
     role: string
     login: string
     password: string
+    plans: Array<string>
+  }
+  updateUser: {
+    _id: string
+    firstname: string
+    lastname: string
+    role: string
+    login: string
+    password: string
+    plans: Array<string>
   }
 }
 
 const initialState: UserStateType = {
-  isAuth:
-    localStorage.getItem('login') && localStorage.getItem('password')
-      ? true
-      : false,
-  authData: {
-    login: localStorage.getItem('login') || '',
-    password: localStorage.getItem('password') || '',
-  },
-  data: {
+  isAuth: false,
+  currentUser: {
     _id: '',
     firstname: '',
     lastname: '',
     role: '',
     login: '',
     password: '',
+    plans: [],
+  },
+  updateUser: {
+    _id: '',
+    firstname: '',
+    lastname: '',
+    role: '',
+    login: '',
+    password: '',
+    plans: [],
   },
 }
 
@@ -39,20 +48,28 @@ export const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    changeData(
+    authorization(
       state: UserStateType,
-      action: { payload: UserStateType['data'] }
+      action: { payload: UserStateType['currentUser'] }
     ) {
-      state.data = { ...state.data, ...action.payload }
+      state.currentUser = action.payload
+      state.isAuth = true
     },
-    authorization(state: UserStateType, action: { payload: boolean }) {
-      state.isAuth = action.payload
+    logout(state: UserStateType) {
+      state.currentUser = initialState.currentUser
+      state.isAuth = false
     },
-    changeAuthData(
+    update(
       state: UserStateType,
-      action: { payload: UserStateType['authData'] }
+      action: { payload: UserStateType['updateUser'] }
     ) {
-      state.authData = action.payload
+      state.updateUser = { ...state.updateUser, ...action.payload }
+    },
+    updateCurrentUser(
+      state: UserStateType,
+      action: { payload: UserStateType['currentUser'] }
+    ) {
+      state.currentUser = action.payload
     },
   },
 })

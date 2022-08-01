@@ -8,24 +8,22 @@ import { useAuthorizationMutation } from '../../redux/user/user.service'
 import { userSlice } from '../../redux/user/user.slice'
 
 const Authorization: FC = () => {
-  const navigate = useNavigate()
   const [form, setForm] = useState({
     login: '',
     password: '',
   })
 
   const dispatch = useAppDispatch()
-  const { authorization, changeAuthData } = userSlice.actions
-  const [authorizationMutation, { isSuccess }] = useAuthorizationMutation()
+  const { authorization, update } = userSlice.actions
+  const [authorizationMutation, { isSuccess, data }] =
+    useAuthorizationMutation()
 
   useEffect(() => {
-    if (isSuccess) {
-      dispatch(changeAuthData({ login: form.login, password: form.password }))
-      localStorage.setItem('login', String(form.login))
-      localStorage.setItem('password', String(form.password))
-      dispatch(authorization(true))
+    if (isSuccess && data) {
+      dispatch(authorization(data))
+      dispatch(update(data))
     }
-  }, [isSuccess])
+  }, [isSuccess, data])
 
   return (
     <List gap={12} type="block">

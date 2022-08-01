@@ -23,6 +23,7 @@ const App: FC = () => {
           {isAuth ? (
             <Routes>
               <Route path="/user" element={<User />} />
+              <Route path="/main" element={'main'} />
               <Route path="*" element={<Navigate to={'/user'} replace />} />
             </Routes>
           ) : (
