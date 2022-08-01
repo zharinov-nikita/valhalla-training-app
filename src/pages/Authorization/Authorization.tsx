@@ -20,6 +20,7 @@ const Authorization: FC = () => {
 
   useEffect(() => {
     if (isSuccess && data) {
+      localStorage.setItem('currentUser', JSON.stringify(data))
       dispatch(authorization(data))
       dispatch(update(data))
     }

@@ -33,13 +33,15 @@ const Item: FC<ItemPropsType> = ({ settingKey, settingValue }) => {
         </div>
       </div>
       <div className={style.right}>
-        <Button
-          size="small"
-          disabled={disabled}
-          text="Обновить"
-          palette={true}
-          onClick={onClick}
-        />
+        {settingKey !== 'Идентификатор' && (
+          <Button
+            size="small"
+            disabled={disabled}
+            text="Обновить"
+            palette={true}
+            onClick={onClick}
+          />
+        )}
       </div>
     </div>
   )
