@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
-import { InputPropsType } from '../../../../../components/Common/Input/Input'
+import { InputPropsType } from '../../../../../components/Input/Input'
 import { useAppDispatch } from '../../../../../hooks/store/useAppDispatch'
 import { useAppSelector } from '../../../../../hooks/store/useAppSelector'
 import { drawerSlice } from '../../../../../redux/drawer/drawer.slice'

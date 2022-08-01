@@ -1,8 +1,8 @@
 import { FC } from 'react'
-import Button from '../../../../components/Common/Button/Button'
-import CommonDrawer from '../../../../components/Common/Drawer/Drawer'
-import Input from '../../../../components/Common/Input/Input'
-import List from '../../../../components/Common/List/List'
+import Button from '../../../../components/Button/Button'
+import CommonDrawer from '../../../../components/Drawer/Drawer'
+import Input from '../../../../components/Input/Input'
+import List from '../../../../components/List/List'
 import { useFindByIdAndUpdateMutation } from '../../../../redux/user/user.service'
 import { useDrawer } from './hooks/useDrawer'
 

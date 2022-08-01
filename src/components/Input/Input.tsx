@@ -1,4 +1,4 @@
-import { FC, ChangeEventHandler, useState } from 'react'
+import { FC, ChangeEventHandler } from 'react'
 import List from '../List/List'
 import style from './Input.module.scss'
 

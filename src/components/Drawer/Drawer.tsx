@@ -1,7 +1,7 @@
 import { FC, ReactNode } from 'react'
-import { useAppDispatch } from '../../../hooks/store/useAppDispatch'
-import { useAppSelector } from '../../../hooks/store/useAppSelector'
-import { drawerSlice } from '../../../redux/drawer/drawer.slice'
+import { useAppDispatch } from '../../hooks/store/useAppDispatch'
+import { useAppSelector } from '../../hooks/store/useAppSelector'
+import { drawerSlice } from '../../redux/drawer/drawer.slice'
 import style from './Drawer.module.scss'
 
 export type DrawerPropsType = {

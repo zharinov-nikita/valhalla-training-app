@@ -1,12 +1,12 @@
 import { FC, useEffect } from 'react'
-import List from '../../components/Common/List/List'
-import Drawer from './components/Drawer/Drawer'
-import Info from './components/Info/Info'
-import SettingList from './components/SettingList/SettingList'
 import { useFindByIdQuery } from '../../redux/user/user.service'
-import { drawerSlice } from '../../redux/drawer/drawer.slice'
 import { useAppDispatch } from '../../hooks/store/useAppDispatch'
 import { userSlice } from '../../redux/user/user.slice'
+
+import List from '../../components/List/List'
+import Drawer from './components/Drawer/Drawer'
+import Info from './components/Info/Info'
+import Setting from './components/Setting/Setting'
 
 const User: FC = () => {
   const { isError, isLoading, data } = useFindByIdQuery('')
@@ -38,7 +38,7 @@ const User: FC = () => {
             login={data.login}
             role={data.role}
           />
-          <SettingList
+          <Setting
             list={[
               { key: 'Идентификатор', value: data?._id },
               { key: 'Имя', value: data?.firstname },

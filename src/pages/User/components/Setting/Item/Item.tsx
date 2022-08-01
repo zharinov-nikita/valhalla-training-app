@@ -1,25 +1,19 @@
 import { FC } from 'react'
-import style from './SettingList.module.scss'
-import Button from '../../../../components/Common/Button/Button'
-import { drawerSlice } from '../../../../redux/drawer/drawer.slice'
-import { useAppDispatch } from '../../../../hooks/store/useAppDispatch'
-import { userSlice } from '../../../../redux/user/user.slice'
-import { useAppSelector } from '../../../../hooks/store/useAppSelector'
-import Tag from '../../../../components/Common/Tag/Tag'
+import style from '../Setting.module.scss'
+import Button from '../../../../../components/Button/Button'
+import { drawerSlice } from '../../../../../redux/drawer/drawer.slice'
+import { useAppDispatch } from '../../../../../hooks/store/useAppDispatch'
+import Tag from '../../../../../components/Tag/Tag'
 
-export type SettingItemPropsType = {
+export type ItemPropsType = {
   settingKey: string
   settingValue: string
 }
 
-const SettingItem: FC<SettingItemPropsType> = ({
-  settingKey,
-  settingValue,
-}) => {
+const Item: FC<ItemPropsType> = ({ settingKey, settingValue }) => {
   const { show } = drawerSlice.actions
   const dispatch = useAppDispatch()
   const onClick = () => dispatch(show(settingKey))
-
   const disabled = settingKey === 'Идентификатор' ? true : false
 
   return (
@@ -51,4 +45,4 @@ const SettingItem: FC<SettingItemPropsType> = ({
   )
 }
 
-export default SettingItem
+export default Item

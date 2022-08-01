@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import Tag from '../../../../components/Common/Tag/Tag'
+import Tag from '../../../../components/Tag/Tag'
 import style from './Info.module.scss'
 
 export type InfoPropsType = {
