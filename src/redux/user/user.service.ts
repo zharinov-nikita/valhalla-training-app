@@ -15,7 +15,15 @@ export type UserType = {
   plans: Array<string>
 }
 
-export type UserTypeUpdate = {
+export type UserCreateType = {
+  firstname: string
+  lastname: string
+  role: string
+  login: string
+  password: string
+}
+
+export type UserUpdateType = {
   _id?: string
   firstname?: string
   lastname?: string
@@ -39,7 +47,16 @@ export const userApi = createApi({
       }),
       providesTags: ['User'],
     }),
-    findByIdAndUpdate: builder.mutation<UserType, UserTypeUpdate>({
+    create: builder.mutation<UserType, UserCreateType>({
+      query: (user) => ({
+        url: `/user`,
+        method: 'POST',
+        body: user,
+        headers: { 'api-key': String(apiKey) },
+      }),
+      invalidatesTags: ['User'],
+    }),
+    findByIdAndUpdate: builder.mutation<UserType, UserUpdateType>({
       query: (user) => ({
         url: `/user/62e65432fd1fc3f24598b813`,
         method: 'PATCH',
@@ -60,6 +77,7 @@ export const userApi = createApi({
 })
 
 export const {
+  useCreateMutation,
   useFindByIdQuery,
   useFindByIdAndUpdateMutation,
   useFindByIdAndDeleteMutation,

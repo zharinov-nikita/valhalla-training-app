@@ -1,9 +1,13 @@
-import { FC, useState } from 'react'
+import { FC, useMemo, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import Button from '../../components/Button/Button'
 import Input from '../../components/Input/Input'
 import List from '../../components/List/List'
+import { useCreateMutation } from '../../redux/user/user.service'
 
 const Registration: FC = () => {
+  const navigate = useNavigate()
+  const [registration, { isSuccess }] = useCreateMutation()
   const [form, setForm] = useState({
     firstname: '',
     lastname: '',
@@ -11,6 +15,13 @@ const Registration: FC = () => {
     login: '',
     password: '',
   })
+
+  useMemo(() => {
+    if (isSuccess) {
+      navigate('/authorization', { replace: true })
+    }
+  }, [isSuccess])
+
   return (
     <List gap={12} type="block">
       <Input
@@ -48,6 +59,15 @@ const Registration: FC = () => {
         block={true}
         text="Зарегистрироваться"
         color={{ type: 'fill', value: 'purple' }}
+        onClick={() =>
+          registration({
+            firstname: form.firstname,
+            lastname: form.lastname,
+            role: form.role,
+            login: form.login,
+            password: form.password,
+          })
+        }
       />
     </List>
   )

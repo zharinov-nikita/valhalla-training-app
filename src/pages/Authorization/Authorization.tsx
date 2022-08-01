@@ -3,7 +3,7 @@ import Button from '../../components/Button/Button'
 import Input from '../../components/Input/Input'
 import List from '../../components/List/List'
 
-const Registration: FC = () => {
+const Authorization: FC = () => {
   const [form, setForm] = useState({
     login: '',
     password: '',
@@ -32,4 +32,4 @@ const Registration: FC = () => {
   )
 }
 
-export default Registration
+export default Authorization

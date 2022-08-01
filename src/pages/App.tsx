@@ -8,6 +8,7 @@ import Navigation from './Navigation/Navigation'
 import Header from '../components/Header/Header'
 import User from './User/User'
 import Registration from './Registration/Registration'
+import Authorization from './Authorization/Authorization'
 
 const App: FC = () => {
   const { theme } = useAppSelector((state) => state.app)
@@ -26,6 +27,7 @@ const App: FC = () => {
           ) : (
             <Routes>
               <Route path="/registration" element={<Registration />} />
+              <Route path="/authorization" element={<Authorization />} />
               <Route
                 path="*"
                 element={<Navigate to={'/registration'} replace />}
