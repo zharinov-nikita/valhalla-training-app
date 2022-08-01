@@ -9,12 +9,7 @@ export type InputPropsType = {
 
 const Input: FC<InputPropsType> = ({ value, placeholder, onChange }) => {
   return (
-    <input
-      className={style.input}
-      value={value}
-      placeholder={placeholder}
-      onChange={onChange}
-    />
+    <input className={style.input} value={value} placeholder={placeholder} onChange={onChange} />
   )
 }
 
