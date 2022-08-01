@@ -7,6 +7,7 @@ import { useAppSelector } from '../hooks/store/useAppSelector'
 import Navigation from './Navigation/Navigation'
 import Header from '../components/Header/Header'
 import User from './User/User'
+import Registration from './Registration/Registration'
 
 const App: FC = () => {
   const { theme } = useAppSelector((state) => state.app)
@@ -24,7 +25,7 @@ const App: FC = () => {
             </Routes>
           ) : (
             <Routes>
-              <Route path="/auth" element={'auth'} />
+              <Route path="/registration" element={<Registration />} />
               <Route path="*" element={<Navigate to={'/auth'} replace />} />
             </Routes>
           )}

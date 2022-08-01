@@ -13,7 +13,7 @@ export type UserStateType = {
 }
 
 const initialState: UserStateType = {
-  isAuth: true,
+  isAuth: false,
   data: {
     _id: '',
     firstname: '',
