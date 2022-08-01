@@ -26,7 +26,10 @@ const App: FC = () => {
           ) : (
             <Routes>
               <Route path="/registration" element={<Registration />} />
-              <Route path="*" element={<Navigate to={'/auth'} replace />} />
+              <Route
+                path="*"
+                element={<Navigate to={'/registration'} replace />}
+              />
             </Routes>
           )}
         </div>
