@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useMemo } from 'react'
 import { useLocation } from 'react-router-dom'
 import { headerSlice } from '../../../redux/header/header.slice'
 import { useAppDispatch } from '../../../hooks/store/useAppDispatch'

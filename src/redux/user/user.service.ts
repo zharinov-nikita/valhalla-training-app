@@ -5,6 +5,9 @@ const apiBaseUrl = process.env['REACT_APP_API_BASE_URL']
 const apiKey = process.env['REACT_APP_API_KEY']
 // API
 
+const login = localStorage.getItem('login') || ''
+const password = localStorage.getItem('password') || ''
+
 export type UserType = {
   _id: string
   firstname: string
@@ -15,7 +18,7 @@ export type UserType = {
   plans: Array<string>
 }
 
-export type UserCreateType = {
+export type UserRegistrationType = {
   firstname: string
   lastname: string
   role: string
@@ -23,14 +26,25 @@ export type UserCreateType = {
   password: string
 }
 
+export type UserAuthorizationType = {
+  login: string
+  password: string
+}
+
 export type UserUpdateType = {
-  _id?: string
+  _id: string
   firstname?: string
   lastname?: string
   role?: string
   login?: string
   password?: string
   plans?: Array<string>
+}
+
+export type UserDeleteType = {
+  _id: string
+  login: string
+  password: string
 }
 
 export const userApi = createApi({
@@ -40,36 +54,65 @@ export const userApi = createApi({
     baseUrl: apiBaseUrl,
   }),
   endpoints: (builder) => ({
-    findById: builder.query<UserType, string>({
-      query: (_id) => ({
-        url: `/user/62e65432fd1fc3f24598b813`,
-        headers: { 'api-key': String(apiKey) },
+    findByLogin: builder.query<UserType, any>({
+      query: (user) => ({
+        url: `/user`,
+        method: 'GET',
+        headers: {
+          'api-key': String(apiKey),
+          login: login.length > 0 ? login : user.login,
+          password: login.length > 0 ? password : user.password,
+        },
       }),
       providesTags: ['User'],
     }),
-    create: builder.mutation<UserType, UserCreateType>({
+    authorization: builder.mutation<UserType, UserAuthorizationType>({
       query: (user) => ({
-        url: `/user`,
+        url: `/user/authorization`,
+        method: 'POST',
+        headers: {
+          'api-key': String(apiKey),
+          login: login.length > 0 ? login : user.login,
+          password: login.length > 0 ? password : user.password,
+        },
+      }),
+      invalidatesTags: ['User'],
+    }),
+    registration: builder.mutation<UserType, UserRegistrationType>({
+      query: (user) => ({
+        url: `/user/registration`,
         method: 'POST',
         body: user,
-        headers: { 'api-key': String(apiKey) },
+        headers: {
+          'api-key': String(apiKey),
+          login: login.length > 0 ? login : user.login,
+          password: login.length > 0 ? password : user.password,
+        },
       }),
       invalidatesTags: ['User'],
     }),
     findByIdAndUpdate: builder.mutation<UserType, UserUpdateType>({
       query: (user) => ({
-        url: `/user/62e65432fd1fc3f24598b813`,
+        url: `/user/${user._id}`,
         method: 'PATCH',
         body: user,
-        headers: { 'api-key': String(apiKey) },
+        headers: {
+          'api-key': String(apiKey),
+          login: login.length > 0 ? login : user.login,
+          password: login.length > 0 ? password : user.password,
+        },
       }),
       invalidatesTags: ['User'],
     }),
-    findByIdAndDelete: builder.mutation<UserType, UserType>({
+    findByIdAndDelete: builder.mutation<UserType, UserDeleteType>({
       query: (user) => ({
-        url: `/user/62e65432fd1fc3f24598b813`,
+        url: `/user/${user._id}`,
         method: 'DELETE',
-        headers: { 'api-key': String(apiKey) },
+        headers: {
+          'api-key': String(apiKey),
+          login: login.length > 0 ? login : user.login,
+          password: login.length > 0 ? password : user.password,
+        },
       }),
       invalidatesTags: ['User'],
     }),
@@ -77,8 +120,9 @@ export const userApi = createApi({
 })
 
 export const {
-  useCreateMutation,
-  useFindByIdQuery,
+  useFindByLoginQuery,
+  useAuthorizationMutation,
+  useRegistrationMutation,
   useFindByIdAndUpdateMutation,
   useFindByIdAndDeleteMutation,
 } = userApi

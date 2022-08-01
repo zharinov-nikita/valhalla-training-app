@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { InputPropsType } from '../../../../../components/Input/Input'
 import { useAppDispatch } from '../../../../../hooks/store/useAppDispatch'
 import { useAppSelector } from '../../../../../hooks/store/useAppSelector'
@@ -8,28 +9,43 @@ import { userSlice } from '../../../../../redux/user/user.slice'
 type keyType = 'firstname' | 'lastname' | 'role' | 'login' | 'password'
 
 export function useDrawer(isError: boolean, isSuccess: boolean) {
+  const navigate = useNavigate()
   const { type } = useAppSelector((state) => state.drawer)
   const [key, setKey] = useState<keyType>('firstname')
   const [message, setMessage] = useState<string>('')
   const [inputType, setInputType] = useState<InputPropsType['type']>('default')
 
-  const { data } = useAppSelector((state) => state.user)
+  const { data, authData } = useAppSelector((state) => state.user)
   const dispatch = useAppDispatch()
 
-  const { changeData } = userSlice.actions
+  const { changeData, changeAuthData, authorization } = userSlice.actions
   const { hide } = drawerSlice.actions
 
-  const text = `Обновить ${type !== 'Фамилия' ? type?.toLowerCase() : 'фамилию'}`
+  const text = `Обновить ${
+    type !== 'Фамилия' ? type?.toLowerCase() : 'фамилию'
+  }`
   const disabled = data[key].length === 0 ? true : false
 
-  const handlerChangeData = (e: React.ChangeEvent<HTMLInputElement>) =>
+  const handlerChangeData = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(changeData({ ...data, [key]: e.target.value }))
+  }
 
   useEffect(() => {
     if (isSuccess) {
       dispatch(hide())
+      if (type === 'Логин' || type === 'Пароль') {
+        dispatch(
+          changeAuthData({
+            ...authData,
+            login: data.login,
+            password: data.password,
+          })
+        )
+        localStorage.setItem('login', String(data.login))
+        localStorage.setItem('password', String(data.password))
+      }
     }
-  }, [isSuccess])
+  }, [isSuccess, type])
 
   useMemo(() => {
     if (type === 'Имя') {
@@ -85,5 +101,14 @@ export function useDrawer(isError: boolean, isSuccess: boolean) {
     }
   }, [isError])
 
-  return { key, message, inputType, text, data, type, disabled, handlerChangeData }
+  return {
+    key,
+    message,
+    inputType,
+    text,
+    data,
+    type,
+    disabled,
+    handlerChangeData,
+  }
 }

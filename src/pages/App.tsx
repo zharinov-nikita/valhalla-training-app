@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, useEffect } from 'react'
 import '../styles/index.scss'
 
 import { Navigate, Route, Routes } from 'react-router-dom'
@@ -23,6 +23,7 @@ const App: FC = () => {
           {isAuth ? (
             <Routes>
               <Route path="/user" element={<User />} />
+              <Route path="*" element={<Navigate to={'/user'} replace />} />
             </Routes>
           ) : (
             <Routes>

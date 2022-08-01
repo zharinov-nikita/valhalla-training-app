@@ -9,7 +9,6 @@ import drawerReducer from './drawer/drawer.slice'
 
 // service
 import { userApi } from './user/user.service'
-import { planApi } from './plan/plan.service'
 
 const rootReducer = combineReducers({
   // slice
@@ -21,14 +20,13 @@ const rootReducer = combineReducers({
 
   // serivce
   [userApi.reducerPath]: userApi.reducer,
-  [planApi.reducerPath]: planApi.reducer,
 })
 
 export const setupStore = () => {
   return configureStore({
     reducer: rootReducer,
     middleware: (getDefaultMiddleware) =>
-      getDefaultMiddleware().concat(userApi.middleware, planApi.middleware),
+      getDefaultMiddleware().concat(userApi.middleware),
   })
 }
 

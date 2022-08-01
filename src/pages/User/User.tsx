@@ -1,5 +1,5 @@
-import { FC, useEffect } from 'react'
-import { useFindByIdQuery } from '../../redux/user/user.service'
+import { FC, useEffect, useMemo } from 'react'
+import { useFindByLoginQuery } from '../../redux/user/user.service'
 import { useAppDispatch } from '../../hooks/store/useAppDispatch'
 import { userSlice } from '../../redux/user/user.slice'
 
@@ -7,9 +7,11 @@ import List from '../../components/List/List'
 import Drawer from './components/Drawer/Drawer'
 import Info from './components/Info/Info'
 import Setting from './components/Setting/Setting'
+import { useAppSelector } from '../../hooks/store/useAppSelector'
 
 const User: FC = () => {
-  const { isError, isLoading, data } = useFindByIdQuery('')
+  const { authData } = useAppSelector((state) => state.user)
+  const { isError, isLoading, data } = useFindByLoginQuery(authData)
   const { changeData } = userSlice.actions
   const dispatch = useAppDispatch()
 

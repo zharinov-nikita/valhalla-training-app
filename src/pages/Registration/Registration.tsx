@@ -1,13 +1,13 @@
-import { FC, useMemo, useState } from 'react'
+import { FC, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Button from '../../components/Button/Button'
 import Input from '../../components/Input/Input'
 import List from '../../components/List/List'
-import { useCreateMutation } from '../../redux/user/user.service'
+import { useRegistrationMutation } from '../../redux/user/user.service'
 
 const Registration: FC = () => {
   const navigate = useNavigate()
-  const [registration, { isSuccess }] = useCreateMutation()
+  const [registration, { isSuccess }] = useRegistrationMutation()
   const [form, setForm] = useState({
     firstname: '',
     lastname: '',
@@ -16,7 +16,7 @@ const Registration: FC = () => {
     password: '',
   })
 
-  useMemo(() => {
+  useEffect(() => {
     if (isSuccess) {
       navigate('/authorization', { replace: true })
     }
