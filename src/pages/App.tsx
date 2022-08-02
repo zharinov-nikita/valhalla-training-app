@@ -12,7 +12,7 @@ import Authorization from './Authorization/Authorization'
 
 const App: FC = () => {
   const { theme } = useAppSelector((state) => state.app)
-  const { isAuth } = useAppSelector((state) => state.authorization)
+  const { isAuth, navigate } = useAppSelector((state) => state.authorization)
 
   return (
     <div className="app" data-theme={theme}>
@@ -34,10 +34,7 @@ const App: FC = () => {
             <Routes>
               <Route path="/registration" element={<Registration />} />
               <Route path="/authorization" element={<Authorization />} />
-              <Route
-                path="*"
-                element={<Navigate to={'/registration'} replace />}
-              />
+              <Route path="*" element={<Navigate to={navigate} replace />} />
             </Routes>
           )}
         </div>

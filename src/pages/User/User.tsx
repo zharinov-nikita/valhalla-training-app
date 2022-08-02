@@ -6,12 +6,15 @@ import Drawer from './components/Drawer/Drawer'
 import Info from './components/Info/Info'
 import Setting from './components/Setting/Setting'
 import { useAppSelector } from '../../hooks/store/useAppSelector'
+import { current } from '@reduxjs/toolkit'
 
 const User: FC = () => {
-  const { currentUser } = useAppSelector((state) => state.user)
+  const { newLogin, newPassword } = useAppSelector((state) => state.user)
+  const { currentUser } = useAppSelector((state) => state.authorization)
   const { isError, isLoading, data } = useFindByLoginQuery({
-    login: currentUser.login,
-    password: currentUser.password,
+    _id: currentUser._id,
+    login: newLogin && newLogin,
+    password: newPassword && newPassword,
   })
 
   if (isError) {

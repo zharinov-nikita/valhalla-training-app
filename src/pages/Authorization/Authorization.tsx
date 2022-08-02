@@ -16,8 +16,7 @@ const Authorization: FC = () => {
 
   const dispatch = useAppDispatch()
   const { authorization } = authorizationSlice.actions
-  const [authorizationMutation, { isSuccess, data }] =
-    useAuthorizationMutation()
+  const [authorizationMutation, { isSuccess, data }] = useAuthorizationMutation()
 
   useEffect(() => {
     if (isSuccess && data) {

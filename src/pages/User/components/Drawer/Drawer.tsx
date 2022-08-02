@@ -1,4 +1,5 @@
 import { FC } from 'react'
+import { useNavigate } from 'react-router-dom'
 import Button from '../../../../components/Button/Button'
 import CommonDrawer from '../../../../components/Drawer/Drawer'
 import Input from '../../../../components/Input/Input'
@@ -7,8 +8,8 @@ import { useFindByIdAndUpdateMutation } from '../../../../redux/user/user.servic
 import { useDrawer } from './hooks/useDrawer'
 
 const Drawer: FC = () => {
-  const [findByIdAndUpdate, { isSuccess, isError }] =
-    useFindByIdAndUpdateMutation()
+  const navigate = useNavigate()
+  const [findByIdAndUpdate, { isSuccess, isError }] = useFindByIdAndUpdateMutation()
   const {
     key,
     inputType,
@@ -39,10 +40,6 @@ const Drawer: FC = () => {
           color={{ type: 'fill', value: 'purple' }}
           onClick={() =>
             findByIdAndUpdate({
-              headers: {
-                login: currentUser.login,
-                password: currentUser.password,
-              },
               _id: currentUser._id,
               [key]: updateUser[key],
             })

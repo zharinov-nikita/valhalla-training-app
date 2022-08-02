@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import Button from '../../../../components/Button/Button'
 import Tag from '../../../../components/Tag/Tag'
 import { useAppDispatch } from '../../../../hooks/store/useAppDispatch'
-import { userSlice } from '../../../../redux/user/user.slice'
+import { authorizationSlice } from '../../../../redux/authorization/authorization.slice'
 import style from './Info.module.scss'
 
 export type InfoPropsType = {
@@ -16,7 +16,7 @@ export type InfoPropsType = {
 const Info: FC<InfoPropsType> = ({ firstname, lastname, login, role }) => {
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
-  const { logout } = userSlice.actions
+  const { logout } = authorizationSlice.actions
   return (
     <div className={style.info}>
       <div className={style.left}>

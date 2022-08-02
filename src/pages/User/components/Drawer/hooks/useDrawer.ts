@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { InputPropsType } from '../../../../../components/Input/Input'
 import { useAppDispatch } from '../../../../../hooks/store/useAppDispatch'
 import { useAppSelector } from '../../../../../hooks/store/useAppSelector'
+import { authorizationSlice } from '../../../../../redux/authorization/authorization.slice'
 import { drawerSlice } from '../../../../../redux/drawer/drawer.slice'
 import { userSlice } from '../../../../../redux/user/user.slice'
 
@@ -13,15 +14,15 @@ export function useDrawer(isError: boolean, isSuccess: boolean) {
   const [message, setMessage] = useState<string>('')
   const [inputType, setInputType] = useState<InputPropsType['type']>('default')
 
-  const { updateUser, currentUser } = useAppSelector((state) => state.user)
+  const { updateUser } = useAppSelector((state) => state.user)
+  const { currentUser } = useAppSelector((state) => state.authorization)
   const dispatch = useAppDispatch()
 
-  const { update, updateCurrentUser } = userSlice.actions
+  const { update, setNewLogin, setNewPassword } = userSlice.actions
+  const { updateCurrentUser } = authorizationSlice.actions
   const { hide } = drawerSlice.actions
 
-  const text = `Обновить ${
-    type !== 'Фамилия' ? type?.toLowerCase() : 'фамилию'
-  }`
+  const text = `Обновить ${type !== 'Фамилия' ? type?.toLowerCase() : 'фамилию'}`
   const disabled = updateUser[key].length === 0 ? true : false
 
   const handlerChangeData = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -30,10 +31,19 @@ export function useDrawer(isError: boolean, isSuccess: boolean) {
 
   useEffect(() => {
     if (isSuccess) {
+      localStorage.setItem('currentUser', JSON.stringify(updateUser))
       dispatch(hide())
       dispatch(updateCurrentUser({ ...updateUser }))
+
+      if (key === 'login') {
+        dispatch(setNewLogin(updateUser.login))
+      }
+
+      if (key === 'password') {
+        dispatch(setNewPassword(updateUser.password))
+      }
     }
-  }, [isSuccess])
+  }, [isSuccess, key])
 
   useMemo(() => {
     if (type === 'Имя') {

@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 
 export type UserStateType = {
   isAuth: boolean
+  navigate: '/registration' | '/authorization'
   currentUser: {
     _id: string
     firstname: string
@@ -13,9 +14,9 @@ export type UserStateType = {
   }
 }
 
-export const initialState: UserStateType = {
-  isAuth: false,
-  currentUser: {
+const isCurrentUser =
+  localStorage.getItem('currentUser') ||
+  JSON.stringify({
     _id: '',
     firstname: '',
     lastname: '',
@@ -23,7 +24,13 @@ export const initialState: UserStateType = {
     login: '',
     password: '',
     plans: [],
-  },
+  })
+const currentUser: UserStateType['currentUser'] = JSON.parse(isCurrentUser)
+const isAuth = localStorage.getItem('currentUser') ? true : false
+export const initialState: UserStateType = {
+  isAuth,
+  navigate: '/registration',
+  currentUser,
 }
 
 export const authorizationSlice = createSlice({
@@ -34,10 +41,13 @@ export const authorizationSlice = createSlice({
       state: UserStateType,
       action: { payload: UserStateType['currentUser'] }
     ) {
+      localStorage.setItem('currentUser', JSON.stringify(action.payload))
       state.currentUser = action.payload
       state.isAuth = true
     },
     logout(state: UserStateType) {
+      localStorage.removeItem('currentUser')
+      state.navigate = '/authorization'
       state.currentUser = initialState.currentUser
       state.isAuth = false
     },
