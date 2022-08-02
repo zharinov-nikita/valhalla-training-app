@@ -6,22 +6,19 @@ import List from '../../../../components/List/List'
 import { useFindByIdAndUpdateMutation } from '../../../../redux/user/user.service'
 import { useButtonText } from './hooks/useButtonText'
 import { useDrawer } from './hooks/useDrawer'
+import { useError } from './hooks/useError'
 import { useObjectKey } from './hooks/useObjectKey'
 
 const Drawer: FC = () => {
   const [findByIdAndUpdate, { isSuccess, isError }] = useFindByIdAndUpdateMutation()
-  const {
-    inputType,
-    message,
-    type,
-    updateUser,
-    currentUser,
-    disabled,
-    handlerChangeData,
-  } = useDrawer(isError, isSuccess)
+  const { type, updateUser, currentUser, disabled, handlerChangeData } = useDrawer(
+    isError,
+    isSuccess
+  )
 
   const { text } = useButtonText()
   const { key } = useObjectKey()
+  const { inputType, message } = useError(isError)
 
   return (
     <CommonDrawer>
