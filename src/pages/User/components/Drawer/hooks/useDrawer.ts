@@ -22,6 +22,7 @@ export function useDrawer(isError: boolean, isSuccess: boolean) {
   const { updateCurrentUser } = authorizationSlice.actions
   const { hide } = drawerSlice.actions
 
+  const text = `Обновить ${type !== 'Фамилия' ? type?.toLowerCase() : 'фамилию'}`
   const disabled = updateUser[key].length === 0 ? true : false
 
   const handlerChangeData = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -29,7 +30,7 @@ export function useDrawer(isError: boolean, isSuccess: boolean) {
   }
 
   useEffect(() => {
-    dispatch(update({ ...currentUser }))
+    dispatch(update(currentUser))
   }, [])
 
   useEffect(() => {
@@ -106,6 +107,7 @@ export function useDrawer(isError: boolean, isSuccess: boolean) {
     key,
     message,
     inputType,
+    text,
     updateUser,
     currentUser,
     type,
