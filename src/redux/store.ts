@@ -6,6 +6,7 @@ import userReducer from './user/user.slice'
 import headerReducer from './header/header.slice'
 import navigationReducer from './navigation/navigation.slice'
 import drawerReducer from './drawer/drawer.slice'
+import authorizationReducer from './authorization/authorization.slice'
 
 // service
 import { registrationApi } from './registration/registration.service'
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
   header: headerReducer,
   navigation: navigationReducer,
   drawer: drawerReducer,
+  authorization: authorizationReducer,
 
   // serivce
   [userApi.reducerPath]: userApi.reducer,
