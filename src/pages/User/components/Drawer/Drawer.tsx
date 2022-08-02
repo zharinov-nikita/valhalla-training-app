@@ -5,23 +5,22 @@ import CommonDrawer from '../../../../components/Drawer/Drawer'
 import Input from '../../../../components/Input/Input'
 import List from '../../../../components/List/List'
 import { useFindByIdAndUpdateMutation } from '../../../../redux/user/user.service'
+import { useButtonText } from './hooks/useButtonText'
 import { useDrawer } from './hooks/useDrawer'
 
 const Drawer: FC = () => {
-  const navigate = useNavigate()
   const [findByIdAndUpdate, { isSuccess, isError }] = useFindByIdAndUpdateMutation()
   const {
     key,
     inputType,
     message,
-    text,
     type,
     updateUser,
     currentUser,
     disabled,
     handlerChangeData,
   } = useDrawer(isError, isSuccess)
-
+  const { text } = useButtonText()
   return (
     <CommonDrawer>
       <List gap={12}>
