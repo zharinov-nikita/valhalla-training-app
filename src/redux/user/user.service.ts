@@ -4,10 +4,9 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 const apiBaseUrl = process.env['REACT_APP_API_BASE_URL']
 const apiKey = process.env['REACT_APP_API_KEY']
 // API
+
 const headers = {
   'api-key': String(apiKey),
-  login: localStorage.getItem('login') || '',
-  password: localStorage.getItem('password') || '',
 }
 
 export type UserType = {

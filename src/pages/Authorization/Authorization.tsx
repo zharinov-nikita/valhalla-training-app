@@ -1,5 +1,4 @@
 import { FC, useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 import Button from '../../components/Button/Button'
 import Input from '../../components/Input/Input'
 import List from '../../components/List/List'
@@ -20,9 +19,8 @@ const Authorization: FC = () => {
 
   useEffect(() => {
     if (isSuccess && data) {
-      localStorage.setItem('currentUser', JSON.stringify(data))
-      dispatch(authorization(data))
       dispatch(update(data))
+      dispatch(authorization(data))
     }
   }, [isSuccess, data])
 

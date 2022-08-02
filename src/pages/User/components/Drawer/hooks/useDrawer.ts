@@ -32,7 +32,6 @@ export function useDrawer(isError: boolean, isSuccess: boolean) {
     if (isSuccess) {
       dispatch(hide())
       dispatch(updateCurrentUser({ ...updateUser }))
-      localStorage.setItem('currentUser', JSON.stringify(updateUser))
     }
   }, [isSuccess])
 

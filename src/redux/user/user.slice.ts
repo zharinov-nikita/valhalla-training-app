@@ -23,7 +23,7 @@ export type UserStateType = {
 }
 
 export const initialState: UserStateType = {
-  isAuth: localStorage.getItem('currentUser') ? true : false,
+  isAuth: false,
   currentUser: {
     _id: '',
     firstname: '',

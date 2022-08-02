@@ -1,4 +1,4 @@
-import { FC, useEffect } from 'react'
+import { FC } from 'react'
 import '../styles/index.scss'
 
 import { Navigate, Route, Routes } from 'react-router-dom'
@@ -10,23 +10,11 @@ import User from './User/User'
 import Registration from './Registration/Registration'
 import Authorization from './Authorization/Authorization'
 import { useAppDispatch } from '../hooks/store/useAppDispatch'
-import { userSlice, UserStateType } from '../redux/user/user.slice'
+import { userSlice } from '../redux/user/user.slice'
 
 const App: FC = () => {
-  const dispatch = useAppDispatch()
-  const { updateCurrentUser, update } = userSlice.actions
   const { theme } = useAppSelector((state) => state.app)
   const { isAuth } = useAppSelector((state) => state.user)
-
-  useEffect(() => {
-    if (localStorage.getItem('currentUser')) {
-      const currentUser: UserStateType['currentUser'] = JSON.parse(
-        localStorage.getItem('currentUser') || ''
-      )
-      dispatch(updateCurrentUser(currentUser))
-      dispatch(update(currentUser))
-    }
-  }, [])
 
   return (
     <div className="app" data-theme={theme}>

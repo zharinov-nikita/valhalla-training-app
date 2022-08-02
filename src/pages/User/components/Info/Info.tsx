@@ -46,7 +46,6 @@ const Info: FC<InfoPropsType> = ({ firstname, lastname, login, role }) => {
           text={'Выйти'}
           color={{ type: 'fill', value: 'red' }}
           onClick={() => {
-            localStorage.removeItem('currentUser')
             dispatch(logout())
             navigate('/authorization', { replace: true })
           }}
