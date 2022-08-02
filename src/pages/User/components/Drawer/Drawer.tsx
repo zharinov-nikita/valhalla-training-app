@@ -1,5 +1,4 @@
 import { FC } from 'react'
-import { useNavigate } from 'react-router-dom'
 import Button from '../../../../components/Button/Button'
 import CommonDrawer from '../../../../components/Drawer/Drawer'
 import Input from '../../../../components/Input/Input'
@@ -7,11 +6,11 @@ import List from '../../../../components/List/List'
 import { useFindByIdAndUpdateMutation } from '../../../../redux/user/user.service'
 import { useButtonText } from './hooks/useButtonText'
 import { useDrawer } from './hooks/useDrawer'
+import { useObjectKey } from './hooks/useObjectKey'
 
 const Drawer: FC = () => {
   const [findByIdAndUpdate, { isSuccess, isError }] = useFindByIdAndUpdateMutation()
   const {
-    key,
     inputType,
     message,
     type,
@@ -20,7 +19,10 @@ const Drawer: FC = () => {
     disabled,
     handlerChangeData,
   } = useDrawer(isError, isSuccess)
+
   const { text } = useButtonText()
+  const { key } = useObjectKey()
+
   return (
     <CommonDrawer>
       <List gap={12}>
