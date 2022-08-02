@@ -9,12 +9,10 @@ import Header from '../components/Header/Header'
 import User from './User/User'
 import Registration from './Registration/Registration'
 import Authorization from './Authorization/Authorization'
-import { useAppDispatch } from '../hooks/store/useAppDispatch'
-import { userSlice } from '../redux/user/user.slice'
 
 const App: FC = () => {
   const { theme } = useAppSelector((state) => state.app)
-  const { isAuth } = useAppSelector((state) => state.user)
+  const { isAuth } = useAppSelector((state) => state.authorization)
 
   return (
     <div className="app" data-theme={theme}>

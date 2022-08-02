@@ -11,9 +11,6 @@ export type UserType = {
 }
 
 export type UserAuthorizationType = {
-  firstname: string
-  lastname: string
-  role: string
   login: string
   password: string
 }

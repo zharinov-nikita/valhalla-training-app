@@ -1,26 +1,28 @@
 import { FC, useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import Button from '../../components/Button/Button'
 import Input from '../../components/Input/Input'
 import List from '../../components/List/List'
 import { useAppDispatch } from '../../hooks/store/useAppDispatch'
-import { useAuthorizationMutation } from '../../redux/user/user.service'
-import { userSlice } from '../../redux/user/user.slice'
+import { useAuthorizationMutation } from '../../redux/authorization/authorization.service'
+import { authorizationSlice } from '../../redux/authorization/authorization.slice'
 
 const Authorization: FC = () => {
+  const navigate = useNavigate()
   const [form, setForm] = useState({
     login: '',
     password: '',
   })
 
   const dispatch = useAppDispatch()
-  const { authorization, update } = userSlice.actions
+  const { authorization } = authorizationSlice.actions
   const [authorizationMutation, { isSuccess, data }] =
     useAuthorizationMutation()
 
   useEffect(() => {
     if (isSuccess && data) {
-      dispatch(update(data))
       dispatch(authorization(data))
+      navigate('/user', { replace: true })
     }
   }, [isSuccess, data])
 
