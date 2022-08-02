@@ -9,6 +9,7 @@ import drawerReducer from './drawer/drawer.slice'
 
 // service
 import { registrationApi } from './registration/registration.service'
+import { authorizationApi } from './authorization/authorization.service'
 import { userApi } from './user/user.service'
 
 const rootReducer = combineReducers({
@@ -22,6 +23,7 @@ const rootReducer = combineReducers({
   // serivce
   [userApi.reducerPath]: userApi.reducer,
   [registrationApi.reducerPath]: registrationApi.reducer,
+  [authorizationApi.reducerPath]: authorizationApi.reducer,
 })
 
 export const setupStore = () => {
@@ -30,7 +32,8 @@ export const setupStore = () => {
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware().concat(
         userApi.middleware,
-        registrationApi.middleware
+        registrationApi.middleware,
+        authorizationApi.middleware
       ),
   })
 }
