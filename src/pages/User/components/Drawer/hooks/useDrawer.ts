@@ -30,6 +30,10 @@ export function useDrawer(isError: boolean, isSuccess: boolean) {
   }
 
   useEffect(() => {
+    dispatch(update({ ...currentUser }))
+  }, [])
+
+  useEffect(() => {
     if (isSuccess) {
       localStorage.setItem('currentUser', JSON.stringify(updateUser))
       dispatch(hide())
