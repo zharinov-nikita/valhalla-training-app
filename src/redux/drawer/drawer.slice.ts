@@ -1,12 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 export type DrawerStateType = {
-  action?: string
+  type?: string
   visible: boolean
 }
 
 const initialState: DrawerStateType = {
-  action: '',
+  type: '',
   visible: false,
 }
 
@@ -14,8 +14,11 @@ export const drawerSlice = createSlice({
   name: 'drawer',
   initialState,
   reducers: {
+    changeVisible(state: DrawerStateType) {
+      state.visible = !state.visible
+    },
     show(state: DrawerStateType, action: { payload: string }) {
-      state.action = action.payload
+      state.type = action.payload
       state.visible = true
     },
     hide(state: DrawerStateType) {
@@ -24,5 +27,4 @@ export const drawerSlice = createSlice({
   },
 })
 
-export const { show, hide } = drawerSlice.actions
 export default drawerSlice.reducer

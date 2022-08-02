@@ -1,83 +1,70 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-// API
-const apiBaseUrl = process.env['REACT_APP_API_BASE_URL']
-const apiKey = process.env['REACT_APP_API_KEY']
-// API
-
-// user
-const login: string = localStorage.getItem('login') || ''
-const password: string = localStorage.getItem('password') || ''
-// user
+import { store } from '../..'
 
 export type UserType = {
   _id: string
-  name: string
+  firstname: string
+  lastname: string
+  role: string
+  login: string
+  password: string
+  plans: Array<string>
+}
+
+export type UserFindType = {
+  _id: string
   login: string
   password: string
 }
 
-export type UserCreateType = {
-  name: string
-  login: string
-  password: string
+export type UserUpdateType = {
+  _id: string
+  firstname?: string
+  lastname?: string
+  role?: string
+  login?: string
+  password?: string
+  plans?: Array<string>
 }
 
-export type UserAuthType = {
-  login: string
-  password: string
+export type UserDeleteType = {
+  _id: string
 }
 
 export const userApi = createApi({
   tagTypes: ['User'],
   reducerPath: 'userApi',
-  baseQuery: fetchBaseQuery({ baseUrl: apiBaseUrl }),
+  baseQuery: fetchBaseQuery({
+    baseUrl: String(process.env['REACT_APP_API_BASE_URL']),
+    prepareHeaders: (headers, { getState }) => {
+      headers.set('api-key', String(process.env['REACT_APP_API_KEY']))
+      headers.set('login', store.getState().authorization.currentUser.login)
+      headers.set('password', store.getState().authorization.currentUser.password)
+      return headers
+    },
+  }),
   endpoints: (builder) => ({
-    find: builder.query<UserType[], string>({
+    findByLogin: builder.query<UserType, UserFindType>({
       query: (user) => ({
-        url: `/user`,
-        headers: {
-          'api-key': apiKey,
-          login,
-          password,
-        },
+        url: `/user/${user._id}`,
+        method: 'GET',
+        headers: { login: user.login, password: user.password },
       }),
       providesTags: ['User'],
     }),
-    create: builder.mutation<UserType, UserCreateType>({
+    findByIdAndUpdate: builder.mutation<UserType, UserUpdateType>({
       query: (user) => ({
         url: `/user`,
-        method: 'POST',
-        headers: {
-          'api-key': apiKey,
-          login,
-          password,
-        },
-        body: user,
-      }),
-      invalidatesTags: ['User'],
-    }),
-    findByIdAndUpdate: builder.mutation<UserType, UserType>({
-      query: (user) => ({
-        url: `/user/${user._id}`,
         method: 'PATCH',
-        headers: {
-          'api-key': apiKey,
-          login,
-          password,
-        },
         body: user,
       }),
       invalidatesTags: ['User'],
     }),
-    findByIdAndDelete: builder.mutation<UserType, UserType>({
+    findByIdAndDelete: builder.mutation<UserType, UserDeleteType>({
       query: (user) => ({
-        url: `/user/${user._id}`,
-        headers: {
-          'api-key': apiKey,
-          login,
-          password,
-        },
+        url: `/user`,
         method: 'DELETE',
+        body: user,
       }),
       invalidatesTags: ['User'],
     }),
@@ -85,8 +72,7 @@ export const userApi = createApi({
 })
 
 export const {
-  useFindQuery,
-  useCreateMutation,
+  useFindByLoginQuery,
   useFindByIdAndUpdateMutation,
   useFindByIdAndDeleteMutation,
 } = userApi

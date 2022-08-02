@@ -1,0 +1,112 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 12px;
+    background-color: var(--palette-1);
+    border-radius: 8px;
+
+    & .header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+
+        & .left {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+
+            & .info {
+                display: flex;
+                flex-direction: column;
+                gap: 2px;
+
+                & .title {
+                    color: var(--color-primary-1);
+                }
+
+                & .description {
+                    color: var(--color-primary-2);
+                    font-size: 12px;
+                }
+            }
+        }
+
+        & .right {
+        }
+    }
+
+    & .body {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+
+        & .box {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px;
+            border-radius: 8px;
+            background-color: var(--background-color-primary-4);
+
+            & .list {
+                display: flex;
+                flex-direction: column;
+                gap: 0px;
+                width: 100%;
+
+                & .item {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    width: 100%;
+
+                    & .title {
+                        color: var(--color-primary-2);
+                        font-size: 12px;
+                    }
+
+                    & .value {
+                        color: var(--color-primary-1);
+                        font-size: 12px;
+                    }
+                }
+            }
+        }
+    }
+
+    & .footer {
+        & .progress {
+            display: flex;
+            width: 100%;
+            border-radius: 8px;
+            height: 8px;
+            background-color: var(--green20);
+            position: relative;
+
+            & .placeholder {
+                display: flex;
+                width: 26%;
+                border-radius: 8px;
+                height: 8px;
+                background-color: var(--green);
+                position: absolute;
+                left: 0;
+                top: 0;
+            }
+        }
+    }
+}
+
+.card {
+    & .body {
+        &[data-visible="true"] {
+            display: flex;
+        }
+
+        &[data-visible="false"] {
+            display: none;
+        }
+    }
+}

@@ -1,33 +1,30 @@
-@import "../../scss/variables.scss";
-
 .header {
     position: fixed;
     left: 0;
     right: 0;
     top: 0;
-    width: 480px;
-    max-width: 100%;
-    margin: 0px auto;
-    z-index: 999;
+    z-index: 2;
+
+    & .container {
+        width: 480px;
+        max-width: 100%;
+        margin: 0px auto;
+    }
+
     & .wrapper {
-        background-color: var(--background-color-primary-2);
-        height: 48px;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 0px 12px;
-    }
+        background-color: var(--background-color-primary-1);
+        padding: 0px 16px;
+        height: 52px;
 
-    & .left {
-        cursor: pointer;
-    }
+        & .left {
+            margin-left: -12px;
+        }
 
-    & .right {
-        cursor: pointer;
-    }
-
-    & > * {
-        color: var(--color-primary-2);
-        font-weight: 500;
+        & .right {
+            margin-right: -12px;
+        }
     }
 }

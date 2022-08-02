@@ -1,0 +1,75 @@
+.icon {
+    width: fit-content;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px;
+    border-radius: 8px;
+    width: 38px;
+    height: 38px;
+}
+
+// color
+.icon {
+    &[data-color-type="fill"] {
+        &[data-color-value="purple"] {
+            background-color: var(--purple);
+            color: var(--color-primary-1);
+        }
+        &[data-color-value="red"] {
+            background-color: var(--red);
+            color: var(--color-primary-1);
+        }
+        &[data-color-value="green"] {
+            background-color: var(--green);
+            color: var(--color-primary-1);
+        }
+        &[data-color-value="yellow"] {
+            background-color: var(--yellow);
+            color: var(--color-primary-1);
+        }
+    }
+
+    &[data-color-type="transparent"] {
+        &[data-color-value="purple"] {
+            background-color: var(--purple20);
+            color: var(--purple);
+        }
+        &[data-color-value="red"] {
+            background-color: var(--red20);
+            color: var(--red);
+        }
+        &[data-color-value="green"] {
+            background-color: var(--green20);
+            color: var(--green);
+        }
+        &[data-color-value="yellow"] {
+            background-color: var(--yellow20);
+            color: var(--yellow);
+        }
+    }
+}
+
+// border
+.icon {
+    &[data-border="solid"] {
+        border: 1px solid;
+    }
+}
+
+// size
+.icon {
+    &[data-size="small"] {
+        padding: 8px;
+        min-height: 22px;
+        min-width: 22px;
+    }
+}
+
+// palette
+
+.icon {
+    &[data-palette="true"] {
+        background-color: var(--palette-1);
+    }
+}

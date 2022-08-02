@@ -1,25 +1,36 @@
-import { ChangeEventHandler, FC, useState } from 'react'
-import css from './Input.module.scss'
+import { FC, ChangeEventHandler } from 'react'
+import List from '../List/List'
+import style from './Input.module.scss'
 
 export type InputPropsType = {
-  props: {
-    name: string
-    placeholder: string
-    value: string
-    onChange?: ChangeEventHandler
-  }
+  value: string
+  placeholder?: string
+  message?: string
+  label?: string
+  type?: 'default' | 'error'
+  onChange?: ChangeEventHandler<HTMLInputElement>
 }
 
-const Input: FC<InputPropsType> = ({ props }) => {
+const Input: FC<InputPropsType> = ({
+  value,
+  placeholder,
+  message,
+  type,
+  label,
+  onChange,
+}) => {
   return (
-    <input
-      type={'text'}
-      name={props.name}
-      className={css.input}
-      placeholder={props.placeholder}
-      value={props.value}
-      onChange={props.onChange}
-    />
+    <List className={style.block} gap={4}>
+      {label && !message && <span className={style.label}>{label}</span>}
+      {message && <span className={style.message}>{message}</span>}
+      <input
+        className={style.input}
+        value={value}
+        placeholder={placeholder}
+        data-type={type}
+        onChange={onChange}
+      />
+    </List>
   )
 }
 

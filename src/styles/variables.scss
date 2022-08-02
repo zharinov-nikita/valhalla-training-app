@@ -1,0 +1,74 @@
+:root [data-theme="dark"] {
+    // background
+    --background-color-primary-default: #121212;
+
+    --palette-1: rgba(255, 255, 255, 0.05);
+    --palette-2: rgba(255, 255, 255, 0.07);
+    --palette-3: rgba(255, 255, 255, 0.08);
+    --palette-4: rgba(255, 255, 255, 0.09);
+    --palette-5: rgba(255, 255, 255, 0.11);
+    --palette-6: rgba(255, 255, 255, 0.12);
+    --palette-7: rgba(255, 255, 255, 0.14);
+    --palette-8: rgba(255, 255, 255, 0.15);
+
+    --background-color-primary-1: #1e1e1e;
+    --background-color-primary-2: #232323;
+    --background-color-primary-3: #252525;
+    --background-color-primary-4: #272727;
+    --background-color-primary-5: #2c2c2c;
+    --background-color-primary-6: #2e2e2e;
+    --background-color-primary-7: #333333;
+    --background-color-primary-8: #363636;
+
+    --color-primary-1: #f5f5f6;
+    --color-primary-2: #9d9d9e;
+
+    --purple: #6b53fd;
+    --purple20: rgba(107, 83, 253, 0.2);
+
+    --green: #3fb950;
+    --green20: rgba(63, 185, 80, 0.2);
+
+    --red: #f85149;
+    --red20: rgba(248, 81, 73, 0.2);
+
+    --yellow: #fbca04;
+    --yellow20: rgba(251, 202, 4, 0.2);
+}
+
+:root [data-theme="light"] {
+    --background-color-primary-default: #fff;
+
+    --palette-1: rgba(18, 18, 18, 0.05);
+    --palette-2: rgba(18, 18, 18, 0.07);
+    --palette-3: rgba(18, 18, 18, 0.08);
+    --palette-4: rgba(18, 18, 18, 0.09);
+    --palette-5: rgba(18, 18, 18, 0.11);
+    --palette-6: rgba(18, 18, 18, 0.12);
+    --palette-7: rgba(18, 18, 18, 0.14);
+    --palette-8: rgba(18, 18, 18, 0.15);
+
+    --background-color-primary-1: #f3f3f3;
+    --background-color-primary-2: #eeeeee;
+    --background-color-primary-3: #ececec;
+    --background-color-primary-4: #eaeaea;
+    --background-color-primary-5: #e5e5e5;
+    --background-color-primary-6: #e3e3e3;
+    --background-color-primary-7: #dedede;
+    --background-color-primary-8: #dbdbdb;
+
+    --color-primary-1: #121212;
+    --color-primary-2: #9d9d9e;
+
+    --purple: #6b53fd;
+    --purple20: rgba(107, 83, 253, 0.2);
+
+    --green: #3fb950;
+    --green20: rgba(63, 185, 80, 0.2);
+
+    --red: #f85149;
+    --red20: rgba(248, 81, 73, 0.2);
+
+    --yellow: #fbca04;
+    --yellow20: rgba(251, 202, 4, 0.2);
+}

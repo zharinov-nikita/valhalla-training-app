@@ -1,49 +1,54 @@
-import React, { FC } from 'react'
-import css from './User.module.scss'
-import { Link } from 'react-router-dom'
-import { useFindQuery } from '../../redux/user/user.service'
-import Empty from '../../components/Empty/Empty'
-import Loader from '../../components/Loader/Loader'
+import { FC } from 'react'
+import { useFindByLoginQuery } from '../../redux/user/user.service'
+
+import List from '../../components/List/List'
+import Drawer from './components/Drawer/Drawer'
+import Info from './components/Info/Info'
+import Setting from './components/Setting/Setting'
+import { useAppSelector } from '../../hooks/store/useAppSelector'
+import { current } from '@reduxjs/toolkit'
 
 const User: FC = () => {
-  const pollingInterval = Number(process.env['REACT_APP_POLLING_INTERVAL'])
-  const { isError, isLoading, data } = useFindQuery('', { pollingInterval })
+  const { newLogin, newPassword } = useAppSelector((state) => state.user)
+  const { currentUser } = useAppSelector((state) => state.authorization)
+  const { isError, isLoading, data } = useFindByLoginQuery({
+    _id: currentUser._id,
+    login: newLogin && newLogin,
+    password: newPassword && newPassword,
+  })
 
-  if (isLoading) {
-    return <Empty children={<Loader />} />
+  if (isError) {
+    return <>Ошибка</>
   }
 
-  if (data && data.length === 0) {
-    return <Empty children={'Упс 🌱'} />
+  if (isLoading) {
+    return <>Загрузка...</>
   }
 
   return (
-    <div className={css.user}>
-      {data &&
-        data.map((item) => (
-          <React.Fragment key={item._id}>
-            <div className={css.info}>
-              <div className={css.header}>
-                <div className={css.left}>
-                  <div className={css.icon}>{item.name.split('')[0]}</div>
-                  <div className={css.data}>
-                    <div className={css.top}>{item.name}</div>
-                    <div className={css.buttom}>{item.login}</div>
-                  </div>
-                </div>
-                <div className={css.left}>
-                  <Link
-                    to={`/day/?cycleId=62d27db3e8abbafbac301b53`}
-                    className={css.link}
-                  >
-                    Моя неделя
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </React.Fragment>
-        ))}
-    </div>
+    <>
+      {data && (
+        <List>
+          <Drawer />
+          <Info
+            firstname={data.firstname}
+            lastname={data.lastname}
+            login={data.login}
+            role={data.role}
+          />
+          <Setting
+            list={[
+              { key: 'Идентификатор', value: data?._id },
+              { key: 'Имя', value: data?.firstname },
+              { key: 'Фамилия', value: data?.lastname },
+              { key: 'Роль', value: data?.role },
+              { key: 'Логин', value: data?.login },
+              { key: 'Пароль', value: data?.password },
+            ]}
+          />
+        </List>
+      )}
+    </>
   )
 }
 
