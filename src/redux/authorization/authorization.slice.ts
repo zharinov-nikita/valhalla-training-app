@@ -1,0 +1,53 @@
+import { createSlice } from '@reduxjs/toolkit'
+
+export type UserStateType = {
+  isAuth: boolean
+  currentUser: {
+    _id: string
+    firstname: string
+    lastname: string
+    role: string
+    login: string
+    password: string
+    plans: Array<string>
+  }
+}
+
+export const initialState: UserStateType = {
+  isAuth: false,
+  currentUser: {
+    _id: '',
+    firstname: '',
+    lastname: '',
+    role: '',
+    login: '',
+    password: '',
+    plans: [],
+  },
+}
+
+export const authorizationSlice = createSlice({
+  name: 'authorization',
+  initialState,
+  reducers: {
+    authorization(
+      state: UserStateType,
+      action: { payload: UserStateType['currentUser'] }
+    ) {
+      state.currentUser = action.payload
+      state.isAuth = true
+    },
+    logout(state: UserStateType) {
+      state.currentUser = initialState.currentUser
+      state.isAuth = false
+    },
+    updateCurrentUser(
+      state: UserStateType,
+      action: { payload: UserStateType['currentUser'] }
+    ) {
+      state.currentUser = action.payload
+    },
+  },
+})
+
+export default authorizationSlice.reducer
