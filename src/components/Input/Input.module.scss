@@ -4,9 +4,10 @@
     justify-content: flex-start;
     border-radius: 8px;
     padding: 12px;
-    background: var(--palette-1);
+    background: transparent;
     color: var(--color-primary-1);
-    border: 1px solid var(--palette-1);
+    border: 1px solid var(--palette-4);
+    font-size: 12px;
 }
 
 .input {
@@ -28,7 +29,14 @@
     }
 }
 
-.message {
-    min-height: 24px;
-    color: var(--red);
+.block {
+    & .message {
+        min-height: 24px;
+        color: var(--red);
+    }
+
+    & .label {
+        font-size: 12px;
+        color: var(--color-primary-1);
+    }
 }

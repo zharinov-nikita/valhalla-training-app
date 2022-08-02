@@ -6,7 +6,7 @@ export type AppStateType = {
 }
 
 const initialState: AppStateType = {
-  theme: <AppStateType['theme']>localStorage.getItem('theme') || 'dark',
+  theme: 'dark',
   positon: 'scroll',
 }
 
@@ -16,7 +16,6 @@ export const appSlice = createSlice({
   reducers: {
     switchTheme(state: AppStateType) {
       state.theme = state.theme === 'dark' ? 'light' : 'dark'
-      localStorage.setItem('theme', state.theme)
     },
     changeToFixedPostion(state: AppStateType) {
       state.positon = 'fixed'

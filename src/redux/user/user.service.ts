@@ -1,9 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-
-// API
-const apiBaseUrl = process.env['REACT_APP_API_BASE_URL']
-const apiKey = process.env['REACT_APP_API_KEY']
-// API
+import { store } from '../..'
 
 export type UserType = {
   _id: string
@@ -15,8 +11,14 @@ export type UserType = {
   plans: Array<string>
 }
 
-export type UserTypeUpdate = {
-  _id?: string
+export type UserFindType = {
+  _id: string
+  login: string
+  password: string
+}
+
+export type UserUpdateType = {
+  _id: string
   firstname?: string
   lastname?: string
   role?: string
@@ -25,34 +27,44 @@ export type UserTypeUpdate = {
   plans?: Array<string>
 }
 
+export type UserDeleteType = {
+  _id: string
+}
+
 export const userApi = createApi({
   tagTypes: ['User'],
   reducerPath: 'userApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: apiBaseUrl,
+    baseUrl: String(process.env['REACT_APP_API_BASE_URL']),
+    prepareHeaders: (headers, { getState }) => {
+      headers.set('api-key', String(process.env['REACT_APP_API_KEY']))
+      headers.set('login', store.getState().authorization.currentUser.login)
+      headers.set('password', store.getState().authorization.currentUser.password)
+      return headers
+    },
   }),
   endpoints: (builder) => ({
-    findById: builder.query<UserType, string>({
-      query: (_id) => ({
-        url: `/user/62e65432fd1fc3f24598b813`,
-        headers: { 'api-key': String(apiKey) },
+    findByLogin: builder.query<UserType, UserFindType>({
+      query: (user) => ({
+        url: `/user/${user._id}`,
+        method: 'GET',
+        headers: { login: user.login, password: user.password },
       }),
       providesTags: ['User'],
     }),
-    findByIdAndUpdate: builder.mutation<UserType, UserTypeUpdate>({
+    findByIdAndUpdate: builder.mutation<UserType, UserUpdateType>({
       query: (user) => ({
-        url: `/user/62e65432fd1fc3f24598b813`,
+        url: `/user`,
         method: 'PATCH',
         body: user,
-        headers: { 'api-key': String(apiKey) },
       }),
       invalidatesTags: ['User'],
     }),
-    findByIdAndDelete: builder.mutation<UserType, UserType>({
+    findByIdAndDelete: builder.mutation<UserType, UserDeleteType>({
       query: (user) => ({
-        url: `/user/62e65432fd1fc3f24598b813`,
+        url: `/user`,
         method: 'DELETE',
-        headers: { 'api-key': String(apiKey) },
+        body: user,
       }),
       invalidatesTags: ['User'],
     }),
@@ -60,7 +72,7 @@ export const userApi = createApi({
 })
 
 export const {
-  useFindByIdQuery,
+  useFindByLoginQuery,
   useFindByIdAndUpdateMutation,
   useFindByIdAndDeleteMutation,
 } = userApi

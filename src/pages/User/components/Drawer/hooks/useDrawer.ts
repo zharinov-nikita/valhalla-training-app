@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { InputPropsType } from '../../../../../components/Input/Input'
 import { useAppDispatch } from '../../../../../hooks/store/useAppDispatch'
 import { useAppSelector } from '../../../../../hooks/store/useAppSelector'
+import { authorizationSlice } from '../../../../../redux/authorization/authorization.slice'
 import { drawerSlice } from '../../../../../redux/drawer/drawer.slice'
 import { userSlice } from '../../../../../redux/user/user.slice'
 
@@ -13,23 +14,40 @@ export function useDrawer(isError: boolean, isSuccess: boolean) {
   const [message, setMessage] = useState<string>('')
   const [inputType, setInputType] = useState<InputPropsType['type']>('default')
 
-  const { data } = useAppSelector((state) => state.user)
+  const { updateUser } = useAppSelector((state) => state.user)
+  const { currentUser } = useAppSelector((state) => state.authorization)
   const dispatch = useAppDispatch()
 
-  const { changeData } = userSlice.actions
+  const { update, setNewLogin, setNewPassword } = userSlice.actions
+  const { updateCurrentUser } = authorizationSlice.actions
   const { hide } = drawerSlice.actions
 
   const text = `Обновить ${type !== 'Фамилия' ? type?.toLowerCase() : 'фамилию'}`
-  const disabled = data[key].length === 0 ? true : false
+  const disabled = updateUser[key].length === 0 ? true : false
 
-  const handlerChangeData = (e: React.ChangeEvent<HTMLInputElement>) =>
-    dispatch(changeData({ ...data, [key]: e.target.value }))
+  const handlerChangeData = (e: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch(update({ ...currentUser, [key]: e.target.value }))
+  }
+
+  useEffect(() => {
+    dispatch(update(currentUser))
+  }, [])
 
   useEffect(() => {
     if (isSuccess) {
+      localStorage.setItem('currentUser', JSON.stringify(updateUser))
       dispatch(hide())
+      dispatch(updateCurrentUser({ ...updateUser }))
+
+      if (key === 'login') {
+        dispatch(setNewLogin(updateUser.login))
+      }
+
+      if (key === 'password') {
+        dispatch(setNewPassword(updateUser.password))
+      }
     }
-  }, [isSuccess])
+  }, [isSuccess, key])
 
   useMemo(() => {
     if (type === 'Имя') {
@@ -85,5 +103,15 @@ export function useDrawer(isError: boolean, isSuccess: boolean) {
     }
   }, [isError])
 
-  return { key, message, inputType, text, data, type, disabled, handlerChangeData }
+  return {
+    key,
+    message,
+    inputType,
+    text,
+    updateUser,
+    currentUser,
+    type,
+    disabled,
+    handlerChangeData,
+  }
 }

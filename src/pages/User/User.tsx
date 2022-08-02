@@ -1,23 +1,21 @@
-import { FC, useEffect } from 'react'
-import { useFindByIdQuery } from '../../redux/user/user.service'
-import { useAppDispatch } from '../../hooks/store/useAppDispatch'
-import { userSlice } from '../../redux/user/user.slice'
+import { FC } from 'react'
+import { useFindByLoginQuery } from '../../redux/user/user.service'
 
 import List from '../../components/List/List'
 import Drawer from './components/Drawer/Drawer'
 import Info from './components/Info/Info'
 import Setting from './components/Setting/Setting'
+import { useAppSelector } from '../../hooks/store/useAppSelector'
+import { current } from '@reduxjs/toolkit'
 
 const User: FC = () => {
-  const { isError, isLoading, data } = useFindByIdQuery('')
-  const { changeData } = userSlice.actions
-  const dispatch = useAppDispatch()
-
-  useEffect(() => {
-    if (data) {
-      dispatch(changeData(data))
-    }
-  }, [data])
+  const { newLogin, newPassword } = useAppSelector((state) => state.user)
+  const { currentUser } = useAppSelector((state) => state.authorization)
+  const { isError, isLoading, data } = useFindByLoginQuery({
+    _id: currentUser._id,
+    login: newLogin && newLogin,
+    password: newPassword && newPassword,
+  })
 
   if (isError) {
     return <>Ошибка</>

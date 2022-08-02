@@ -3,3 +3,13 @@
     flex-direction: column;
     gap: 16px;
 }
+
+// type
+
+.list {
+    &[data-type="block"] {
+        padding: 12px;
+        background-color: var(--palette-1);
+        border-radius: 8px;
+    }
+}
