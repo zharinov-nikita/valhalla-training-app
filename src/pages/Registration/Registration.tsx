@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import Button from '../../components/Button/Button'
 import Input from '../../components/Input/Input'
 import List from '../../components/List/List'
-import { useRegistrationMutation } from '../../redux/user/user.service'
+import { useRegistrationMutation } from '../../redux/registration/registration.service'
 
 const Registration: FC = () => {
   const navigate = useNavigate()
@@ -11,7 +11,7 @@ const Registration: FC = () => {
   const [form, setForm] = useState({
     firstname: '',
     lastname: '',
-    role: '',
+    role: 'Спортсмен',
     login: '',
     password: '',
   })

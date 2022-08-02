@@ -8,6 +8,7 @@ import navigationReducer from './navigation/navigation.slice'
 import drawerReducer from './drawer/drawer.slice'
 
 // service
+import { registrationApi } from './registration/registration.service'
 import { userApi } from './user/user.service'
 
 const rootReducer = combineReducers({
@@ -20,13 +21,17 @@ const rootReducer = combineReducers({
 
   // serivce
   [userApi.reducerPath]: userApi.reducer,
+  [registrationApi.reducerPath]: registrationApi.reducer,
 })
 
 export const setupStore = () => {
   return configureStore({
     reducer: rootReducer,
     middleware: (getDefaultMiddleware) =>
-      getDefaultMiddleware().concat(userApi.middleware),
+      getDefaultMiddleware().concat(
+        userApi.middleware,
+        registrationApi.middleware
+      ),
   })
 }
 
